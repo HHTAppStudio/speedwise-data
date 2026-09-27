@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1787290543
+  },
+  "raw": [
+    {
+      "camera_type": "MOBILE SPEED CAMERA",
+      "camera_location_code": "0001A",
+      "location_code": "0001A",
+      "latitude": "-35.313899999999997",
+      "longitude": "149.09950000000001",
+      "location_description": "Adelaide Ave & Tourist Drive 5 & Kent St, Deakin ACT 2600, Australia",
+      "location": {
+        "latitude": "-35.3139",
+        "longitude": "149.0995"
+      }
+    },
+    {
+      "camera_type": "RED LIGHT AND SPEED CAMERA",
+      "camera_location_code": "1001",
+      "location_code": "1001",
+      "latitude": "-35.27941",
+      "longitude": "149.12925000000001",
+      "location_description": "NORTHBOURNE AVENUE/LONDON CIRCUIT",
+      "location": {
+        "latitude": "-35.27941",
+        "longitude": "149.12925"
+      }
+    },
+    {
+      "camera_type": "FIXED ONLY SPEED CAMERA",
+      "camera_location_code": "1026N",
+      "location_code": "1026",
+      "latitude": "-35.192129999999999",
+      "longitude": "149.08327",
+      "location_description": "BARTON HIGHWAY BETWEEN CURRAN DRIVE AND GOLD CREEK ROAD",
+      "location": {
+        "latitude": "-35.19213",
+        "longitude": "149.08327"
+      }
+    },
+    {
+      "camera_type": "POINT TO POINT CAMERA",
+      "camera_location_code": "2002/2003",
+      "location_code": "2002",
+      "latitude": "-35.347099999999998",
+      "longitude": "149.10827",
+      "location_description": "HINDMARSH DRIVE WESTBOUND BETWEEN MUGGA LANE AND TYAGARAH STREET",
+      "location": {
+        "latitude": "-35.3471",
+        "longitude": "149.10827"
+      }
+    },
+    {
+      "location": {
+        "latitude": "-35.18994",
+        "longitude": "149.16022"
+      }
+    }
+  ]
+}

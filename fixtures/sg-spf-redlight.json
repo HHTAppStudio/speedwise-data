@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "data.lastUpdatedAt": "2025-11-13T11:25:35+08:00"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "name": "SPF_RLC",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.91656000000386,
+            1.395370000002781
+          ]
+        },
+        "properties": {
+          "OBJECTID": 127,
+          "ID": 127,
+          "ROAD_NAME": "Punggol East",
+          "DIRECTION": "Punggol Drive",
+          "LATITUDE": 1.39537,
+          "LONGITUDE": 103.91656,
+          "DESCP": "Punggol East by Punggol Central",
+          "INC_CRC": "EF4455CF328E4C20",
+          "FMEL_UPD_D": "20170208135432"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.9033249999956,
+            1.3816009999984487
+          ]
+        },
+        "properties": {
+          "OBJECTID": 128,
+          "ID": 128,
+          "ROAD_NAME": "Sengkang East Drive",
+          "DIRECTION": "Punggol East",
+          "LATITUDE": 1.381601,
+          "LONGITUDE": 103.903325,
+          "DESCP": "Sengkang East Drive by Sengkang East Avenue",
+          "INC_CRC": "C84EABB88A2CCC87",
+          "FMEL_UPD_D": "20170208135432"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.8944909999976,
+            1.388908000000213
+          ]
+        },
+        "properties": {
+          "OBJECTID": 129,
+          "ID": 129,
+          "ROAD_NAME": "Compassvale Drive",
+          "DIRECTION": "Rivervale Lane",
+          "LATITUDE": 1.388908,
+          "LONGITUDE": 103.894491,
+          "DESCP": "Compassvale Drive by Sengkang Central",
+          "INC_CRC": "FE8F5D28000B2515",
+          "FMEL_UPD_D": "20170208135432"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.89478000000199,
+            1.3930599999967266
+          ]
+        },
+        "properties": {
+          "OBJECTID": 130,
+          "ID": 130,
+          "ROAD_NAME": "Sengkang East Way",
+          "DIRECTION": "Compassvale Road",
+          "LATITUDE": 1.39306,
+          "LONGITUDE": 103.89478,
+          "DESCP": "Sengkang East Way by Sengkang Square",
+          "INC_CRC": "82B9FAF9208B6F53",
+          "FMEL_UPD_D": "20170208135432"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.87432199999714,
+            1.3582140000032188
+          ]
+        },
+        "properties": {
+          "OBJECTID": 131,
+          "ID": 131,
+          "ROAD_NAME": "Yio Chu Kang Road",
+          "DIRECTION": "Serangoon Garden Way",
+          "LATITUDE": 1.358214,
+          "LONGITUDE": 103.874322,
+          "DESCP": "Yio Chu Kang Road by Yio Chu Kang Link",
+          "INC_CRC": "4FFD3A3116AC2EE9",
+          "FMEL_UPD_D": "20170208135432"
+        }
+      }
+    ]
+  }
+}

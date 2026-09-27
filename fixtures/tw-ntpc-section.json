@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "result.modifiedDate": "2026-08-11 00:00:05"
+  },
+  "raw": [
+    {
+      "seqno": "1",
+      "cityname": "新北市",
+      "regionname": "新店區、石碇區",
+      "location": "臺9線19K至23.1K(雙向)",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新店分局",
+      "limit": "40公里",
+      "item": "超速",
+      "length": "往新店方向：3946.7公尺 往宜蘭方向：3938.1公尺",
+      "start latitude": "24.9569297 24.953133",
+      "start longitude": "121.6236371 121.5981016",
+      "end latitude": "24.9531792 24.9570178",
+      "end longitude": "121.5981891 121.6236044",
+      "direct": "雙向"
+    },
+    {
+      "seqno": "2",
+      "cityname": "新北市",
+      "regionname": "石碇區、坪林區",
+      "location": "臺9線26.2K至32.2K(雙向)",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新店分局",
+      "limit": "40公里",
+      "item": "超速",
+      "length": "往新店方向：5830.5公尺 往宜蘭方向：5835.3公尺",
+      "start latitude": "24.9430715 24.9504174",
+      "start longitude": "121.6708954 121.6477995",
+      "end latitude": "24.9503516 24.9429879",
+      "end longitude": "121.6478697 121.6708659",
+      "direct": "雙向"
+    },
+    {
+      "seqno": "3",
+      "cityname": "新北市",
+      "regionname": "坪林區",
+      "location": "臺9線33.3K至37.2K(雙向)",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新店分局",
+      "limit": "40公里",
+      "item": "超速",
+      "length": "往新店方向：3862.5公尺 往宜蘭方向：3876.8公尺",
+      "start latitude": "24.9360445 24.938322",
+      "start longitude": "121.7035178 121.6772214",
+      "end latitude": "24.9384678 24.9359628",
+      "end longitude": "121.6770967 121.7036968",
+      "direct": "雙向"
+    },
+    {
+      "seqno": "4",
+      "cityname": "新北市",
+      "regionname": "中和區",
+      "location": "臺64線快速公路25.2k至28.2k(雙向)",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "中和分局",
+      "limit": "70公里",
+      "item": "超速",
+      "length": "東向25.2k主線至28.2k：2955.4公尺  東向25.2k錦和路匝道至28.2k：2859.3公尺  西向26.6k至28.2k：1563.3公尺",
+      "start latitude": "24.9940327 24.9939131 24.9906839",
+      "start longitude": "121.4912557 121.4912819 121.5223483",
+      "end latitude": "24.9911521 24.9911521 24.9932551",
+      "end longitude": "121.520327 121.520327 121.5070838",
+      "direct": "雙向"
+    },
+    {
+      "seqno": "5",
+      "cityname": "新北市",
+      "regionname": "板橋區、中和區",
+      "location": "台64線快速公路東向21.4K主線至23.2K",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "中和分局",
+      "limit": "70公里",
+      "item": "超速\n\n跨越雙白線\n(東向21.4K)",
+      "length": "1755.7公尺",
+      "start latitude": "25.0189783",
+      "start longitude": "121.4707713",
+      "end latitude": "25.0078907",
+      "end longitude": "121.4828569",
+      "direct": "西向東"
+    }
+  ]
+}

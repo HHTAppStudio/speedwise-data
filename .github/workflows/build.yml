@@ -32,7 +32,11 @@ jobs:
         run: python -m unittest -v
 
       # Một nguồn lỗi không làm đỏ bước này: build_packs.py giữ camera cũ của nguồn đó và ghi lý do vào REPORT.md.
+      # Key API lấy từ repo secrets; secret chưa đặt → biến rỗng → nguồn đó "skipped: no key", vẫn xanh.
       - name: Build packs
+        env:
+          TRAFIKVERKET_API_KEY: ${{ secrets.TRAFIKVERKET_API_KEY }}
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
         run: python build_packs.py
 
       - name: Commit data changes

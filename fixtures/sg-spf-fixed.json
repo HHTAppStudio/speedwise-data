@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "data.lastUpdatedAt": "2025-11-13T11:25:34+08:00"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "name": "SPF_FSC",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.83228499999561,
+            1.4152979999989124
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "ID": 1,
+          "ROAD_NAME": "Yishun Avenue 2",
+          "DIRECTION": "Lentor Avenue",
+          "LATITUDE": 1.415298,
+          "LONGITUDE": 103.832285,
+          "DESCP": "Static Speed Camera",
+          "INC_CRC": "53E516E79B0CE6BC",
+          "FMEL_UPD_D": "20161230201814"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.8323119999976,
+            1.4153250000043414
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "ID": 2,
+          "ROAD_NAME": "Yishun Avenue 2",
+          "DIRECTION": "Sembawang Road",
+          "LATITUDE": 1.415325,
+          "LONGITUDE": 103.832312,
+          "DESCP": "Static Speed Camera",
+          "INC_CRC": "831CD792315CDEE5",
+          "FMEL_UPD_D": "20161230201824"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.74079000000152,
+            1.3609300000022386
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "ID": 3,
+          "ROAD_NAME": "Bukit Batok Road",
+          "DIRECTION": "Chua Chu Kang Road",
+          "LATITUDE": 1.36093,
+          "LONGITUDE": 103.74079,
+          "DESCP": "Static Speed Camera",
+          "INC_CRC": "BF6514AB22EB0793",
+          "FMEL_UPD_D": "20161230201824"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.74079000000152,
+            1.3609300000022386
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "ID": 4,
+          "ROAD_NAME": "Bukit Batok Road",
+          "DIRECTION": "Jurong Town Hall Road",
+          "LATITUDE": 1.36093,
+          "LONGITUDE": 103.74079,
+          "DESCP": "Static Speed Camera",
+          "INC_CRC": "BF6514ABA1AAC682",
+          "FMEL_UPD_D": "20161230201824"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.72549099999564,
+            1.3447369999993644
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "ID": 5,
+          "ROAD_NAME": "Boon Lay Way",
+          "DIRECTION": "Commonwealth Avenue West",
+          "LATITUDE": 1.344737,
+          "LONGITUDE": 103.725491,
+          "DESCP": "Static Speed Camera",
+          "INC_CRC": "F1D8EB6D41FCD810",
+          "FMEL_UPD_D": "20161230201824"
+        }
+      }
+    ]
+  }
+}

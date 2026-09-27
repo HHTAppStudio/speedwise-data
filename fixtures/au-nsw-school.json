@@ -1,0 +1,134 @@
+{
+  "metadata": null,
+  "raw": {
+    "exceededTransferLimit": false,
+    "features": [
+      {
+        "id": 209,
+        "type": "Feature",
+        "properties": {
+          "sz_": "Y",
+          "location": "Randwick (school zone)",
+          "cameras": "1",
+          "road": "Avoca Street, between Howard Street and Barker Road",
+          "lat_1": -33.92284393,
+          "long_1": 151.24005127,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Randwick",
+          "road_s": "Avoca Street, between Howard Street and Barker Road (school zone)",
+          "objectid": 209,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.24005126953128,
+            -33.922843933105455
+          ]
+        }
+      },
+      {
+        "id": 184,
+        "type": "Feature",
+        "properties": {
+          "sz_": "Y",
+          "location": "Beverly Hills (school zone)",
+          "cameras": "2",
+          "road": "King Georges Road, between Stoney Creek Road and Edgbaston Road",
+          "lat_1": -33.95055389,
+          "long_1": 151.08166504,
+          "lat_2": -33.95055389,
+          "long_2": 151.0819397,
+          "suburb_town": "Beverly Hills",
+          "road_s": "King Georges Road, between Stoney Creek Road and Edgbaston Road (school zone)",
+          "objectid": 184,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.08166503906259,
+            -33.950553894042955
+          ]
+        }
+      },
+      {
+        "id": 189,
+        "type": "Feature",
+        "properties": {
+          "sz_": "Y",
+          "location": "Gateshead (school zone)",
+          "cameras": "1",
+          "road": "Pacific Highway, between Sydney Street and Macquarie Avenue",
+          "lat_1": -32.9836731,
+          "long_1": 151.69216919,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Gateshead",
+          "road_s": "Pacific Highway, between Sydney Street and Macquarie Avenue (school zone)",
+          "objectid": 189,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.69216918945312,
+            -32.983673095703125
+          ]
+        }
+      },
+      {
+        "id": 188,
+        "type": "Feature",
+        "properties": {
+          "sz_": "Y",
+          "location": "East Gardens/ Maroubra (school zone)",
+          "cameras": "2",
+          "road": "Bunnerong Road, between Fitzgerald Avenue and Smith Street",
+          "lat_1": -33.94709396,
+          "long_1": 151.22888184,
+          "lat_2": -33.94698715,
+          "long_2": 151.22900391,
+          "suburb_town": "Eastgardens / Maroubra",
+          "road_s": "Bunnerong Road, between Fitzgerald Avenue and Smith Street",
+          "objectid": 188,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.2288818359375,
+            -33.94709396362301
+          ]
+        }
+      },
+      {
+        "id": 206,
+        "type": "Feature",
+        "properties": {
+          "sz_": "Y",
+          "location": "Old Guildford (school zone)",
+          "cameras": "2",
+          "road": "Woodville Road, between Orchardleigh Street and Middleton Road",
+          "lat_1": -33.86766052,
+          "long_1": 150.9875946,
+          "lat_2": -33.86739731,
+          "long_2": 150.98791504,
+          "suburb_town": "Old Guilford",
+          "road_s": "Woodville Road, between Orchardleigh Street and Middleton Road (school zone)",
+          "objectid": 206,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            150.98759460449224,
+            -33.86766052246093
+          ]
+        }
+      }
+    ],
+    "type": "FeatureCollection"
+  }
+}

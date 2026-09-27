@@ -1,0 +1,88 @@
+{
+  "metadata": null,
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.16736530900005,
+            22.277850853000075
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "Name": "kml_1",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>RLC_ID</th>\n<td>1</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>QUEEN'S ROAD E. (WEST BOUND) AT JUNCTION WITH QUEENSWAY</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>皇后大道東（西行）與金鐘道交界</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>皇后大道东（西行）与金钟道交界</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>835288</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>815443</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.2586168900001,
+            22.325803828000062
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "Name": "kml_2",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>RLC_ID</th>\n<td>2</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>PO LAM ROAD NORTH (SOUTHEAST BOUND) NEAR YAU YUE WAN VILLAGE ROAD</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>寶琳北路（東南行）鄰近魷魚灣村道</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>宝琳北路（东南行）邻近鱿鱼湾村道</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>844689</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>820755</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.20138814000006,
+            22.338239646000034
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "Name": "kml_3",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>RLC_ID</th>\n<td>3</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>CHOI HUNG ROAD (SOUTHEAST BOUND) AT JUNCTION WITH SZE MEI STREET</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>彩虹道（東南行）與四美街交界</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>彩虹道（东南行）与四美街交界</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>838793</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>822130</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.23018402800005,
+            22.32355893600004
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "Name": "kml_4",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>RLC_ID</th>\n<td>4</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>SAU MAU PING ROAD (NORTHWEST BOUND) AT JUNCTION WITH SAU MING ROAD</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>秀茂坪道（西北行）與秀明道交界</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>秀茂坪道（西北行）与秀明道交界</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>841760</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>820506</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.16676042900008,
+            22.323729050000054
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "Name": "kml_5",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>RLC_ID</th>\n<td>5</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>LAI CHI KOK ROAD (SOUTH BOUND) AT JUNCTION WITH PRINCE EDWARD ROAD W.</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>荔枝角道（南行）與太子道西交界</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>荔枝角道（南行）与太子道西交界</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220127</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>835226</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>820523</td>\n</tr></table></center>"
+        }
+      }
+    ]
+  }
+}

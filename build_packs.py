@@ -15,6 +15,7 @@ import csv
 import datetime as dt
 import glob
 import hashlib
+import html
 import io
 import json
 import math
@@ -150,7 +151,9 @@ def _case_word(match, is_first):
         return word.lower()
     if any(ch.isdigit() for ch in word):
         return upper
-    return "'".join(part.capitalize() for part in word.split("'"))
+    # "O'RIORDAN" → "O'Riordan"; sở hữu cách "QUEEN'S" → "Queen's".
+    return "'".join(part.lower() if index and part.upper() == "S" else part.capitalize()
+                    for index, part in enumerate(word.split("'")))
 
 
 def clean_road(text, strip_directions=True):
@@ -166,6 +169,7 @@ def clean_road(text, strip_directions=True):
         text = re.sub(_DIRECTION_TOKEN.pattern + r"\s*(?:and|&|/)\s*" + _DIRECTION_TOKEN.pattern, " ", text, flags=re.IGNORECASE)
         text = _DIRECTION_TOKEN.sub(" ", text)
         text = re.sub(r"\(\s*\)", " ", text)  # "(EB)" đã bỏ chữ hướng → ngoặc rỗng
+    text = re.sub(r"\s+(?:@|at)\s+(?:the\s+)?junction\s+with\s+", " & ", text, flags=re.IGNORECASE)  # Hong Kong
     text = re.sub(r"\s+(?:@|at)\s+", " & ", text, flags=re.IGNORECASE)
     text = re.sub(r"\s*&\s*", " & ", text)
     text = re.sub(r"\s+", " ", text).strip(" &@,-/")
@@ -176,7 +180,9 @@ def clean_road(text, strip_directions=True):
         position = {"first": True}
 
         def replace(match):
-            result = _case_word(match, position["first"])
+            # Từ đầu tên đường, kể cả ngay sau "&" ("… & ON LAI STREET" → "& On Lai Street"), luôn viết hoa chữ đầu.
+            starts_name = position["first"] or match.string[:match.start()].rstrip().endswith("&")
+            result = _case_word(match, starts_name)
             position["first"] = False
             return result
 
@@ -227,13 +233,19 @@ def parse_number(value, decimal_comma=False):
 
 
 def parse_date(value):
-    """epoch (s hoặc ms), ISO 8601, hoặc m/d/Y → datetime.date."""
+    """epoch (s hoặc ms), ISO 8601, m/d/Y, hoặc chuỗi YYYYMMDD[HHMMSS] (Hong Kong, Singapore) → datetime.date."""
     if value is None or value == "":
         return None
     if isinstance(value, (int, float)) and not isinstance(value, bool):
         seconds = value / 1000.0 if abs(value) > 1e11 else float(value)
         return dt.datetime.fromtimestamp(seconds, tz=dt.timezone.utc).date()
     text = str(value).strip()
+    compact = re.fullmatch(r"((?:19|20)\d{2})(\d{2})(\d{2})(?:\d{6})?", text)
+    if compact:
+        try:
+            return dt.date(*(int(part) for part in compact.groups()))
+        except ValueError:
+            pass
     if re.fullmatch(r"-?\d+", text):
         return parse_date(int(text))
     for fmt in ("%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d", "%m/%d/%Y", "%m/%d/%Y %H:%M:%S"):
@@ -321,7 +333,9 @@ def headings_match(h1, h2):
 # Đọc dữ liệu thô
 # ---------------------------------------------------------------------------
 
-GEOJSON_FORMATS = ("arcgis-geojson", "socrata-geojson", "wfs-geojson", "geojson")
+GEOJSON_FORMATS = ("arcgis-geojson", "socrata-geojson", "wfs-geojson", "geojson", "datagovsg-poll-download")
+# Mảng JSON các dòng phẳng, toạ độ ở cặp trường lat/lon (hoặc `point` GeoJSON của Socrata).
+FLAT_JSON_FORMATS = ("socrata-json", "datagovsg-datastore", "ntpc-json", "datagokr-api")
 
 
 def _point_lon_lat(geometry):
@@ -484,8 +498,51 @@ def parse_trafikverket_items(items):
     return rows
 
 
+_POPUP_CELL = re.compile(r"<th>(.*?)</th>\s*<td>(.*?)</td>", re.DOTALL)
+
+
+def popup_fields(text):
+    """Trường PopupInfo (bảng HTML <th>tên</th><td>giá trị</td> do lớp KML sinh ra — CSDI Hong Kong) → dict."""
+    return {html.unescape(name).strip(): html.unescape(value).strip() for name, value in _POPUP_CELL.findall(str(text or ""))}
+
+
+def section_rows(row, fields):
+    """Đoạn đo tốc độ trung bình ghi toạ độ đầu/cuối trong 4 trường (New Taipei). Đoạn 2 chiều ghi nhiều giá trị cách nhau
+    khoảng trắng — giá trị thứ i của cả 4 trường là chiều thứ i. → 2 dòng/chiều ("start"/"end"); nhiều chiều thì key thêm "d<i>"."""
+    values = {name: str(row.get(field) or "").split() for name, field in fields.items()}
+    count = len(values["startLat"])
+    if count == 0 or any(len(v) != count for v in values.values()):
+        return [dict(row, _lat=None, _lon=None)]
+    rows = []
+    for index in range(count):
+        suffix = "d%d" % (index + 1) if count > 1 else ""
+        for section in ("start", "end"):
+            rows.append(dict(row, _lat=values[section + "Lat"][index], _lon=values[section + "Lon"][index],
+                             _section=section, _keySuffix=suffix))
+    return rows
+
+
 def parse_raw(source, raw):
     """Dữ liệu thô của một nguồn → danh sách dict phẳng; toạ độ đặt ở "_lat"/"_lon"."""
+    rows = _parse_rows(source, raw)
+    rule = source.get("sectionField")
+    if rule:
+        # Mã vị trí trong đoạn đo tốc độ trung bình (Hàn Quốc 단속구간위치구분: 1 = 시점 đầu, 2 = 종점 cuối).
+        # Chỉ tính là đoạn khi độ dài đoạn > 0 — vài cơ quan ghi mã nhưng độ dài 0 (camera điểm).
+        for row in rows:
+            code = str(row.get(rule["field"]) or "").strip()
+            length = parse_number(row.get(rule["lengthField"])) if rule.get("lengthField") else 1
+            if length and length > 0 and code in rule["start"] + rule["end"]:
+                row["_section"] = "start" if code in rule["start"] else "end"
+    second = source.get("secondPoint")
+    if second:
+        # Vị trí camera thứ hai của cùng dòng (NSW lat_2/long_2) → thêm 1 dòng, key thêm "p2".
+        rows += [dict(row, _lat=row[second["lat"]], _lon=row[second["lon"]], _keySuffix="p2")
+                 for row in rows if not is_empty(row.get(second["lat"])) and not is_empty(row.get(second["lon"]))]
+    return rows
+
+
+def _parse_rows(source, raw):
     fmt = source["format"]
     rows = []
     if fmt in GEOJSON_FORMATS:
@@ -496,6 +553,8 @@ def parse_raw(source, raw):
         field_map = source.get("fieldMap", {})
         for feature in raw["features"]:
             row = dict(feature.get("properties") or {})
+            if source.get("popupTable"):
+                row.update(popup_fields(row.get(source["popupTable"])))
             ends = _line_ends(feature.get("geometry")) if source.get("lineSections") else None
             if ends:
                 # Đoạn đo tốc độ trung bình (Luxembourg): 1 dòng ở đầu, 1 dòng ở cuối.
@@ -507,12 +566,15 @@ def parse_raw(source, raw):
                 # Geometry trống nhưng dataset có trường toạ độ riêng (Bogotá LATITUD/LONGITUD).
                 row["_lat"], row["_lon"] = row.get(field_map["lat"]), row.get(field_map["lon"])
             rows.append(row)
-    elif fmt == "socrata-json":
+    elif fmt in FLAT_JSON_FORMATS:
         if not isinstance(raw, list):
-            raise ValueError("phản hồi Socrata không phải mảng JSON")
+            raise ValueError("phản hồi %s không phải mảng JSON" % fmt)
         field_map = source["fieldMap"]
         for item in raw:
             row = dict(item)
+            if source.get("sectionFields"):
+                rows.extend(section_rows(row, source["sectionFields"]))
+                continue
             if field_map.get("point"):
                 point = item.get(field_map["point"]) or {}
                 coords = point.get("coordinates") if isinstance(point, dict) else None
@@ -708,6 +770,8 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
             key_match = re.search(field_map["keyPattern"], str(key_value))
             key_value = key_match.group(1) if key_match else None
         key = "" if is_empty(key_value) else key_part(key_value)
+        if key and row.get("_keySuffix"):
+            key += row["_keySuffix"]  # camera thứ 2 của dòng (NSW "p2") / chiều thứ i của đoạn (New Taipei "d1")
 
         if source.get("approaches"):
             directions = []
@@ -894,6 +958,9 @@ def build_regions(template, existing, packs, sources, source_info):
 
 def _ssl_context():
     context = ssl.create_default_context()
+    # Python ≥ 3.13 bật VERIFY_X509_STRICT: chứng chỉ gốc GRCA của chính phủ Đài Loan (data.ntpc.gov.tw, opdadm.moi.gov.tw)
+    # thiếu Subject Key Identifier → bị từ chối. Bỏ riêng cờ này (như Python 3.12 trên CI); chuỗi chứng chỉ vẫn được xác minh.
+    context.verify_flags &= ~getattr(ssl, "VERIFY_X509_STRICT", 0)
     if os.environ.get("SSL_CERT_FILE") or ssl.get_default_verify_paths().cafile or sys.platform != "darwin":
         return context
     # Python cài từ python.org trên macOS không đọc chứng chỉ gốc của hệ thống → xuất từ keychain một lần.
@@ -993,6 +1060,96 @@ def fetch_trafikverket(source, key):
     if "ERROR" in result:
         raise ValueError("Trafikverket báo lỗi: %s" % str(result["ERROR"].get("MESSAGE", "")).replace(key, "***")[:150])
     return result.get(query["objecttype"], [])
+
+
+DATAGOVSG_RATE_LIMITED = 24
+DATAGOVSG_WAIT_SECONDS = 12
+DATAGOVSG_PAGE = 1000
+
+
+def datagovsg_json(url):
+    """API data.gov.sg: không key thì bị giới hạn tốc độ (code 24 "TOO_MANY_REQUESTS", chờ ~10 giây) → chờ rồi gọi lại."""
+    for _ in range(RETRIES + 1):
+        response = http_get_json(url)
+        if not (isinstance(response, dict) and response.get("code") == DATAGOVSG_RATE_LIMITED):
+            return response
+        time.sleep(DATAGOVSG_WAIT_SECONDS)
+    raise ValueError("data.gov.sg: vẫn bị giới hạn tốc độ sau %d lần chờ" % RETRIES)
+
+
+def fetch_datagovsg_datastore(endpoint):
+    """data.gov.sg `datastore_search` (CKAN): phân trang `offset` tới khi đủ `total` dòng."""
+    records = []
+    for _ in range(MAX_PAGES):
+        separator = "&" if "?" in endpoint else "?"
+        result = datagovsg_json("%s%slimit=%d&offset=%d" % (endpoint, separator, DATAGOVSG_PAGE, len(records)))["result"]
+        records.extend(result["records"])
+        if not result["records"] or len(records) >= result["total"]:
+            return records
+    raise ValueError("data.gov.sg: quá %d trang" % MAX_PAGES)
+
+
+def fetch_datagovsg_poll_download(endpoint):
+    """data.gov.sg `poll-download`: trả link tải tạm (S3, hết hạn sau 1 giờ) → tải file GeoJSON."""
+    response = datagovsg_json(endpoint)
+    url = (response.get("data") or {}).get("url")
+    if not url:
+        raise ValueError("data.gov.sg poll-download không trả link: %s" % str(response.get("errorMsg"))[:120])
+    return http_get_json(url)
+
+
+NTPC_PAGE_SIZE = 1000
+
+
+def fetch_ntpc(endpoint):
+    """Cổng open data New Taipei: /api/datasets/<uuid>/json, phân trang `page` (từ 0) / `size` tới khi trang thiếu dòng."""
+    rows = []
+    for page in range(MAX_PAGES):
+        separator = "&" if "?" in endpoint else "?"
+        batch = http_get_json("%s%spage=%d&size=%d" % (endpoint, separator, page, NTPC_PAGE_SIZE))
+        if not isinstance(batch, list):
+            raise ValueError("New Taipei: trang %d không phải mảng JSON" % page)
+        rows.extend(batch)
+        if len(batch) < NTPC_PAGE_SIZE:
+            return rows
+    raise ValueError("New Taipei: quá %d trang" % MAX_PAGES)
+
+
+DATAGOKR_PAGE = 1000
+DATAGOKR_MIN_INTERVAL = 0.25  # ≤ 5 request/giây (ràng buộc D05)
+
+
+def datagokr_items(response):
+    """Phản hồi JSON của api.data.go.kr → (dòng, totalCount). Lỗi (key sai, hết lượt…) → ValueError, không kèm key."""
+    header = dig(response, "response.header") or {}
+    if header.get("resultCode") not in ("00", "0"):
+        message = header.get("resultMsg") or dig(response, "OpenAPI_ServiceResponse.cmmMsgHeader.errMsg") or "không rõ"
+        raise ValueError("data.go.kr báo lỗi: %s" % str(message)[:120])
+    body = dig(response, "response.body") or {}
+    items = body.get("items") or []
+    if isinstance(items, dict):
+        items = items.get("item") or []
+    if isinstance(items, dict):
+        items = [items]
+    return items, int(body.get("totalCount") or 0)
+
+
+def fetch_datagokr(endpoint, key):
+    """api.data.go.kr (표준데이터): phân trang `pageNo` / `numOfRows`, key ở tham số `serviceKey` (chỉ nằm trong URL gửi đi)."""
+    rows = []
+    for page in range(1, MAX_PAGES + 1):
+        separator = "&" if "?" in endpoint else "?"
+        url = "%s%sserviceKey=%s&type=json&pageNo=%d&numOfRows=%d" % (
+            endpoint, separator, urllib.parse.quote(key, safe=""), page, DATAGOKR_PAGE)
+        try:
+            items, total = datagokr_items(http_get_json(url))
+        except RuntimeError as error:
+            raise RuntimeError(str(error).replace(key, "***")) from None
+        rows.extend(items)
+        if not items or len(rows) >= total:
+            return rows
+        time.sleep(DATAGOKR_MIN_INTERVAL)
+    raise ValueError("data.go.kr: quá %d trang" % MAX_PAGES)
 
 
 def latest_ckan_resource(package, rule):
@@ -1110,6 +1267,14 @@ def fetch_source(source, offline):
         raw = fetch_nvdb(endpoint, source.get("headers"))
     elif source["format"] == "trafikverket-post":
         raw = fetch_trafikverket(source, key)
+    elif source["format"] == "datagovsg-datastore":
+        raw = fetch_datagovsg_datastore(endpoint)
+    elif source["format"] == "datagovsg-poll-download":
+        raw = fetch_datagovsg_poll_download(endpoint)
+    elif source["format"] == "ntpc-json":
+        raw = fetch_ntpc(endpoint)
+    elif source["format"] == "datagokr-api":
+        raw = fetch_datagokr(endpoint, key)
     else:
         raw = http_get_json(endpoint, source.get("headers"))
     if source.get("codedValues"):
@@ -1117,8 +1282,9 @@ def fetch_source(source, offline):
     metadata = None
     if source.get("metadata"):
         try:
-            metadata = http_get_json(source["metadata"]["url"])
-        except RuntimeError:
+            get = datagovsg_json if source["format"].startswith("datagovsg") else http_get_json
+            metadata = get(source["metadata"]["url"])
+        except (RuntimeError, ValueError):
             metadata = None
     os.makedirs(CACHE_DIR, exist_ok=True)
     write_json(cache_path, {"raw": raw, "metadata": metadata})

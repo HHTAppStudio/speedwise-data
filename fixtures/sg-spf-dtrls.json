@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "data.lastUpdatedAt": "2025-12-02T10:07:06+08:00"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "name": "SPF_DTRLS",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.89426099999562,
+            1.3357109999988455
+          ]
+        },
+        "properties": {
+          "OBJECTID": 121,
+          "ID": 90,
+          "ROAD_NAME": "Airport Road",
+          "DIRECTION": "Macpherson Road",
+          "LATITUDE": 1.335711,
+          "LONGITUDE": 103.894261,
+          "DESCP": "Airport Road by Ubi Road 2",
+          "INC_CRC": "2BE9FE0C75C85D6C",
+          "FMEL_UPD_D": "20161230201718"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.71575800000042,
+            1.3456880000029285
+          ]
+        },
+        "properties": {
+          "OBJECTID": 122,
+          "ID": 91,
+          "ROAD_NAME": "Boon Lay Dr",
+          "DIRECTION": "Boon Lay Way",
+          "LATITUDE": 1.345688,
+          "LONGITUDE": 103.715758,
+          "DESCP": "Boon Lay Dr by Corporation Road",
+          "INC_CRC": "1A587F2840424FA9",
+          "FMEL_UPD_D": "20161230201718"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.90627000000178,
+            1.388780000004416
+          ]
+        },
+        "properties": {
+          "OBJECTID": 123,
+          "ID": 92,
+          "ROAD_NAME": "Rivervale Drive",
+          "DIRECTION": "Sengkang East Avenue",
+          "LATITUDE": 1.38878,
+          "LONGITUDE": 103.90627,
+          "DESCP": "Rivervale Drive by Sengkang East Way",
+          "INC_CRC": "C99B25210B58205E",
+          "FMEL_UPD_D": "20161230201718"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.93598799999835,
+            1.3559450000025883
+          ]
+        },
+        "properties": {
+          "OBJECTID": 124,
+          "ID": 93,
+          "ROAD_NAME": "Tampines Avenue 5",
+          "DIRECTION": "Simei Avenue",
+          "LATITUDE": 1.355945,
+          "LONGITUDE": 103.935988,
+          "DESCP": "Tampines Avenue 5 by Tampines Street 71",
+          "INC_CRC": "176B4C120DB5F27C",
+          "FMEL_UPD_D": "20161230201718"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.82502699999847,
+            1.2864870000018012
+          ]
+        },
+        "properties": {
+          "OBJECTID": 125,
+          "ID": 94,
+          "ROAD_NAME": "Tiong Bahru",
+          "DIRECTION": "Outram Road",
+          "LATITUDE": 1.286487,
+          "LONGITUDE": 103.825027,
+          "DESCP": "Tiong Bahru by Lower Delta Road",
+          "INC_CRC": "C10E79A47DFC453A",
+          "FMEL_UPD_D": "20161230201718"
+        }
+      }
+    ]
+  }
+}

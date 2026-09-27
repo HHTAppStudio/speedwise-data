@@ -1,0 +1,134 @@
+{
+  "metadata": null,
+  "raw": {
+    "exceededTransferLimit": false,
+    "features": [
+      {
+        "id": 283,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Wardell",
+          "cameras": "1",
+          "road": "Pacific Highway, between Riverside Drive and Carlisle Street",
+          "lat_1": -28.94580078,
+          "long_1": 153.46757507,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Wardell",
+          "road_s": "Pacific Highway, between Riverside Drive and Carlisle Street",
+          "objectid": 283,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            153.4675750732423,
+            -28.945800781249964
+          ]
+        }
+      },
+      {
+        "id": 294,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "North Willoughby",
+          "cameras": "1",
+          "road": "Eastern Valley Way",
+          "lat_1": -33.79405975,
+          "long_1": 151.20794678,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "North Willoughby",
+          "road_s": "Eastern Valley Way, between Megalong Avenue and McClelland Street",
+          "objectid": 294,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.20794677734378,
+            -33.79405975341796
+          ]
+        }
+      },
+      {
+        "id": 273,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Peakhurst",
+          "cameras": "1",
+          "road": "Henry Lawson Drive, between Belmont Road and Ogilvy Street",
+          "lat_1": -33.96102524,
+          "long_1": 151.04953003,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Peakhurst",
+          "road_s": "Henry Lawson Drive, between Belmore Road and Ogilvy Street",
+          "objectid": 273,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.04953002929688,
+            -33.961025238037124
+          ]
+        }
+      },
+      {
+        "id": 267,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "North Macksville",
+          "cameras": "1",
+          "road": "Pacific Highway, between Florence Wilmont Drive and Watt Creek",
+          "lat_1": -30.69696617,
+          "long_1": 152.96520996,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "North Macksville",
+          "road_s": "Pacific Highway, between Bellview Drive and Ferry Street",
+          "objectid": 267,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            152.96520996093756,
+            -30.696966171264638
+          ]
+        }
+      },
+      {
+        "id": 272,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Padstow",
+          "cameras": "1",
+          "road": "Gibson Avenue, between Turvey Street and Bryant Street, Padstow",
+          "lat_1": -33.93987656,
+          "long_1": 151.02746582,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Padstow",
+          "road_s": "Gibson Avenue, between Turvey Street and Bryant Street",
+          "objectid": 272,
+          "last_updated": "2021-05-27 14:07:06"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.0274658203125,
+            -33.939876556396456
+          ]
+        }
+      }
+    ],
+    "type": "FeatureCollection"
+  }
+}

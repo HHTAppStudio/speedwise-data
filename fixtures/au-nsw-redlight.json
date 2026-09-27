@@ -1,0 +1,134 @@
+{
+  "metadata": null,
+  "raw": {
+    "exceededTransferLimit": false,
+    "features": [
+      {
+        "id": 908,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Mascot",
+          "cameras": "1",
+          "road": "O'Riordan Street at Gardeners Road",
+          "lat_1": -33.92105484,
+          "long_1": 151.19168091,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Mascot",
+          "road_s": "Wentworth Avenue and Sutherland Steet",
+          "objectid": 908,
+          "last_updated": "2021-05-27 14:07:05"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.19168090820318,
+            -33.92105484008787
+          ]
+        }
+      },
+      {
+        "id": 912,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Merrylands West",
+          "cameras": "1",
+          "road": "Merrylands Road at Sherwood Road",
+          "lat_1": -33.83245087,
+          "long_1": 150.96987915,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Milperra",
+          "road_s": "Milperra Road / Newbridge Road and Henry Lawson Drive",
+          "objectid": 912,
+          "last_updated": "2021-05-27 14:07:05"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            150.96987915039062,
+            -33.83245086669924
+          ]
+        }
+      },
+      {
+        "id": 931,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Parramatta",
+          "cameras": "1",
+          "road": "Victoria Road at Church Street",
+          "lat_1": -33.80875778,
+          "long_1": 151.00563049,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Pennant Hills",
+          "road_s": "Pennant Hills Road and Beecroft Road",
+          "objectid": 931,
+          "last_updated": "2021-05-27 14:07:05"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.0056304931641,
+            -33.80875778198242
+          ]
+        }
+      },
+      {
+        "id": 811,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Auburn",
+          "cameras": "1",
+          "road": "Rawson Street at Station Road",
+          "lat_1": -33.85003662,
+          "long_1": 151.03495789,
+          "lat_2": null,
+          "long_2": null,
+          "suburb_town": "Silverwater / Auburn ",
+          "road_s": "Silverwater Road and M4 Westbound On Ramp",
+          "objectid": 811,
+          "last_updated": "2021-05-27 14:07:05"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.03495788574227,
+            -33.85003662109375
+          ]
+        }
+      },
+      {
+        "id": 898,
+        "type": "Feature",
+        "properties": {
+          "sz_": "N",
+          "location": "Lansdowne / Villawood",
+          "cameras": "2",
+          "road": "Henry Lawson Drive / Woodville Road at Hume Highway",
+          "lat_1": -33.88892365,
+          "long_1": 150.9737854,
+          "lat_2": -33.88999176,
+          "long_2": 150.97262573,
+          "suburb_town": "Lilyfield ",
+          "road_s": "City West Link Road and James Street",
+          "objectid": 898,
+          "last_updated": "2021-05-27 14:07:05"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            150.97378540039062,
+            -33.88892364501951
+          ]
+        }
+      }
+    ],
+    "type": "FeatureCollection"
+  }
+}

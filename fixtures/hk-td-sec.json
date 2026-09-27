@@ -1,0 +1,88 @@
+{
+  "metadata": null,
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.15176802500002,
+            22.248083249000047
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "Name": "kml_1",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>SEC_ID</th>\n<td>1</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>ABERDEEN PRAYA ROAD (WESTBOUND) NEAR WHOLESALE FISH MARKET</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>香港仔海旁道（西行）鄰近香港仔魚類批發巿場</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>香港仔海旁道（西行）邻近香港仔鱼类批发巿场</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>833680</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>812147</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.15501796700005,
+            22.24749672300004
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "Name": "kml_2",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>SEC_ID</th>\n<td>2</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>ABERDEEN PRAYA ROAD (EASTBOUND) NEAR WU NAM STREET BUS TERMINUS</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>香港仔海旁道（東行）鄰近湖南街巴士總站</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>香港仔海旁道（东行）邻近湖南街巴士总站</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>834015</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>812082</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.16940286200008,
+            22.279692306000072
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "Name": "kml_3",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>SEC_ID</th>\n<td>3</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>GLOUCESTER ROAD (EASTBOUND) NEAR HK ACADEMY FOR PERFORMING ARTS</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>告士打道（東行）鄰近香港演藝學院</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>告士打道（东行）邻近香港演艺学院</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>835498</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>815647</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.21393372500006,
+            22.290145707000022
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "Name": "kml_4",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>SEC_ID</th>\n<td>4</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>ISLAND EASTERN CORRIDOR (EASTBOUND) NEAR ENTRANCE OF EHT</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>東區走廊（東行）鄰近東區海底隧道入囗</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>东区走廊（东行）邻近东区海底隧道入囗</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>840087</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>816805</td>\n</tr></table></center>"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            114.21623338500001,
+            22.289522052000052
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "Name": "kml_5",
+          "PopupInfo": "<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=\"#E3E3F3\">\n<th>SEC_ID</th>\n<td>5</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_ENG</th>\n<td>ISLAND EASTERN CORRIDOR (EASTBOUND) NEAR QUARRY BAY PARK</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>SITE_DESC_CHI</th>\n<td>東區走廊（東行）鄰近鰂魚涌公園</td>\n</tr><tr bgcolor=\"\">\n<th>SITE_DESC_SCHI</th>\n<td>东区走廊（东行）邻近鲗鱼涌公园</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>REMARKS</th>\n<td></td>\n</tr><tr bgcolor=\"\">\n<th>CRE_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>LAST_UPD_DATE</th>\n<td>20220121</td>\n</tr><tr bgcolor=\"\">\n<th>X_COOR</th>\n<td>840324</td>\n</tr><tr bgcolor=\"#E3E3F3\">\n<th>Y_COOR</th>\n<td>816736</td>\n</tr></table></center>"
+        }
+      }
+    ]
+  }
+}

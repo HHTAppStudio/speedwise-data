@@ -18,5 +18,10 @@
   "SE": {"minLat": 55.33, "maxLat": 69.07, "minLon": 10.95, "maxLon": 24.17},
   "BE": {"minLat": 49.49, "maxLat": 51.51, "minLon": 2.53, "maxLon": 6.42},
   "LU": {"minLat": 49.44, "maxLat": 50.19, "minLon": 5.72, "maxLon": 6.54},
-  "DE": {"minLat": 47.26, "maxLat": 55.07, "minLon": 5.86, "maxLon": 15.05}
+  "DE": {"minLat": 47.26, "maxLat": 55.07, "minLon": 5.86, "maxLon": 15.05},
+  "SG": {"minLat": 1.15, "maxLat": 1.48, "minLon": 103.59, "maxLon": 104.10},
+  "HK": {"minLat": 22.14, "maxLat": 22.57, "minLon": 113.82, "maxLon": 114.45},
+  "TW": {"minLat": 21.88, "maxLat": 26.39, "minLon": 118.10, "maxLon": 122.02},
+  "AU": {"minLat": -43.75, "maxLat": -9.13, "minLon": 112.90, "maxLon": 153.65},
+  "KR": {"minLat": 33.10, "maxLat": 38.62, "minLon": 124.60, "maxLon": 131.88}
 }

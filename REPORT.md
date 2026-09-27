@@ -19,7 +19,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `bal-speed-fixed` | US-MD | B | OK | 2026-02-17 | 21 | 21 | 21 | — |
 | `bal-speed-portable` | US-MD | B | OK | 2026-05-28 | 128 | 128 | 128 | — |
 | `arl-speed` | US-VA | B | OK | 2026-09-27 | 47 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1756094400000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1757649600000: 1 |
-| `tac-ae` | US-WA | B | OK | 2026-09-26 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
+| `tac-ae` | US-WA | B | OK | 2026-09-27 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
 | `bel-speed` | US-WA | B | OK | 2026-08-26 | 14 | 8 | 5 | không hoạt động: OperationalStatus=Planned: 6; gộp trùng ≤ 30 m: 3 |
 | `de-redlight` | US-DE | B | OK | — | 60 | 60 | 60 | — |
 | `qc-mtmd` | CA | A | OK | 2026-09-10 | 160 | 160 | 160 | — |
@@ -43,21 +43,38 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `be-bxl-speedcameras` | BE | A | OK | — | 132 | 132 | 129 | gộp trùng ≤ 30 m: 3 |
 | `lu-geoportail-radars` | LU | A | OK | 2024-10-24 | 45 | 45 | 45 | — |
 | `de-ka-blitzer` | DE | A | OK | 2025-02-19 | 37 | 37 | 33 | gộp trùng ≤ 30 m: 4 |
+| `sg-spf-speed` | SG | A | OK | 2024-06-06 | 91 | 91 | 47 | gộp trùng ≤ 30 m: 44 |
+| `sg-spf-fixed` | SG | A | OK | 2025-11-13 | 20 | 20 | 11 | gộp trùng ≤ 30 m: 9 |
+| `sg-spf-redlight` | SG | A | OK | 2025-11-13 | 240 | 240 | 0 | gộp trùng ≤ 30 m: 240 |
+| `sg-spf-dtrls` | SG | A | OK | 2025-12-02 | 240 | 240 | 235 | gộp trùng ≤ 30 m: 5 |
+| `hk-td-rlc` | HK | A | OK | 2026-06-26 | 230 | 230 | 222 | gộp trùng ≤ 30 m: 8 |
+| `hk-td-sec` | HK | A | OK | 2026-06-16 | 164 | 164 | 164 | — |
+| `tw-npa-speed` | TW | A | OK | 2026-09-27 | 1896 | 1890 | 1885 | gộp trùng ≤ 30 m: 5; trùng id trong nguồn: 4; lọc CityName=設置縣市: 1; toạ độ ngoài khung bang: 1 |
+| `tw-ntpc-fixed` | TW | A | OK | — | 173 | 173 | 1 | gộp trùng ≤ 30 m: 172 |
+| `tw-ntpc-section` | TW | A | OK | 2026-08-11 | 50 | 50 | 19 | gộp trùng ≤ 30 m: 31 |
+| `au-act-cameras` | AU | A | OK | 2026-08-21 | 1263 | 1204 | 1126 | gộp trùng ≤ 30 m: 78; trùng id trong nguồn: 35; loại không dùng: None: 4; lọc decommissioned_camera_date=2020-01-23T00:00:00.000: 3; lọc decommissioned_camera_date=2016-03-01T00:00:00.000: 2; lọc decommissioned_camera_date=2016-11-01T00:00:00.000: 2; lọc decommissioned_camera_date=2017-06-01T00:00:00.000: 2; lọc decommissioned_camera_date=2022-04-03T00:00:00.000: 2; lọc decommissioned_camera_date=2002-06-17T00:00:00.000: 1; lọc decommissioned_camera_date=2007-01-17T00:00:00.000: 1; lọc decommissioned_camera_date=2008-04-23T00:00:00.000: 1; lọc decommissioned_camera_date=2008-08-29T00:00:00.000: 1; lọc decommissioned_camera_date=2009-05-13T00:00:00.000: 1; lọc decommissioned_camera_date=2017-08-01T00:00:00.000: 1; lọc decommissioned_camera_date=2024-10-22T00:00:00.000: 1; thiếu toạ độ: 1; toạ độ ngoài khung bang: 1 |
+| `au-nsw-fixed` | AU | A | OK | 2021-05-27 | 67 | 67 | 66 | gộp trùng ≤ 30 m: 1 |
+| `au-nsw-school` | AU | A | OK | 2021-05-27 | 59 | 59 | 49 | gộp trùng ≤ 30 m: 10 |
+| `au-nsw-redlight` | AU | A | OK | 2021-05-27 | 221 | 221 | 220 | gộp trùng ≤ 30 m: 1 |
 
 ## Theo vùng
 
 | Vùng | Pack | Đơn vị | KB | Version | Camera | speed | redLight | schoolZone | combined | mobile |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | AR | `packs/ar.v1.json` | kmh | 36 | 1 | 90 | 90 | 0 | 0 | 0 | 0 |
+| AU | `packs/au.v1.json` | kmh | 637 | 1 | 1461 | 79 | 0 | 49 | 233 | 1100 |
 | BE | `packs/be.v1.json` | kmh | 54 | 1 | 129 | 129 | 0 | 0 | 0 | 0 |
 | BR | `packs/br.v1.json` | kmh | 552 | 1 | 1299 | 1189 | 110 | 0 | 0 | 0 |
 | CA | `packs/ca.v1.json` | kmh | 345 | 1 | 815 | 11 | 664 | 0 | 10 | 130 |
 | CO | `packs/co.v1.json` | kmh | 20 | 1 | 48 | 44 | 0 | 0 | 4 | 0 |
 | DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
 | ES | `packs/es.v1.json` | kmh | 395 | 1 | 952 | 952 | 0 | 0 | 0 | 0 |
+| HK | `packs/hk.v1.json` | kmh | 162 | 1 | 386 | 164 | 222 | 0 | 0 | 0 |
 | LU | `packs/lu.v1.json` | kmh | 20 | 1 | 45 | 45 | 0 | 0 | 0 | 0 |
 | NO | `packs/no.v1.json` | kmh | 183 | 1 | 438 | 438 | 0 | 0 | 0 | 0 |
 | SE | `packs/se.v1.json` | kmh | 1146 | 1 | 2794 | 2794 | 0 | 0 | 0 | 0 |
+| SG | `packs/sg.v1.json` | kmh | 131 | 1 | 293 | 23 | 235 | 0 | 0 | 35 |
+| TW | `packs/tw.v1.json` | kmh | 803 | 1 | 1905 | 1905 | 0 | 0 | 0 | 0 |
 | US-CA | `packs/us-ca.v1.json` | mph | 30 | 1 | 74 | 56 | 18 | 0 | 0 | 0 |
 | US-DC | `packs/us-dc.v2.json` | mph | 116 | 2 | 282 | 221 | 61 | 0 | 0 | 0 |
 | US-DE | `packs/us-de.v1.json` | mph | 24 | 1 | 60 | 0 | 60 | 0 | 0 | 0 |
@@ -66,9 +83,9 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-LA | `packs/us-la.v1.json` | mph | 16 | 1 | 38 | 2 | 6 | 30 | 0 | 0 |
 | US-MD | `packs/us-md.v1.json` | mph | 215 | 1 | 515 | 148 | 218 | 149 | 0 | 0 |
 | US-VA | `packs/us-va.v2.json` | mph | 15 | 2 | 35 | 0 | 0 | 35 | 0 | 0 |
-| US-WA | `packs/us-wa.v1.json` | mph | 52 | 1 | 127 | 14 | 39 | 74 | 0 | 0 |
+| US-WA | `packs/us-wa.v2.json` | mph | 52 | 2 | 127 | 14 | 39 | 74 | 0 | 0 |
 
-**Tổng: 8555 camera ở 19 vùng.**
+**Tổng: 12600 camera ở 23 vùng.**
 
 <!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->
 
@@ -153,3 +170,43 @@ Kết quả: 14/14 đúng đường/giao lộ.
 - **D05 — Brussels:** `radar_type` (1/2/3) không có bảng giải nghĩa công khai (trang "Attributs radar_type" trả rỗng, SLD không phân loại) → mọi camera để `speed` (mô tả dataset: camera tốc độ, có chỗ kèm đèn đỏ); không đoán đèn đỏ. `direction_fr` ("vers centre", "vers ring") giữ trong `roadName`, heading null. **BE vẫn `restricted`** — pack sinh ra nhưng không có packURL.
 - **D05 — Luxembourg:** 33 Point + 6 LineString (đoạn) → 45 camera. Dataset data.public.lu "PCH : Emplacement des radars fixes" (Administration des Ponts et Chaussées, CC0), sửa 2024-10-24 (> 12 tháng → confidence 70). **LU vẫn `blocked`.**
 - **D05 — Karlsruhe:** 37 Blitzer (WFS `TBA:blitzer`, CC BY 4.0), dataset sửa 2025-02-19 (> 12 tháng → 70); 4 cặp 2 chiều cùng chỗ gộp. **DE vẫn `restricted`.**
+
+## Kiểm tra vị trí — D05 phần 3, châu Á – Thái Bình Dương (2026-09-27)
+
+Mỗi nguồn chọn ngẫu nhiên (seed 12), tra ngược toạ độ bằng CLGeocoder của Apple (cùng dữ liệu Apple Maps), so với `roadName`. Hai mẫu chưa rõ được tra xuôi thêm (khoảng cách ghi trong cột kết quả).
+
+| Camera | Loại / hướng | `roadName` | Apple trả về | Kết quả |
+|---|---|---|---|---|
+| [`sg-sg-spf-dtrls-21`](https://maps.apple.com/?ll=1.363627,103.964436&q=sg-sg-spf-dtrls-21) | redLight / – | Loyang Avenue by Pasir Ris Drive 1 · towards TPE | 5 Loyang Ave, Pasir Ris | ✅ |
+| [`sg-sg-spf-dtrls-160`](https://maps.apple.com/?ll=1.32097,103.74525&q=sg-sg-spf-dtrls-160) | redLight / – | Jurong Town Hall Road by Pandan Gardens · towards AYE | Teban Gardens Rd, Jurong East; tra xuôi "Jurong Town Hall Road & Pandan Gardens" cách 31 m | ✅ đúng giao lộ |
+| [`sg-sg-spf-fixed-19`](https://maps.apple.com/?ll=1.307221,103.811638&q=sg-sg-spf-fixed-19) | speed / – | Holland Road · towards Ulu Pandan Road | Holland Rd, Tanglin | ✅ |
+| [`sg-sg-spf-fixed-15`](https://maps.apple.com/?ll=1.386883,103.820352&q=sg-sg-spf-fixed-15) | speed / – | Upper Thomson Road · towards Lornie Road | 771 Upper Thomson Rd | ✅ |
+| [`sg-sg-spf-speed-81d7f79df6`](https://maps.apple.com/?ll=1.34634,103.89845&q=sg-sg-spf-speed-81d7f79df6) | speed / – | Kallang-Paya Lebar Expressway 7.0 Km towards Tampines Expressway | 480 Airport Rd, Hougang (lưới ±30 m quanh điểm đều trả Airport Rd) | ⚠️ chưa xác nhận — geocoder không trả tên KPE; cần xem bằng mắt trên Apple Maps |
+| [`hk-hk-td-rlc-210`](https://maps.apple.com/?ll=22.390802,114.205592&q=hk-hk-td-rlc-210) | redLight / 270 | Tai Chung Kiu Road & On Lai Street | On Lai St, Sha Tin | ✅ |
+| [`hk-hk-td-rlc-161`](https://maps.apple.com/?ll=22.300647,114.238288&q=hk-hk-td-rlc-161) | redLight / 315 | Lei Yue Mun Road & Ko Chiu Road | Lei Yue Mun Rd, Yau Tong | ✅ |
+| [`hk-hk-td-sec-60`](https://maps.apple.com/?ll=22.464401,114.05386&q=hk-hk-td-sec-60) | speed / 180 | San Tin Highway Near L/P FA9250 (Ha Chuk Yuen) | San Tin Highway, Kam Tin | ✅ |
+| [`hk-hk-td-sec-160`](https://maps.apple.com/?ll=22.444258,114.036585&q=hk-hk-td-sec-160) | speed / – | Castle Peak Road - Yuen Long (Yuen Long Town Bound) Near Lamppost CD0972 | Yoho Mall, Yuen Lung St, Yuen Long | ✅ (Castle Peak Road chạy qua Yoho Mall) |
+| [`tw-tw-npa-speed-857a36928c`](https://maps.apple.com/?ll=23.310371,120.400185&q=tw-tw-npa-speed-857a36928c) | speed / – · 50 | 165線18.82公里 | County Highway 165, Dongshan, Tainan | ✅ |
+| [`tw-tw-npa-speed-4b7d0c4e4f`](https://maps.apple.com/?ll=25.07305,121.536865&q=tw-tw-npa-speed-4b7d0c4e4f) | speed / 180 · 100 | 國道一號南向22.7公里 | Zhongshan Freeway (= Quốc lộ 1), Taipei | ✅ |
+| [`tw-tw-npa-speed-bb3a2232d7`](https://maps.apple.com/?ll=24.71843,121.76466&q=tw-tw-npa-speed-bb3a2232d7) | speed / – · 50 | 宜16線5.5k南津路東向 | 222 Nanjin Rd, Yilan | ✅ |
+| [`tw-tw-ntpc-fixed-fcab3241f2`](https://maps.apple.com/?ll=25.200483,121.67773&q=tw-tw-ntpc-fixed-fcab3241f2) | speed / 270 · 50 | 台2線47.1公里萬里隧道出口處（往金山） | N Coastal Highway (= Tỉnh lộ 2), Wanli | ✅ |
+| [`tw-tw-ntpc-section-7d2-end`](https://maps.apple.com/?ll=24.971244,121.530941&q=tw-tw-ntpc-section-7d2-end) | speed / – · 60 (cuối đoạn) | 新店區環河路(中央路至白馬寺，雙向) · average speed section | Huanhe Rd, Xindian | ✅ |
+| [`tw-tw-ntpc-section-3d1-end`](https://maps.apple.com/?ll=24.938468,121.677097&q=tw-tw-ntpc-section-3d1-end) | speed / – · 40 (cuối đoạn) | 臺9線33.3k至37.2k(雙向) · average speed section | Beiyi Rd Sec 7 (= Tỉnh lộ 9), Pinglin | ✅ |
+| [`au-au-act-cameras-0276a`](https://maps.apple.com/?ll=-35.268,149.119417&q=au-au-act-cameras-0276a) | mobile / – | Froggartt Street Turner | 43–45 Froggatt St, Turner | ✅ (nguồn viết sai chính tả, giữ nguyên) |
+| [`au-au-act-cameras-0119e`](https://maps.apple.com/?ll=-35.17682,149.14006&q=au-au-act-cameras-0119e) | mobile / – | Horse Park Dr, Forde ACT 2914, Australia | 56 Hollingsworth St, Gungahlin; tra xuôi "Horse Park Drive, Forde" cách 422 m | ✅ gần — điểm mobile trên Horse Park Dr, cạnh Hollingsworth St |
+| [`au-au-nsw-fixed-291`](https://maps.apple.com/?ll=-28.73451,153.404617&q=au-au-nsw-fixed-291) | speed / – | Bangalow Road | B62, Clunes | ✅ (B62 = Bangalow Road) |
+| [`au-au-nsw-fixed-266`](https://maps.apple.com/?ll=-33.13393,151.61319&q=au-au-nsw-fixed-266) | speed / – | Pacific Highway, between Nords Wharf Road and Flowers Drive | 400 Pacific Hwy, Nords Wharf | ✅ |
+| [`au-au-nsw-redlight-909`](https://maps.apple.com/?ll=-33.933941,151.199249&q=au-au-nsw-redlight-909) | combined / – | Wentworth Avenue and Sutherland Steet | 184 Sutherland St, Mascot | ✅ |
+| [`au-au-nsw-redlight-858`](https://maps.apple.com/?ll=-33.874378,151.216507&q=au-au-nsw-redlight-858) | combined / – | William Street & Crown Street | Cross City Tunnel, Darlinghurst | ✅ (hầm chạy dưới William St) |
+| [`au-au-nsw-school-206p2`](https://maps.apple.com/?ll=-33.867397,150.987915&q=au-au-nsw-school-206p2) | schoolZone / – | Woodville Road, between Orchardleigh Street and Middleton Road | Rowland Hassall School, Woodville Rd, Old Guildford | ✅ (camera thứ 2 của dòng — `lat_2/long_2`) |
+
+Kết quả: 21/22 đúng đường/giao lộ, 1 chưa xác nhận (SG KPE). Cộng phần 1–2: **48/49**.
+
+## Nguồn trong mục 12.2 không có trong bảng trên (2026-09-27)
+
+| Nguồn | Trạng thái | Lý do |
+|---|---|---|
+| Hàn Quốc — data.go.kr 15028200 (`kr-datagokr-cameras`) | skipped: no key (`DATA_GO_KR_KEY`) — nguồn đang `enabled: false` | Chưa có key. Adapter `datagokr-api` đã viết; mã `단속구분` / `단속구간위치구분` đọc từ dữ liệu mẫu của chính dataset. KR giữ `comingSoon` |
+| Queensland — Active mobile speed camera sites (f6b5c37e…, d059503f…) | bỏ | Cả 2 file (3.686 + 104 dòng) chỉ có mã điểm + tên đường/khu vực, **không có toạ độ** |
+| Đài Loan — data.gov.tw 13940 (quốc lộ, TGOS) | bỏ | Có toạ độ + OGDL, nhưng file trên tgos.tw trả **403** khi tải từ máy này qua VPN Mỹ (có thể chặn IP ngoài Đài Loan). Camera quốc lộ đã có trong 7320 (154 dòng 國道一/二/三/五號) |
+| Đài Loan — data.gov.tw 7320 (NPA toàn quốc, `tw-npa-speed`) | OK | Có toạ độ + OGDL (license "1") → thêm; 1.890 camera |

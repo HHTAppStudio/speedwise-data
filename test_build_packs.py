@@ -464,5 +464,138 @@ class EuropeTests(unittest.TestCase):
         self.assertEqual(len(cameras), len(points) + 2)
 
 
+class AsiaPacificTests(unittest.TestCase):
+    """CR-D2 phần châu Á – Thái Bình Dương: data.gov.sg, CSDI Hong Kong (PopupInfo), Đài Loan, Úc, data.go.kr (tắt, chờ key)."""
+
+    def test_hong_kong_popup_attributes_direction_and_housing_confidence(self):
+        rows = fixture_rows("hk-td-rlc")
+        self.assertEqual(rows[0]["SITE_DESC_ENG"], "QUEEN'S ROAD E. (WEST BOUND) AT JUNCTION WITH QUEENSWAY")
+        cameras, rejects = normalize("hk-td-rlc", rows)
+        self.assertFalse(rejects)
+        first = next(c for c in cameras if c["id"] == "hk-hk-td-rlc-1")
+        self.assertEqual(first["heading"], 270)  # "(WEST BOUND)"
+        self.assertEqual(first["roadName"], "Queen's Road E. & Queensway")
+        latest = max(row["LAST_UPD_DATE"] for row in rows)  # "YYYYMMDD"
+        self.assertEqual(first["lastConfirmedAt"], "%s-%s-%sT00:00:00Z" % (latest[:4], latest[4:6], latest[6:]))
+        housing_rows = fixture_rows("hk-td-sec")
+        housings, _ = normalize("hk-td-sec", housing_rows)
+        stale = (TODAY - bp.parse_date(max(row["LAST_UPD_DATE"] for row in housing_rows))).days > bp.STALE_DAYS
+        # Camera luân phiên giữa các hộp (mục 12.3) → 70; dữ liệu cũ > 12 tháng trừ 10 như mọi nguồn.
+        self.assertEqual({c["confidence"] for c in housings}, {70 - (bp.STALE_PENALTY if stale else 0)})
+        self.assertEqual({c["type"] for c in housings}, {"speed"})
+        self.assertEqual(bp.popup_fields("<tr><th>SEC_ID</th>\n<td>7</td></tr><th>SITE_DESC_ENG</th><td>A &amp; B</td>"),
+                         {"SEC_ID": "7", "SITE_DESC_ENG": "A & B"})
+        self.assertEqual(bp.parse_date("20161230201814"), dt.date(2016, 12, 30))
+        self.assertEqual(bp.parse_date("20220121"), dt.date(2022, 1, 21))
+
+    def test_singapore_types_towards_road_and_rate_limit_retry(self):
+        cameras, _ = normalize("sg-spf-speed")
+        by_type = {c["type"] for c in cameras}
+        self.assertEqual(by_type, {"speed", "mobile"})
+        for camera in cameras:
+            self.assertIsNone(camera["heading"])  # "towards <đường>" không phải la bàn
+            if camera["type"] == "mobile":
+                self.assertEqual(camera["confidence"], 50)  # 60 (điểm mobile) − 10 (dataset 2024-06-06 cũ > 12 tháng)
+        fixed, _ = normalize("sg-spf-fixed")
+        self.assertIn("Yishun Avenue 2 · towards Lentor Avenue", {c["roadName"] for c in fixed})
+        # Bị giới hạn tốc độ (code 24) → chờ rồi gọi lại, không gọi mạng thật.
+        replies = [{"code": 24, "name": "TOO_MANY_REQUESTS"}, {"code": 0, "data": {"url": "https://s3.example/x.geojson"}},
+                   {"type": "FeatureCollection", "features": []}]
+        calls = []
+        saved_get, saved_wait = bp.http_get_json, bp.DATAGOVSG_WAIT_SECONDS
+        bp.http_get_json = lambda url, *args, **kwargs: calls.append(url) or replies.pop(0)
+        bp.DATAGOVSG_WAIT_SECONDS = 0
+        try:
+            raw = bp.fetch_datagovsg_poll_download("https://api-open.data.gov.sg/v1/public/api/datasets/d_x/poll-download")
+        finally:
+            bp.http_get_json, bp.DATAGOVSG_WAIT_SECONDS = saved_get, saved_wait
+        self.assertEqual(raw["features"], [])
+        self.assertEqual(calls[-1], "https://s3.example/x.geojson")
+        self.assertEqual(len(calls), 3)
+
+    def test_taiwan_chinese_directions_limits_and_header_row(self):
+        rows = fixture_rows("tw-npa-speed")
+        cameras, rejects = normalize("tw-npa-speed", rows)
+        self.assertEqual(rejects["lọc CityName=設置縣市"], 1)  # dòng thứ 2 của file là mô tả cột
+        self.assertEqual(len(cameras), len(rows) - 1)
+        words = SOURCES["tw-npa-speed"]["directionWords"]
+        # 拍攝方向 là hướng xe chạy: đối chiếu quốc lộ, "往南" luôn đi cùng "南向" (southbound) trong địa chỉ.
+        cases = {"北向南": 180, "南向北": 0, "往南": 180, "西南向東北": 45, "東向西(超速闖紅燈)": 270,
+                 "雙向": None, "南北雙向": None, "南向60北向70": None, "往大溪方向": None, "南向北(區間測速) 北向南(區間測速)": None}
+        for text, heading in cases.items():
+            with self.subTest(direct=text):
+                self.assertEqual(bp.heading_for(bp.parse_direction(text, words)), heading)
+        self.assertEqual(bp.parse_limit("40公里", "kmh"), 40)
+        self.assertIsNone(bp.parse_limit("80公里（20噸以上大貨車限速70公里）", "kmh"))
+
+    def test_new_taipei_two_way_section_gives_start_and_end_per_direction(self):
+        rows = fixture_rows("tw-ntpc-section")
+        cameras, rejects = normalize("tw-ntpc-section", rows)
+        self.assertFalse(rejects)
+        by_id = {c["id"]: c for c in cameras}
+        # seqno 1 "(雙向)": 2 chiều → 4 điểm; seqno 5 một chiều "西向東" → 2 điểm, heading 90.
+        for key in ("1d1-start", "1d1-end", "1d2-start", "1d2-end", "5-start", "5-end"):
+            self.assertIn("tw-tw-ntpc-section-" + key, by_id)
+        self.assertEqual((by_id["tw-tw-ntpc-section-1d2-start"]["lat"], by_id["tw-tw-ntpc-section-1d2-start"]["lon"]), (24.953133, 121.598102))
+        self.assertEqual(by_id["tw-tw-ntpc-section-5-end"]["heading"], 90)
+        self.assertIsNone(by_id["tw-tw-ntpc-section-1d1-start"]["heading"])
+        self.assertEqual(by_id["tw-tw-ntpc-section-1d1-start"]["postedLimit"], 40)
+        for camera in cameras:
+            self.assertTrue(camera["roadName"].endswith(bp.SECTION_SUFFIX))
+        broken = bp.section_rows({"start latitude": "1 2", "start longitude": "3", "end latitude": "", "end longitude": ""},
+                                 SOURCES["tw-ntpc-section"]["sectionFields"])
+        self.assertEqual([(r["_lat"], r["_lon"]) for r in broken], [(None, None)])  # số giá trị lệch nhau → không đoán
+
+    def test_australia_act_decommissioned_and_nsw_second_camera(self):
+        rows = fixture_rows("au-act-cameras")
+        gone = dict(rows[0], camera_location_code="9999", decommissioned_camera_date="2020-01-23T00:00:00.000")
+        cameras, rejects = normalize("au-act-cameras", rows + [gone])
+        self.assertEqual(rejects["lọc decommissioned_camera_date=2020-01-23T00:00:00.000"], 1)
+        by_key = {c["id"].rsplit("-", 1)[1]: c for c in cameras}
+        self.assertEqual((by_key["0001a"]["type"], by_key["0001a"]["confidence"]), ("mobile", 60))
+        self.assertEqual(by_key["1001"]["type"], "combined")
+        self.assertEqual(by_key["20022003"]["heading"], 270)  # "HINDMARSH DRIVE WESTBOUND …"
+        school = fixture_rows("au-nsw-school")
+        with_second = [row for row in school if row.get("_keySuffix") == "p2"]
+        self.assertEqual(len(with_second), sum(1 for f in fixture("au-nsw-school")["raw"]["features"] if f["properties"]["lat_2"] is not None))
+        nsw, _ = normalize("au-nsw-school", school)
+        self.assertEqual({c["type"] for c in nsw}, {"schoolZone"})
+        self.assertEqual({c["confidence"] for c in nsw}, {70})  # 80 (không có trạng thái) − 10 (dữ liệu 2021)
+        self.assertIn("au-au-nsw-school-184p2", {c["id"] for c in nsw})
+
+    def test_korea_api_is_disabled_until_key_and_parses_sections(self):
+        source = SOURCES["kr-datagokr-cameras"]
+        self.assertFalse(source["enabled"])
+        self.assertEqual(source["apiKeyEnv"], "DATA_GO_KR_KEY")
+        items = [{"latitude": "34.9271974", "longitude": "127.7044802", "regltSe": "1", "lmttVe": "60", "roadRouteNm": "제철로",
+                  "itlpc": "이순신대교 시점 2차로 (여수방면)", "regltSctnLcSe": "1", "ovrspdRegltSctnLt": "3.3", "referenceDate": "2026-07-29"},
+                 {"latitude": "35.2071", "longitude": "127.4636", "regltSe": "01+02", "lmttVe": "50", "roadRouteNm": "섬진강대로",
+                  "itlpc": "식자재마트앞", "regltSctnLcSe": "2", "ovrspdRegltSctnLt": "0", "referenceDate": "2026-07-01"},
+                 {"latitude": "35.2997108", "longitude": "126.78626", "regltSe": "4", "lmttVe": "0", "roadRouteNm": "제봉로",
+                  "itlpc": "중앙초등학교 앞", "regltSctnLcSe": "", "ovrspdRegltSctnLt": "", "referenceDate": "2026-08-03"}]
+        response = {"response": {"header": {"resultCode": "00", "resultMsg": "NORMAL SERVICE."},
+                                 "body": {"items": items, "totalCount": "3", "numOfRows": "1000", "pageNo": "1"}}}
+        parsed, total = bp.datagokr_items(response)
+        self.assertEqual((len(parsed), total), (3, 3))
+        self.assertEqual(bp.datagokr_items({"response": {"header": {"resultCode": "00"}, "body": {"items": {"item": items[0]}, "totalCount": 1}}})[0], [items[0]])
+        with self.assertRaises(ValueError):
+            bp.datagokr_items({"OpenAPI_ServiceResponse": {"cmmMsgHeader": {"errMsg": "SERVICE_KEY_IS_NOT_REGISTERED_ERROR"}}})
+        rows = bp.parse_raw(source, items)
+        cameras, rejects = bp.normalize_source(source, rows, bp.dataset_date_from(source, None, rows), TODAY, BBOXES)
+        self.assertEqual(rejects["loại không dùng: 4"], 1)  # 4 = camera đỗ xe
+        start = next(c for c in cameras if c["type"] == "speed")
+        self.assertTrue(start["id"].endswith("-start"))  # 1 = 시점, đoạn dài 3.3 km
+        self.assertEqual((start["postedLimit"], start["roadName"]), (60, "제철로 · 이순신대교 시점 2차로 (여수방면)" + bp.SECTION_SUFFIX))
+        combined = next(c for c in cameras if c["type"] == "combined")
+        self.assertFalse(combined["roadName"].endswith(bp.SECTION_SUFFIX))  # mã 2 nhưng độ dài 0 → camera điểm
+        saved = os.environ.pop("DATA_GO_KR_KEY", None)
+        try:
+            with self.assertRaises(bp.MissingKey):
+                bp.fetch_source(source, offline=False)
+        finally:
+            if saved is not None:
+                os.environ["DATA_GO_KR_KEY"] = saved
+
+
 if __name__ == "__main__":
     unittest.main()

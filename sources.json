@@ -1388,5 +1388,588 @@
       ]
     },
     "baseConfidence": 90
+  },
+  {
+    "id": "sg-spf-speed",
+    "enabled": true,
+    "tier": "A",
+    "region": "SG",
+    "coverage": "Singapore",
+    "publisher": "Singapore Police Force",
+    "name": "Location of Speed Cameras in Singapore",
+    "landingURL": "https://data.gov.sg/datasets/d_983804de2bc016f53e44031d85d1ec8a/view",
+    "endpoint": "https://data.gov.sg/api/action/datastore_search?resource_id=d_983804de2bc016f53e44031d85d1ec8a",
+    "format": "datagovsg-datastore",
+    "metadata": {
+      "url": "https://api-production.data.gov.sg/v2/public/api/datasets/d_983804de2bc016f53e44031d85d1ec8a/metadata",
+      "dateKey": "data.lastUpdatedAt"
+    },
+    "license": "Singapore Open Data Licence v1.0",
+    "attribution": "Contains information from Location of Speed Cameras in Singapore from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+    "typeMap": {
+      "field": "type_of_speed_camera",
+      "values": {
+        "Fixed Speed Camera": "speed",
+        "Mobile Speed Camera": "mobile",
+        "Police Speed Laser Cameras": "mobile"
+      }
+    },
+    "typeConfidence": {
+      "mobile": 60
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "location_latitude",
+      "lon": "location_longitude",
+      "road": [
+        "location"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "sg-spf-fixed",
+    "enabled": true,
+    "tier": "A",
+    "region": "SG",
+    "coverage": "Singapore",
+    "publisher": "Singapore Police Force",
+    "name": "Singapore Police Force Fixed Speed Cameras",
+    "landingURL": "https://data.gov.sg/datasets/d_5fdeb9dccf757dbdf698240fed29f441/view",
+    "endpoint": "https://api-open.data.gov.sg/v1/public/api/datasets/d_5fdeb9dccf757dbdf698240fed29f441/poll-download",
+    "format": "datagovsg-poll-download",
+    "metadata": {
+      "url": "https://api-production.data.gov.sg/v2/public/api/datasets/d_5fdeb9dccf757dbdf698240fed29f441/metadata",
+      "dateKey": "data.lastUpdatedAt"
+    },
+    "license": "Singapore Open Data Licence v1.0",
+    "attribution": "Contains information from Singapore Police Force Fixed Speed Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "ID",
+      "roadFormat": "{ROAD_NAME} · towards {DIRECTION}"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "sg-spf-redlight",
+    "enabled": true,
+    "tier": "A",
+    "region": "SG",
+    "coverage": "Singapore",
+    "publisher": "Singapore Police Force",
+    "name": "Singapore Police Force Red Light Cameras",
+    "landingURL": "https://data.gov.sg/datasets/d_5f140c79c9dbee0bbb07c753afd788d8/view",
+    "endpoint": "https://api-open.data.gov.sg/v1/public/api/datasets/d_5f140c79c9dbee0bbb07c753afd788d8/poll-download",
+    "format": "datagovsg-poll-download",
+    "metadata": {
+      "url": "https://api-production.data.gov.sg/v2/public/api/datasets/d_5f140c79c9dbee0bbb07c753afd788d8/metadata",
+      "dateKey": "data.lastUpdatedAt"
+    },
+    "license": "Singapore Open Data Licence v1.0",
+    "attribution": "Contains information from Singapore Police Force Red Light Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "ID",
+      "roadFormat": "{DESCP} · towards {DIRECTION}"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "sg-spf-dtrls",
+    "enabled": true,
+    "tier": "A",
+    "region": "SG",
+    "coverage": "Singapore",
+    "publisher": "Singapore Police Force",
+    "name": "Singapore Police Force Digital Traffic Red Light Cameras",
+    "landingURL": "https://data.gov.sg/datasets/d_0b7ddc0979dfc183e8b0e056878b14af/view",
+    "endpoint": "https://api-open.data.gov.sg/v1/public/api/datasets/d_0b7ddc0979dfc183e8b0e056878b14af/poll-download",
+    "format": "datagovsg-poll-download",
+    "metadata": {
+      "url": "https://api-production.data.gov.sg/v2/public/api/datasets/d_0b7ddc0979dfc183e8b0e056878b14af/metadata",
+      "dateKey": "data.lastUpdatedAt"
+    },
+    "license": "Singapore Open Data Licence v1.0",
+    "attribution": "Contains information from Singapore Police Force Digital Traffic Red Light Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "ID",
+      "roadFormat": "{DESCP} · towards {DIRECTION}"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "hk-td-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "HK",
+    "coverage": "Red light camera junctions",
+    "publisher": "Transport Department, HKSAR Government",
+    "name": "Junctions with Red Light Camera System installed",
+    "landingURL": "https://data.gov.hk/en-data/dataset/hk-td-tis_25-junctions-with-rlc",
+    "endpoint": "https://portal.csdi.gov.hk/server/rest/services/common/td_rcd_1671693287017_1644/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "popupTable": "PopupInfo",
+    "metadata": null,
+    "rowDateField": "LAST_UPD_DATE",
+    "license": "DATA.GOV.HK Terms and Conditions",
+    "attribution": "Junctions with Red Light Camera System installed: Transport Department, HKSAR Government (DATA.GOV.HK).",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "RLC_ID",
+      "road": [
+        "SITE_DESC_ENG"
+      ],
+      "direction": [
+        "SITE_DESC_ENG"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "hk-td-sec",
+    "enabled": true,
+    "tier": "A",
+    "region": "HK",
+    "coverage": "Speed camera housings (camera rotates between housings)",
+    "publisher": "Transport Department, HKSAR Government",
+    "name": "Locations of Speed Enforcement Camera housing",
+    "landingURL": "https://data.gov.hk/en-data/dataset/hk-td-tis_26-locations-of-sec",
+    "endpoint": "https://portal.csdi.gov.hk/server/rest/services/common/td_rcd_1671693428549_89372/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "popupTable": "PopupInfo",
+    "metadata": null,
+    "rowDateField": "LAST_UPD_DATE",
+    "license": "DATA.GOV.HK Terms and Conditions",
+    "attribution": "Locations of Speed Enforcement Camera housing: Transport Department, HKSAR Government (DATA.GOV.HK).",
+    "typeMap": {
+      "const": "speed"
+    },
+    "typeConfidence": {
+      "speed": 70
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "SEC_ID",
+      "road": [
+        "SITE_DESC_ENG"
+      ],
+      "direction": [
+        "SITE_DESC_ENG"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "tw-npa-speed",
+    "enabled": true,
+    "tier": "A",
+    "region": "TW",
+    "coverage": "Taiwan (National Police Agency, nationwide)",
+    "publisher": "National Police Agency, Ministry of the Interior",
+    "name": "測速執法設置點 (Speed enforcement locations)",
+    "landingURL": "https://data.gov.tw/dataset/7320",
+    "endpoint": "https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/EA5E6FCD-B82D-43B7-A5CF-E9893253187E/resource/4B21C949-871A-40A0-B02F-760311841580/download",
+    "format": "csv",
+    "metadata": {
+      "url": "https://data.gov.tw/api/v2/rest/dataset/7320",
+      "dateKey": "result.modifiedDate"
+    },
+    "license": "Open Government Data License, version 1.0 (Taiwan)",
+    "attribution": "測速執法設置點: National Police Agency, Ministry of the Interior, Open Government Data License, version 1.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [
+      {
+        "field": "CityName",
+        "notIn": [
+          "設置縣市"
+        ]
+      }
+    ],
+    "directionWords": {
+      "北向南": "S",
+      "北往南": "S",
+      "往南": "S",
+      "南向": "S",
+      "南下": "S",
+      "南下車道": "S",
+      "南下方向": "S",
+      "往南方向": "S",
+      "往南下方向": "S",
+      "南向北": "N",
+      "南往北": "N",
+      "往北": "N",
+      "北向": "N",
+      "北上": "N",
+      "北上車道": "N",
+      "北上方向": "N",
+      "往北方向": "N",
+      "往北上方向": "N",
+      "西向東": "E",
+      "西往東": "E",
+      "往東": "E",
+      "東向": "E",
+      "東向西": "W",
+      "東往西": "W",
+      "東往西向": "W",
+      "往西": "W",
+      "西向": "W",
+      "西南向東北": "NE",
+      "東北向西南": "SW",
+      "西北向東南": "SE",
+      "東南向西北": "NW"
+    },
+    "fieldMap": {
+      "lat": "Latitude",
+      "lon": "Longitude",
+      "road": [
+        "Address"
+      ],
+      "direction": [
+        "direct"
+      ],
+      "limit": "limit"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "tw-ntpc-fixed",
+    "enabled": true,
+    "tier": "A",
+    "region": "TW",
+    "coverage": "New Taipei",
+    "publisher": "New Taipei City Police Department",
+    "name": "新北市固定式測速照相 (New Taipei fixed speed cameras)",
+    "landingURL": "https://data.ntpc.gov.tw/datasets/99f3ff6e-0352-4399-a726-775ab765a1dc",
+    "endpoint": "https://data.ntpc.gov.tw/api/datasets/99f3ff6e-0352-4399-a726-775ab765a1dc/json",
+    "format": "ntpc-json",
+    "metadata": null,
+    "license": "Open Government Data License, version 1.0 (Taiwan)",
+    "attribution": "新北市固定式測速照相: New Taipei City Police Department, Open Government Data License, version 1.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "directionWords": {
+      "北向南": "S",
+      "北往南": "S",
+      "往南": "S",
+      "南向": "S",
+      "南下": "S",
+      "南下車道": "S",
+      "南下方向": "S",
+      "往南方向": "S",
+      "往南下方向": "S",
+      "南向北": "N",
+      "南往北": "N",
+      "往北": "N",
+      "北向": "N",
+      "北上": "N",
+      "北上車道": "N",
+      "北上方向": "N",
+      "往北方向": "N",
+      "往北上方向": "N",
+      "西向東": "E",
+      "西往東": "E",
+      "往東": "E",
+      "東向": "E",
+      "東向西": "W",
+      "東往西": "W",
+      "東往西向": "W",
+      "往西": "W",
+      "西向": "W",
+      "西南向東北": "NE",
+      "東北向西南": "SW",
+      "西北向東南": "SE",
+      "東南向西北": "NW"
+    },
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "road": [
+        "address"
+      ],
+      "direction": [
+        "direct"
+      ],
+      "limit": "limit"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "tw-ntpc-section",
+    "enabled": true,
+    "tier": "A",
+    "region": "TW",
+    "coverage": "New Taipei",
+    "publisher": "New Taipei City Police Department",
+    "name": "區間平均速率執法設備設置地點 (New Taipei average speed sections)",
+    "landingURL": "https://data.gov.tw/dataset/126156",
+    "endpoint": "https://data.ntpc.gov.tw/api/datasets/27b97ad9-9dba-4ca9-b0ed-14b29000ffec/json",
+    "format": "ntpc-json",
+    "metadata": {
+      "url": "https://data.gov.tw/api/v2/rest/dataset/126156",
+      "dateKey": "result.modifiedDate"
+    },
+    "sectionFields": {
+      "startLat": "start latitude",
+      "startLon": "start longitude",
+      "endLat": "end latitude",
+      "endLon": "end longitude"
+    },
+    "license": "Open Government Data License, version 1.0 (Taiwan)",
+    "attribution": "區間平均速率執法設備設置地點: New Taipei City Police Department, Open Government Data License, version 1.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "directionWords": {
+      "北向南": "S",
+      "北往南": "S",
+      "往南": "S",
+      "南向": "S",
+      "南下": "S",
+      "南下車道": "S",
+      "南下方向": "S",
+      "往南方向": "S",
+      "往南下方向": "S",
+      "南向北": "N",
+      "南往北": "N",
+      "往北": "N",
+      "北向": "N",
+      "北上": "N",
+      "北上車道": "N",
+      "北上方向": "N",
+      "往北方向": "N",
+      "往北上方向": "N",
+      "西向東": "E",
+      "西往東": "E",
+      "往東": "E",
+      "東向": "E",
+      "東向西": "W",
+      "東往西": "W",
+      "東往西向": "W",
+      "往西": "W",
+      "西向": "W",
+      "西南向東北": "NE",
+      "東北向西南": "SW",
+      "西北向東南": "SE",
+      "東南向西北": "NW"
+    },
+    "fieldMap": {
+      "key": "seqno",
+      "road": [
+        "location"
+      ],
+      "direction": [
+        "direct"
+      ],
+      "limit": "limit"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "au-act-cameras",
+    "enabled": true,
+    "tier": "A",
+    "region": "AU",
+    "coverage": "Australian Capital Territory",
+    "publisher": "Access Canberra (ACT Government)",
+    "name": "Traffic speed camera locations",
+    "landingURL": "https://www.data.act.gov.au/d/426s-vdu4",
+    "endpoint": "https://www.data.act.gov.au/resource/426s-vdu4.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://www.data.act.gov.au/api/views/426s-vdu4.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "CC BY 4.0",
+    "attribution": "Traffic speed camera locations © Access Canberra, ACT Government, licensed under CC BY 4.0.",
+    "typeMap": {
+      "field": "camera_type",
+      "values": {
+        "MOBILE SPEED CAMERA": "mobile",
+        "FIXED ONLY SPEED CAMERA": "speed",
+        "RED LIGHT AND SPEED CAMERA": "combined",
+        "POINT TO POINT CAMERA": "speed"
+      }
+    },
+    "typeConfidence": {
+      "mobile": 60
+    },
+    "filters": [
+      {
+        "field": "decommissioned_camera_date",
+        "empty": true
+      }
+    ],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "camera_location_code",
+      "road": [
+        "location_description"
+      ],
+      "direction": [
+        "location_description"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "au-nsw-fixed",
+    "enabled": true,
+    "tier": "A",
+    "region": "AU",
+    "coverage": "New South Wales",
+    "publisher": "Transport for NSW",
+    "name": "NSW Speed Cameras — Fixed Speed Cameras",
+    "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+    "endpoint": "https://portal.data.nsw.gov.au/arcgis/rest/services/Hosted/TFNSW_Speed_Cameras_public/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": null,
+    "rowDateField": "last_updated",
+    "license": "CC BY 4.0",
+    "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "secondPoint": {
+      "lat": "lat_2",
+      "lon": "long_2"
+    },
+    "fieldMap": {
+      "key": "objectid",
+      "road": [
+        "road"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "au-nsw-school",
+    "enabled": true,
+    "tier": "A",
+    "region": "AU",
+    "coverage": "New South Wales",
+    "publisher": "Transport for NSW",
+    "name": "NSW Speed Cameras — Fixed Speed Cameras School Zone",
+    "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+    "endpoint": "https://portal.data.nsw.gov.au/arcgis/rest/services/Hosted/TFNSW_Speed_Cameras_public/FeatureServer/1/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": null,
+    "rowDateField": "last_updated",
+    "license": "CC BY 4.0",
+    "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+    "typeMap": {
+      "const": "schoolZone"
+    },
+    "filters": [],
+    "secondPoint": {
+      "lat": "lat_2",
+      "lon": "long_2"
+    },
+    "fieldMap": {
+      "key": "objectid",
+      "road": [
+        "road"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "au-nsw-redlight",
+    "enabled": true,
+    "tier": "A",
+    "region": "AU",
+    "coverage": "New South Wales",
+    "publisher": "Transport for NSW",
+    "name": "NSW Speed Cameras — Red Light Speed Cameras",
+    "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+    "endpoint": "https://portal.data.nsw.gov.au/arcgis/rest/services/Hosted/TFNSW_Speed_Cameras_public/FeatureServer/2/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": null,
+    "rowDateField": "last_updated",
+    "license": "CC BY 4.0",
+    "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+    "typeMap": {
+      "const": "combined"
+    },
+    "filters": [],
+    "secondPoint": {
+      "lat": "lat_2",
+      "lon": "long_2"
+    },
+    "fieldMap": {
+      "key": "objectid",
+      "road": [
+        "road"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "kr-datagokr-cameras",
+    "enabled": false,
+    "tier": "A",
+    "region": "KR",
+    "coverage": "South Korea (nationwide)",
+    "publisher": "Korean National Police Agency and local governments (data.go.kr)",
+    "name": "전국무인교통단속카메라표준데이터 (Nationwide fixed traffic enforcement cameras)",
+    "landingURL": "https://www.data.go.kr/data/15028200/standard.do",
+    "endpoint": "https://api.data.go.kr/openapi/tn_pubr_public_unmanned_traffic_camera_api",
+    "format": "datagokr-api",
+    "apiKeyEnv": "DATA_GO_KR_KEY",
+    "metadata": null,
+    "rowDateField": "referenceDate",
+    "license": "KOGL Type 1 (공공누리 제1유형, attribution)",
+    "attribution": "전국무인교통단속카메라표준데이터: Korean National Police Agency and local governments, via data.go.kr, KOGL Type 1.",
+    "typeMap": {
+      "field": "regltSe",
+      "values": {
+        "1": "speed",
+        "01": "speed",
+        "2": "redLight",
+        "02": "redLight",
+        "1+2": "combined",
+        "01+02": "combined"
+      }
+    },
+    "sectionField": {
+      "field": "regltSctnLcSe",
+      "start": [
+        "1",
+        "01"
+      ],
+      "end": [
+        "2",
+        "02"
+      ],
+      "lengthField": "ovrspdRegltSctnLt"
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "roadFormat": "{roadRouteNm} · {itlpc}",
+      "limit": "lmttVe"
+    },
+    "baseConfidence": 90
   }
 ]

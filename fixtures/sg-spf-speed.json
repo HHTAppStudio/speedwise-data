@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "data.lastUpdatedAt": "2024-06-06T14:49:46+08:00"
+  },
+  "raw": [
+    {
+      "_id": 1,
+      "type_of_speed_camera": "Fixed Speed Camera",
+      "location": "Ayer Rajah Expressway towards City",
+      "location_latitude": "1.298237",
+      "location_longitude": "103.781679"
+    },
+    {
+      "_id": 34,
+      "type_of_speed_camera": "Mobile Speed Camera",
+      "location": "Aviation Park Road towards Nicoll Drive",
+      "location_latitude": "1.36299",
+      "location_longitude": "104.020575"
+    },
+    {
+      "_id": 39,
+      "type_of_speed_camera": "Police Speed Laser Cameras",
+      "location": "Ang Mo Kio Avenue 1 towards Boundary Road",
+      "location_latitude": "1.364893",
+      "location_longitude": "103.840427"
+    },
+    {
+      "_id": 2,
+      "type_of_speed_camera": "Fixed Speed Camera",
+      "location": "Ayer Rajah Expressway towards Jurong",
+      "location_latitude": "1.298219",
+      "location_longitude": "103.781724"
+    },
+    {
+      "_id": 3,
+      "type_of_speed_camera": "Fixed Speed Camera",
+      "location": "Boon Lay Way towards Commonwealth Avenue West",
+      "location_latitude": "1.344737",
+      "location_longitude": "103.725491"
+    }
+  ]
+}

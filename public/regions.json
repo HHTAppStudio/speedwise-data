@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "regions": [
     {
       "code": "US-NY",
@@ -209,8 +209,8 @@
       "status": "full",
       "cameraCount": 127,
       "updatedAt": "2026-09-27",
-      "packURL": "packs/us-wa.v1.json",
-      "packVersion": 1,
+      "packURL": "packs/us-wa.v2.json",
+      "packVersion": 2,
       "coverageNote": "Seattle, Tacoma, Bellevue"
     },
     {
@@ -319,7 +319,11 @@
       "countryCode": "AU",
       "countryName": "Australia",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 1461,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/au.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Australian Capital Territory, New South Wales"
     },
     {
       "code": "NZ",
@@ -606,9 +610,12 @@
       "name": "Singapore",
       "countryCode": "SG",
       "countryName": "Singapore",
-      "status": "comingSoon",
-      "cameraCount": 0,
-      "legalNote": "Not available yet. Coming in a later version."
+      "status": "full",
+      "cameraCount": 293,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/sg.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Singapore"
     },
     {
       "code": "ID",
@@ -633,9 +640,12 @@
       "name": "Taiwan",
       "countryCode": "TW",
       "countryName": "Taiwan",
-      "status": "comingSoon",
-      "cameraCount": 0,
-      "legalNote": "Not available yet. Coming in a later version."
+      "status": "full",
+      "cameraCount": 1905,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/tw.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Taiwan (National Police Agency, nationwide), New Taipei"
     },
     {
       "code": "JP",
@@ -718,7 +728,11 @@
       "countryCode": "HK",
       "countryName": "Hong Kong",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 386,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/hk.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Red light camera junctions, Speed camera housings (camera rotates between housings)"
     },
     {
       "code": "AR",
@@ -897,7 +911,7 @@
       "license": "Not specified",
       "attribution": "Automated enforcement locations: City of Tacoma.",
       "landingURL": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0",
-      "updatedAt": "2026-09-26",
+      "updatedAt": "2026-09-27",
       "cameraCount": 22
     },
     {
@@ -1152,6 +1166,149 @@
       "landingURL": "https://transparenz.karlsruhe.de/dataset/blitzer",
       "updatedAt": "2025-02-19",
       "cameraCount": 33
+    },
+    {
+      "id": "sg-spf-speed",
+      "region": "SG",
+      "name": "Location of Speed Cameras in Singapore",
+      "publisher": "Singapore Police Force",
+      "license": "Singapore Open Data Licence v1.0",
+      "attribution": "Contains information from Location of Speed Cameras in Singapore from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+      "landingURL": "https://data.gov.sg/datasets/d_983804de2bc016f53e44031d85d1ec8a/view",
+      "updatedAt": "2024-06-06",
+      "cameraCount": 47
+    },
+    {
+      "id": "sg-spf-fixed",
+      "region": "SG",
+      "name": "Singapore Police Force Fixed Speed Cameras",
+      "publisher": "Singapore Police Force",
+      "license": "Singapore Open Data Licence v1.0",
+      "attribution": "Contains information from Singapore Police Force Fixed Speed Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+      "landingURL": "https://data.gov.sg/datasets/d_5fdeb9dccf757dbdf698240fed29f441/view",
+      "updatedAt": "2025-11-13",
+      "cameraCount": 11
+    },
+    {
+      "id": "sg-spf-redlight",
+      "region": "SG",
+      "name": "Singapore Police Force Red Light Cameras",
+      "publisher": "Singapore Police Force",
+      "license": "Singapore Open Data Licence v1.0",
+      "attribution": "Contains information from Singapore Police Force Red Light Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+      "landingURL": "https://data.gov.sg/datasets/d_5f140c79c9dbee0bbb07c753afd788d8/view",
+      "updatedAt": "2025-11-13",
+      "cameraCount": 0
+    },
+    {
+      "id": "sg-spf-dtrls",
+      "region": "SG",
+      "name": "Singapore Police Force Digital Traffic Red Light Cameras",
+      "publisher": "Singapore Police Force",
+      "license": "Singapore Open Data Licence v1.0",
+      "attribution": "Contains information from Singapore Police Force Digital Traffic Red Light Cameras from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0.",
+      "landingURL": "https://data.gov.sg/datasets/d_0b7ddc0979dfc183e8b0e056878b14af/view",
+      "updatedAt": "2025-12-02",
+      "cameraCount": 235
+    },
+    {
+      "id": "hk-td-rlc",
+      "region": "HK",
+      "name": "Junctions with Red Light Camera System installed",
+      "publisher": "Transport Department, HKSAR Government",
+      "license": "DATA.GOV.HK Terms and Conditions",
+      "attribution": "Junctions with Red Light Camera System installed: Transport Department, HKSAR Government (DATA.GOV.HK).",
+      "landingURL": "https://data.gov.hk/en-data/dataset/hk-td-tis_25-junctions-with-rlc",
+      "updatedAt": "2026-06-26",
+      "cameraCount": 222
+    },
+    {
+      "id": "hk-td-sec",
+      "region": "HK",
+      "name": "Locations of Speed Enforcement Camera housing",
+      "publisher": "Transport Department, HKSAR Government",
+      "license": "DATA.GOV.HK Terms and Conditions",
+      "attribution": "Locations of Speed Enforcement Camera housing: Transport Department, HKSAR Government (DATA.GOV.HK).",
+      "landingURL": "https://data.gov.hk/en-data/dataset/hk-td-tis_26-locations-of-sec",
+      "updatedAt": "2026-06-16",
+      "cameraCount": 164
+    },
+    {
+      "id": "tw-npa-speed",
+      "region": "TW",
+      "name": "測速執法設置點 (Speed enforcement locations)",
+      "publisher": "National Police Agency, Ministry of the Interior",
+      "license": "Open Government Data License, version 1.0 (Taiwan)",
+      "attribution": "測速執法設置點: National Police Agency, Ministry of the Interior, Open Government Data License, version 1.0.",
+      "landingURL": "https://data.gov.tw/dataset/7320",
+      "updatedAt": "2026-09-27",
+      "cameraCount": 1885
+    },
+    {
+      "id": "tw-ntpc-fixed",
+      "region": "TW",
+      "name": "新北市固定式測速照相 (New Taipei fixed speed cameras)",
+      "publisher": "New Taipei City Police Department",
+      "license": "Open Government Data License, version 1.0 (Taiwan)",
+      "attribution": "新北市固定式測速照相: New Taipei City Police Department, Open Government Data License, version 1.0.",
+      "landingURL": "https://data.ntpc.gov.tw/datasets/99f3ff6e-0352-4399-a726-775ab765a1dc",
+      "updatedAt": null,
+      "cameraCount": 1
+    },
+    {
+      "id": "tw-ntpc-section",
+      "region": "TW",
+      "name": "區間平均速率執法設備設置地點 (New Taipei average speed sections)",
+      "publisher": "New Taipei City Police Department",
+      "license": "Open Government Data License, version 1.0 (Taiwan)",
+      "attribution": "區間平均速率執法設備設置地點: New Taipei City Police Department, Open Government Data License, version 1.0.",
+      "landingURL": "https://data.gov.tw/dataset/126156",
+      "updatedAt": "2026-08-11",
+      "cameraCount": 19
+    },
+    {
+      "id": "au-act-cameras",
+      "region": "AU",
+      "name": "Traffic speed camera locations",
+      "publisher": "Access Canberra (ACT Government)",
+      "license": "CC BY 4.0",
+      "attribution": "Traffic speed camera locations © Access Canberra, ACT Government, licensed under CC BY 4.0.",
+      "landingURL": "https://www.data.act.gov.au/d/426s-vdu4",
+      "updatedAt": "2026-08-21",
+      "cameraCount": 1126
+    },
+    {
+      "id": "au-nsw-fixed",
+      "region": "AU",
+      "name": "NSW Speed Cameras — Fixed Speed Cameras",
+      "publisher": "Transport for NSW",
+      "license": "CC BY 4.0",
+      "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+      "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+      "updatedAt": "2021-05-27",
+      "cameraCount": 66
+    },
+    {
+      "id": "au-nsw-school",
+      "region": "AU",
+      "name": "NSW Speed Cameras — Fixed Speed Cameras School Zone",
+      "publisher": "Transport for NSW",
+      "license": "CC BY 4.0",
+      "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+      "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+      "updatedAt": "2021-05-27",
+      "cameraCount": 49
+    },
+    {
+      "id": "au-nsw-redlight",
+      "region": "AU",
+      "name": "NSW Speed Cameras — Red Light Speed Cameras",
+      "publisher": "Transport for NSW",
+      "license": "CC BY 4.0",
+      "attribution": "NSW Speed Cameras © Transport for NSW, licensed under CC BY 4.0.",
+      "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
+      "updatedAt": "2021-05-27",
+      "cameraCount": 220
     }
   ]
 }

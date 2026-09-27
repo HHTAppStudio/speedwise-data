@@ -1,0 +1,65 @@
+{
+  "metadata": null,
+  "raw": [
+    {
+      "seqno": "1",
+      "cityname": "新北市",
+      "regionname": "板橋區",
+      "address": "溪城路與金門街369巷口（往樹林）",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新北市警局交通大隊",
+      "longitude": "121.428314",
+      "latitude": "24.981302",
+      "direct": "東南向西北",
+      "limit": "50"
+    },
+    {
+      "seqno": "2",
+      "cityname": "新北市",
+      "regionname": "板橋區",
+      "address": "環漢路沙崙抽水站前（往新莊）",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新北市警局交通大隊",
+      "longitude": "121.42892",
+      "latitude": "24.979713",
+      "direct": "西南向東北",
+      "limit": "50"
+    },
+    {
+      "seqno": "3",
+      "cityname": "新北市",
+      "regionname": "板橋區",
+      "address": "堤外便道1K+900（往板橋）",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新北市警局交通大隊",
+      "longitude": "121.440865",
+      "latitude": "24.997871",
+      "direct": "南向北",
+      "limit": "40"
+    },
+    {
+      "seqno": "4",
+      "cityname": "新北市",
+      "regionname": "板橋區",
+      "address": "環河西路5段「歡仔園防汛陸橋」前（往土城）",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新北市警局交通大隊",
+      "longitude": "121.44137",
+      "latitude": "25.005367",
+      "direct": "北向南",
+      "limit": "50"
+    },
+    {
+      "seqno": "5",
+      "cityname": "新北市",
+      "regionname": "板橋區",
+      "address": "台65線快速公路5.4公里（往土城）",
+      "deptnm": "新北市政府警察局",
+      "branchnm": "新北市警局交通大隊",
+      "longitude": "121.446014",
+      "latitude": "25.020021",
+      "direct": "西北向東南",
+      "limit": "80"
+    }
+  ]
+}

@@ -7,6 +7,13 @@
       "cameraCount": 90,
       "updatedAt": "2026-09-27"
     },
+    "AU": {
+      "version": 1,
+      "hash": "f065c30a71cd63245d17b95fb0ba09706268bec724427b0ffdce82bface873f6",
+      "file": "packs/au.v1.json",
+      "cameraCount": 1461,
+      "updatedAt": "2026-09-27"
+    },
     "BE": {
       "version": 1,
       "hash": "ee4ee5303f524b8c3ce46c1eab622c39877da0252bfc0aeb7f30af4793d7abb6",
@@ -49,6 +56,13 @@
       "cameraCount": 952,
       "updatedAt": "2026-09-27"
     },
+    "HK": {
+      "version": 1,
+      "hash": "ddd0b5ef4622e82af6387cc8bf3737e77c8742f6e9b9a9435c612a972b18489b",
+      "file": "packs/hk.v1.json",
+      "cameraCount": 386,
+      "updatedAt": "2026-09-27"
+    },
     "LU": {
       "version": 1,
       "hash": "392edaa8c46832ab000e7ce39a8ec88e83a854ba13c6e68c75bbdfd2c37570c8",
@@ -68,6 +82,20 @@
       "hash": "71dd7c548041419c508915222734f6b2bc5ae797cc498b5e50dba2e51e9441a4",
       "file": "packs/se.v1.json",
       "cameraCount": 2794,
+      "updatedAt": "2026-09-27"
+    },
+    "SG": {
+      "version": 1,
+      "hash": "44fc7d9601c31f7a2aa11d74b9afb48787fe374ba037a153254a2dff680bbe6c",
+      "file": "packs/sg.v1.json",
+      "cameraCount": 293,
+      "updatedAt": "2026-09-27"
+    },
+    "TW": {
+      "version": 1,
+      "hash": "426abd223dbd181bee8f27dfee0c7971b64b1d391904ab867ddd42af23b28c2f",
+      "file": "packs/tw.v1.json",
+      "cameraCount": 1905,
       "updatedAt": "2026-09-27"
     },
     "US-CA": {
@@ -127,9 +155,9 @@
       "updatedAt": "2026-09-27"
     },
     "US-WA": {
-      "version": 1,
-      "hash": "63a86dee36c4792ac84d6875ef53fb1a2848466503ddf4978d80d3d7b62d072b",
-      "file": "packs/us-wa.v1.json",
+      "version": 2,
+      "hash": "688210e52ed4895588f1fb5b7e3137410ff53acb24511fb6f0de2d30a4151e2e",
+      "file": "packs/us-wa.v2.json",
       "cameraCount": 127,
       "updatedAt": "2026-09-27"
     }
