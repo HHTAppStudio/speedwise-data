@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "regions": [
     {
       "code": "US-NY",
@@ -661,9 +661,12 @@
       "name": "South Korea",
       "countryCode": "KR",
       "countryName": "South Korea",
-      "status": "comingSoon",
-      "cameraCount": 0,
-      "legalNote": "Not available yet. Coming in a later version."
+      "status": "full",
+      "cameraCount": 25772,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/kr.v1.json",
+      "packVersion": 1,
+      "coverageNote": "South Korea (nationwide)"
     },
     {
       "code": "AE",
@@ -1309,6 +1312,17 @@
       "landingURL": "https://opendata.transport.nsw.gov.au/dataset/nsw-speed-cameras",
       "updatedAt": "2021-05-27",
       "cameraCount": 220
+    },
+    {
+      "id": "kr-std",
+      "region": "KR",
+      "name": "전국무인교통단속카메라표준데이터 (Nationwide fixed traffic enforcement cameras)",
+      "publisher": "Korean National Police Agency and local governments (data.go.kr)",
+      "license": "KOGL Type 1 (공공누리 제1유형, attribution)",
+      "attribution": "전국무인교통단속카메라표준데이터: Korean National Police Agency and local governments, via data.go.kr, KOGL Type 1.",
+      "landingURL": "https://www.data.go.kr/data/15028200/standard.do",
+      "updatedAt": "2026-08-21",
+      "cameraCount": 25772
     }
   ]
 }

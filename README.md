@@ -30,7 +30,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 | Biến | Nguồn | Cách đăng ký |
 |---|---|---|
 | `TRAFIKVERKET_API_KEY` | Thuỵ Điển `se-trv-atk` | Đăng ký tài khoản bằng email tại https://data.trafikverket.se (cổng API của Trafikverket), chấp nhận license, xác nhận email, rồi tạo key trong trang tài khoản. Miễn phí, data CC0. |
-| `DATA_GO_KR_KEY` | Hàn Quốc `kr-datagokr-cameras` (đang `enabled: false` — có key thì đổi thành `true`) | https://www.data.go.kr → đăng ký → dataset 15028200 → "활용신청"; key "일반 인증키 (Decoding)". |
+| `DATA_GO_KR_KEY` | Hàn Quốc qua API (`kr-datagokr-cameras`, đang `enabled: false`). **Không cần** — Hàn Quốc đang lấy bằng nút tải file (`kr-std`, không key) | https://www.data.go.kr → đăng ký → dataset 15028200 → "활용신청"; key "일반 인증키 (Decoding)". |
 
 - **Trên máy:** tạo file `~/.speedwise/keys.env` (ngoài repo), mỗi dòng `TEN_BIEN=giá_trị`. `build_packs.py` tự đọc file này (không ghi đè biến môi trường đã có).
 - **GitHub Actions:** repo → Settings → Secrets and variables → Actions → New repository secret, đặt đúng tên biến ở trên.
@@ -67,7 +67,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 - **Version**: pack chỉ tăng version khi hash nội dung đổi; file version cũ bị xoá. `regions.json` tăng `version` khi nội dung đổi. `updatedAt` của vùng = ngày pack đổi version gần nhất.
 - `regions.json` lấy template `../Speedwise/Resources/DataPacks/regions.json` (khi chạy trong repo app); không có thì dùng chính `public/regions.json` hiện tại. Vùng mới của CR-D2 (HK, AR, CO) thêm từ `ADDED_REGIONS` trong `build_packs.py` nếu template chưa có. Bang Mỹ không có pack → "Community only" (không `packURL`, `cameraCount` 0).
 - **Trạng thái pháp lý** (docs/04_TECH_SPEC.md mục 12.4): vùng `comingSoon` có pack ≥ 1 camera → `full` (bỏ `legalNote` "Not available yet"). Vùng `restricted` / `blocked` (BE, DE, LU…) **không bao giờ** bị pipeline đổi, và không có `packURL` dù pack vẫn được sinh ra.
-- **Kích thước pack**: > 3 MB → ghi JSON rút gọn (không khoảng trắng, bỏ trường null — app coi trường thiếu là null). > 8 MB → script dừng (cần quyết định tách pack).
+- **Kích thước pack**: > 3 MB → ghi JSON rút gọn (không khoảng trắng, bỏ trường null — app coi trường thiếu là null). > 8 MB → script dừng (cần quyết định tách pack). Pack Hàn Quốc (`kr`) đã ~7,7 MB — nếu workflow đỏ vì > 8 MB thì cần tách KR theo tỉnh/thành (cần sửa app).
 
 ## Thêm một nguồn
 
@@ -80,7 +80,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
    | `id`, `enabled`, `tier` | `tier` A = có license mở / terms cho dùng lại; B = cơ quan công khai nhưng không ghi license |
    | `region`, `coverage` | "US-DC" (bang Mỹ) hoặc mã quốc gia "CA", "BR"…; `coverage` ghép vào `coverageNote` của vùng |
    | `publisher`, `name`, `landingURL`, `license`, `attribution` | Hiện trong app (màn Data sources) |
-   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson`, `wfs-geojson` (thêm `outputFormat=geojson&srsName=EPSG:4326`), `geojson` (file GeoJSON; Point hoặc MultiPoint 1 điểm), `csv`, `datex2-predefined-locations` (XML DATEX II v1: Point → 1 camera, Linear → 2 camera đầu/cuối), `nvdb-v4` (NVDB API Les v4, tự phân trang theo `metadata.neste`), `trafikverket-post` (POST QUERY XML, cần `apiKeyEnv` + `query`), `datagovsg-datastore` (data.gov.sg `datastore_search`, phân trang `offset`), `datagovsg-poll-download` (data.gov.sg `poll-download` → link tải GeoJSON), `ntpc-json` (New Taipei `/api/datasets/<uuid>/json`, phân trang `page`/`size`), `datagokr-api` (api.data.go.kr, `serviceKey` + `pageNo`/`numOfRows`, ≤ 5 request/giây). CKAN `datastore/dump/<id>` trả CSV → dùng format `csv` |
+   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson`, `wfs-geojson` (thêm `outputFormat=geojson&srsName=EPSG:4326`), `geojson` (file GeoJSON; Point hoặc MultiPoint 1 điểm), `csv`, `datex2-predefined-locations` (XML DATEX II v1: Point → 1 camera, Linear → 2 camera đầu/cuối), `nvdb-v4` (NVDB API Les v4, tự phân trang theo `metadata.neste`), `trafikverket-post` (POST QUERY XML, cần `apiKeyEnv` + `query`), `datagovsg-datastore` (data.gov.sg `datastore_search`, phân trang `offset`), `datagovsg-poll-download` (data.gov.sg `poll-download` → link tải GeoJSON), `ntpc-json` (New Taipei `/api/datasets/<uuid>/json`, phân trang `page`/`size`), `datagokr-api` (api.data.go.kr, `serviceKey` + `pageNo`/`numOfRows`, ≤ 5 request/giây). `datagokr-std-download` (nút "tải file" của dataset chuẩn data.go.kr, không key: `columList.json` + `standard.json` từng trang 10.000 dòng; cần `datasetPk`). CKAN `datastore/dump/<id>` trả CSV → dùng format `csv` |
    | `csv` | (chỉ format `csv`) `{"delimiter": ";", "decimalComma": true, "encoding": "latin-1"}` — mặc định `,` / dấu chấm / UTF-8. Văn bản cột thẳng hàng: `{"fixedWidth": true, "skipLines": 2}` (bỏ 2 dòng đầu, cột bắt đầu ở vị trí từng chữ tiêu đề) |
    | `headers` | (tuỳ chọn) header HTTP thêm, ví dụ NVDB `{"X-Client": "Speedwise"}` |
    | `apiKeyEnv` | (tuỳ chọn) tên biến môi trường chứa key; thiếu → bỏ qua nguồn (xem **Key API**) |

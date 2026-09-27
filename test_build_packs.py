@@ -588,6 +588,28 @@ class AsiaPacificTests(unittest.TestCase):
         self.assertEqual((start["postedLimit"], start["roadName"]), (60, "제철로 · 이순신대교 시점 2차로 (여수방면)" + bp.SECTION_SUFFIX))
         combined = next(c for c in cameras if c["type"] == "combined")
         self.assertFalse(combined["roadName"].endswith(bp.SECTION_SUFFIX))  # mã 2 nhưng độ dài 0 → camera điểm
+        # Nguồn đang dùng: nút "tải file" của cùng dataset (không key) — trường viết hoa, cùng bảng mã.
+        download = SOURCES["kr-std"]
+        self.assertTrue(download["enabled"])
+        cameras, rejects = normalize("kr-std")
+        self.assertTrue(cameras)
+        for camera in cameras:
+            self.assertIn(camera["type"], {"speed", "redLight", "combined"})
+            self.assertTrue(33.1 <= camera["lat"] <= 38.62 and 124.6 <= camera["lon"] <= 131.88)
+        header = {"totalCount": 3, "tableVO": {"svcTableNm": "tn_x", "colNmList": ["LATITUDE", "LONGITUDE"]}}
+        pages = [header, [{"LATITUDE": "35.1"}, {"LATITUDE": "35.2"}], [{"LATITUDE": "35.3"}]]
+        urls = []
+        saved_get, saved_page, saved_wait = bp.http_get_json, bp.DATAGOKR_DOWNLOAD_PAGE, bp.DATAGOKR_MIN_INTERVAL
+        bp.http_get_json = lambda url, *args, **kwargs: urls.append(url) or pages.pop(0)
+        bp.DATAGOKR_DOWNLOAD_PAGE, bp.DATAGOKR_MIN_INTERVAL = 2, 0
+        try:
+            rows = bp.fetch_datagokr_std_download("https://www.data.go.kr/download", "15028200")
+        finally:
+            bp.http_get_json, bp.DATAGOKR_DOWNLOAD_PAGE, bp.DATAGOKR_MIN_INTERVAL = saved_get, saved_page, saved_wait
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(urls[0], "https://www.data.go.kr/download/columList.json?pk=15028200&ext=JSON")
+        self.assertIn("page=2", urls[2])
+        self.assertIn("colNmList=LATITUDE&colNmList=LONGITUDE", urls[1])
         saved = os.environ.pop("DATA_GO_KR_KEY", None)
         try:
             with self.assertRaises(bp.MissingKey):

@@ -56,6 +56,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `au-nsw-fixed` | AU | A | OK | 2021-05-27 | 67 | 67 | 66 | gộp trùng ≤ 30 m: 1 |
 | `au-nsw-school` | AU | A | OK | 2021-05-27 | 59 | 59 | 49 | gộp trùng ≤ 30 m: 10 |
 | `au-nsw-redlight` | AU | A | OK | 2021-05-27 | 221 | 221 | 220 | gộp trùng ≤ 30 m: 1 |
+| `kr-std` | KR | A | OK | 2026-08-21 | 43724 | 29183 | 25772 | loại không dùng: 4: 8037; loại không dùng: 04: 3425; gộp trùng ≤ 30 m: 3411; trùng id trong nguồn: 1540; loại không dùng: 99: 1461; loại không dùng: 3: 65; loại không dùng: 03: 13 |
 
 ## Theo vùng
 
@@ -70,6 +71,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
 | ES | `packs/es.v1.json` | kmh | 395 | 1 | 952 | 952 | 0 | 0 | 0 | 0 |
 | HK | `packs/hk.v1.json` | kmh | 162 | 1 | 386 | 164 | 222 | 0 | 0 | 0 |
+| KR | `packs/kr.v1.json` | kmh | 7898 | 1 | 25772 | 9586 | 15882 | 0 | 304 | 0 |
 | LU | `packs/lu.v1.json` | kmh | 20 | 1 | 45 | 45 | 0 | 0 | 0 | 0 |
 | NO | `packs/no.v1.json` | kmh | 183 | 1 | 438 | 438 | 0 | 0 | 0 | 0 |
 | SE | `packs/se.v1.json` | kmh | 1146 | 1 | 2794 | 2794 | 0 | 0 | 0 | 0 |
@@ -85,7 +87,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-VA | `packs/us-va.v2.json` | mph | 15 | 2 | 35 | 0 | 0 | 35 | 0 | 0 |
 | US-WA | `packs/us-wa.v2.json` | mph | 52 | 2 | 127 | 14 | 39 | 74 | 0 | 0 |
 
-**Tổng: 12600 camera ở 23 vùng.**
+**Tổng: 38372 camera ở 24 vùng.**
 
 <!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->
 
@@ -206,7 +208,22 @@ Kết quả: 21/22 đúng đường/giao lộ, 1 chưa xác nhận (SG KPE). C�
 
 | Nguồn | Trạng thái | Lý do |
 |---|---|---|
-| Hàn Quốc — data.go.kr 15028200 (`kr-datagokr-cameras`) | skipped: no key (`DATA_GO_KR_KEY`) — nguồn đang `enabled: false` | Chưa có key. Adapter `datagokr-api` đã viết; mã `단속구분` / `단속구간위치구분` đọc từ dữ liệu mẫu của chính dataset. KR giữ `comingSoon` |
+| Hàn Quốc — data.go.kr 15028200 qua API (`kr-datagokr-cameras`) | tắt (`enabled: false`) | Không cần: cùng dataset lấy bằng nút tải file (`kr-std`, không key — bạn duyệt 2026-09-27), có trong bảng Nguồn ở trên |
 | Queensland — Active mobile speed camera sites (f6b5c37e…, d059503f…) | bỏ | Cả 2 file (3.686 + 104 dòng) chỉ có mã điểm + tên đường/khu vực, **không có toạ độ** |
 | Đài Loan — data.gov.tw 13940 (quốc lộ, TGOS) | bỏ | Có toạ độ + OGDL, nhưng file trên tgos.tw trả **403** khi tải từ máy này qua VPN Mỹ (có thể chặn IP ngoài Đài Loan). Camera quốc lộ đã có trong 7320 (154 dòng 國道一/二/三/五號) |
 | Đài Loan — data.gov.tw 7320 (NPA toàn quốc, `tw-npa-speed`) | OK | Có toạ độ + OGDL (license "1") → thêm; 1.890 camera |
+
+## Kiểm tra vị trí — Hàn Quốc `kr-std` (2026-09-27)
+
+Chọn ngẫu nhiên (seed 12): 3 speed, 2 redLight, 1 combined. Tra ngược bằng CLGeocoder của Apple.
+
+| Camera | Loại / limit | `roadName` | Apple trả về | Kết quả |
+|---|---|---|---|---|
+| [`kr-kr-std-c74f4ca6a9`](https://maps.apple.com/?ll=35.976063,129.409967&q=kr-kr-std-c74f4ca6a9) | speed / 50 | 충무로 · 원용교동편 (철강산단→해병1사단) | Chungmu-ro, North Gyeongsang | ✅ |
+| [`kr-kr-std-6a94f921be`](https://maps.apple.com/?ll=36.355683,127.368516&q=kr-kr-std-6a94f921be) | speed / 30 | 월평동로 · 갈마초 옆 월평중 삼거리 | Wolpyeongdong-ro, Daejeon | ✅ |
+| [`kr-kr-std-e1fb2674e4`](https://maps.apple.com/?ll=35.114193,126.829566&q=kr-kr-std-e1fb2674e4) | speed / 30 | 눌재로 · 백마r → 만귀정 | Nuljae-ro, Gwangju | ✅ |
+| [`kr-kr-std-7631f46948`](https://maps.apple.com/?ll=37.41863,127.132541&q=kr-kr-std-7631f46948) | redLight / 30 | 여수울로 · 여수초교 앞 삼거리 어린이보호구역(…) | Yeosuul-ro, Gyeonggi-do | ✅ |
+| [`kr-kr-std-40b77ae857`](https://maps.apple.com/?ll=37.12996,126.915151&q=kr-kr-std-40b77ae857) | redLight / 30 | 행정서로 · 바다유치원 앞 사거리 어린이보호구역(…) | Haengjeongseo-ro 2-gil, Gyeonggi-do | ✅ (ngõ nhánh của 행정서로, tại ngã tư) |
+| [`kr-kr-std-cad702721d`](https://maps.apple.com/?ll=37.574669,127.126586&q=kr-kr-std-cad702721d) | combined / 40 | 사가정로 · 아천 TG 전 100m지점 (강변북로 → 용마터널) | Sagajeong-ro, Gyeonggi-do | ✅ |
+
+Kết quả: 6/6 đúng đường. Tổng D05: **54/55**.

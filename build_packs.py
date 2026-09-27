@@ -335,7 +335,7 @@ def headings_match(h1, h2):
 
 GEOJSON_FORMATS = ("arcgis-geojson", "socrata-geojson", "wfs-geojson", "geojson", "datagovsg-poll-download")
 # Mảng JSON các dòng phẳng, toạ độ ở cặp trường lat/lon (hoặc `point` GeoJSON của Socrata).
-FLAT_JSON_FORMATS = ("socrata-json", "datagovsg-datastore", "ntpc-json", "datagokr-api")
+FLAT_JSON_FORMATS = ("socrata-json", "datagovsg-datastore", "ntpc-json", "datagokr-api", "datagokr-std-download")
 
 
 def _point_lon_lat(geometry):
@@ -1152,6 +1152,30 @@ def fetch_datagokr(endpoint, key):
     raise ValueError("data.go.kr: quá %d trang" % MAX_PAGES)
 
 
+DATAGOKR_DOWNLOAD_PAGE = 10000
+
+
+def fetch_datagokr_std_download(endpoint, dataset_pk):
+    """Nút "tải file" của dataset chuẩn trên data.go.kr (không cần key — bạn duyệt 2026-09-27, docs/06_DECISIONS.md):
+    `columList.json?pk=<id>&ext=JSON` cho tên bảng + danh sách cột + tổng số dòng, rồi `standard.json` trả từng trang 10.000 dòng."""
+    header = http_get_json("%s/columList.json?pk=%s&ext=JSON" % (endpoint, dataset_pk))
+    table, total = header["tableVO"], int(header["totalCount"])
+    rows = []
+    for page in range(1, MAX_PAGES + 1):
+        query = [("publicDataPk", dataset_pk), ("svcTableNm", table["svcTableNm"]), ("perPage", DATAGOKR_DOWNLOAD_PAGE),
+                 ("page", page), ("totalCount", total)] + [("colNmList", column) for column in table["colNmList"]]
+        batch = http_get_json("%s/standard.json?%s" % (endpoint, urllib.parse.urlencode(query)))
+        if not isinstance(batch, list):
+            raise ValueError("data.go.kr: trang %d không phải mảng JSON" % page)
+        rows.extend(batch)
+        if not batch or len(rows) >= total:
+            if len(rows) < total:
+                raise ValueError("data.go.kr: chỉ nhận %d/%d dòng" % (len(rows), total))
+            return rows
+        time.sleep(DATAGOKR_MIN_INTERVAL)
+    raise ValueError("data.go.kr: quá %d trang" % MAX_PAGES)
+
+
 def latest_ckan_resource(package, rule):
     """CKAN `package_show` → URL resource mới nhất (theo `created`) có tên khớp `namePattern` và đúng `format`.
     Dùng cho dataset mà file đổi tên mỗi kỳ (Belo Horizonte, ANTT)."""
@@ -1275,6 +1299,8 @@ def fetch_source(source, offline):
         raw = fetch_ntpc(endpoint)
     elif source["format"] == "datagokr-api":
         raw = fetch_datagokr(endpoint, key)
+    elif source["format"] == "datagokr-std-download":
+        raw = fetch_datagokr_std_download(endpoint, source["datasetPk"])
     else:
         raw = http_get_json(endpoint, source.get("headers"))
     if source.get("codedValues"):

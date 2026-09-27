@@ -63,6 +63,13 @@
       "cameraCount": 386,
       "updatedAt": "2026-09-27"
     },
+    "KR": {
+      "version": 1,
+      "hash": "75790c658e2996da751df6af62785c3893f39bc3a5b97ee952f65918518e8936",
+      "file": "packs/kr.v1.json",
+      "cameraCount": 25772,
+      "updatedAt": "2026-09-27"
+    },
     "LU": {
       "version": 1,
       "hash": "392edaa8c46832ab000e7ce39a8ec88e83a854ba13c6e68c75bbdfd2c37570c8",

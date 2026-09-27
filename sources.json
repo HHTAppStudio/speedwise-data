@@ -1971,5 +1971,53 @@
       "limit": "lmttVe"
     },
     "baseConfidence": 90
+  },
+  {
+    "id": "kr-std",
+    "enabled": true,
+    "tier": "A",
+    "region": "KR",
+    "coverage": "South Korea (nationwide)",
+    "publisher": "Korean National Police Agency and local governments (data.go.kr)",
+    "name": "전국무인교통단속카메라표준데이터 (Nationwide fixed traffic enforcement cameras)",
+    "landingURL": "https://www.data.go.kr/data/15028200/standard.do",
+    "endpoint": "https://www.data.go.kr/download",
+    "datasetPk": "15028200",
+    "format": "datagokr-std-download",
+    "metadata": null,
+    "rowDateField": "REFERENCE_DATE",
+    "license": "KOGL Type 1 (공공누리 제1유형, attribution)",
+    "attribution": "전국무인교통단속카메라표준데이터: Korean National Police Agency and local governments, via data.go.kr, KOGL Type 1.",
+    "typeMap": {
+      "field": "REGLT_SE",
+      "values": {
+        "1": "speed",
+        "01": "speed",
+        "2": "redLight",
+        "02": "redLight",
+        "1+2": "combined",
+        "01+02": "combined"
+      }
+    },
+    "sectionField": {
+      "field": "REGLT_SCTN_LC_SE",
+      "start": [
+        "1",
+        "01"
+      ],
+      "end": [
+        "2",
+        "02"
+      ],
+      "lengthField": "OVRSPD_REGLT_SCTN_LT"
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "LATITUDE",
+      "lon": "LONGITUDE",
+      "roadFormat": "{ROAD_ROUTE_NM} · {ITLPC}",
+      "limit": "LMTT_VE"
+    },
+    "baseConfidence": 90
   }
 ]
