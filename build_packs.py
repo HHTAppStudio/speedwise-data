@@ -1068,9 +1068,15 @@ DATAGOVSG_PAGE = 1000
 
 
 def datagovsg_json(url):
-    """API data.gov.sg: không key thì bị giới hạn tốc độ (code 24 "TOO_MANY_REQUESTS", chờ ~10 giây) → chờ rồi gọi lại."""
+    """API data.gov.sg: không key thì bị giới hạn tốc độ — JSON code 24 "TOO_MANY_REQUESTS" hoặc HTTP 429 (chờ ~10 giây)
+    → chờ rồi gọi lại."""
     for _ in range(RETRIES + 1):
-        response = http_get_json(url)
+        try:
+            response = http_get_json(url)
+        except RuntimeError as error:
+            if "429" not in str(error):
+                raise
+            response = {"code": DATAGOVSG_RATE_LIMITED}
         if not (isinstance(response, dict) and response.get("code") == DATAGOVSG_RATE_LIMITED):
             return response
         time.sleep(DATAGOVSG_WAIT_SECONDS)

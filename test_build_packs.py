@@ -499,11 +499,18 @@ class AsiaPacificTests(unittest.TestCase):
         fixed, _ = normalize("sg-spf-fixed")
         self.assertIn("Yishun Avenue 2 · towards Lentor Avenue", {c["roadName"] for c in fixed})
         # Bị giới hạn tốc độ (code 24) → chờ rồi gọi lại, không gọi mạng thật.
-        replies = [{"code": 24, "name": "TOO_MANY_REQUESTS"}, {"code": 0, "data": {"url": "https://s3.example/x.geojson"}},
-                   {"type": "FeatureCollection", "features": []}]
+        replies = [{"code": 24, "name": "TOO_MANY_REQUESTS"}, RuntimeError("HTTP Error 429: Too Many Requests"),
+                   {"code": 0, "data": {"url": "https://s3.example/x.geojson"}}, {"type": "FeatureCollection", "features": []}]
         calls = []
+
+        def fake_get(url, *args, **kwargs):
+            calls.append(url)
+            reply = replies.pop(0)
+            if isinstance(reply, Exception):
+                raise reply
+            return reply
         saved_get, saved_wait = bp.http_get_json, bp.DATAGOVSG_WAIT_SECONDS
-        bp.http_get_json = lambda url, *args, **kwargs: calls.append(url) or replies.pop(0)
+        bp.http_get_json = fake_get
         bp.DATAGOVSG_WAIT_SECONDS = 0
         try:
             raw = bp.fetch_datagovsg_poll_download("https://api-open.data.gov.sg/v1/public/api/datasets/d_x/poll-download")
@@ -511,7 +518,7 @@ class AsiaPacificTests(unittest.TestCase):
             bp.http_get_json, bp.DATAGOVSG_WAIT_SECONDS = saved_get, saved_wait
         self.assertEqual(raw["features"], [])
         self.assertEqual(calls[-1], "https://s3.example/x.geojson")
-        self.assertEqual(len(calls), 3)
+        self.assertEqual(len(calls), 4)
 
     def test_taiwan_chinese_directions_limits_and_header_row(self):
         rows = fixture_rows("tw-npa-speed")
