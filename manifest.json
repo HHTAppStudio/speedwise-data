@@ -43,9 +43,9 @@
       "updatedAt": "2026-09-27"
     },
     "US-VA": {
-      "version": 1,
-      "hash": "a0461e184457e937540b6ab90fd14e9dc97d93d66d4019d9f9924bc357fe056f",
-      "file": "packs/us-va.v1.json",
+      "version": 2,
+      "hash": "38d4e8066af51c826d747e01c65d993de8a268477888c7111e5fb7654c08caf2",
+      "file": "packs/us-va.v2.json",
       "cameraCount": 35,
       "updatedAt": "2026-09-27"
     },

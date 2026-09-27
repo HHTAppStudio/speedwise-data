@@ -18,7 +18,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `bal-redlight` | US-MD | B | OK | 2025-05-07 | 180 | 180 | 180 | — |
 | `bal-speed-fixed` | US-MD | B | OK | 2026-02-17 | 21 | 21 | 21 | — |
 | `bal-speed-portable` | US-MD | B | OK | 2026-05-28 | 128 | 128 | 128 | — |
-| `arl-speed` | US-VA | B | OK | 2026-09-26 | 47 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1756094400000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1757649600000: 1 |
+| `arl-speed` | US-VA | B | OK | 2026-09-27 | 47 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1756094400000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1757649600000: 1 |
 | `tac-ae` | US-WA | B | OK | 2026-09-26 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
 | `bel-speed` | US-WA | B | OK | 2026-08-26 | 14 | 8 | 5 | không hoạt động: OperationalStatus=Planned: 6; gộp trùng ≤ 30 m: 3 |
 | `de-redlight` | US-DE | B | OK | — | 60 | 60 | 60 | — |
@@ -33,7 +33,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-IL | `packs/us-il.v1.json` | 1 | 625 | 326 | 299 | 0 |
 | US-LA | `packs/us-la.v1.json` | 1 | 38 | 2 | 6 | 30 |
 | US-MD | `packs/us-md.v1.json` | 1 | 515 | 148 | 218 | 149 |
-| US-VA | `packs/us-va.v1.json` | 1 | 35 | 0 | 0 | 35 |
+| US-VA | `packs/us-va.v2.json` | 2 | 35 | 0 | 0 | 35 |
 | US-WA | `packs/us-wa.v1.json` | 1 | 127 | 14 | 39 | 74 |
 
 **Tổng: 1756 camera ở 8 bang/khu vực.**
