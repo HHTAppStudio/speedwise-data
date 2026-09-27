@@ -1,0 +1,63 @@
+# Chạy pipeline open data mỗi tuần, commit data mới (nếu có) và publish public/ lên GitHub Pages.
+name: Build data packs
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # thứ Hai 03:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # Test đỏ → dừng ở đây, không publish.
+      - name: Unit tests
+        run: python -m unittest -v
+
+      # Một nguồn lỗi không làm đỏ bước này: build_packs.py giữ camera cũ của nguồn đó và ghi lý do vào REPORT.md.
+      - name: Build packs
+        run: python build_packs.py
+
+      - name: Commit data changes
+        run: |
+          if [ -z "$(git status --porcelain -- public manifest.json)" ]; then
+            echo "Data không đổi — không commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- public manifest.json REPORT.md
+          git commit -m "data: weekly update $(date -u +%Y-%m-%d)"
+          git push
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+          include-hidden-files: true   # giữ public/.nojekyll
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

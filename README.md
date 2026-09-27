@@ -71,3 +71,33 @@ Lưu ý:
 
 4. Nếu bang chưa có trong `state_bboxes.json` thì thêm khung toạ độ.
 5. `python3 build_packs.py --only <id>` → đọc REPORT.md, mở vài toạ độ trên Apple Maps xem có đúng đường không → `python3 -m unittest -v` → commit.
+
+## Publish
+
+Repo GitHub: **`HHTAppStudio/speedwise-data`** (public). GitHub Pages phục vụ thư mục `public/` tại `https://hhtappstudio.github.io/speedwise-data/` — đúng `SpeedwiseDataBaseURL` trong Info.plist của app. App kiểm tra `regions.json` tối đa 1 lần / 6 giờ; pack có `packVersion` lớn hơn bản trên máy → tự tải.
+
+Workflow `.github/workflows/build.yml` chạy **thứ Hai 03:17 UTC**, khi bấm chạy tay, và khi push vào `main`:
+
+1. `python -m unittest -v` — đỏ thì dừng, **không publish**.
+2. `python build_packs.py` — một nguồn lỗi vẫn publish các nguồn còn lại (giữ camera cũ của nguồn lỗi, ghi lý do trong REPORT.md).
+3. `public/` hoặc `manifest.json` đổi → bot commit `data: weekly update <ngày>` (kèm REPORT.md). Data không đổi → không commit.
+4. Deploy `public/` lên Pages.
+
+Chạy tay và xem log:
+
+```sh
+gh workflow run build.yml -R HHTAppStudio/speedwise-data     # chạy ngay
+gh run list -R HHTAppStudio/speedwise-data -L 5               # các lần chạy gần nhất
+gh run watch -R HHTAppStudio/speedwise-data                   # theo dõi lần đang chạy
+gh run view <run-id> -R HHTAppStudio/speedwise-data --log     # log đầy đủ (kết quả từng nguồn ở bước "Build packs")
+```
+
+Hoặc trên web: tab **Actions** của repo → "Build data packs" → **Run workflow**.
+
+Thêm nguồn mới rồi publish: làm theo "Thêm một nguồn" ở trên, chạy thử trên máy (`--only <id>`), commit `sources.json` (+ `state_bboxes.json` nếu có) và `git push` — push vào `main` tự chạy workflow và publish. Sau đó `git pull` để lấy commit data của bot, rồi `sh sync_to_app.sh` nếu muốn cập nhật bản đóng gói trong app.
+
+Kiểm tra host:
+
+```sh
+curl -s https://hhtappstudio.github.io/speedwise-data/regions.json | python3 -m json.tool | head
+```
