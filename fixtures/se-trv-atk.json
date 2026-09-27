@@ -1,0 +1,85 @@
+{
+  "metadata": null,
+  "raw": [
+    {
+      "Bearing": 85,
+      "CountyNo": [
+        25
+      ],
+      "Deleted": false,
+      "Geometry": {
+        "SWEREF99TM": "POINT (906494 7327833)",
+        "WGS84": "POINT (23.914672086839264 65.81157717989542)"
+      },
+      "IconId": "trafficSafetyCamera",
+      "Id": "25010020",
+      "Name": "Nikkalakorsning mot Kalix",
+      "RoadNumber": "E4",
+      "ModifiedTime": "2024-08-28T08:03:29.436Z"
+    },
+    {
+      "Bearing": 240,
+      "CountyNo": [
+        13
+      ],
+      "Deleted": false,
+      "Geometry": {
+        "SWEREF99TM": "POINT (378645 6285952)",
+        "WGS84": "POINT (13.01798223014114 56.701843472006935)"
+      },
+      "IconId": "trafficSafetyCamera",
+      "Id": "13005020",
+      "Name": "Marbäck",
+      "RoadNumber": "25",
+      "ModifiedTime": "2024-08-28T08:03:24.101Z"
+    },
+    {
+      "Bearing": 344,
+      "CountyNo": [
+        4
+      ],
+      "Deleted": false,
+      "Geometry": {
+        "SWEREF99TM": "POINT (613920 6596667)",
+        "WGS84": "POINT (17.01189040432469 59.49294225195851)"
+      },
+      "IconId": "trafficSafetyCamera",
+      "Id": "04001060",
+      "Name": "Säby",
+      "RoadNumber": "55",
+      "ModifiedTime": "2024-08-28T08:03:24.133Z"
+    },
+    {
+      "Bearing": 304,
+      "CountyNo": [
+        18
+      ],
+      "Deleted": false,
+      "Geometry": {
+        "SWEREF99TM": "POINT (533028 6556464)",
+        "WGS84": "POINT (15.57732909457214 59.14610566207804)"
+      },
+      "IconId": "trafficSafetyCamera",
+      "Id": "18008060",
+      "Name": "Lännäs",
+      "RoadNumber": "52",
+      "ModifiedTime": "2024-08-28T08:03:30.241Z"
+    },
+    {
+      "Bearing": 277,
+      "CountyNo": [
+        18
+      ],
+      "Deleted": false,
+      "Geometry": {
+        "SWEREF99TM": "POINT (527619 6557260)",
+        "WGS84": "POINT (15.48288477390765 59.153639614143096)"
+      },
+      "IconId": "trafficSafetyCamera",
+      "Id": "18008040",
+      "Name": "Askersby östra",
+      "RoadNumber": "52",
+      "ModifiedTime": "2024-08-28T08:03:24.148Z"
+    }
+  ]
+}

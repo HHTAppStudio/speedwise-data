@@ -1,0 +1,203 @@
+{
+  "metadata": null,
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "speedcameras.204547",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.427,
+            50.8348
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "gid": 204547,
+          "radar_id": "SPW04_1 Gatso",
+          "fr_key": "SPW04",
+          "radar_type": 2,
+          "street_fr": "Avenue de Tervueren",
+          "street_nl": "Tervurenlaan",
+          "mu_fr": "Woluwe-Saint-Pierre",
+          "mu_nl": "Sint-Pieters-Woluwe",
+          "zp_code": 5343,
+          "descr_fr": "Av Tervuren et Bémel",
+          "descr_nl": "",
+          "direction_fr": "",
+          "direction_nl": "",
+          "date_installation": null,
+          "active": true,
+          "rid": 165
+        },
+        "bbox": [
+          4.427,
+          50.8348,
+          4.427,
+          50.8348
+        ]
+      },
+      {
+        "type": "Feature",
+        "id": "speedcameras.204548",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.3395,
+            50.8444
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "gid": 204548,
+          "radar_id": "SB220_1 Gatso",
+          "fr_key": "SB220",
+          "radar_type": 3,
+          "street_fr": "Boulevard du Midi",
+          "street_nl": "Zuidlaan",
+          "mu_fr": "Bruxelles",
+          "mu_nl": "Brussel",
+          "zp_code": 5339,
+          "descr_fr": "Porte d'Anderlecht",
+          "descr_nl": "RT4",
+          "direction_fr": "RT4",
+          "direction_nl": "",
+          "date_installation": null,
+          "active": true,
+          "rid": 148
+        },
+        "bbox": [
+          4.3395,
+          50.8444,
+          4.3395,
+          50.8444
+        ]
+      },
+      {
+        "type": "Feature",
+        "id": "speedcameras.204549",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.4469,
+            50.8219
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "gid": 204549,
+          "radar_id": "SOM401_1 Gatso",
+          "fr_key": "SOM401",
+          "radar_type": 2,
+          "street_fr": "Avenue de Tervuren",
+          "street_nl": "Tervuurselaan",
+          "mu_fr": "Auderghem",
+          "mu_nl": "Oudergem",
+          "zp_code": 5342,
+          "descr_fr": "Av Tervuren et Isidore Gerard",
+          "descr_nl": "",
+          "direction_fr": "",
+          "direction_nl": "",
+          "date_installation": null,
+          "active": true,
+          "rid": 112
+        },
+        "bbox": [
+          4.4469,
+          50.8219,
+          4.4469,
+          50.8219
+        ]
+      },
+      {
+        "type": "Feature",
+        "id": "speedcameras.204550",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.296,
+            50.8372
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "gid": 204550,
+          "radar_id": "SAT32_1 Gatso",
+          "fr_key": "SAT32",
+          "radar_type": 3,
+          "street_fr": "Boulevard Sylvain Dupuis",
+          "street_nl": "Sylvain Dupuislaan",
+          "mu_fr": "Anderlecht",
+          "mu_nl": "Anderlecht",
+          "zp_code": 5341,
+          "descr_fr": "Bd Sylvain Dupuis - Bd Groeninck",
+          "descr_nl": "",
+          "direction_fr": "vers ring",
+          "direction_nl": "",
+          "date_installation": "2021-03-15",
+          "active": true,
+          "rid": 123
+        },
+        "bbox": [
+          4.296,
+          50.8372,
+          4.296,
+          50.8372
+        ]
+      },
+      {
+        "type": "Feature",
+        "id": "speedcameras.204551",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            4.2914,
+            50.8709
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "gid": 204551,
+          "radar_id": "SAB02_2 Gatso",
+          "fr_key": "SAB02",
+          "radar_type": 1,
+          "street_fr": "Avenue Charles-Quint",
+          "street_nl": "Keizer Karellaan",
+          "mu_fr": "Berchem-Sainte-Agathe",
+          "mu_nl": "Sint-Agatha-Berchem",
+          "zp_code": 5340,
+          "descr_fr": "Charles Quint - Ch de Gand",
+          "descr_nl": "",
+          "direction_fr": "vers ring",
+          "direction_nl": "",
+          "date_installation": null,
+          "active": true,
+          "rid": 91
+        },
+        "bbox": [
+          4.2914,
+          50.8709,
+          4.2914,
+          50.8709
+        ]
+      }
+    ],
+    "totalFeatures": "unknown",
+    "numberReturned": 132,
+    "timeStamp": "2026-09-27T11:50:35.621Z",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "bbox": [
+      4.2588,
+      50.7755,
+      4.4469,
+      50.8894
+    ]
+  }
+}

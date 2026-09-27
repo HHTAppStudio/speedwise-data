@@ -12,5 +12,11 @@
   "CA": {"minLat": 41.66, "maxLat": 83.12, "minLon": -141.02, "maxLon": -52.60},
   "AR": {"minLat": -55.08, "maxLat": -21.76, "minLon": -73.59, "maxLon": -53.62},
   "CO": {"minLat": -4.24, "maxLat": 13.41, "minLon": -81.75, "maxLon": -66.84},
-  "BR": {"minLat": -33.77, "maxLat": 5.29, "minLon": -74.00, "maxLon": -28.83}
+  "BR": {"minLat": -33.77, "maxLat": 5.29, "minLon": -74.00, "maxLon": -28.83},
+  "ES": {"minLat": 27.62, "maxLat": 43.80, "minLon": -18.17, "maxLon": 4.34},
+  "NO": {"minLat": 57.95, "maxLat": 71.19, "minLon": 4.48, "maxLon": 31.18},
+  "SE": {"minLat": 55.33, "maxLat": 69.07, "minLon": 10.95, "maxLon": 24.17},
+  "BE": {"minLat": 49.49, "maxLat": 51.51, "minLon": 2.53, "maxLon": 6.42},
+  "LU": {"minLat": 49.44, "maxLat": 50.19, "minLon": 5.72, "maxLon": 6.54},
+  "DE": {"minLat": 47.26, "maxLat": 55.07, "minLon": 5.86, "maxLon": 15.05}
 }

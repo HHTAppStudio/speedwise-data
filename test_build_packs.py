@@ -72,7 +72,7 @@ class NormalizeTests(unittest.TestCase):
                 prefix = "%s-%s-" % (SOURCES[source_id]["region"].lower(), source_id)
                 for camera in first:
                     self.assertTrue(camera["id"].startswith(prefix))
-                    self.assertRegex(camera["id"][len(prefix):], r"^[a-z0-9]+(-[a-z]+b)?$")
+                    self.assertRegex(camera["id"][len(prefix):], r"^[a-z0-9]+(-[a-z]+b)?(-start|-end)?$")  # -start/-end: 2 đầu đoạn đo tốc độ trung bình
 
     def test_chicago_row_with_two_approaches_gives_two_cameras(self):
         rows = [row for row in fixture_rows("chi-speed")
@@ -230,6 +230,8 @@ class OutputTests(unittest.TestCase):
                 self.assertIn(source_id, SOURCES)
                 raw = fixture(source_id)["raw"]
                 items = fixture_rows(source_id) if isinstance(raw, str) else raw["features"] if isinstance(raw, dict) else raw
+                if SOURCES[source_id]["format"] == "datex2-predefined-locations":
+                    items = {row["id"] for row in items}  # 1 đoạn = 2 dòng (đầu/cuối) → đếm theo location
                 self.assertTrue(0 < len(items) <= bp.FIXTURE_ROWS)
 
 
@@ -350,6 +352,116 @@ class InternationalTests(unittest.TestCase):
         self.assertEqual(regions["CA"]["packURL"], "packs/ca.v1.json")
         for code in ("HK", "AR", "CO"):
             self.assertEqual(regions[code]["status"], "full")
+
+
+class EuropeTests(unittest.TestCase):
+    """CR-D2 phần châu Âu: DATEX II, NVDB, Trafikverket (key), cột cố định Catalonia, đoạn LineString Luxembourg."""
+
+    def test_datex2_tramo_gives_start_and_end_points(self):
+        rows = fixture_rows("es-dgt-radares")
+        cameras, rejects = normalize("es-dgt-radares", rows)
+        self.assertFalse(rejects)
+        by_id = {c["id"]: c for c in cameras}
+        start, end = by_id["es-es-dgt-radares-cvm161274-start"], by_id["es-es-dgt-radares-cvm161274-end"]
+        self.assertEqual((start["lat"], start["lon"]), (41.6088, -0.915697))  # <from>
+        self.assertEqual((end["lat"], end["lon"]), (41.6192, -0.9496))        # <to>
+        for camera in (start, end):
+            self.assertEqual(camera["type"], "speed")
+            self.assertTrue(camera["roadName"].startswith("Z-40 km "))
+            self.assertTrue(camera["roadName"].endswith(bp.SECTION_SUFFIX))
+        point = by_id["es-es-dgt-radares-cabinacinemometro120001"]
+        self.assertEqual(point["roadName"], "A-2 km 202.33")
+        self.assertIsNone(point["heading"])  # DATEX II chỉ có "positive/negative" theo lý trình, không phải la bàn
+        self.assertEqual(point["lastConfirmedAt"], "2025-12-18T00:00:00Z")  # publicationTime có múi giờ +01:00
+        self.assertEqual(len(cameras), len(rows))
+
+    def test_missing_key_skips_source_without_network(self):
+        source = SOURCES["se-trv-atk"]
+        self.assertEqual(source["apiKeyEnv"], "TRAFIKVERKET_API_KEY")
+        saved_get, saved_env = bp._http_get, os.environ.pop("TRAFIKVERKET_API_KEY", None)
+
+        def no_network(*args, **kwargs):
+            raise AssertionError("không được gọi mạng khi thiếu key")
+        bp._http_get = no_network
+        try:
+            with self.assertRaises(bp.MissingKey) as caught:
+                bp.fetch_source(source, offline=False)
+            self.assertEqual(str(caught.exception), "TRAFIKVERKET_API_KEY")
+            # Có key trong file local → đọc vào env; biến đã có thì không bị ghi đè.
+            with tempfile.TemporaryDirectory() as tmp:
+                path = os.path.join(tmp, "keys.env")
+                with open(path, "w", encoding="utf-8") as handle:
+                    handle.write("# local\nTRAFIKVERKET_API_KEY='abc123'\nDATA_GO_KR_KEY=\n")
+                os.environ["DATA_GO_KR_KEY"] = "from-ci"
+                bp.load_local_keys(path)
+                self.assertEqual(bp.source_api_key(source), "abc123")
+                self.assertEqual(os.environ["DATA_GO_KR_KEY"], "from-ci")
+        finally:
+            bp._http_get = saved_get
+            os.environ.pop("TRAFIKVERKET_API_KEY", None)
+            os.environ.pop("DATA_GO_KR_KEY", None)
+            if saved_env is not None:
+                os.environ["TRAFIKVERKET_API_KEY"] = saved_env
+        result = {"id": "se-trv-atk", "region": "SE", "tier": "A", "status": "nokey", "error": "TRAFIKVERKET_API_KEY",
+                  "rows": None, "cameras": None, "rejects": {}}
+        report = bp.render_report(TODAY, [result], {}, {}, {}, {"se-trv-atk": 0}, "")
+        self.assertIn("skipped: no key (TRAFIKVERKET_API_KEY)", report)
+
+    def test_trafikverket_bearing_is_camera_aim_so_heading_is_opposite(self):
+        rows = fixture_rows("se-trv-atk")
+        deleted = dict(rows[0], Deleted=True, Id="deleted-1")
+        cameras, rejects = normalize("se-trv-atk", rows + [deleted])
+        self.assertEqual(rejects["lọc Deleted=True"], 1)
+        by_key = {c["id"].rsplit("-", 1)[1]: c for c in cameras}
+        for row in rows:
+            camera = by_key[row["Id"]]
+            self.assertEqual(camera["heading"], (row["Bearing"] + 180) % 360)
+            number = row["RoadNumber"]
+            self.assertTrue(camera["roadName"].startswith(("Väg " + number) if number.isdigit() else number))
+
+    def test_nvdb_wkt_is_lat_lon_and_attribution_is_verbatim(self):
+        rows = fixture_rows("no-nvdb-atk")
+        cameras, rejects = normalize("no-nvdb-atk", rows)
+        self.assertEqual(len(cameras), len(rows))
+        self.assertFalse(rejects)
+        for camera in cameras:
+            self.assertTrue(57.9 < camera["lat"] < 71.2 and 4.4 < camera["lon"] < 31.2)
+            self.assertIsNone(camera["heading"])  # "Med/Mot metreringsretning" không phải la bàn
+            self.assertNotRegex(camera["roadName"], r"\([A-Z]\d\)")
+            self.assertRegex(camera["roadName"], r"^(E|Rv|Fv|Kv)\d+")
+        parsed = bp.parse_nvdb_objects([{"id": 1, "egenskaper": [], "geometri": {"wkt": "POINT(61.55059135 5.6873376)"}},
+                                        {"id": 2, "egenskaper": [], "geometri": {"wkt": "POINT Z (61.5505745 5.68728513 139.3)"}}])
+        self.assertEqual([(r["_lat"], r["_lon"]) for r in parsed], [(61.55059135, 5.6873376), (61.5505745, 5.68728513)])
+        self.assertEqual(SOURCES["no-nvdb-atk"]["attribution"], "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen")
+        self.assertEqual(SOURCES["no-nvdb-atk"]["headers"], {"X-Client": "Speedwise"})
+
+    def test_catalonia_fixed_width_utm_with_limit_and_broken_rows_dropped(self):
+        rows = fixture_rows("es-cat-radars")
+        cameras, _ = normalize("es-cat-radars", rows)
+        self.assertEqual(len(cameras), len(rows))
+        first = next(c for c in cameras if c["roadName"] == "A-2 km 445,35")
+        self.assertEqual(first["postedLimit"], 120)
+        self.assertTrue(40.5 < first["lat"] < 42.9 and 0.1 < first["lon"] < 3.4)
+        # Dòng nguồn mất dấu thập phân (B-10, toạ độ UTM vô lý) → loại, không sửa tay.
+        text = fixture("es-cat-radars")["raw"] + "B-10        18,5        80          42552972    457695385   \n"
+        broken_rows = bp.parse_raw(SOURCES["es-cat-radars"], text)
+        _, rejects = normalize("es-cat-radars", broken_rows)
+        self.assertEqual(rejects["thiếu toạ độ"], 1)
+
+    def test_luxembourg_linestring_section_gives_two_points(self):
+        raw = fixture("lu-geoportail-radars")["raw"]
+        line = next(f for f in raw["features"] if f["geometry"]["type"] == "LineString")
+        cameras, _ = normalize("lu-geoportail-radars")
+        section = sorted((c for c in cameras if c["id"].startswith("lu-lu-geoportail-radars-%s-" % line["properties"]["ID"])),
+                         key=lambda c: c["id"])
+        self.assertEqual([c["id"].rsplit("-", 1)[1] for c in section], ["end", "start"])
+        coords = line["geometry"]["coordinates"]
+        self.assertEqual((section[1]["lon"], section[1]["lat"]), (round(coords[0][0], 6), round(coords[0][1], 6)))
+        self.assertEqual((section[0]["lon"], section[0]["lat"]), (round(coords[-1][0], 6), round(coords[-1][1], 6)))
+        for camera in section:
+            self.assertEqual(camera["roadName"], line["properties"]["TRANCON"] + bp.SECTION_SUFFIX)
+        points = [f for f in raw["features"] if f["geometry"]["type"] == "Point"]
+        self.assertEqual(len(cameras), len(points) + 2)
 
 
 if __name__ == "__main__":

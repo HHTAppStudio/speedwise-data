@@ -2,7 +2,7 @@
 
 Pipeline dữ liệu camera của app **Speedwise**. Tải vị trí camera **chính thức** do thành phố/quận/bang/quốc gia công bố (open data), chuẩn hoá về schema data pack của app, rồi xuất ra thư mục `public/` (GitHub Pages phục vụ thư mục này, app tự tải về). Mỹ: 1 pack/bang (mph). Ngoài Mỹ: 1 pack/quốc gia (km/h).
 
-Chỉ dùng thư viện chuẩn Python 3 — không cần `pip install`. Không API key.
+Chỉ dùng thư viện chuẩn Python 3 — không cần `pip install`. Hầu hết nguồn không cần key; nguồn cần key (Thuỵ Điển) tự bỏ qua khi thiếu key — xem **Key API**.
 
 ## Chạy
 
@@ -20,6 +20,19 @@ Lưu ý:
 - **Brazil / Colombia chặn IP Việt Nam**: dados.antt.gov.br (từ chối), ckan.pbh.gov.br (403), sig.simur.gov.co (timeout). Qua VPN Mỹ thì đọc được.
 - Python cài từ python.org trên macOS không đọc chứng chỉ gốc của hệ thống → script tự xuất từ keychain ra `cache/macos-roots.pem` (chỉ trên Mac).
 - Một nguồn lỗi không làm dừng các nguồn khác: camera của nguồn đó được **giữ từ pack cũ**, REPORT ghi lý do.
+
+## Key API
+
+Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi trường, không bao giờ ghi vào repo hay in ra log:
+
+| Biến | Nguồn | Cách đăng ký |
+|---|---|---|
+| `TRAFIKVERKET_API_KEY` | Thuỵ Điển `se-trv-atk` | Đăng ký tài khoản bằng email tại https://data.trafikverket.se (cổng API của Trafikverket), chấp nhận license, xác nhận email, rồi tạo key trong trang tài khoản. Miễn phí, data CC0. |
+| `DATA_GO_KR_KEY` | Hàn Quốc (tạm tắt) | https://www.data.go.kr → đăng ký → dataset 15028200 → "활용신청"; key "일반 인증키 (Decoding)". |
+
+- **Trên máy:** tạo file `~/.speedwise/keys.env` (ngoài repo), mỗi dòng `TEN_BIEN=giá_trị`. `build_packs.py` tự đọc file này (không ghi đè biến môi trường đã có).
+- **GitHub Actions:** repo → Settings → Secrets and variables → Actions → New repository secret, đặt đúng tên biến ở trên.
+- **Thiếu key** → nguồn đó bị bỏ qua (REPORT ghi `skipped: no key (TÊN_BIẾN)`), camera cũ của nguồn đó trong pack được giữ, các nguồn khác chạy bình thường.
 
 ## Cấu trúc
 
@@ -47,6 +60,7 @@ Lưu ý:
 - **Confidence**: `baseConfidence` khi dòng có trạng thái active; nguồn không có trạng thái → tối đa 80 (tier A) / 75 (tier B); `typeConfidence` ghi đè theo loại (điểm đặt camera **mobile** được duyệt: 60 — docs/04_TECH_SPEC.md mục 12.3); dataset cập nhật > 12 tháng → −10; tối thiểu 50.
 - `lastConfirmedAt` = ngày cập nhật dataset, hoặc ngày go-live của camera nếu mới hơn. Go-live trong tương lai → chưa đưa vào.
 - **ID ổn định** (vote của người dùng gắn vào id): `<region>-<sourceId>-<key>[-<nb|sb|…>]`. Hậu tố hướng chỉ có ở nguồn tách theo approach. Không có key → 10 ký tự đầu SHA1 của `lat|lon|type|heading`.
+- **Đoạn đo tốc độ trung bình** (DGT tramo, Luxembourg LineString…): 2 camera `speed` tại điểm đầu và cuối, id thêm hậu tố `-start` / `-end`, `roadName` kết thúc bằng `" · average speed section"` (docs/04_TECH_SPEC.md mục 12.3).
 - **Gộp trùng** trong cùng bang: cùng type, hướng lệch ≤ 30° (hoặc cả hai null), cách ≤ 30 m → giữ bản confidence cao hơn (bằng nhau thì tier A).
 - **Version**: pack chỉ tăng version khi hash nội dung đổi; file version cũ bị xoá. `regions.json` tăng `version` khi nội dung đổi. `updatedAt` của vùng = ngày pack đổi version gần nhất.
 - `regions.json` lấy template `../Speedwise/Resources/DataPacks/regions.json` (khi chạy trong repo app); không có thì dùng chính `public/regions.json` hiện tại. Vùng mới của CR-D2 (HK, AR, CO) thêm từ `ADDED_REGIONS` trong `build_packs.py` nếu template chưa có. Bang Mỹ không có pack → "Community only" (không `packURL`, `cameraCount` 0).
@@ -64,8 +78,12 @@ Lưu ý:
    | `id`, `enabled`, `tier` | `tier` A = có license mở / terms cho dùng lại; B = cơ quan công khai nhưng không ghi license |
    | `region`, `coverage` | "US-DC" (bang Mỹ) hoặc mã quốc gia "CA", "BR"…; `coverage` ghép vào `coverageNote` của vùng |
    | `publisher`, `name`, `landingURL`, `license`, `attribution` | Hiện trong app (màn Data sources) |
-   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson`, `wfs-geojson` (thêm `outputFormat=geojson&srsName=EPSG:4326`), `geojson` (file GeoJSON; Point hoặc MultiPoint 1 điểm), `csv` |
-   | `csv` | (chỉ format `csv`) `{"delimiter": ";", "decimalComma": true, "encoding": "latin-1"}` — mặc định `,` / dấu chấm / UTF-8 |
+   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson`, `wfs-geojson` (thêm `outputFormat=geojson&srsName=EPSG:4326`), `geojson` (file GeoJSON; Point hoặc MultiPoint 1 điểm), `csv`, `datex2-predefined-locations` (XML DATEX II v1: Point → 1 camera, Linear → 2 camera đầu/cuối), `nvdb-v4` (NVDB API Les v4, tự phân trang theo `metadata.neste`), `trafikverket-post` (POST QUERY XML, cần `apiKeyEnv` + `query`) |
+   | `csv` | (chỉ format `csv`) `{"delimiter": ";", "decimalComma": true, "encoding": "latin-1"}` — mặc định `,` / dấu chấm / UTF-8. Văn bản cột thẳng hàng: `{"fixedWidth": true, "skipLines": 2}` (bỏ 2 dòng đầu, cột bắt đầu ở vị trí từng chữ tiêu đề) |
+   | `headers` | (tuỳ chọn) header HTTP thêm, ví dụ NVDB `{"X-Client": "Speedwise"}` |
+   | `apiKeyEnv` | (tuỳ chọn) tên biến môi trường chứa key; thiếu → bỏ qua nguồn (xem **Key API**) |
+   | `query` | (`trafikverket-post`) `{"objecttype": "TrafficSafetyCamera", "schemaversion": "1"}` |
+   | `lineSections` | (tuỳ chọn, GeoJSON) `true` → LineString là đoạn đo tốc độ trung bình → 2 camera đầu/cuối |
    | `utm` | (tuỳ chọn) `{"zone": 23, "south": true}` — toạ độ nguồn là UTM (x/y hoặc WKT) → đổi sang WGS84 bằng `utm_to_wgs84` |
    | `ckanResource` | (tuỳ chọn) file đổi tên mỗi kỳ: `endpoint` là CKAN `package_show`, lấy resource mới nhất (theo `created`) có tên khớp `namePattern` và đúng `format` |
    | `codedValues` | (tuỳ chọn, ArcGIS) `{"url": "<layer>?f=json", "fields": [...]}` — đổi mã số sang tên trong bảng coded-value ("1" → "1-Approved") trước khi lọc |
@@ -75,7 +93,7 @@ Lưu ý:
    | `typeConfidence` | (tuỳ chọn) `{"mobile": 60}` — confidence cố định cho loại đó |
    | `directionWords` | (tuỳ chọn) `{cụm từ: mã hướng}` cho ngôn ngữ khác tiếng Anh, khớp nguyên từ |
    | `filters` | `[{"field", "in": [...]}]`, `{"notIn": [...]}`, `{"empty": true}` |
-   | `fieldMap` | `lat`, `lon` (Socrata, CSV; với GeoJSON là dự phòng khi geometry trống) hoặc `point`; CSV còn có `x`/`y` hoặc `wkt` ("POINT (x y)"); GeoJSON/ArcGIS/WFS dùng geometry. `key` (+ `keyPattern`: regex, lấy nhóm 1), `road` (danh sách trường, lấy trường đầu có giá trị; `roadPattern`: regex, lấy nhóm 1) hoặc `roadFormat` ("{rodovia} km {km_m} · {sentido}" — ghép nhiều trường), `direction`, `limit`, `goLive`, `active` = `{"field", "activeValues", "inactiveValues"}` |
+   | `fieldMap` | `bearing` (góc la bàn của nguồn, độ; kèm `bearingOffset` ở cấp nguồn — 180 khi nguồn ghi hướng ống kính, như Trafikverket), `lat`, `lon` (Socrata, CSV; với GeoJSON là dự phòng khi geometry trống) hoặc `point`; CSV còn có `x`/`y` hoặc `wkt` ("POINT (x y)"); GeoJSON/ArcGIS/WFS dùng geometry. `key` (+ `keyPattern`: regex, lấy nhóm 1), `road` (danh sách trường, lấy trường đầu có giá trị; `roadPattern`: regex, lấy nhóm 1) hoặc `roadFormat` ("{rodovia} km {km_m} · {sentido}" — ghép nhiều trường), `direction`, `limit`, `goLive`, `active` = `{"field", "activeValues", "inactiveValues"}` |
    | `approaches` | (tuỳ chọn) các trường approach → 1 camera cho mỗi approach |
    | `latestPeriodField` | (tuỳ chọn) chỉ giữ dòng của kỳ mới nhất (ví dụ "2024 Q4") |
    | `baseConfidence` | Confidence khi dòng active (thường 90 cho A, 80 cho B) |
@@ -112,3 +130,7 @@ Kiểm tra host:
 ```sh
 curl -s https://hhtappstudio.github.io/speedwise-data/regions.json | python3 -m json.tool | head
 ```
+
+## Để sau (v2)
+
+- **NVDB 775** (đoạn ATK / streknings-ATK ở Na Uy): hiện chỉ dùng 162 ATK-punkt (điểm). 775 cần ghép đoạn theo lý trình → v2.

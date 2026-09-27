@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "regions": [
     {
       "code": "US-NY",
@@ -335,7 +335,11 @@
       "countryCode": "ES",
       "countryName": "Spain",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 952,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/es.v1.json",
+      "packVersion": 1,
+      "coverageNote": "State road network (DGT; excl. Catalonia & Basque Country), Catalonia (SCT)"
     },
     {
       "code": "IT",
@@ -439,7 +443,11 @@
       "countryCode": "SE",
       "countryName": "Sweden",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 2794,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/se.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Sweden (Trafikverket)"
     },
     {
       "code": "NO",
@@ -447,7 +455,11 @@
       "countryCode": "NO",
       "countryName": "Norway",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 438,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/no.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Norway (national road database NVDB)"
     },
     {
       "code": "FI",
@@ -1063,6 +1075,83 @@
       "landingURL": "https://datosabiertos.bogota.gov.co/dataset/camaras-salvavidas-bogota-d-c",
       "updatedAt": "2026-08-24",
       "cameraCount": 48
+    },
+    {
+      "id": "es-dgt-radares",
+      "region": "ES",
+      "name": "Radares fijos DGT",
+      "publisher": "Dirección General de Tráfico (DGT)",
+      "license": "CC BY",
+      "attribution": "Radares fijos DGT © Dirección General de Tráfico, licensed under Creative Commons Attribution.",
+      "landingURL": "https://nap.dgt.es/dataset/radares-fijos-dgt",
+      "updatedAt": "2025-12-18",
+      "cameraCount": 722
+    },
+    {
+      "id": "es-cat-radars",
+      "region": "ES",
+      "name": "Radars fixos de Catalunya",
+      "publisher": "Generalitat de Catalunya. Departament d'Interior i Seguretat Pública. Servei Català de Trànsit",
+      "license": "Llicència oberta d'ús d'informació - Catalunya",
+      "attribution": "Generalitat de Catalunya. Departament d'Interior i Seguretat Pública. Servei Català de Trànsit.",
+      "landingURL": "https://analisi.transparenciacatalunya.cat/d/re3y-fftf",
+      "updatedAt": null,
+      "cameraCount": 230
+    },
+    {
+      "id": "no-nvdb-atk",
+      "region": "NO",
+      "name": "NVDB 162 ATK-punkt",
+      "publisher": "Statens vegvesen",
+      "license": "NLOD",
+      "attribution": "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen",
+      "landingURL": "https://datakatalogen.atlas.vegvesen.no/#/162-ATK-punkt",
+      "updatedAt": "2026-09-15",
+      "cameraCount": 438
+    },
+    {
+      "id": "se-trv-atk",
+      "region": "SE",
+      "name": "TrafficSafetyCamera (Trafikverket Open API)",
+      "publisher": "Trafikverket",
+      "license": "CC0",
+      "attribution": "Traffic safety camera locations: Trafikverket (CC0).",
+      "landingURL": "https://www.trafikverket.se/e-tjanster/trafikverkets-oppna-api-for-trafikinformation/",
+      "updatedAt": "2026-09-24",
+      "cameraCount": 2794
+    },
+    {
+      "id": "be-bxl-speedcameras",
+      "region": "BE",
+      "name": "Caméras de vitesse régionales",
+      "publisher": "Bruxelles Mobilité / Brussel Mobiliteit",
+      "license": "CC0",
+      "attribution": "Regional speed cameras: Brussels Mobility (CC0).",
+      "landingURL": "https://data.mobility.brussels/fr/info/speedcameras/",
+      "updatedAt": null,
+      "cameraCount": 129
+    },
+    {
+      "id": "lu-geoportail-radars",
+      "region": "LU",
+      "name": "PCH : Emplacement des radars fixes",
+      "publisher": "Administration des Ponts et Chaussées",
+      "license": "CC0",
+      "attribution": "Emplacement des radars fixes: Administration des Ponts et Chaussées (CC0).",
+      "landingURL": "https://data.public.lu/fr/datasets/pch-emplacement-des-radars-fixes/",
+      "updatedAt": "2024-10-24",
+      "cameraCount": 45
+    },
+    {
+      "id": "de-ka-blitzer",
+      "region": "DE",
+      "name": "Blitzer",
+      "publisher": "Stadt Karlsruhe, Tiefbauamt",
+      "license": "CC BY 4.0",
+      "attribution": "Blitzer © Stadt Karlsruhe, licensed under CC BY 4.0.",
+      "landingURL": "https://transparenz.karlsruhe.de/dataset/blitzer",
+      "updatedAt": "2025-02-19",
+      "cameraCount": 33
     }
   ]
 }

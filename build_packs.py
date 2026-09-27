@@ -27,6 +27,8 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
+from xml.sax.saxutils import quoteattr
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PUBLIC_DIR = os.path.join(ROOT, "public")
@@ -39,6 +41,8 @@ MANIFEST_PATH = os.path.join(ROOT, "manifest.json")
 REPORT_PATH = os.path.join(ROOT, "REPORT.md")
 REGIONS_OUT_PATH = os.path.join(PUBLIC_DIR, "regions.json")
 REGIONS_TEMPLATE_PATH = os.path.join(ROOT, "..", "Speedwise", "Resources", "DataPacks", "regions.json")
+# Key API trên máy (KEY=giá trị mỗi dòng, không commit). CI dùng GitHub Actions secrets → biến môi trường.
+LOCAL_KEYS_PATH = os.path.expanduser("~/.speedwise/keys.env")
 
 USER_AGENT = "SpeedwiseDataPipeline/1.0 (henry3dai@gmail.com)"
 RETRIES = 3
@@ -57,6 +61,9 @@ MAX_LIMIT = {"mph": 85, "kmh": 140}
 # Pack lớn hơn mức này → ghi JSON rút gọn (bỏ khoảng trắng, bỏ trường null). Lớn hơn mức tối đa → dừng.
 COMPACT_PACK_BYTES = 3 * 1024 * 1024
 MAX_PACK_BYTES = 8 * 1024 * 1024
+# Đoạn đo tốc độ trung bình → 2 camera speed (đầu/cuối), roadName kết thúc bằng hậu tố này (docs/04_TECH_SPEC.md mục 12.3).
+SECTION_SUFFIX = " · average speed section"
+MAX_PAGES = 100
 
 # Vùng mới của CR-D2 (docs/04_TECH_SPEC.md mục 12.4) — thêm vào template regions.json nếu chưa có.
 ADDED_REGIONS = [
@@ -234,7 +241,12 @@ def parse_date(value):
             return dt.datetime.strptime(text.rstrip("Z"), fmt).date()
         except ValueError:
             continue
-    return None
+    try:
+        # Có múi giờ ("2025-12-18T09:56:52.406+01:00", DATEX II) → ngày UTC.
+        moment = dt.datetime.fromisoformat(text.replace("Z", "+00:00"))
+        return moment.astimezone(dt.timezone.utc).date() if moment.tzinfo else moment.date()
+    except ValueError:
+        return None
 
 
 def iso_day(day):
@@ -341,8 +353,135 @@ def _csv_lat_lon(source, row):
     if x is None or y is None:
         return None, None
     if source.get("utm"):
+        if not (100000 <= x <= 900000 and 0 <= y <= 10000000):
+            return None, None  # UTM ngoài phạm vi (ví dụ nguồn mất dấu thập phân) → bị loại, không sửa tay
         return utm_to_wgs84(source["utm"]["zone"], source["utm"].get("south", False), x, y)
     return y, x
+
+
+def _line_ends(geometry):
+    """LineString (hoặc MultiLineString 1 đường) → [(lon, lat) đầu, (lon, lat) cuối]; hình khác → None."""
+    geometry = geometry or {}
+    coords = geometry.get("coordinates")
+    if geometry.get("type") == "MultiLineString" and coords and len(coords) == 1:
+        coords = coords[0]
+    elif geometry.get("type") != "LineString":
+        return None
+    return [coords[0][:2], coords[-1][:2]] if coords and len(coords) >= 2 else None
+
+
+def _fixed_width_records(text, skip_lines):
+    """Văn bản cột thẳng hàng (Catalonia radars.txt): cột bắt đầu ở vị trí từng chữ tiêu đề; dòng trống bị bỏ."""
+    lines = text.splitlines()[skip_lines:]
+    header = lines[0]
+    starts = [match.start() for match in re.finditer(r"\S+", header)]
+    names = header.split()
+    bounds = list(zip(starts, starts[1:] + [None]))
+    return [{name: line[start:end].strip() for name, (start, end) in zip(names, bounds)}
+            for line in lines[1:] if line.strip()]
+
+
+def _xml_local(tag):
+    return tag.rsplit("}", 1)[-1]
+
+
+def _xml_child(element, *path):
+    """Đi theo tên thẻ (bỏ namespace); không có → None."""
+    for name in path:
+        if element is None:
+            return None
+        element = next((child for child in element if _xml_local(child.tag) == name), None)
+    return element
+
+
+def _xml_text(element, *path):
+    found = _xml_child(element, *path)
+    return found.text.strip() if found is not None and found.text else None
+
+
+def _xml_coordinates(element):
+    coords = next((e for e in element.iter() if _xml_local(e.tag) == "pointCoordinates"), None)
+    return (parse_number(_xml_text(coords, "latitude")), parse_number(_xml_text(coords, "longitude"))) if coords is not None else (None, None)
+
+
+def _datex2_km(reference_point):
+    meters = parse_number(_xml_text(reference_point, "referencePointDistance"))
+    return None if meters is None else ("%.3f" % (meters / 1000.0)).rstrip("0").rstrip(".")
+
+
+def _datex2_reference(reference_point):
+    return {"road": _xml_text(reference_point, "roadName", "value") or _xml_text(reference_point, "roadNumber"),
+            "province": _xml_text(reference_point, "administrativeArea", "value")}
+
+
+def parse_datex2_locations(text):
+    """DATEX II PredefinedLocationsPublication (DGT radares) → dòng phẳng.
+    Point → 1 dòng. Linear (tramo đo tốc độ trung bình) → 2 dòng `_section` "start"/"end" tại điểm from/to; `km` = "đầu–cuối"."""
+    root = ET.fromstring(text)
+    published = next((e.text for e in root.iter() if _xml_local(e.tag) == "publicationTime"), None)
+    rows = []
+    for location_set in (e for e in root.iter() if _xml_local(e.tag) == "predefinedLocationSet"):
+        set_name = _xml_text(location_set, "predefinedLocationSetName", "value")
+        for location in (c for c in location_set if _xml_local(c.tag) == "predefinedLocation"):
+            inner = _xml_child(location, "predefinedLocation")
+            if inner is None:
+                continue
+            kind = inner.get("{http://www.w3.org/2001/XMLSchema-instance}type", "").rsplit(":", 1)[-1]
+            base = {"id": location.get("id"), "set": set_name, "kind": kind, "publicationTime": published}
+            if kind == "Point":
+                reference = _xml_child(inner, "referencePoint")
+                lat, lon = _xml_coordinates(inner)
+                rows.append(dict(base, km=_datex2_km(reference), _lat=lat, _lon=lon, **_datex2_reference(reference)))
+            elif kind == "Linear":
+                primary = _xml_child(inner, "referencePointLinear", "referencePointPrimaryLocation", "referencePoint")
+                secondary = _xml_child(inner, "referencePointLinear", "referencePointSecondaryLocation", "referencePoint")
+                km_values = [k for k in (_datex2_km(primary), _datex2_km(secondary)) if k is not None]
+                km = "–".join(sorted(km_values, key=float)) if km_values else None
+                linear = _xml_child(inner, "tpeglinearLocation")
+                for section, end in (("start", "from"), ("end", "to")):
+                    point = _xml_child(linear, end)
+                    lat, lon = _xml_coordinates(point) if point is not None else (None, None)
+                    rows.append(dict(base, km=km, _lat=lat, _lon=lon, _section=section, **_datex2_reference(primary)))
+            else:
+                rows.append(dict(base, _lat=None, _lon=None))
+    return rows
+
+
+# NVDB vegkategori → cách viết số đường trên biển báo Na Uy.
+NVDB_ROAD_PREFIX = {"E": "E", "R": "Rv", "F": "Fv", "K": "Kv", "P": "Pv", "S": "Sv"}
+_WKT_ANY_POINT = re.compile(r"^\s*POINT\s*Z?\s*\(\s*([^\s)]+)\s+([^\s)]+)", re.IGNORECASE)
+
+
+def parse_nvdb_objects(objects):
+    """NVDB API Les v4 vegobjekter (inkluder=egenskaper,lokasjon,metadata,geometri; srid=4326) → dòng phẳng.
+    Trường = tên egenskap ("Navn", "Kontollretning"…). WKT srid 4326 của NVDB theo thứ tự trục EPSG: vĩ độ trước."""
+    rows = []
+    for obj in objects:
+        row = {prop["navn"]: prop.get("verdi") for prop in obj.get("egenskaper", [])}
+        row["id"] = obj.get("id")
+        row["sist_modifisert"] = (obj.get("metadata") or {}).get("sist_modifisert")
+        references = (obj.get("lokasjon") or {}).get("vegsystemreferanser") or []
+        system = references[0].get("vegsystem", {}) if references else {}
+        prefix = NVDB_ROAD_PREFIX.get(system.get("vegkategori"))
+        row["vegsystem"] = "%s%s" % (prefix, system["nummer"]) if prefix and system.get("nummer") is not None else None
+        match = _WKT_ANY_POINT.match(((obj.get("geometri") or {}).get("wkt")) or "")
+        row["_lat"], row["_lon"] = (parse_number(match.group(1)), parse_number(match.group(2))) if match else (None, None)
+        rows.append(row)
+    return rows
+
+
+def parse_trafikverket_items(items):
+    """Trafikverket TrafficSafetyCamera v1 → dòng phẳng; toạ độ từ Geometry.WGS84 "POINT (lon lat)".
+    Số đường chỉ có chữ số ("25") → "Väg 25" như cách gọi ở Thuỵ Điển; "E4" giữ nguyên."""
+    rows = []
+    for item in items:
+        row = dict(item)
+        match = _WKT_POINT.match(str(dig(item, "Geometry.WGS84") or ""))
+        row["_lon"], row["_lat"] = (parse_number(match.group(1)), parse_number(match.group(2))) if match else (None, None)
+        number = str(item.get("RoadNumber") or "").strip()
+        row["road"] = ("Väg " + number) if number.isdigit() else (number or None)
+        rows.append(row)
+    return rows
 
 
 def parse_raw(source, raw):
@@ -357,6 +496,12 @@ def parse_raw(source, raw):
         field_map = source.get("fieldMap", {})
         for feature in raw["features"]:
             row = dict(feature.get("properties") or {})
+            ends = _line_ends(feature.get("geometry")) if source.get("lineSections") else None
+            if ends:
+                # Đoạn đo tốc độ trung bình (Luxembourg): 1 dòng ở đầu, 1 dòng ở cuối.
+                for section, (lon, lat) in zip(("start", "end"), ends):
+                    rows.append(dict(row, _lon=lon, _lat=lat, _section=section))
+                continue
             row["_lon"], row["_lat"] = _point_lon_lat(feature.get("geometry"))
             if row["_lat"] is None and field_map.get("lat"):
                 # Geometry trống nhưng dataset có trường toạ độ riêng (Bogotá LATITUD/LONGITUD).
@@ -378,10 +523,27 @@ def parse_raw(source, raw):
     elif fmt == "csv":
         if not isinstance(raw, str):
             raise ValueError("dữ liệu CSV không phải văn bản")
-        for item in csv.DictReader(io.StringIO(raw), delimiter=source.get("csv", {}).get("delimiter", ",")):
+        options = source.get("csv", {})
+        if options.get("fixedWidth"):
+            items = _fixed_width_records(raw, options.get("skipLines", 0))
+        else:
+            items = csv.DictReader(io.StringIO(raw), delimiter=options.get("delimiter", ","))
+        for item in items:
             row = {key.strip(): value for key, value in item.items() if key is not None}
             row["_lat"], row["_lon"] = _csv_lat_lon(source, row)
             rows.append(row)
+    elif fmt == "datex2-predefined-locations":
+        if not isinstance(raw, str):
+            raise ValueError("dữ liệu DATEX II không phải văn bản XML")
+        rows = parse_datex2_locations(raw)
+    elif fmt == "nvdb-v4":
+        if not isinstance(raw, list):
+            raise ValueError("dữ liệu NVDB không phải mảng vegobjekter")
+        rows = parse_nvdb_objects(raw)
+    elif fmt == "trafikverket-post":
+        if not isinstance(raw, list):
+            raise ValueError("dữ liệu Trafikverket không phải mảng")
+        rows = parse_trafikverket_items(raw)
     else:
         raise ValueError("format không hỗ trợ: %s" % fmt)
     return rows
@@ -517,7 +679,14 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
         confidence = max(MIN_CONFIDENCE, confidence)
 
         if field_map.get("roadFormat"):
-            road = clean_road(format_fields(field_map["roadFormat"], row), strip_directions=False)
+            road_text = format_fields(field_map["roadFormat"], row)
+            if field_map.get("roadPattern"):
+                road_match = re.search(field_map["roadPattern"], road_text, flags=re.DOTALL)
+                road_text = road_match.group(1) if road_match else road_text
+            # Trường trống → bỏ dấu "·" / "km" treo ("E6 · " → "E6", "A-2 km " → "A-2").
+            road_text = re.sub(r"\s+km\s*(?=·|$)", " ", road_text)
+            road_text = re.sub(r"^(?:\s*·)+|(?:·\s*)+$", "", road_text.strip()).strip()
+            road = clean_road(road_text, strip_directions=False)
         else:
             road_fields = [f for f in field_map.get("road") or [] if not is_empty(row.get(f))][:1]
             road_text = first_value(row, road_fields)
@@ -525,7 +694,15 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
                 road_match = re.search(field_map["roadPattern"], str(road_text), flags=re.DOTALL)
                 road_text = road_match.group(1) if road_match else road_text
             road = clean_road(road_text, strip_directions=bool(road_fields) and road_fields[0] in (field_map.get("direction") or []))
+        section = row.get("_section")
+        if section:
+            road = road + SECTION_SUFFIX if road else SECTION_SUFFIX.strip(" ·").capitalize()
         limit = parse_limit(row.get(field_map["limit"]), unit) if field_map.get("limit") else None
+        # Góc la bàn của nguồn (độ). `bearingOffset`: 180 khi nguồn ghi hướng ống kính (chụp trực diện xe đi tới).
+        bearing = parse_number(row.get(field_map["bearing"])) if field_map.get("bearing") else None
+        bearing_heading = None
+        if bearing is not None and 0 <= bearing <= 360:
+            bearing_heading = int(round(bearing + source.get("bearingOffset", 0))) % 360
         key_value = row.get(field_map["key"]) if field_map.get("key") else None
         if field_map.get("keyPattern") and not is_empty(key_value):
             key_match = re.search(field_map["keyPattern"], str(key_value))
@@ -548,12 +725,14 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
             variants = [(parse_direction(first_value(row, field_map.get("direction")), source.get("directionWords")), False)]
 
         for code, suffixed in variants:
-            heading = heading_for(code)
+            heading = bearing_heading if bearing_heading is not None else heading_for(code)
             if key:
                 camera_key = key + ("-" + direction_suffix(code) if suffixed else "")
             else:
                 seed = "%.5f|%.5f|%s|%s" % (lat, lon, camera_type, heading)
                 camera_key = hashlib.sha1(seed.encode("utf-8")).hexdigest()[:10]
+            if section:
+                camera_key += "-" + section
             camera_id = "%s-%s-%s" % (region.lower(), source["id"], camera_key)
             if camera_id in seen_ids:
                 rejects["trùng id trong nguồn"] += 1
@@ -733,12 +912,13 @@ def _ssl_context():
 _SSL_CONTEXT = None
 
 
-def _http_get(url, accept, decode):
+def _http_get(url, accept, decode, headers=None, data=None):
+    """GET (hoặc POST khi có `data`). Lỗi trả về chỉ gồm thông điệp của urllib — không bao giờ chứa body gửi đi (có thể chứa key)."""
     global _SSL_CONTEXT
     if _SSL_CONTEXT is None:
         _SSL_CONTEXT = _ssl_context()
     safe_url = urllib.parse.quote(url, safe=":/?&=*,'()$%+@;!~#")
-    request = urllib.request.Request(safe_url, headers={"User-Agent": USER_AGENT, "Accept": accept})
+    request = urllib.request.Request(safe_url, data=data, headers=dict({"User-Agent": USER_AGENT, "Accept": accept}, **(headers or {})))
     last_error = None
     for attempt in range(RETRIES):
         try:
@@ -751,17 +931,68 @@ def _http_get(url, accept, decode):
     raise RuntimeError(str(last_error))
 
 
-def http_get_json(url):
+def http_get_json(url, headers=None, data=None):
     def decode(body):
         data = json.loads(body.decode("utf-8"))
         if isinstance(data, dict) and "error" in data and "features" not in data:
             raise ValueError("máy chủ báo lỗi: %s" % json.dumps(data["error"])[:200])
         return data
-    return _http_get(url, "application/json", decode)
+    return _http_get(url, "application/json", decode, headers, data)
 
 
 def http_get_text(url, encoding="utf-8-sig"):
-    return _http_get(url, "text/csv, text/plain, */*", lambda body: body.decode(encoding))
+    return _http_get(url, "text/csv, text/plain, application/xml, */*", lambda body: body.decode(encoding))
+
+
+class MissingKey(Exception):
+    """Nguồn cần key API mà biến môi trường chưa có → bỏ qua nguồn, không phải lỗi."""
+
+
+def load_local_keys(path=LOCAL_KEYS_PATH):
+    """Đọc KEY=giá trị từ ~/.speedwise/keys.env vào biến môi trường (không ghi đè biến đã có, không in giá trị)."""
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as handle:
+        for line in handle:
+            name, sep, value = line.strip().partition("=")
+            if sep and name and not name.startswith("#"):
+                os.environ.setdefault(name.strip(), value.strip().strip("'\""))
+
+
+def source_api_key(source):
+    """Giá trị key của nguồn (từ biến môi trường `apiKeyEnv`); nguồn không cần key → None; thiếu → MissingKey."""
+    name = source.get("apiKeyEnv")
+    if not name:
+        return None
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise MissingKey(name)
+    return value
+
+
+def fetch_nvdb(endpoint, headers):
+    """NVDB API Les v4: đi theo `metadata.neste.href` tới khi trang trả 0 đối tượng."""
+    objects, url = [], endpoint
+    for _ in range(MAX_PAGES):
+        page = http_get_json(url, headers)
+        objects.extend(page.get("objekter", []))
+        following = (page.get("metadata") or {}).get("neste") or {}
+        if not page.get("objekter") or not following.get("href"):
+            return objects
+        url = following["href"]
+    raise ValueError("NVDB: quá %d trang" % MAX_PAGES)
+
+
+def fetch_trafikverket(source, key):
+    """Trafikverket Open API: POST một QUERY XML; trả mảng đối tượng `objecttype`. Key chỉ nằm trong body gửi đi."""
+    query = source["query"]
+    body = '<REQUEST><LOGIN authenticationkey=%s/><QUERY objecttype=%s schemaversion=%s/></REQUEST>' % (
+        quoteattr(key), quoteattr(query["objecttype"]), quoteattr(query["schemaversion"]))
+    response = http_get_json(source["endpoint"], {"Content-Type": "text/xml"}, body.encode("utf-8"))
+    result = (dig(response, "RESPONSE.RESULT") or [{}])[0]
+    if "ERROR" in result:
+        raise ValueError("Trafikverket báo lỗi: %s" % str(result["ERROR"].get("MESSAGE", "")).replace(key, "***")[:150])
+    return result.get(query["objecttype"], [])
 
 
 def latest_ckan_resource(package, rule):
@@ -809,7 +1040,18 @@ def write_json(path, obj):
 
 
 def fixture_sample(source, raw):
-    """≤ 5 dòng thô, ưu tiên đủ các trường hợp khác nhau (loại, trạng thái, số approach). CSV: giữ dạng văn bản + dòng tiêu đề."""
+    """≤ 5 dòng thô, ưu tiên đủ các trường hợp khác nhau (loại, trạng thái, số approach). CSV: giữ dạng văn bản + dòng tiêu đề.
+    DATEX II: giữ ≤ 2 location mỗi tập (điểm + đoạn). Văn bản cột cố định: giữ phần đầu + tiêu đề + 5 dòng đầu."""
+    if source["format"] == "datex2-predefined-locations":
+        root = ET.fromstring(raw)
+        for location_set in [e for e in root.iter() if _xml_local(e.tag) == "predefinedLocationSet"]:
+            for extra in [c for c in location_set if _xml_local(c.tag) == "predefinedLocation"][2:]:
+                location_set.remove(extra)
+        return ET.tostring(root, encoding="unicode")
+    if source.get("csv", {}).get("fixedWidth"):
+        lines = raw.splitlines()
+        head = source["csv"].get("skipLines", 0) + 1
+        return "\n".join(lines[:head] + [line for line in lines[head:] if line.strip()][:FIXTURE_ROWS]) + "\n"
     delimiter = source.get("csv", {}).get("delimiter", ",")
     if isinstance(raw, str):
         lines = list(csv.reader(io.StringIO(raw), delimiter=delimiter))
@@ -822,14 +1064,16 @@ def fixture_sample(source, raw):
     type_field = source["typeMap"].get("field")
     active_field = (source["fieldMap"].get("active") or {}).get("field")
 
-    def signature(props):
+    def signature(item, props):
+        geometry = item.get("geometry") if isinstance(raw, dict) else None
         return (props.get(type_field) if type_field else None,
                 props.get(active_field) if active_field else None,
-                sum(1 for f in source.get("approaches", []) if not is_empty(props.get(f))))
+                sum(1 for f in source.get("approaches", []) if not is_empty(props.get(f))),
+                (geometry or {}).get("type"))
 
     chosen, seen = [], set()
     for item, props in items:
-        sig = signature(props)
+        sig = signature(item, props)
         if sig not in seen:
             seen.add(sig)
             chosen.append(item)
@@ -856,13 +1100,18 @@ def fetch_source(source, offline):
         if cached is None:
             raise RuntimeError("--offline: chưa có cache/%s.json" % source["id"])
         return cached["raw"], cached["metadata"]
+    key = source_api_key(source)
     endpoint = source["endpoint"]
     if source.get("ckanResource"):
         endpoint = latest_ckan_resource(http_get_json(endpoint), source["ckanResource"])
-    if source["format"] == "csv":
+    if source["format"] in ("csv", "datex2-predefined-locations"):
         raw = http_get_text(endpoint, source.get("csv", {}).get("encoding", "utf-8-sig"))
+    elif source["format"] == "nvdb-v4":
+        raw = fetch_nvdb(endpoint, source.get("headers"))
+    elif source["format"] == "trafikverket-post":
+        raw = fetch_trafikverket(source, key)
     else:
-        raw = http_get_json(endpoint)
+        raw = http_get_json(endpoint, source.get("headers"))
     if source.get("codedValues"):
         raw = decode_coded_values(raw, http_get_json(source["codedValues"]["url"]), source["codedValues"]["fields"])
     metadata = None
@@ -921,6 +1170,8 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
             status = "OK"
         elif result["status"] == "skipped":
             status = "không chạy (--only), giữ %d camera cũ" % kept_by_source.get(result["id"], 0)
+        elif result["status"] == "nokey":
+            status = "skipped: no key (%s) — giữ %d camera cũ" % (result["error"], kept_by_source.get(result["id"], 0))
         else:
             status = "LỖI: %s — giữ %d camera từ pack cũ" % (result["error"], kept_by_source.get(result["id"], 0))
         lines.append("| `%s` | %s | %s | %s | %s | %s | %s | %d | %s |" % (
@@ -964,6 +1215,7 @@ def main(argv=None):
     parser.add_argument("--only", help="chỉ chạy các nguồn này (id, cách nhau bởi dấu phẩy); nguồn khác giữ camera từ pack cũ")
     parser.add_argument("--offline", action="store_true", help="không gọi mạng, dùng cache/ của lần chạy trước")
     args = parser.parse_args(argv)
+    load_local_keys()
 
     today = dt.datetime.now(dt.timezone.utc).date()
     now_iso = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1004,6 +1256,9 @@ def main(argv=None):
                 region_cameras[source["region"]].extend(cameras)
                 print("   %d dòng → %d camera" % (len(rows), len(cameras)), flush=True)
                 continue
+            except MissingKey as missing:
+                result.update(status="nokey", error=str(missing))
+                print("   bỏ qua: chưa có key %s" % missing, flush=True)
             except Exception as error:  # một nguồn lỗi không làm dừng các nguồn khác
                 result.update(status="error", error=("%s: %s" % (type(error).__name__, error))[:180])
                 print("   LỖI: %s" % result["error"], flush=True)
@@ -1045,7 +1300,9 @@ def main(argv=None):
         handle.write(report)
     total = sum(p["cameraCount"] for p in packs.values())
     failed = [r["id"] for r in results if r["status"] == "error"]
-    print("Xong: %d camera, %d bang. Nguồn lỗi: %s" % (total, len(packs), ", ".join(failed) or "không"))
+    no_key = [r["id"] for r in results if r["status"] == "nokey"]
+    print("Xong: %d camera, %d vùng. Nguồn lỗi: %s. Thiếu key: %s" % (
+        total, len(packs), ", ".join(failed) or "không", ", ".join(no_key) or "không"))
     return 0
 
 

@@ -1165,5 +1165,228 @@
       }
     },
     "baseConfidence": 90
+  },
+  {
+    "id": "es-dgt-radares",
+    "enabled": true,
+    "tier": "A",
+    "region": "ES",
+    "coverage": "State road network (DGT; excl. Catalonia & Basque Country)",
+    "publisher": "Dirección General de Tráfico (DGT)",
+    "name": "Radares fijos DGT",
+    "landingURL": "https://nap.dgt.es/dataset/radares-fijos-dgt",
+    "endpoint": "https://infocar.dgt.es/datex2/dgt/PredefinedLocationsPublication/radares/content.xml",
+    "format": "datex2-predefined-locations",
+    "metadata": null,
+    "rowDateField": "publicationTime",
+    "license": "CC BY",
+    "attribution": "Radares fijos DGT © Dirección General de Tráfico, licensed under Creative Commons Attribution.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "id",
+      "keyPattern": "^GUID_(.+)$",
+      "roadFormat": "{road} km {km}"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "es-cat-radars",
+    "enabled": true,
+    "tier": "A",
+    "region": "ES",
+    "coverage": "Catalonia (SCT)",
+    "publisher": "Generalitat de Catalunya. Departament d'Interior i Seguretat Pública. Servei Català de Trànsit",
+    "name": "Radars fixos de Catalunya",
+    "landingURL": "https://analisi.transparenciacatalunya.cat/d/re3y-fftf",
+    "endpoint": "https://transit.gencat.cat/web/.content/documents/seguretat_viaria/radars.txt",
+    "format": "csv",
+    "csv": {
+      "fixedWidth": true,
+      "skipLines": 2,
+      "decimalComma": true,
+      "encoding": "latin-1"
+    },
+    "utm": {
+      "zone": 31,
+      "south": false
+    },
+    "metadata": null,
+    "license": "Llicència oberta d'ús d'informació - Catalunya",
+    "attribution": "Generalitat de Catalunya. Departament d'Interior i Seguretat Pública. Servei Català de Trànsit.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "x": "X",
+      "y": "Y",
+      "roadFormat": "{Via} km {PK}",
+      "limit": "Velocitat"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "no-nvdb-atk",
+    "enabled": true,
+    "tier": "A",
+    "region": "NO",
+    "coverage": "Norway (national road database NVDB)",
+    "publisher": "Statens vegvesen",
+    "name": "NVDB 162 ATK-punkt",
+    "landingURL": "https://datakatalogen.atlas.vegvesen.no/#/162-ATK-punkt",
+    "endpoint": "https://nvdbapiles.atlas.vegvesen.no/vegobjekter/api/v4/vegobjekter/162?inkluder=egenskaper,lokasjon,metadata,geometri&srid=4326&antall=1000",
+    "format": "nvdb-v4",
+    "headers": {
+      "X-Client": "Speedwise"
+    },
+    "metadata": null,
+    "rowDateField": "sist_modifisert",
+    "license": "NLOD",
+    "attribution": "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "id",
+      "roadFormat": "{vegsystem} · {Navn}",
+      "roadPattern": "^(.*?)(?:\\s*\\([A-Z]\\d\\))?$"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "se-trv-atk",
+    "enabled": true,
+    "tier": "A",
+    "region": "SE",
+    "coverage": "Sweden (Trafikverket)",
+    "publisher": "Trafikverket",
+    "name": "TrafficSafetyCamera (Trafikverket Open API)",
+    "landingURL": "https://www.trafikverket.se/e-tjanster/trafikverkets-oppna-api-for-trafikinformation/",
+    "endpoint": "https://api.trafikinfo.trafikverket.se/v2/data.json",
+    "format": "trafikverket-post",
+    "apiKeyEnv": "TRAFIKVERKET_API_KEY",
+    "query": {
+      "objecttype": "TrafficSafetyCamera",
+      "schemaversion": "1"
+    },
+    "metadata": null,
+    "rowDateField": "ModifiedTime",
+    "license": "CC0",
+    "attribution": "Traffic safety camera locations: Trafikverket (CC0).",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [
+      {
+        "field": "Deleted",
+        "in": [
+          false
+        ]
+      }
+    ],
+    "bearingOffset": 180,
+    "fieldMap": {
+      "key": "Id",
+      "roadFormat": "{road} · {Name}",
+      "bearing": "Bearing"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "be-bxl-speedcameras",
+    "enabled": true,
+    "tier": "A",
+    "region": "BE",
+    "coverage": "Brussels-Capital Region (regional roads)",
+    "publisher": "Bruxelles Mobilité / Brussel Mobiliteit",
+    "name": "Caméras de vitesse régionales",
+    "landingURL": "https://data.mobility.brussels/fr/info/speedcameras/",
+    "endpoint": "https://data.mobility.brussels/geoserver/bm_security/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=bm_security:speedcameras&outputFormat=application/json&srsName=EPSG:4326",
+    "format": "wfs-geojson",
+    "metadata": null,
+    "license": "CC0",
+    "attribution": "Regional speed cameras: Brussels Mobility (CC0).",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "radar_id",
+      "roadFormat": "{street_fr} · {direction_fr}",
+      "goLive": "date_installation",
+      "active": {
+        "field": "active",
+        "activeValues": [
+          true
+        ],
+        "inactiveValues": [
+          false
+        ]
+      }
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "lu-geoportail-radars",
+    "enabled": true,
+    "tier": "A",
+    "region": "LU",
+    "coverage": "Luxembourg",
+    "publisher": "Administration des Ponts et Chaussées",
+    "name": "PCH : Emplacement des radars fixes",
+    "landingURL": "https://data.public.lu/fr/datasets/pch-emplacement-des-radars-fixes/",
+    "endpoint": "https://data.geoportail.lu/radar",
+    "format": "geojson",
+    "lineSections": true,
+    "metadata": {
+      "url": "https://data.public.lu/api/1/datasets/pch-emplacement-des-radars-fixes/",
+      "dateKey": "last_modified"
+    },
+    "license": "CC0",
+    "attribution": "Emplacement des radars fixes: Administration des Ponts et Chaussées (CC0).",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "ID",
+      "road": [
+        "TRANCON"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "de-ka-blitzer",
+    "enabled": true,
+    "tier": "A",
+    "region": "DE",
+    "coverage": "Karlsruhe",
+    "publisher": "Stadt Karlsruhe, Tiefbauamt",
+    "name": "Blitzer",
+    "landingURL": "https://transparenz.karlsruhe.de/dataset/blitzer",
+    "endpoint": "https://mobil.trk.de/geoserver/TBA/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=TBA:blitzer&outputFormat=application/json&srsName=EPSG:4326",
+    "format": "wfs-geojson",
+    "metadata": {
+      "url": "https://transparenz.karlsruhe.de/api/3/action/package_show?id=blitzer",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "CC BY 4.0",
+    "attribution": "Blitzer © Stadt Karlsruhe, licensed under CC BY 4.0.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "id",
+      "road": [
+        "standort"
+      ]
+    },
+    "baseConfidence": 90
   }
 ]

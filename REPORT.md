@@ -36,15 +36,28 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `antt-radares` | BR | A | OK | 2026-08-28 | 1256 | 1122 | 1080 | trùng id trong nguồn: 134; gộp trùng ≤ 30 m: 42 |
 | `bh-fiscalizacao` | BR | A | OK | 2026-09-15 | 447 | 396 | 219 | gộp trùng ≤ 30 m: 177; loại không dùng: Detector de Conversão-Retorno em local Proibido: 28; loại không dùng: Detector de Invasão de Faixa de Exclusiva - MOVE: 23 |
 | `bog-salvavidas` | CO | A | OK | 2026-08-24 | 128 | 54 | 48 | lọc ESTADO_PUNTO=Desmontada - novedad: 43; loại không dùng: C14, C32: 23; lọc ESTADO_PUNTO=None: 8; gộp trùng ≤ 30 m: 6 |
+| `es-dgt-radares` | ES | A | OK | 2025-12-18 | 784 | 784 | 722 | gộp trùng ≤ 30 m: 62 |
+| `es-cat-radars` | ES | A | OK | — | 247 | 230 | 230 | thiếu toạ độ: 16; toạ độ ngoài khung bang: 1 |
+| `no-nvdb-atk` | NO | A | OK | 2026-09-15 | 461 | 461 | 438 | gộp trùng ≤ 30 m: 23 |
+| `se-trv-atk` | SE | A | OK | 2026-09-24 | 2794 | 2794 | 2794 | — |
+| `be-bxl-speedcameras` | BE | A | OK | — | 132 | 132 | 129 | gộp trùng ≤ 30 m: 3 |
+| `lu-geoportail-radars` | LU | A | OK | 2024-10-24 | 45 | 45 | 45 | — |
+| `de-ka-blitzer` | DE | A | OK | 2025-02-19 | 37 | 37 | 33 | gộp trùng ≤ 30 m: 4 |
 
 ## Theo vùng
 
 | Vùng | Pack | Đơn vị | KB | Version | Camera | speed | redLight | schoolZone | combined | mobile |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | AR | `packs/ar.v1.json` | kmh | 36 | 1 | 90 | 90 | 0 | 0 | 0 | 0 |
+| BE | `packs/be.v1.json` | kmh | 54 | 1 | 129 | 129 | 0 | 0 | 0 | 0 |
 | BR | `packs/br.v1.json` | kmh | 552 | 1 | 1299 | 1189 | 110 | 0 | 0 | 0 |
 | CA | `packs/ca.v1.json` | kmh | 345 | 1 | 815 | 11 | 664 | 0 | 10 | 130 |
 | CO | `packs/co.v1.json` | kmh | 20 | 1 | 48 | 44 | 0 | 0 | 4 | 0 |
+| DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
+| ES | `packs/es.v1.json` | kmh | 395 | 1 | 952 | 952 | 0 | 0 | 0 | 0 |
+| LU | `packs/lu.v1.json` | kmh | 20 | 1 | 45 | 45 | 0 | 0 | 0 | 0 |
+| NO | `packs/no.v1.json` | kmh | 183 | 1 | 438 | 438 | 0 | 0 | 0 | 0 |
+| SE | `packs/se.v1.json` | kmh | 1146 | 1 | 2794 | 2794 | 0 | 0 | 0 | 0 |
 | US-CA | `packs/us-ca.v1.json` | mph | 30 | 1 | 74 | 56 | 18 | 0 | 0 | 0 |
 | US-DC | `packs/us-dc.v2.json` | mph | 116 | 2 | 282 | 221 | 61 | 0 | 0 | 0 |
 | US-DE | `packs/us-de.v1.json` | mph | 24 | 1 | 60 | 0 | 60 | 0 | 0 | 0 |
@@ -55,7 +68,7 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-VA | `packs/us-va.v2.json` | mph | 15 | 2 | 35 | 0 | 0 | 35 | 0 | 0 |
 | US-WA | `packs/us-wa.v1.json` | mph | 52 | 1 | 127 | 14 | 39 | 74 | 0 | 0 |
 
-**Tổng: 4164 camera ở 13 vùng.**
+**Tổng: 8555 camera ở 19 vùng.**
 
 <!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->
 
@@ -96,6 +109,29 @@ Mỗi nguồn/quốc gia chọn ngẫu nhiên (seed 20260927), tra ngược to�
 
 Kết quả: 13/13 đúng đường/giao lộ.
 
+## Kiểm tra vị trí — D05 phần 2, châu Âu (2026-09-27)
+
+Mỗi nguồn chọn ngẫu nhiên (seed 11), tra ngược toạ độ bằng CLGeocoder của Apple (cùng dữ liệu Apple Maps), so với `roadName`. Catalonia kiểm thêm A-2, C-32, AP-7, C-31: cả 4 đúng đường (xác nhận đổi UTM 31N → WGS84).
+
+| Camera | Loại / hướng | `roadName` | Apple trả về | Kết quả |
+|---|---|---|---|---|
+| [`es-es-dgt-radares-cabinacinemometro120587`](https://maps.apple.com/?ll=38.333973,-0.552382&q=es-es-dgt-radares-cabinacinemometro120587) | speed / – | A-70 km 22.5 | A-70, Alicante | ✅ |
+| [`es-es-dgt-radares-cvm164566-start`](https://maps.apple.com/?ll=41.8381,-5.0108&q=es-es-dgt-radares-cvm164566-start) | speed / – (đầu đoạn) | N-601 km 226.4–228.2 · average speed section | N-601, Medina de Rioseco (Valladolid) | ✅ |
+| [`es-es-cat-radars-4c134a157e`](https://maps.apple.com/?ll=41.538229,0.459457&q=es-es-cat-radars-4c134a157e) | speed / – · 120 | A-2 km 445,35 | A-2, Soses (Lleida) | ✅ |
+| [`es-es-cat-radars-f512e6008a`](https://maps.apple.com/?ll=41.136213,1.147774&q=es-es-cat-radars-f512e6008a) | speed / – · 70 | N-420a km 879,314 | T-11, Reus | ✅ gần — N-420a chạy sát T-11 ở lối vào Reus |
+| [`no-no-nvdb-atk-86573550`](https://maps.apple.com/?ll=59.920433,10.632924&q=no-no-nvdb-atk-86573550) | speed / – | Rv150 · Granfosstunnelen mot Drammen | Granfosstunnelen, Oslo | ✅ |
+| [`no-no-nvdb-atk-373723081`](https://maps.apple.com/?ll=59.03704,11.001823&q=no-no-nvdb-atk-373723081) | speed / – | Fv108 · Hvalertunnelen mot Skjærhalden | Hvalertunnelen, Skjærhalden | ✅ |
+| [`se-se-trv-atk-18009070`](https://maps.apple.com/?ll=60.021655,14.981629&q=se-se-trv-atk-18009070) | speed / 163 | Väg 50 · Bastkärn | Bastkärn 103, Grängesberg | ✅ |
+| [`se-se-trv-atk-20030010`](https://maps.apple.com/?ll=60.447902,14.517263&q=se-se-trv-atk-20030010) | speed / 324 | E16 · Sveden västgående | Sveden 4, Nås | ✅ (västgående = đi về tây; heading 324) |
+| [`be-be-bxl-speedcameras-sat801gatso`](https://maps.apple.com/?ll=50.824,4.3086&q=be-be-bxl-speedcameras-sat801gatso) | speed / – | Boulevard Paepsem · vers ring | Boulevard Industriel 51, Anderlecht | ✅ đúng giao lộ (nguồn: "Bd Industrie - Bd Paepsem") |
+| [`be-be-bxl-speedcameras-sat322gatso`](https://maps.apple.com/?ll=50.8372,4.2951&q=be-be-bxl-speedcameras-sat322gatso) | speed / – | Boulevard Sylvain Dupuis · vers centre | Boulevard Sylvain Dupuis, Anderlecht | ✅ |
+| [`lu-lu-geoportail-radars-8`](https://maps.apple.com/?ll=49.769567,6.086697&q=lu-lu-geoportail-radars-8) | speed / – | N7 Rouscht | N 7, Mersch | ✅ |
+| [`lu-lu-geoportail-radars-71-start`](https://maps.apple.com/?ll=49.68902,6.163017&q=lu-lu-geoportail-radars-71-start) | speed / – (đầu đoạn) | A7 Tunnel Grouft · average speed section | A 7, Lorentzweiler | ✅ |
+| [`de-de-ka-blitzer-215`](https://maps.apple.com/?ll=49.00465,8.348733&q=de-de-ka-blitzer-215) | speed / – | Eckenerstraße 32 | Eckenerstraße 30, Karlsruhe | ✅ |
+| [`de-de-ka-blitzer-21`](https://maps.apple.com/?ll=49.011274,8.370389&q=de-de-ka-blitzer-21) | speed / – | Kaiserallee 36 | Kaiserallee, Karlsruhe | ✅ |
+
+Kết quả: 14/14 đúng đường/giao lộ.
+
 ## Ghi chú dữ liệu
 
 - Máy ở Việt Nam bị Socrata (Chicago, Montgomery, SF, New Orleans) chặn 403 theo IP; chạy qua VPN Mỹ thì bình thường. GitHub Actions (máy Mỹ) không bị.
@@ -110,3 +146,10 @@ Kết quả: 13/13 đúng đường/giao lộ.
 - **D05 — Brazil:** ANTT: file đổi tên hằng tháng (`dados-dos-radares6_2026.csv`) → lấy resource CSV mới nhất qua CKAN `package_show?id=radar`; "Controlador" và "Redutor" đều là radar tốc độ; `velocidade_leve` → limit; `sentido` (Crescente/Decrescente = chiều km, không phải la bàn) giữ trong `roadName`, heading null; 134 dòng trùng hệt toạ độ (2 chiều cùng điểm) → giữ 1. Belo Horizonte: WKT UTM 23S → WGS84; chỉ "Controlador Eletrônico de Velocidade" (speed) + "Detector de Avanço de Semáforo" (redLight); bỏ làn bus (23) và cấm rẽ/quay đầu (28); nguồn tách mỗi làn một thiết bị, không có hướng → 177 thiết bị cách nhau ≤ 30 m gộp lại (heading null — cảnh báo cả 2 chiều). Một dòng `VELOCIDADE_REGULAMENTAR` = 260 → limit null.
 - **D05 — Colombia (Bogotá):** chỉ `ESTADO_PUNTO = Instalada` (77/128). Loại theo mã vi phạm (Código Nacional de Tránsito): C29 = quá tốc độ → speed; C29 + D04 (vượt đèn đỏ) → combined; "C14, C32" (không nhường người đi bộ) → bỏ. "(S-N)" → heading 0, "(N-S)" → 180, "(O-E)" → 90, "(E-O)" → 270. 5 dòng geometry rỗng nhưng có `LATITUD`/`LONGITUD` của chính dataset → dùng 2 trường này.
 - **D05 — mạng:** Edmonton/Calgary (Socrata), ANTT, Belo Horizonte, Bogotá chặn IP Việt Nam → lần chạy 2026-09-27 dùng VPN Mỹ. ANTT từ chối cả một số máy chủ Mỹ; nếu GitHub Actions bị chặn, pipeline giữ camera ANTT từ pack cũ và REPORT ghi lỗi.
+- **D05 — Tây Ban Nha (DGT):** DATEX II `PredefinedLocationsPublication/radares`: 690 điểm "CabinasCinemometro" + 47 đoạn "CinemometrosVelocidadMedia" → mỗi đoạn 2 camera speed tại `<from>` / `<to>`, `roadName` "… km a–b · average speed section". Không có limit; hướng chỉ là `positive/negative` theo lý trình (không phải la bàn) → heading null. Ngày dataset = `publicationTime` (2025-12-18). 62 camera gộp (đầu/cuối đoạn trùng cabin điểm, hoặc 2 chiều cùng chỗ).
+- **D05 — Catalonia (SCT):** `radars.txt` là văn bản cột thẳng hàng, UTM 31N ETRS89, dấu phẩy thập phân, có `Velocitat` → limit. 16 dòng toạ độ hỏng ngay ở nguồn (mất dấu thập phân, ví dụ B-10 X=42552972, hoặc X/Y là 2 giá trị Y ghép — đều là camera đoạn "PK a-b") và 1 dòng rơi ra ngoài Tây Ban Nha (A-2 km 563,2-570,1, Y=398125) → loại, không sửa tay. Không có ngày cập nhật đọc được → `lastConfirmedAt` null. License: Llicència oberta d'ús d'informació - Catalunya.
+- **D05 — Na Uy (NVDB 162):** 461 ATK-punkt; WKT srid 4326 của NVDB theo thứ tự **vĩ độ trước**. `Kontollretning` = "Med/Mot metreringsretning" (theo chiều lý trình, không phải la bàn) → heading null; 162 không có limit (limit nằm ở đối tượng 105 — không dùng). Mã cặp "(P1)/(P2)" trong tên bị bỏ khỏi `roadName`. 23 camera gộp (2 chiều cùng chỗ). **NVDB 775 (đoạn ATK) chưa dùng — v2.** Attribution nguyên văn: "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen".
+- **D05 — Thuỵ Điển (Trafikverket, key):** 2.794 camera, không có `Deleted=true`. **`Bearing` là hướng ống kính** (tài liệu API: "which direction the camera is aimed at"), camera ATK chụp trực diện xe đi tới → **heading = Bearing + 180°**. Kiểm bằng dữ liệu: 104 cặp camera 2 chiều cùng chỗ → 25 cặp khớp "Bearing = ống kính", 0 cặp khớp "Bearing = hướng xe"; 908 camera có chữ hướng trong tên (norr/öster/söder/västergående) → 787 lệch ≤ 60°, 4 ngược chiều. License CC0.
+- **D05 — Brussels:** `radar_type` (1/2/3) không có bảng giải nghĩa công khai (trang "Attributs radar_type" trả rỗng, SLD không phân loại) → mọi camera để `speed` (mô tả dataset: camera tốc độ, có chỗ kèm đèn đỏ); không đoán đèn đỏ. `direction_fr` ("vers centre", "vers ring") giữ trong `roadName`, heading null. **BE vẫn `restricted`** — pack sinh ra nhưng không có packURL.
+- **D05 — Luxembourg:** 33 Point + 6 LineString (đoạn) → 45 camera. Dataset data.public.lu "PCH : Emplacement des radars fixes" (Administration des Ponts et Chaussées, CC0), sửa 2024-10-24 (> 12 tháng → confidence 70). **LU vẫn `blocked`.**
+- **D05 — Karlsruhe:** 37 Blitzer (WFS `TBA:blitzer`, CC BY 4.0), dataset sửa 2025-02-19 (> 12 tháng → 70); 4 cặp 2 chiều cùng chỗ gộp. **DE vẫn `restricted`.**

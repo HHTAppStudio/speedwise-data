@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "result.metadata_modified": "2025-02-19T08:16:06.029520"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "blitzer.16",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.34502584,
+            49.00124768
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "id": 16,
+          "gemeinde": "Karlsruhe",
+          "stadtteil": "Grünwinkel",
+          "standort": "Eckenerstraße",
+          "grund": "Verkehrssicherheit   ",
+          "link": null,
+          "stand": "2024-02-20T23:00:00Z"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "blitzer.17",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.41462383,
+            49.00760512
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "id": 17,
+          "gemeinde": "Karlsruhe",
+          "stadtteil": "Innenstadt-Ost",
+          "standort": "Kapellenstraße",
+          "grund": "Verkehrssicherheit   ",
+          "link": null,
+          "stand": "2024-02-20T23:00:00Z"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "blitzer.18",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.41513789,
+            49.00775365
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "id": 18,
+          "gemeinde": "Karlsruhe",
+          "stadtteil": "Oststadt",
+          "standort": "Kapellenstraße",
+          "grund": "Verkehrssicherheit   ",
+          "link": null,
+          "stand": "2024-02-20T23:00:00Z"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "blitzer.19",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.35256066,
+            49.01358561
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "id": 19,
+          "gemeinde": "Karlsruhe",
+          "stadtteil": "Mühlburg",
+          "standort": "Starckstraße",
+          "grund": "Verkehrssicherheit   ",
+          "link": null,
+          "stand": "2024-02-20T23:00:00Z"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "blitzer.20",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.36525152,
+            49.00473036
+          ]
+        },
+        "geometry_name": "geom",
+        "properties": {
+          "id": 20,
+          "gemeinde": "Karlsruhe",
+          "stadtteil": "Grünwinkel",
+          "standort": "B 10 / Keßlerstraße",
+          "grund": "Verkehrssicherheit   ",
+          "link": null,
+          "stand": "2024-02-20T23:00:00Z"
+        }
+      }
+    ],
+    "totalFeatures": 37,
+    "numberMatched": 37,
+    "numberReturned": 37,
+    "timeStamp": "2026-09-27T11:50:42.835Z",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    }
+  }
+}
