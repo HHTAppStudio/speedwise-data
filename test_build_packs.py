@@ -319,6 +319,13 @@ class InternationalTests(unittest.TestCase):
         self.assertEqual(set(compact), set(pack))
         self.assertEqual(set(compact["cameras"][0]), {k for k, v in many[0].items() if v is not None})
         self.assertNotIn("heading", compact["cameras"][0])
+        # Nguồn lỗi mạng → giữ camera cũ đọc lại từ pack rút gọn (thiếu khoá null): phải gộp trùng được và hash như cũ
+        # (lỗi thật trên GitHub Actions 2026-09-27: kr-std timeout → KeyError 'heading' trong merge_duplicates).
+        reread = [bp.camera_from_pack(c) for c in compact["cameras"][:3]]
+        self.assertEqual(reread, many[:3])
+        self.assertEqual(bp.content_hash(reread), bp.content_hash(many[:3]))
+        kept, _ = bp.merge_duplicates(reread + [dict(many[0], id="ca-x-new")], {many[0]["sourceId"]: "A"})
+        self.assertEqual(len(kept), 1)  # cùng chỗ, cùng loại, heading cùng null → gộp
         huge = [dict(c, roadName="x" * 300) for c in many * 4]
         with self.assertRaises(SystemExit):
             bp.pack_text({"region": "CA", "version": 1, "generatedAt": "2026-09-27T00:00:00Z", "unit": "kmh", "cameras": huge})

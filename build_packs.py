@@ -853,6 +853,16 @@ def pack_file_name(region, version):
     return "%s.v%d.json" % (region.lower(), version)
 
 
+# Trường có thể null của camera — pack rút gọn (> 3 MB) bỏ chúng đi.
+NULLABLE_CAMERA_FIELDS = ("heading", "postedLimit", "roadName", "lastConfirmedAt")
+
+
+def camera_from_pack(camera):
+    """Camera đọc lại từ pack đã publish: pack rút gọn không ghi trường null → đặt lại null, để giống camera vừa chuẩn hoá
+    (gộp trùng, hash nội dung). Dùng khi một nguồn lỗi / thiếu key và phải giữ camera cũ của nó."""
+    return dict({field: None for field in NULLABLE_CAMERA_FIELDS}, **camera)
+
+
 def pack_text(pack):
     """JSON của pack: thụt lề như các file khác; > 3 MB → rút gọn (không khoảng trắng, bỏ trường null), schema giữ nguyên.
     Vẫn > 8 MB → dừng (cần quyết định tách pack)."""
@@ -1158,12 +1168,12 @@ def fetch_datagokr(endpoint, key):
     raise ValueError("data.go.kr: quá %d trang" % MAX_PAGES)
 
 
-DATAGOKR_DOWNLOAD_PAGE = 10000
+DATAGOKR_DOWNLOAD_PAGE = 2000
 
 
 def fetch_datagokr_std_download(endpoint, dataset_pk):
     """Nút "tải file" của dataset chuẩn trên data.go.kr (không cần key — bạn duyệt 2026-09-27, docs/06_DECISIONS.md):
-    `columList.json?pk=<id>&ext=JSON` cho tên bảng + danh sách cột + tổng số dòng, rồi `standard.json` trả từng trang 10.000 dòng."""
+    `columList.json?pk=<id>&ext=JSON` cho tên bảng + danh sách cột + tổng số dòng, rồi `standard.json` trả từng trang (2.000 dòng: trang 10.000 dòng mất > 12 s, có lúc quá timeout trên GitHub)."""
     header = http_get_json("%s/columList.json?pk=%s&ext=JSON" % (endpoint, dataset_pk))
     table, total = header["tableVO"], int(header["totalCount"])
     rows = []
@@ -1429,7 +1439,7 @@ def main(argv=None):
     for region, pack in manifest.get("regions", {}).items():
         old_pack = read_json(os.path.join(PUBLIC_DIR, pack["file"]))
         for camera in (old_pack or {}).get("cameras", []):
-            old_cameras[camera.get("sourceId")].append(camera)
+            old_cameras[camera.get("sourceId")].append(camera_from_pack(camera))
 
     results = []
     region_cameras = collections.defaultdict(list)
