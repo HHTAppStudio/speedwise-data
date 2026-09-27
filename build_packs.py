@@ -746,7 +746,8 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
         lines.append("| %s | `%s` | %d | %d | %d | %d | %d |" % (
             region, pack["file"], pack["version"], pack["cameraCount"], by_type["speed"], by_type["redLight"], by_type["schoolZone"]))
     lines += ["", "**Tổng: %d camera ở %d bang/khu vực.**" % (total, len(packs)), "", REPORT_MANUAL_MARKER]
-    return "\n".join(lines) + "\n" + (manual_section if manual_section else "\n")
+    manual = manual_section.strip("\n")
+    return "\n".join(lines) + "\n" + ("\n" + manual + "\n" if manual else "")
 
 
 def read_manual_section():

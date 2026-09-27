@@ -40,8 +40,6 @@ Lần chạy: 2026-09-27 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 
 <!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->
 
-
-
 ## Kiểm tra vị trí (2026-09-27)
 
 Chọn ngẫu nhiên 3 camera DC + 3 camera Chicago (seed 20260927), tra ngược toạ độ bằng CLGeocoder của Apple (cùng dữ liệu với Apple Maps), so với `roadName`. Bấm link để mở Apple Maps.
