@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1788251532
+  },
+  "raw": [
+    {
+      "description": "Macleod Trail and 12 Avenue S.E.\nDirection: Northbound",
+      "quadrant": "SE",
+      "community": "BELTLINE",
+      "ward": "11",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -114.0584045,
+          51.0412867
+        ]
+      },
+      ":@computed_region_4b54_tmc4": "14",
+      ":@computed_region_4a3i_ccfj": "3",
+      ":@computed_region_kxmf_bzkv": "260",
+      ":@computed_region_p8tp_5dkv": "5"
+    },
+    {
+      "description": "4 Street and 6 Avenue S.W.\nDirection: Northbound",
+      "quadrant": "SW",
+      "community": "DOWNTOWN COMMERCIAL CORE",
+      "ward": "7",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -114.0714791,
+          51.0476887
+        ]
+      },
+      ":@computed_region_4b54_tmc4": "7",
+      ":@computed_region_4a3i_ccfj": "1",
+      ":@computed_region_kxmf_bzkv": "262",
+      ":@computed_region_p8tp_5dkv": "7"
+    },
+    {
+      "description": "14 Street and Heritage Drive S.W.Direction: Northbound",
+      "quadrant": "SW",
+      "community": "HAYSBORO",
+      "ward": "11",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -114.0948345,
+          50.9795649
+        ]
+      },
+      ":@computed_region_4b54_tmc4": "8",
+      ":@computed_region_4a3i_ccfj": "1",
+      ":@computed_region_kxmf_bzkv": "195",
+      ":@computed_region_p8tp_5dkv": "5"
+    },
+    {
+      "description": "11 Avenue & 4 Street SW Westbound",
+      "quadrant": "SW",
+      "community": "BELTLINE",
+      "ward": "8",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -114.0715292,
+          51.0426344
+        ]
+      },
+      ":@computed_region_4b54_tmc4": "14",
+      ":@computed_region_4a3i_ccfj": "1",
+      ":@computed_region_kxmf_bzkv": "260",
+      ":@computed_region_p8tp_5dkv": "2"
+    },
+    {
+      "description": "Glenmore Trail and 52 Street S.E.Direction: Eastbound",
+      "quadrant": "SE",
+      "community": "SOUTH FOOTHILLS",
+      "ward": "12",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -113.9584756,
+          50.9795492
+        ]
+      },
+      ":@computed_region_4b54_tmc4": "10",
+      ":@computed_region_4a3i_ccfj": "3",
+      ":@computed_region_kxmf_bzkv": "105",
+      ":@computed_region_p8tp_5dkv": "8"
+    }
+  ]
+}

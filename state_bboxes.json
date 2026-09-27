@@ -1,5 +1,5 @@
 {
-  "_note": "Khung toạ độ (độ, WGS84) của từng bang có trong sources.json, nới ~0,01° mỗi phía. Chỉ dùng để loại toạ độ sai, không dùng để tạo dữ liệu.",
+  "_note": "Khung toạ độ (độ, WGS84) của từng bang/quốc gia có trong sources.json, nới ~0,01° mỗi phía. Chỉ dùng để loại toạ độ sai, không dùng để tạo dữ liệu.",
   "US-CA": {"minLat": 32.52, "maxLat": 42.02, "minLon": -124.49, "maxLon": -114.12},
   "US-DC": {"minLat": 38.79, "maxLat": 39.00, "minLon": -77.13, "maxLon": -76.90},
   "US-DE": {"minLat": 38.44, "maxLat": 39.85, "minLon": -75.80, "maxLon": -75.04},
@@ -7,5 +7,10 @@
   "US-LA": {"minLat": 28.91, "maxLat": 33.03, "minLon": -94.05, "maxLon": -88.80},
   "US-MD": {"minLat": 37.88, "maxLat": 39.73, "minLon": -79.50, "maxLon": -75.04},
   "US-VA": {"minLat": 36.53, "maxLat": 39.47, "minLon": -83.69, "maxLon": -75.23},
-  "US-WA": {"minLat": 45.53, "maxLat": 49.01, "minLon": -124.86, "maxLon": -116.91}
+  "US-WA": {"minLat": 45.53, "maxLat": 49.01, "minLon": -124.86, "maxLon": -116.91},
+  "US-IA": {"minLat": 40.36, "maxLat": 43.51, "minLon": -96.65, "maxLon": -90.13},
+  "CA": {"minLat": 41.66, "maxLat": 83.12, "minLon": -141.02, "maxLon": -52.60},
+  "AR": {"minLat": -55.08, "maxLat": -21.76, "minLon": -73.59, "maxLon": -53.62},
+  "CO": {"minLat": -4.24, "maxLat": 13.41, "minLon": -81.75, "maxLon": -66.84},
+  "BR": {"minLat": -33.77, "maxLat": 5.29, "minLon": -74.00, "maxLon": -28.83}
 }

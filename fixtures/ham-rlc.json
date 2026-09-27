@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1790427774678
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.8161447777673,
+            43.2514120105979
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "CAMERA_ID": "BartOttawa",
+          "LOCATION": "Barton Street E and Ottawa Street N",
+          "COMMENTS": "Westbound"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.8652927024108,
+            43.2554248833234
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "CAMERA_ID": "KingCatharine",
+          "LOCATION": "Catharine Street N and King Street E",
+          "COMMENTS": "Westbound"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.8794289831906,
+            43.2576951255449
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "CAMERA_ID": "MainQueen",
+          "LOCATION": "Main Street W and Queen Street S",
+          "COMMENTS": "Eastbound"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.8454925903229,
+            43.2537261079094
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "CAMERA_ID": "SanfWilson",
+          "LOCATION": "Sanford Avenue N and Wilson S",
+          "COMMENTS": "Northbound"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.9023605228571,
+            43.2591542135458
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "CAMERA_ID": "LongMain",
+          "LOCATION": "Longwood Road South and Main Street West",
+          "COMMENTS": "Westbound"
+        }
+      }
+    ]
+  }
+}

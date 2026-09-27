@@ -5,6 +5,7 @@ Chạy: python3 -m unittest -v
 
 import copy
 import datetime as dt
+import json
 import os
 import random
 import tempfile
@@ -228,8 +229,127 @@ class OutputTests(unittest.TestCase):
             with self.subTest(fixture=name):
                 self.assertIn(source_id, SOURCES)
                 raw = fixture(source_id)["raw"]
-                items = raw["features"] if isinstance(raw, dict) else raw
+                items = fixture_rows(source_id) if isinstance(raw, str) else raw["features"] if isinstance(raw, dict) else raw
                 self.assertTrue(0 < len(items) <= bp.FIXTURE_ROWS)
+
+
+class InternationalTests(unittest.TestCase):
+    """CR-D2 (docs/04_TECH_SPEC.md mục 12): nguồn ngoài Mỹ, pack km/h, trạng thái pháp lý."""
+
+    def test_utm_to_wgs84_matches_reference_points(self):
+        # Giá trị chuẩn: Esri GeometryServer project (EPSG:31983 SIRGAS 2000 / UTM 23S, EPSG:25831 ETRS89 / UTM 31N → 4326).
+        cases = [
+            ((23, True, 611000, 7796000), (-19.929228672390234, -43.939387597506098)),  # Belo Horizonte
+            ((31, False, 430000, 4582000), (41.386483660778822, 2.1627668805099147)),   # Barcelona (Catalonia)
+        ]
+        for args, (lat, lon) in cases:
+            with self.subTest(args=args):
+                got_lat, got_lon = bp.utm_to_wgs84(*args)
+                self.assertAlmostEqual(got_lat, lat, places=7)
+                self.assertAlmostEqual(got_lon, lon, places=7)
+
+    def test_csv_with_decimal_comma_and_wkt_utm(self):
+        # Buenos Aires: dấu ";" + dấu phẩy thập phân; chỉ Cinemómetro → speed.
+        rows = fixture_rows("caba-fijas")
+        speed_rows = [row for row in rows if row["tipo_de_fiscalizador"] == "Cinemómetro"]
+        self.assertTrue(speed_rows)
+        cameras, rejects = normalize("caba-fijas", rows)
+        self.assertEqual(len(cameras), len(speed_rows))
+        self.assertEqual(rejects["loại không dùng: Analítica de video"], len(rows) - len(speed_rows))
+        row = speed_rows[0]
+        self.assertEqual(row["_lat"], float(row["latitud"].replace(",", ".")))
+        self.assertLess(row["_lat"], -34)
+        self.assertIn(cameras[0]["roadName"], {bp.clean_road(r["ubicación"]) for r in speed_rows})
+        self.assertEqual(bp.parse_number("1.234,5", decimal_comma=True), 1234.5)
+        self.assertEqual(bp.parse_number("-58,432050", decimal_comma=True), -58.43205)
+        # Toạ độ WKT theo UTM (kiểu Belo Horizonte) → WGS84.
+        source = {"format": "csv", "csv": {"delimiter": ";"}, "utm": {"zone": 23, "south": True}, "fieldMap": {"wkt": "GEOMETRIA"}}
+        parsed = bp.parse_raw(source, "ID;GEOMETRIA\n1;POINT (611000 7796000)\n2;\n")
+        self.assertAlmostEqual(parsed[0]["_lat"], -19.9292287, places=6)
+        self.assertAlmostEqual(parsed[0]["_lon"], -43.9393876, places=6)
+        self.assertEqual((parsed[1]["_lat"], parsed[1]["_lon"]), (None, None))
+
+    def test_quebec_types_french_direction_and_mobile_confidence(self):
+        rows = fixture_rows("qc-mtmd")
+        cameras, _ = normalize("qc-mtmd", rows)
+        by_key = {c["id"].rsplit("-", 1)[1]: c for c in cameras}
+        for row in rows:
+            camera = by_key[row["urlImage"].rsplit("idSite=", 1)[1]]
+            expected_type = SOURCES["qc-mtmd"]["typeMap"]["values"][row["typeAppareil"]]
+            self.assertEqual(camera["type"], expected_type)
+            self.assertEqual(camera["confidence"], 60 if expected_type == "mobile" else 80)
+        headings = {row["description"]: by_key[row["urlImage"].rsplit("idSite=", 1)[1]]["heading"] for row in rows}
+        self.assertEqual(headings["Chemin McDougall en direction est, entre Le Boulevard et l'avenue Cedar"], 90)
+        # "Rue Sainte-Catherine Est" là tên đường, không phải hướng.
+        self.assertIsNone(headings["Rue Sainte-Catherine Est, à l'intersection de la rue D'Iberville"])
+
+    def test_iowa_keeps_only_approved_sites(self):
+        rows = fixture_rows("ia-ate")
+        self.assertIn("2-Denied", {row["approvalstatus"] for row in rows})
+        cameras, rejects = normalize("ia-ate", rows)
+        self.assertEqual(len(cameras), sum(row["approvalstatus"] == "1-Approved" for row in rows))
+        self.assertEqual(rejects["lọc approvalstatus=2-Denied"], sum(row["approvalstatus"] == "2-Denied" for row in rows))
+        for camera in cameras:
+            self.assertEqual(camera["confidence"], 60 if camera["type"] == "mobile" else 75)
+            self.assertIsNotNone(camera["heading"])  # "(EB)", "(NB)"… trong tên
+            self.assertNotIn("(", camera["roadName"])
+        layer = {"fields": [{"name": "approvalstatus", "domain": {"codedValues": [{"code": 1, "name": "1-Approved"}, {"code": 2, "name": "2-Denied"}]}}]}
+        decoded = bp.decode_coded_values({"features": [{"properties": {"approvalstatus": 1}}]}, layer, ["approvalstatus"])
+        self.assertEqual(decoded["features"][0]["properties"]["approvalstatus"], "1-Approved")
+        with self.assertRaises(ValueError):
+            bp.decode_coded_values({"features": []}, layer, ["fixedormobile"])
+
+    def test_country_pack_is_kmh_and_large_packs_are_compacted(self):
+        cameras, _ = normalize("qc-mtmd")
+        dc, _ = normalize("dc-ddot-ase")
+        with tempfile.TemporaryDirectory() as tmp:
+            bp.write_packs({"CA": cameras, "US-DC": dc}, {}, tmp, TODAY, "2026-09-27T00:00:00Z")
+            self.assertEqual(bp.read_json(os.path.join(tmp, "ca.v1.json"))["unit"], "kmh")
+            self.assertEqual(bp.read_json(os.path.join(tmp, "us-dc.v1.json"))["unit"], "mph")
+        self.assertEqual(bp.parse_limit(110, "kmh"), 110)
+        self.assertIsNone(bp.parse_limit(110))
+        many = [dict(cameras[0], id="ca-x-%d" % i, heading=None, postedLimit=None) for i in range(9000)]
+        pack = {"region": "CA", "version": 1, "generatedAt": "2026-09-27T00:00:00Z", "unit": "kmh", "cameras": many}
+        self.assertGreater(len(json.dumps(pack, indent=2, ensure_ascii=False).encode("utf-8")), bp.COMPACT_PACK_BYTES)
+        text = bp.pack_text(pack)
+        self.assertNotIn(": ", text)
+        compact = json.loads(text)
+        self.assertEqual(set(compact), set(pack))
+        self.assertEqual(set(compact["cameras"][0]), {k for k, v in many[0].items() if v is not None})
+        self.assertNotIn("heading", compact["cameras"][0])
+        huge = [dict(c, roadName="x" * 300) for c in many * 4]
+        with self.assertRaises(SystemExit):
+            bp.pack_text({"region": "CA", "version": 1, "generatedAt": "2026-09-27T00:00:00Z", "unit": "kmh", "cameras": huge})
+
+    def test_legal_status_is_never_changed_for_restricted_or_blocked_regions(self):
+        def entry(code, status, note=None):
+            region = {"code": code, "name": code, "countryCode": code, "countryName": code, "status": status, "cameraCount": 0}
+            if note:
+                region["legalNote"] = note
+            return region
+        template = {"version": 3, "regions": [
+            entry("BE", "restricted", "Legal status under review. Not available yet."),
+            entry("LU", "blocked", "Camera warning apps are illegal in Luxembourg. Alerts are disabled here."),
+            entry("DE", "restricted", "German law restricts use of camera warnings while driving. Not available yet."),
+            entry("SG", "comingSoon", "Not available yet. Coming in a later version."),
+            entry("KR", "comingSoon", "Not available yet. Coming in a later version."),
+            entry("CA", "full"),
+        ]}
+        packs = {code: {"version": 1, "hash": "x", "file": "packs/%s.v1.json" % code.lower(), "cameraCount": 10, "updatedAt": "2026-09-27"}
+                 for code in ("BE", "LU", "DE", "SG", "CA")}
+        config = bp.build_regions(template, None, packs, [], {})
+        regions = {r["code"]: r for r in config["regions"]}
+        for code, original in zip(("BE", "LU", "DE"), template["regions"][:3]):
+            with self.subTest(region=code):
+                self.assertEqual(regions[code], original)
+                self.assertNotIn("packURL", regions[code])
+        self.assertEqual(regions["SG"]["status"], "full")
+        self.assertNotIn("legalNote", regions["SG"])
+        self.assertEqual(regions["SG"]["packURL"], "packs/sg.v1.json")
+        self.assertEqual(regions["KR"], template["regions"][4])  # chưa có pack → giữ comingSoon
+        self.assertEqual(regions["CA"]["packURL"], "packs/ca.v1.json")
+        for code in ("HK", "AR", "CO"):
+            self.assertEqual(regions[code]["status"], "full")
 
 
 if __name__ == "__main__":

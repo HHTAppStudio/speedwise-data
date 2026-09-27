@@ -600,5 +600,570 @@
       ]
     },
     "baseConfidence": 80
+  },
+  {
+    "id": "qc-mtmd",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Québec",
+    "publisher": "Ministère des Transports et de la Mobilité durable du Québec (MTMD)",
+    "name": "Radar photo",
+    "landingURL": "https://www.donneesquebec.ca/recherche/dataset/radar-photo",
+    "endpoint": "https://ws.mapserver.transports.gouv.qc.ca/swtq?service=WFS&version=2.0.0&request=GetFeature&typeNames=ms:radars_photos&outputFormat=geojson&srsName=EPSG:4326",
+    "format": "wfs-geojson",
+    "metadata": {
+      "url": "https://www.donneesquebec.ca/recherche/api/3/action/package_show?id=radar-photo",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "CC BY 4.0",
+    "attribution": "Photo radar and red light camera locations © Ministère des Transports et de la Mobilité durable du Québec, licensed under CC BY 4.0.",
+    "typeMap": {
+      "field": "typeAppareil",
+      "values": {
+        "Radar photo fixe": "speed",
+        "Radar photo mobile": "mobile",
+        "Radar photo fixe et surveillance au feu rouge": "combined",
+        "Appareil de surveillance au feu rouge": "redLight"
+      }
+    },
+    "typeConfidence": {
+      "mobile": 60
+    },
+    "filters": [
+      {
+        "field": "dateFinService",
+        "empty": true
+      }
+    ],
+    "directionWords": {
+      "en direction est": "E",
+      "en direction ouest": "W",
+      "en direction nord": "N",
+      "en direction sud": "S"
+    },
+    "fieldMap": {
+      "key": "urlImage",
+      "keyPattern": "idSite=(\\d+)",
+      "road": [
+        "description"
+      ],
+      "direction": [
+        "description"
+      ],
+      "goLive": "dateDebutService"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "tor-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Toronto",
+    "publisher": "City of Toronto (Transportation Services)",
+    "name": "Red Light Cameras",
+    "landingURL": "https://open.toronto.ca/dataset/red-light-cameras/",
+    "endpoint": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/9fcff3e1-3737-43cf-b410-05acd615e27b/resource/7e4ac806-4e7a-49d3-81e1-7a14375c9025/download/red-light-cameras-data-4326.geojson",
+    "format": "geojson",
+    "metadata": {
+      "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=red-light-cameras",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "Open Government Licence – Toronto",
+    "attribution": "Contains information licensed under the Open Government Licence – Toronto.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "RLC",
+      "road": [
+        "NAME"
+      ],
+      "goLive": "ACTIVATION_DATE"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "ott-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Ottawa",
+    "publisher": "City of Ottawa",
+    "name": "Red Light Camera Locations",
+    "landingURL": "https://open.ottawa.ca/datasets/ottawa::red-light-camera-locations",
+    "endpoint": "https://services.arcgis.com/G6F8XLCl5KtAlZ2G/arcgis/rest/services/Red_Light_Camera_Locations/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/adf1e7bd0338404196dc0d552aa6c79b?f=json",
+      "dateKey": "modified"
+    },
+    "license": "City of Ottawa Open Data Licence v2.0",
+    "attribution": "Red light camera locations: City of Ottawa, City of Ottawa Open Data Licence v2.0.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "road": [
+        "location_desc"
+      ],
+      "direction": [
+        "CAMERA_FACING"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "york-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "York Region",
+    "publisher": "The Regional Municipality of York",
+    "name": "Red Light Camera",
+    "landingURL": "https://insights-york.opendata.arcgis.com/datasets/york::red-light-camera",
+    "endpoint": "https://ww8.yorkmaps.ca/arcgis/rest/services/OpenData/Traffic/MapServer/1/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/a94a1fdce44f4bc391ec4dfb693e1a95?f=json",
+      "dateKey": "modified"
+    },
+    "license": "York Region Open Data Licence",
+    "attribution": "Red light camera locations: The Regional Municipality of York, York Region Open Data Licence.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [
+      {
+        "field": "LIFECYCLESTATUS",
+        "in": [
+          "Active"
+        ]
+      }
+    ],
+    "fieldMap": {
+      "key": "AssetID",
+      "road": [
+        "LOCATIONDESC"
+      ],
+      "active": {
+        "field": "LIFECYCLESTATUS",
+        "activeValues": [
+          "Active"
+        ],
+        "inactiveValues": []
+      }
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "ham-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Hamilton",
+    "publisher": "City of Hamilton",
+    "name": "Red Light Cameras",
+    "landingURL": "https://open.hamilton.ca/datasets/d880b4ad9b5c4e44b073d6d007e4df68",
+    "endpoint": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Red_Light_Cameras/FeatureServer/3/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Red_Light_Cameras/FeatureServer/3?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "City of Hamilton Open Data Licence",
+    "attribution": "Red light camera locations: City of Hamilton, City of Hamilton Open Data Licence.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "CAMERA_ID",
+      "road": [
+        "LOCATION"
+      ],
+      "direction": [
+        "COMMENTS"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "peel-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Peel Region",
+    "publisher": "Region of Peel",
+    "name": "Red Light Cameras",
+    "landingURL": "https://data.peelregion.ca/datasets/RegionofPeel::red-light-cameras",
+    "endpoint": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/Red_Light_Cameras/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/Red_Light_Cameras/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Open Data Licence – The Regional Municipality of Peel v1.0",
+    "attribution": "Red light camera locations: The Regional Municipality of Peel, Open Data Licence v1.0.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "CAMERA_NUM",
+      "road": [
+        "NAME"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "king-rlc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Kingston",
+    "publisher": "City of Kingston",
+    "name": "Red Light Cameras",
+    "landingURL": "https://opendatakingston.cityofkingston.ca/datasets/red-light-cameras-2",
+    "endpoint": "https://services1.arcgis.com/5GRYvurYYUwAecLQ/arcgis/rest/services/Red_Light_Camera_(Hosted)/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services1.arcgis.com/5GRYvurYYUwAecLQ/arcgis/rest/services/Red_Light_Camera_(Hosted)/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "City of Kingston Open Data Licence",
+    "attribution": "Red light camera locations: City of Kingston, City of Kingston Open Data Licence.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "INTERSECTION_ID",
+      "road": [
+        "INTERSECTION"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "edm-isd",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Edmonton",
+    "publisher": "City of Edmonton",
+    "name": "Intersection Safety Device Locations",
+    "landingURL": "https://data.edmonton.ca/d/7fnd-72gr",
+    "endpoint": "https://data.edmonton.ca/resource/7fnd-72gr.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.edmonton.ca/api/views/7fnd-72gr.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "Open Government Licence – Edmonton",
+    "attribution": "Intersection safety device locations: City of Edmonton, Open Government Licence – Edmonton.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "site_id",
+      "roadFormat": "{approach} {cross_street}",
+      "direction": [
+        "travel_direction"
+      ],
+      "limit": "posted_speed",
+      "goLive": "activation_date"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "cal-isc",
+    "enabled": true,
+    "tier": "A",
+    "region": "CA",
+    "coverage": "Calgary",
+    "publisher": "The City of Calgary",
+    "name": "Intersection Safety Cameras",
+    "landingURL": "https://data.calgary.ca/d/dv2f-necx",
+    "endpoint": "https://data.calgary.ca/resource/dv2f-necx.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.calgary.ca/api/views/dv2f-necx.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "Open Government Licence – City of Calgary",
+    "attribution": "Contains information licensed under the Open Government Licence – City of Calgary.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "point": "point",
+      "road": [
+        "description"
+      ],
+      "roadPattern": "^(.*?)\\s*(?:Direction\\s*:.*)?$",
+      "direction": [
+        "description"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "ia-ate",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-IA",
+    "coverage": "Iowa (DOT-approved sites)",
+    "publisher": "Iowa Department of Transportation",
+    "name": "Automated Traffic Enforcement (ATE) Locations",
+    "landingURL": "https://experience.arcgis.com/experience/e4b9628314114b27aa0e8ca602fb607e",
+    "endpoint": "https://gis.iowadot.gov/agshost/rest/services/Hosted/Automated_Traffic_Enforcement/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "codedValues": {
+      "url": "https://gis.iowadot.gov/agshost/rest/services/Hosted/Automated_Traffic_Enforcement/FeatureServer/0?f=json",
+      "fields": [
+        "approvalstatus",
+        "fixedormobile"
+      ]
+    },
+    "metadata": null,
+    "license": "Not specified",
+    "attribution": "Automated traffic enforcement approved locations: Iowa Department of Transportation.",
+    "typeMap": {
+      "field": "fixedormobile",
+      "values": {
+        "1-Fixed": "speed",
+        "2-Mobile": "mobile"
+      }
+    },
+    "typeConfidence": {
+      "mobile": 60
+    },
+    "filters": [
+      {
+        "field": "approvalstatus",
+        "in": [
+          "1-Approved"
+        ]
+      }
+    ],
+    "fieldMap": {
+      "key": "ateapprovedlocations",
+      "road": [
+        "ateapprovedlocations"
+      ],
+      "direction": [
+        "ateapprovedlocations"
+      ]
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "caba-fijas",
+    "enabled": true,
+    "tier": "A",
+    "region": "AR",
+    "coverage": "Buenos Aires (CABA)",
+    "publisher": "Gobierno de la Ciudad de Buenos Aires",
+    "name": "Cámaras fijas de control vehicular",
+    "landingURL": "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
+    "endpoint": "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/transporte-y-obras-publicas/camaras-fijas-control-vehicular/camaras-fijas-de-control-vehicular.csv",
+    "format": "csv",
+    "csv": {
+      "delimiter": ";",
+      "decimalComma": true,
+      "encoding": "latin-1"
+    },
+    "metadata": null,
+    "license": "CC BY 2.5 AR",
+    "attribution": "Cámaras fijas de control vehicular © Gobierno de la Ciudad de Buenos Aires (Buenos Aires Data), licensed under CC BY 2.5 AR.",
+    "typeMap": {
+      "field": "tipo_de_fiscalizador",
+      "values": {
+        "Cinemómetro": "speed"
+      }
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "latitud",
+      "lon": "longitud",
+      "road": [
+        "ubicación"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "antt-radares",
+    "enabled": true,
+    "tier": "A",
+    "region": "BR",
+    "coverage": "Federal toll highways (ANTT)",
+    "publisher": "Agência Nacional de Transportes Terrestres (ANTT)",
+    "name": "Dados dos Radares",
+    "landingURL": "https://dados.antt.gov.br/dataset/radar",
+    "endpoint": "https://dados.antt.gov.br/api/3/action/package_show?id=radar",
+    "ckanResource": {
+      "namePattern": "^Dados dos Radares$",
+      "format": "CSV"
+    },
+    "format": "csv",
+    "csv": {
+      "delimiter": ";",
+      "decimalComma": true,
+      "encoding": "latin-1"
+    },
+    "metadata": {
+      "url": "https://dados.antt.gov.br/api/3/action/package_show?id=radar",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "CC BY",
+    "attribution": "Dados dos Radares © Agência Nacional de Transportes Terrestres (ANTT), licensed under Creative Commons Attribution.",
+    "typeMap": {
+      "field": "tipo_de_radar",
+      "values": {
+        "Controlador": "speed",
+        "Redutor": "speed"
+      }
+    },
+    "filters": [
+      {
+        "field": "situacao",
+        "in": [
+          "Ativo"
+        ]
+      }
+    ],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "roadFormat": "{rodovia} km {km_m} · {sentido}",
+      "limit": "velocidade_leve",
+      "active": {
+        "field": "situacao",
+        "activeValues": [
+          "Ativo"
+        ],
+        "inactiveValues": []
+      }
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "bh-fiscalizacao",
+    "enabled": true,
+    "tier": "A",
+    "region": "BR",
+    "coverage": "Belo Horizonte",
+    "publisher": "Prefeitura de Belo Horizonte (BHTRANS)",
+    "name": "Fiscalização Eletrônica",
+    "landingURL": "https://dados.pbh.gov.br/dataset/fiscalizacao-eletronica",
+    "endpoint": "https://ckan.pbh.gov.br/api/3/action/package_show?id=fiscalizacao-eletronica",
+    "ckanResource": {
+      "namePattern": "^\\d{8}_fiscalizacao_eletronica$",
+      "format": "CSV"
+    },
+    "format": "csv",
+    "csv": {
+      "delimiter": ";"
+    },
+    "utm": {
+      "zone": 23,
+      "south": true
+    },
+    "metadata": {
+      "url": "https://ckan.pbh.gov.br/api/3/action/package_show?id=fiscalizacao-eletronica",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "CC BY",
+    "attribution": "Fiscalização Eletrônica © Prefeitura de Belo Horizonte, licensed under Creative Commons Attribution.",
+    "typeMap": {
+      "field": "DESC_TIPO_CONTROLADOR_TRANSITO",
+      "values": {
+        "Controlador Eletrônico de Velocidade": "speed",
+        "Detector de Avanço de Semáforo": "redLight"
+      }
+    },
+    "filters": [],
+    "fieldMap": {
+      "wkt": "GEOMETRIA",
+      "key": "ID_FISCALIZACAO_ELETRONICA",
+      "road": [
+        "DESC_LOC_CONTROLADOR_TRANSITO"
+      ],
+      "limit": "VELOCIDADE_REGULAMENTAR"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "bog-salvavidas",
+    "enabled": true,
+    "tier": "A",
+    "region": "CO",
+    "coverage": "Bogotá",
+    "publisher": "Secretaría Distrital de Movilidad de Bogotá (SDM)",
+    "name": "Cámaras Salvavidas",
+    "landingURL": "https://datosabiertos.bogota.gov.co/dataset/camaras-salvavidas-bogota-d-c",
+    "endpoint": "https://sig.simur.gov.co/arcgis/rest/services/DatosAbiertos/CamarasSalvavidas/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://datosabiertos.bogota.gov.co/api/3/action/package_show?id=camaras-salvavidas-bogota-d-c",
+      "dateKey": "result.metadata_modified"
+    },
+    "license": "CC BY 4.0",
+    "attribution": "Cámaras Salvavidas © Secretaría Distrital de Movilidad de Bogotá, licensed under CC BY 4.0.",
+    "typeMap": {
+      "field": "INFRACCIONES",
+      "values": {
+        "C14, C29, C35, D02": "speed",
+        "C14, C29, C35, D02, D04": "combined"
+      }
+    },
+    "filters": [
+      {
+        "field": "ESTADO_PUNTO",
+        "in": [
+          "Instalada"
+        ]
+      }
+    ],
+    "directionWords": {
+      "(S-N)": "N",
+      "(N-S)": "S",
+      "(O-E)": "E",
+      "(E-O)": "W"
+    },
+    "fieldMap": {
+      "lat": "LATITUD",
+      "lon": "LONGITUD",
+      "key": "ID",
+      "road": [
+        "DIRECCION_FOTODETECCION"
+      ],
+      "roadPattern": "^(.*?)\\s*\\([NSEO]-[NSEO]\\)",
+      "direction": [
+        "DIRECCION_FOTODETECCION"
+      ],
+      "limit": "VELOCIDAD_FISCALIZACION",
+      "goLive": "FECHA_INSTALACION",
+      "active": {
+        "field": "ESTADO_PUNTO",
+        "activeValues": [
+          "Instalada"
+        ],
+        "inactiveValues": [
+          "Desmontada - novedad"
+        ]
+      }
+    },
+    "baseConfidence": 90
   }
 ]

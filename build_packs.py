@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Speedwise data pipeline.
 
-Tải vị trí camera chính thức (open data của thành phố/quận/bang Mỹ), chuẩn hoá về schema
-data pack của app (docs/04_TECH_SPEC.md mục 2.2), rồi ghi:
-  public/packs/us-xx.vN.json · public/regions.json · manifest.json · REPORT.md
+Tải vị trí camera chính thức (open data của thành phố/quận/bang/quốc gia), chuẩn hoá về schema
+data pack của app (docs/04_TECH_SPEC.md mục 2.2, 11, 12), rồi ghi:
+  public/packs/us-xx.vN.json (mph) · public/packs/<cc>.vN.json (km/h) · public/regions.json · manifest.json · REPORT.md
 
 Chạy:  python3 build_packs.py [--only id1,id2] [--offline]
 Chỉ dùng thư viện chuẩn Python 3.
@@ -11,9 +11,11 @@ Chỉ dùng thư viện chuẩn Python 3.
 
 import argparse
 import collections
+import csv
 import datetime as dt
 import glob
 import hashlib
+import io
 import json
 import math
 import os
@@ -51,6 +53,17 @@ MIN_CONFIDENCE = 50
 MERGE_METERS = 30.0
 MERGE_DEGREES = 30.0
 FIXTURE_ROWS = 5
+MAX_LIMIT = {"mph": 85, "kmh": 140}
+# Pack lớn hơn mức này → ghi JSON rút gọn (bỏ khoảng trắng, bỏ trường null). Lớn hơn mức tối đa → dừng.
+COMPACT_PACK_BYTES = 3 * 1024 * 1024
+MAX_PACK_BYTES = 8 * 1024 * 1024
+
+# Vùng mới của CR-D2 (docs/04_TECH_SPEC.md mục 12.4) — thêm vào template regions.json nếu chưa có.
+ADDED_REGIONS = [
+    {"code": "HK", "name": "Hong Kong", "countryCode": "HK", "countryName": "Hong Kong", "status": "full", "cameraCount": 0},
+    {"code": "AR", "name": "Argentina", "countryCode": "AR", "countryName": "Argentina", "status": "full", "cameraCount": 0},
+    {"code": "CO", "name": "Colombia", "countryCode": "CO", "countryName": "Colombia", "status": "full", "cameraCount": 0},
+]
 
 REPORT_MANUAL_MARKER = "<!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->"
 
@@ -83,8 +96,9 @@ def _direction_codes(text):
     return codes
 
 
-def parse_direction(text):
-    """Trả mã hướng ("N", "SW"…) hoặc None. Nhiều hướng khác nhau trong cùng chuỗi → None (không đoán)."""
+def parse_direction(text, extra_words=None):
+    """Trả mã hướng ("N", "SW"…) hoặc None. Nhiều hướng khác nhau trong cùng chuỗi → None (không đoán).
+    extra_words: {cụm từ ngôn ngữ khác: mã} của nguồn, ví dụ {"en direction est": "E"} (khớp nguyên từ, không phân biệt hoa/thường)."""
     if text is None:
         return None
     text = str(text).replace("\xa0", " ")
@@ -93,6 +107,9 @@ def parse_direction(text):
         word = bare.group(1)
         return DIRECTION_WORDS.get(word.lower(), word.upper())
     codes = set(_direction_codes(text))
+    for phrase, code in (extra_words or {}).items():
+        if re.search(r"(?<!\w)%s(?!\w)" % re.escape(phrase), text, flags=re.IGNORECASE):
+            codes.add(code)
     if len(codes) == 1:
         return codes.pop()
     return None
@@ -141,6 +158,7 @@ def clean_road(text, strip_directions=True):
         # "SB and NB", "EB/WB" → bỏ cả cụm; rồi bỏ từng chữ hướng còn lại.
         text = re.sub(_DIRECTION_TOKEN.pattern + r"\s*(?:and|&|/)\s*" + _DIRECTION_TOKEN.pattern, " ", text, flags=re.IGNORECASE)
         text = _DIRECTION_TOKEN.sub(" ", text)
+        text = re.sub(r"\(\s*\)", " ", text)  # "(EB)" đã bỏ chữ hướng → ngoặc rỗng
     text = re.sub(r"\s+(?:@|at)\s+", " & ", text, flags=re.IGNORECASE)
     text = re.sub(r"\s*&\s*", " & ", text)
     text = re.sub(r"\s+", " ", text).strip(" &@,-/")
@@ -155,7 +173,7 @@ def clean_road(text, strip_directions=True):
             position["first"] = False
             return result
 
-        text = re.sub(r"[A-Za-z0-9']+", replace, text)
+        text = re.sub(r"[^\W_]+(?:'[^\W_]+)*", replace, text)  # cả chữ có dấu ("MARÍA")
         text = _ROUTE_PREFIX.sub(lambda m: m.group(1).upper() + m.group(2), text)
         # Đại lộ mang tên bang viết tắt ở DC: "NY Ave", "RI Ave", "MA Ave".
         text = re.sub(r"\b([A-Z][a-z])(?= Ave\b)", lambda m: m.group(1).upper(), text)
@@ -166,8 +184,8 @@ def clean_road(text, strip_directions=True):
 # Giá trị
 # ---------------------------------------------------------------------------
 
-def parse_limit(value):
-    """Số nguyên mph khi nguồn ghi đúng một con số hợp lý; ngược lại None (không đoán)."""
+def parse_limit(value, unit="mph"):
+    """Số nguyên (theo đơn vị của pack) khi nguồn ghi đúng một con số hợp lý; ngược lại None (không đoán)."""
     if value is None or isinstance(value, bool):
         return None
     if isinstance(value, (int, float)):
@@ -178,7 +196,27 @@ def parse_limit(value):
             return None
         number = float(numbers[0])
     number = int(round(number))
-    return number if 5 <= number <= 85 else None
+    return number if 5 <= number <= MAX_LIMIT[unit] else None
+
+
+def pack_unit(region):
+    """Pack Mỹ theo bang dùng mph; pack quốc gia ngoài Mỹ dùng km/h."""
+    return "mph" if region.startswith("US-") else "kmh"
+
+
+def parse_number(value, decimal_comma=False):
+    """"-34,6230642" (dấu phẩy thập phân) hoặc "45.49" → float; không đọc được → None."""
+    if value is None or isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    text = str(value).strip()
+    if decimal_comma and "," in text:
+        text = text.replace(".", "").replace(",", ".")
+    try:
+        return float(text)
+    except ValueError:
+        return None
 
 
 def parse_date(value):
@@ -219,6 +257,11 @@ def dig(obj, dotted):
     return obj
 
 
+def format_fields(template, row):
+    """"{rodovia} km {km_m} · {sentido}" → giá trị các trường của dòng; trường trống → ""."""
+    return re.sub(r"\{([^}]+)\}", lambda m: "" if is_empty(row.get(m.group(1))) else str(row.get(m.group(1))).strip(), template)
+
+
 def first_value(row, fields):
     for field in fields or []:
         value = row.get(field)
@@ -236,6 +279,23 @@ def meters_between(lat1, lon1, lat2, lon2):
     return 2 * radius * math.asin(math.sqrt(a))
 
 
+def utm_to_wgs84(zone, south, x, y):
+    """UTM (WGS84/ETRS89/SIRGAS 2000 — cùng ellipsoid tới mức cm) → (lat, lon) độ. Chuỗi Krüger bậc 3, sai số cỡ mm trong múi."""
+    a, f, k0 = 6378137.0, 1 / 298.257223563, 0.9996
+    n = f / (2 - f)
+    big_a = a / (1 + n) * (1 + n ** 2 / 4 + n ** 4 / 64)
+    beta = (n / 2 - 2 * n ** 2 / 3 + 37 * n ** 3 / 96, n ** 2 / 48 + n ** 3 / 15, 17 * n ** 3 / 480)
+    delta = (2 * n - 2 * n ** 2 / 3 - 2 * n ** 3, 7 * n ** 2 / 3 - 8 * n ** 3 / 5, 56 * n ** 3 / 15)
+    xi = (y - (10000000.0 if south else 0.0)) / (k0 * big_a)
+    eta = (x - 500000.0) / (k0 * big_a)
+    xi_p = xi - sum(b * math.sin(2 * j * xi) * math.cosh(2 * j * eta) for j, b in enumerate(beta, 1))
+    eta_p = eta - sum(b * math.cos(2 * j * xi) * math.sinh(2 * j * eta) for j, b in enumerate(beta, 1))
+    chi = math.asin(math.sin(xi_p) / math.cosh(eta_p))
+    lat = chi + sum(d * math.sin(2 * j * chi) for j, d in enumerate(delta, 1))
+    lon = math.radians(zone * 6 - 183) + math.atan2(math.sinh(eta_p), math.cos(xi_p))
+    return math.degrees(lat), math.degrees(lon)
+
+
 def headings_match(h1, h2):
     if h1 is None and h2 is None:
         return True
@@ -249,20 +309,58 @@ def headings_match(h1, h2):
 # Đọc dữ liệu thô
 # ---------------------------------------------------------------------------
 
+GEOJSON_FORMATS = ("arcgis-geojson", "socrata-geojson", "wfs-geojson", "geojson")
+
+
+def _point_lon_lat(geometry):
+    """Point, hoặc MultiPoint chỉ có 1 điểm → (lon, lat); hình khác → (None, None)."""
+    geometry = geometry or {}
+    coords = geometry.get("coordinates")
+    if geometry.get("type") == "MultiPoint" and coords and len(coords) == 1:
+        coords = coords[0]
+    elif geometry.get("type") != "Point":
+        coords = None
+    return (coords[0], coords[1]) if coords else (None, None)
+
+
+_WKT_POINT = re.compile(r"^\s*POINT\s*\(\s*(\S+)\s+(\S+)\s*\)\s*$", re.IGNORECASE)
+
+
+def _csv_lat_lon(source, row):
+    """Toạ độ của một dòng CSV: cặp trường lat/lon, cặp x/y, hoặc WKT "POINT (x y)"; `utm` → đổi sang WGS84."""
+    field_map = source["fieldMap"]
+    decimal_comma = source.get("csv", {}).get("decimalComma", False)
+    if field_map.get("wkt"):
+        match = _WKT_POINT.match(str(row.get(field_map["wkt"]) or ""))
+        x, y = (parse_number(match.group(1)), parse_number(match.group(2))) if match else (None, None)
+    elif field_map.get("x"):
+        x, y = parse_number(row.get(field_map["x"]), decimal_comma), parse_number(row.get(field_map["y"]), decimal_comma)
+    else:
+        lat, lon = parse_number(row.get(field_map["lat"]), decimal_comma), parse_number(row.get(field_map["lon"]), decimal_comma)
+        return lat, lon
+    if x is None or y is None:
+        return None, None
+    if source.get("utm"):
+        return utm_to_wgs84(source["utm"]["zone"], source["utm"].get("south", False), x, y)
+    return y, x
+
+
 def parse_raw(source, raw):
     """Dữ liệu thô của một nguồn → danh sách dict phẳng; toạ độ đặt ở "_lat"/"_lon"."""
     fmt = source["format"]
     rows = []
-    if fmt in ("arcgis-geojson", "socrata-geojson"):
+    if fmt in GEOJSON_FORMATS:
         if not isinstance(raw, dict) or "features" not in raw:
             raise ValueError("phản hồi không phải GeoJSON FeatureCollection")
         if (raw.get("properties") or {}).get("exceededTransferLimit") or raw.get("exceededTransferLimit"):
             raise ValueError("máy chủ cắt bớt kết quả (exceededTransferLimit) — cần phân trang")
+        field_map = source.get("fieldMap", {})
         for feature in raw["features"]:
             row = dict(feature.get("properties") or {})
-            geometry = feature.get("geometry") or {}
-            coords = geometry.get("coordinates") if geometry.get("type") == "Point" else None
-            row["_lon"], row["_lat"] = (coords[0], coords[1]) if coords else (None, None)
+            row["_lon"], row["_lat"] = _point_lon_lat(feature.get("geometry"))
+            if row["_lat"] is None and field_map.get("lat"):
+                # Geometry trống nhưng dataset có trường toạ độ riêng (Bogotá LATITUD/LONGITUD).
+                row["_lat"], row["_lon"] = row.get(field_map["lat"]), row.get(field_map["lon"])
             rows.append(row)
     elif fmt == "socrata-json":
         if not isinstance(raw, list):
@@ -276,6 +374,13 @@ def parse_raw(source, raw):
                 row["_lon"], row["_lat"] = (coords[0], coords[1]) if coords else (None, None)
             else:
                 row["_lat"], row["_lon"] = item.get(field_map.get("lat")), item.get(field_map.get("lon"))
+            rows.append(row)
+    elif fmt == "csv":
+        if not isinstance(raw, str):
+            raise ValueError("dữ liệu CSV không phải văn bản")
+        for item in csv.DictReader(io.StringIO(raw), delimiter=source.get("csv", {}).get("delimiter", ",")):
+            row = {key.strip(): value for key, value in item.items() if key is not None}
+            row["_lat"], row["_lon"] = _csv_lat_lon(source, row)
             rows.append(row)
     else:
         raise ValueError("format không hỗ trợ: %s" % fmt)
@@ -354,6 +459,7 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
 
     field_map = source["fieldMap"]
     region = source["region"]
+    unit = pack_unit(region)
     bbox = bboxes[region]
     active_rule = field_map.get("active")
     stale = dataset_day is not None and (today - dataset_day).days > STALE_DAYS
@@ -400,7 +506,9 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
             continue
         confirmed = max((d for d in (dataset_day, go_live) if d is not None), default=None)
 
-        if status_active:
+        if camera_type in source.get("typeConfidence", {}):
+            confidence = source["typeConfidence"][camera_type]
+        elif status_active:
             confidence = source["baseConfidence"]
         else:
             confidence = min(source["baseConfidence"], NO_STATUS_CONFIDENCE[source["tier"]])
@@ -408,11 +516,20 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
             confidence -= STALE_PENALTY
         confidence = max(MIN_CONFIDENCE, confidence)
 
-        road_fields = [f for f in field_map.get("road") or [] if not is_empty(row.get(f))][:1]
-        road = clean_road(first_value(row, road_fields),
-                          strip_directions=bool(road_fields) and road_fields[0] in (field_map.get("direction") or []))
-        limit = parse_limit(row.get(field_map["limit"])) if field_map.get("limit") else None
+        if field_map.get("roadFormat"):
+            road = clean_road(format_fields(field_map["roadFormat"], row), strip_directions=False)
+        else:
+            road_fields = [f for f in field_map.get("road") or [] if not is_empty(row.get(f))][:1]
+            road_text = first_value(row, road_fields)
+            if field_map.get("roadPattern") and road_text is not None:
+                road_match = re.search(field_map["roadPattern"], str(road_text), flags=re.DOTALL)
+                road_text = road_match.group(1) if road_match else road_text
+            road = clean_road(road_text, strip_directions=bool(road_fields) and road_fields[0] in (field_map.get("direction") or []))
+        limit = parse_limit(row.get(field_map["limit"]), unit) if field_map.get("limit") else None
         key_value = row.get(field_map["key"]) if field_map.get("key") else None
+        if field_map.get("keyPattern") and not is_empty(key_value):
+            key_match = re.search(field_map["keyPattern"], str(key_value))
+            key_value = key_match.group(1) if key_match else None
         key = "" if is_empty(key_value) else key_part(key_value)
 
         if source.get("approaches"):
@@ -428,7 +545,7 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
                 continue
             variants = [(code, True) for code in directions]
         else:
-            variants = [(parse_direction(first_value(row, field_map.get("direction"))), False)]
+            variants = [(parse_direction(first_value(row, field_map.get("direction")), source.get("directionWords")), False)]
 
         for code, suffixed in variants:
             heading = heading_for(code)
@@ -493,8 +610,21 @@ def pack_file_name(region, version):
     return "%s.v%d.json" % (region.lower(), version)
 
 
+def pack_text(pack):
+    """JSON của pack: thụt lề như các file khác; > 3 MB → rút gọn (không khoảng trắng, bỏ trường null), schema giữ nguyên.
+    Vẫn > 8 MB → dừng (cần quyết định tách pack)."""
+    text = json.dumps(pack, indent=2, ensure_ascii=False) + "\n"
+    if len(text.encode("utf-8")) > COMPACT_PACK_BYTES:
+        compact = dict(pack, cameras=[{k: v for k, v in camera.items() if v is not None} for camera in pack["cameras"]])
+        text = json.dumps(compact, separators=(",", ":"), ensure_ascii=False) + "\n"
+    size = len(text.encode("utf-8"))
+    if size > MAX_PACK_BYTES:
+        raise SystemExit("Pack %s nặng %.1f MB > 8 MB — dừng, cần quyết định tách pack (docs/05_TASKS.md D05)." % (pack["region"], size / 1048576))
+    return text
+
+
 def write_packs(region_cameras, manifest, packs_dir, today, now_iso):
-    """Ghi pack cho bang có nội dung mới (version + 1), giữ nguyên bang không đổi.
+    """Ghi pack cho vùng có nội dung mới (version + 1), giữ nguyên vùng không đổi. Mỹ: mph, ngoài Mỹ: km/h.
     Trả manifest["regions"] mới: {region: {version, hash, file, cameraCount, updatedAt}}."""
     old = manifest.get("regions", {})
     result = {}
@@ -508,8 +638,9 @@ def write_packs(region_cameras, manifest, packs_dir, today, now_iso):
             continue
         version = (previous["version"] if previous else 0) + 1
         name = pack_file_name(region, version)
-        pack = {"region": region, "version": version, "generatedAt": now_iso, "unit": "mph", "cameras": cameras}
-        write_json(os.path.join(packs_dir, name), pack)
+        pack = {"region": region, "version": version, "generatedAt": now_iso, "unit": pack_unit(region), "cameras": cameras}
+        with open(os.path.join(packs_dir, name), "w", encoding="utf-8") as handle:
+            handle.write(pack_text(pack))
         for stale in glob.glob(os.path.join(packs_dir, "%s.v*.json" % region.lower())):
             if os.path.basename(stale) != name:
                 os.remove(stale)
@@ -524,7 +655,8 @@ def write_packs(region_cameras, manifest, packs_dir, today, now_iso):
 
 def build_regions(template, existing, packs, sources, source_info):
     """template/existing: regions.json dạng dict. packs: manifest["regions"]. sources: danh sách nguồn enabled.
-    source_info: {id: {"updatedAt": "YYYY-MM-DD"|None, "cameraCount": int}}."""
+    source_info: {id: {"updatedAt": "YYYY-MM-DD"|None, "cameraCount": int}}.
+    Trạng thái pháp lý (mục 12.4): `comingSoon` có pack → `full`; `restricted`/`blocked` không bao giờ đổi và không có packURL."""
     coverage = collections.OrderedDict()
     for source in sources:
         if source_info.get(source["id"], {}).get("cameraCount", 0) > 0:
@@ -532,13 +664,17 @@ def build_regions(template, existing, packs, sources, source_info):
             if source["coverage"] not in notes:
                 notes.append(source["coverage"])
 
+    known = {entry["code"] for entry in template["regions"]}
     regions = []
-    for entry in template["regions"]:
+    for entry in template["regions"] + [r for r in ADDED_REGIONS if r["code"] not in known]:
         region = dict(entry)
         for field in ("packURL", "packVersion", "coverageNote"):
             region.pop(field, None)
         pack = packs.get(region["code"])
-        if pack:
+        if pack and region["status"] == "comingSoon":
+            region["status"] = "full"
+            region.pop("legalNote", None)
+        if pack and region["status"] == "full":
             region["cameraCount"] = pack["cameraCount"]
             region["updatedAt"] = pack["updatedAt"]
             region["packURL"] = pack["file"]
@@ -597,25 +733,62 @@ def _ssl_context():
 _SSL_CONTEXT = None
 
 
-def http_get_json(url):
+def _http_get(url, accept, decode):
     global _SSL_CONTEXT
     if _SSL_CONTEXT is None:
         _SSL_CONTEXT = _ssl_context()
     safe_url = urllib.parse.quote(url, safe=":/?&=*,'()$%+@;!~#")
-    request = urllib.request.Request(safe_url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    request = urllib.request.Request(safe_url, headers={"User-Agent": USER_AGENT, "Accept": accept})
     last_error = None
     for attempt in range(RETRIES):
         try:
             with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS, context=_SSL_CONTEXT) as response:
-                data = json.loads(response.read().decode("utf-8"))
-            if isinstance(data, dict) and "error" in data and "features" not in data:
-                raise ValueError("máy chủ báo lỗi: %s" % json.dumps(data["error"])[:200])
-            return data
+                return decode(response.read())
         except (urllib.error.URLError, TimeoutError, ValueError, OSError) as error:
             last_error = error
             if attempt + 1 < RETRIES:
                 time.sleep(2 * (attempt + 1))
     raise RuntimeError(str(last_error))
+
+
+def http_get_json(url):
+    def decode(body):
+        data = json.loads(body.decode("utf-8"))
+        if isinstance(data, dict) and "error" in data and "features" not in data:
+            raise ValueError("máy chủ báo lỗi: %s" % json.dumps(data["error"])[:200])
+        return data
+    return _http_get(url, "application/json", decode)
+
+
+def http_get_text(url, encoding="utf-8-sig"):
+    return _http_get(url, "text/csv, text/plain, */*", lambda body: body.decode(encoding))
+
+
+def latest_ckan_resource(package, rule):
+    """CKAN `package_show` → URL resource mới nhất (theo `created`) có tên khớp `namePattern` và đúng `format`.
+    Dùng cho dataset mà file đổi tên mỗi kỳ (Belo Horizonte, ANTT)."""
+    matches = [r for r in package["result"]["resources"]
+               if re.search(rule["namePattern"], r.get("name") or "") and (r.get("format") or "").upper() == rule["format"].upper()]
+    if not matches:
+        raise ValueError("CKAN: không có resource %s khớp %s" % (rule["format"], rule["namePattern"]))
+    return max(matches, key=lambda r: r.get("created") or "")["url"]
+
+
+def decode_coded_values(raw, layer_info, fields):
+    """ArcGIS: đổi mã số của các trường có coded-value domain thành tên ("1" → "1-Approved"), tra bảng trong `<layer>?f=json`."""
+    tables = {}
+    for field in layer_info.get("fields", []):
+        if field["name"] in fields and (field.get("domain") or {}).get("codedValues"):
+            tables[field["name"]] = {cv["code"]: cv["name"] for cv in field["domain"]["codedValues"]}
+    missing = set(fields) - set(tables)
+    if missing:
+        raise ValueError("layer không có bảng mã cho trường: %s" % ", ".join(sorted(missing)))
+    for feature in raw["features"]:
+        props = feature.get("properties") or {}
+        for name, table in tables.items():
+            if props.get(name) is not None:
+                props[name] = table.get(props[name], props[name])
+    return raw
 
 
 def read_json(path, default=None):
@@ -636,31 +809,43 @@ def write_json(path, obj):
 
 
 def fixture_sample(source, raw):
-    """≤ 5 dòng thô, ưu tiên đủ các trường hợp khác nhau (loại, trạng thái, số approach)."""
-    is_geojson = isinstance(raw, dict)
-    items = raw["features"] if is_geojson else raw
+    """≤ 5 dòng thô, ưu tiên đủ các trường hợp khác nhau (loại, trạng thái, số approach). CSV: giữ dạng văn bản + dòng tiêu đề."""
+    delimiter = source.get("csv", {}).get("delimiter", ",")
+    if isinstance(raw, str):
+        lines = list(csv.reader(io.StringIO(raw), delimiter=delimiter))
+        header = lines[0]
+        items = [(line, dict(zip(header, line))) for line in lines[1:] if line]
+    elif isinstance(raw, dict):
+        items = [(feature, feature.get("properties", {})) for feature in raw["features"]]
+    else:
+        items = [(item, item) for item in raw]
     type_field = source["typeMap"].get("field")
     active_field = (source["fieldMap"].get("active") or {}).get("field")
 
-    def signature(item):
-        props = item.get("properties", {}) if is_geojson else item
+    def signature(props):
         return (props.get(type_field) if type_field else None,
                 props.get(active_field) if active_field else None,
                 sum(1 for f in source.get("approaches", []) if not is_empty(props.get(f))))
 
     chosen, seen = [], set()
-    for item in items:
-        sig = signature(item)
+    for item, props in items:
+        sig = signature(props)
         if sig not in seen:
             seen.add(sig)
             chosen.append(item)
-    for item in items:
+    for item, _ in items:
         if len(chosen) >= FIXTURE_ROWS:
             break
         if item not in chosen:
             chosen.append(item)
     chosen = chosen[:FIXTURE_ROWS]
-    return dict(raw, features=chosen) if is_geojson else chosen
+    if isinstance(raw, str):
+        out = io.StringIO()
+        writer = csv.writer(out, delimiter=delimiter, lineterminator="\n")
+        writer.writerow(header)
+        writer.writerows(chosen)
+        return out.getvalue()
+    return dict(raw, features=chosen) if isinstance(raw, dict) else chosen
 
 
 def fetch_source(source, offline):
@@ -671,7 +856,15 @@ def fetch_source(source, offline):
         if cached is None:
             raise RuntimeError("--offline: chưa có cache/%s.json" % source["id"])
         return cached["raw"], cached["metadata"]
-    raw = http_get_json(source["endpoint"])
+    endpoint = source["endpoint"]
+    if source.get("ckanResource"):
+        endpoint = latest_ckan_resource(http_get_json(endpoint), source["ckanResource"])
+    if source["format"] == "csv":
+        raw = http_get_text(endpoint, source.get("csv", {}).get("encoding", "utf-8-sig"))
+    else:
+        raw = http_get_json(endpoint)
+    if source.get("codedValues"):
+        raw = decode_coded_values(raw, http_get_json(source["codedValues"]["url"]), source["codedValues"]["fields"])
     metadata = None
     if source.get("metadata"):
         try:
@@ -716,7 +909,7 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
         "",
         "## Nguồn",
         "",
-        "| Nguồn | Bang | Tier | Tải | Ngày dataset | Dòng | Camera | Vào pack | Bị loại (lý do) |",
+        "| Nguồn | Vùng | Tier | Tải | Ngày dataset | Dòng | Camera | Vào pack | Bị loại (lý do) |",
         "|---|---|---|---|---|---:|---:|---:|---|",
     ]
     for result in results:
@@ -736,16 +929,20 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
             result["rows"] if result["rows"] is not None else "—",
             result["cameras"] if result["cameras"] is not None else "—",
             region_counts.get(result["id"], 0), reason_text.replace("|", "/")))
-    lines += ["", "## Theo bang", "", "| Bang | Pack | Version | Camera | speed | redLight | schoolZone |", "|---|---|---:|---:|---:|---:|---:|"]
+    lines += ["", "## Theo vùng", "",
+              "| Vùng | Pack | Đơn vị | KB | Version | Camera | speed | redLight | schoolZone | combined | mobile |",
+              "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
     total = 0
     for region in sorted(packs):
         pack = packs[region]
-        cameras = read_json(os.path.join(PUBLIC_DIR, pack["file"]))["cameras"]
+        path = os.path.join(PUBLIC_DIR, pack["file"])
+        cameras = read_json(path)["cameras"]
         by_type = collections.Counter(c["type"] for c in cameras)
         total += pack["cameraCount"]
-        lines.append("| %s | `%s` | %d | %d | %d | %d | %d |" % (
-            region, pack["file"], pack["version"], pack["cameraCount"], by_type["speed"], by_type["redLight"], by_type["schoolZone"]))
-    lines += ["", "**Tổng: %d camera ở %d bang/khu vực.**" % (total, len(packs)), "", REPORT_MANUAL_MARKER]
+        lines.append("| %s | `%s` | %s | %d | %d | %d | %d | %d | %d | %d | %d |" % (
+            region, pack["file"], pack_unit(region), math.ceil(os.path.getsize(path) / 1024), pack["version"], pack["cameraCount"],
+            by_type["speed"], by_type["redLight"], by_type["schoolZone"], by_type["combined"], by_type["mobile"]))
+    lines += ["", "**Tổng: %d camera ở %d vùng.**" % (total, len(packs)), "", REPORT_MANUAL_MARKER]
     manual = manual_section.strip("\n")
     return "\n".join(lines) + "\n" + ("\n" + manual + "\n" if manual else "")
 
@@ -836,7 +1033,7 @@ def main(argv=None):
     template = read_json(REGIONS_TEMPLATE_PATH) or existing
     if template is None:
         raise SystemExit("Không tìm thấy template regions.json (%s) và chưa có public/regions.json" % REGIONS_TEMPLATE_PATH)
-    known = {r["code"] for r in template["regions"]}
+    known = {r["code"] for r in template["regions"] + ADDED_REGIONS}
     for region in packs:
         if region not in known:
             print("CẢNH BÁO: %s có pack nhưng không có trong template regions.json" % region)

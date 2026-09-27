@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1736434312733
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.4949788445808,
+            44.2418566603036
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "INTERSECTION_ID": "900221",
+          "ROADWAY": "DIVISION STREET",
+          "INTERSECTION": "Concession Street / Stephen Street",
+          "GLOBALID": "3594d21a-74b0-44c5-bc99-7fdf346e9a44"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.4911460983614,
+            44.2310258066471
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "INTERSECTION_ID": "900308",
+          "ROADWAY": "JOHNSON STREET",
+          "INTERSECTION": "Barrie Street / Johnson Street",
+          "GLOBALID": "de26ab74-a374-4330-b572-e7d58f235cef"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5837188662092,
+            44.2597361152053
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "INTERSECTION_ID": "900844",
+          "ROADWAY": "PRINCESS STREET",
+          "INTERSECTION": "Bayridge Drive / Princess Street",
+          "GLOBALID": "9b996133-f021-4504-b1d0-461e1bf1bda5"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5027316055028,
+            44.320178708867
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "INTERSECTION_ID": "900285",
+          "ROADWAY": "PERTH ROAD",
+          "INTERSECTION": "Unity Road / Perth Road",
+          "GLOBALID": "d4175a7f-9b3f-4271-a323-9ddbe0184057"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.438776800556,
+            44.2411355302613
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "INTERSECTION_ID": "900961",
+          "ROADWAY": "COUNTY ROAD 2",
+          "INTERSECTION": "Princess Mary Avenue / Craftsman Boulevard",
+          "GLOBALID": "59559057-591b-4c2c-93c1-bca9e293773f"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "metadata": null,
+  "raw": {
+    "features": [
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -90.57139553417022,
+            41.54764795207621
+          ],
+          "crs": null
+        },
+        "id": 1,
+        "type": "Feature",
+        "properties": {
+          "mpoorrpa": 25,
+          "approvalstatus": "2-Denied",
+          "city": 1827,
+          "latitude": 41.5475795,
+          "county": 82,
+          "denialreasoning": 3,
+          "urbanorrural": 1,
+          "ateapprovedlocations": "2700 Block Brady Street (NB)",
+          "localauthority": "Davenport",
+          "fixedormobile": "1-Fixed",
+          "dotdistrictnumber": 6,
+          "region": 5,
+          "objectid": 1,
+          "longitude": -90.5717433
+        }
+      },
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.60628944890608,
+            41.560361595000025
+          ],
+          "crs": null
+        },
+        "id": 4,
+        "type": "Feature",
+        "properties": {
+          "mpoorrpa": 26,
+          "approvalstatus": "1-Approved",
+          "city": 1945,
+          "latitude": 41.5602166,
+          "county": 77,
+          "denialreasoning": null,
+          "urbanorrural": 1,
+          "ateapprovedlocations": "2800 Block Indianola Avenue (EB)",
+          "localauthority": "Des Moines",
+          "fixedormobile": "2-Mobile",
+          "dotdistrictnumber": 1,
+          "region": 1,
+          "objectid": 4,
+          "longitude": -93.6064487
+        }
+      },
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -90.61119534073083,
+            41.522249781239985
+          ],
+          "crs": null
+        },
+        "id": 2,
+        "type": "Feature",
+        "properties": {
+          "mpoorrpa": 25,
+          "approvalstatus": "2-Denied",
+          "city": 1827,
+          "latitude": 41.5224447,
+          "county": 82,
+          "denialreasoning": 3,
+          "urbanorrural": 1,
+          "ateapprovedlocations": "2200 Block W 3rd Street (EB)",
+          "localauthority": "Davenport",
+          "fixedormobile": "1-Fixed",
+          "dotdistrictnumber": 6,
+          "region": 5,
+          "objectid": 2,
+          "longitude": -90.6113593
+        }
+      },
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.60624201875737,
+            41.560409610838654
+          ],
+          "crs": null
+        },
+        "id": 5,
+        "type": "Feature",
+        "properties": {
+          "mpoorrpa": 26,
+          "approvalstatus": "1-Approved",
+          "city": 1945,
+          "latitude": 41.5602166,
+          "county": 77,
+          "denialreasoning": null,
+          "urbanorrural": 1,
+          "ateapprovedlocations": "2800 Block Indianola Avenue (WB)",
+          "localauthority": "Des Moines",
+          "fixedormobile": "2-Mobile",
+          "dotdistrictnumber": 1,
+          "region": 1,
+          "objectid": 5,
+          "longitude": -93.6064487
+        }
+      },
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -93.63937461911081,
+            41.55541485159643
+          ],
+          "crs": null
+        },
+        "id": 6,
+        "type": "Feature",
+        "properties": {
+          "mpoorrpa": 26,
+          "approvalstatus": "1-Approved",
+          "city": 1945,
+          "latitude": 41.555027,
+          "county": 77,
+          "denialreasoning": null,
+          "urbanorrural": 1,
+          "ateapprovedlocations": "1700 Block Park Avenue (EB)",
+          "localauthority": "Des Moines",
+          "fixedormobile": "2-Mobile",
+          "dotdistrictnumber": 1,
+          "region": 1,
+          "objectid": 6,
+          "longitude": -93.6394119
+        }
+      }
+    ],
+    "type": "FeatureCollection",
+    "properties": {
+      "exceededTransferLimit": false
+    }
+  }
+}

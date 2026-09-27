@@ -1,0 +1,6 @@
+{
+  "metadata": {
+    "result.metadata_modified": "2026-08-28T11:03:48.679525"
+  },
+  "raw": "concessionaria;ano_do_pnv_snv;tipo_de_radar;rodovia;uf;km_m;Municipio;tipo_de_pista;sentido;situacao;data_da_inativacao;latitude;longitude;velocidade_leve;velocidade_pesado\nAUTOPISTA FLUMINENSE;2019;Controlador;BR-101;RJ;55,52;Campos dos Goytacazes;Principal;Decrescente;Ativo;;-21,68329;-41,31089;60;60\nAUTOPISTA LITORAL SUL;2009;Redutor;BR-376;PR;668,88;Guaratuba;Principal;Decrescente;Ativo;;-25,8749;-48,9363;60;60\nAUTOPISTA FLUMINENSE;2019;Controlador;BR-101;RJ;55,389;Campos dos Goytacazes;Principal;Crescente;Ativo;;-21,681822;-41,310949;60;60\nAUTOPISTA FLUMINENSE;2019;Controlador;BR-101;RJ;58,805;Campos dos Goytacazes;Principal;Decrescente;Ativo;;-21,713412;-41,308561;60;60\nAUTOPISTA FLUMINENSE;2019;Controlador;BR-101;RJ;184,6;Casimiro de Abreu;Principal;Crescente;Ativo;;-22,429729;-42,031134;80;80\n"
+}

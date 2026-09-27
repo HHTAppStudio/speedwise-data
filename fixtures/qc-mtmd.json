@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "result.metadata_modified": "2026-09-10T20:40:15.509955"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "numberMatched": 160,
+    "name": "radars_photos",
+    "bbox": [
+      -75.828313,
+      45.063511,
+      -70.17675,
+      47.674182
+    ],
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "region": "Montréal",
+          "municipalite": "Montréal",
+          "arrondissement": "Côte-des-Neiges - Notre-Dame-de-Grâce",
+          "description": "Chemin McDougall en direction est, entre Le Boulevard et l'avenue Cedar",
+          "typeAppareil": "Radar photo fixe",
+          "urlImage": "https://www.transports.gouv.qc.ca/fr/securite-signalisation/securite/radars-photo-surveillance-feux-rouges/emplacements/Pages/fiche-technique.aspx?idSite=4",
+          "dateDebutService": "2011-11-01T00:00:00",
+          "dateFinService": ""
+        },
+        "bbox": [
+          -73.595,
+          45.49459,
+          -73.595,
+          45.49459
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.595,
+            45.49459
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "region": "Chaudière-Appalaches",
+          "municipalite": "Saint-Isidore",
+          "arrondissement": "",
+          "description": "Route du Vieux-Moulin, entre l'autoroute 73 et la rue des Harfangs",
+          "typeAppareil": "Radar photo mobile",
+          "urlImage": "https://www.transports.gouv.qc.ca/fr/securite-signalisation/securite/radars-photo-surveillance-feux-rouges/emplacements/Pages/fiche-technique.aspx?idSite=16",
+          "dateDebutService": "2014-07-30T00:00:00",
+          "dateFinService": ""
+        },
+        "bbox": [
+          -71.115617,
+          46.565162,
+          -71.115617,
+          46.565162
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -71.115617,
+            46.565162
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "region": "Montréal",
+          "municipalite": "Montréal",
+          "arrondissement": "Ville-Marie",
+          "description": "Rue Sainte-Catherine Est, à l'intersection de la rue D'Iberville",
+          "typeAppareil": "Appareil de surveillance au feu rouge",
+          "urlImage": "https://www.transports.gouv.qc.ca/fr/securite-signalisation/securite/radars-photo-surveillance-feux-rouges/emplacements/Pages/fiche-technique.aspx?idSite=2",
+          "dateDebutService": "2011-11-01T00:00:00",
+          "dateFinService": ""
+        },
+        "bbox": [
+          -73.545947,
+          45.529278,
+          -73.545947,
+          45.529278
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.545947,
+            45.529278
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "region": "Capitale-Nationale",
+          "municipalite": "L'Ange-Gardien",
+          "arrondissement": "",
+          "description": "Route 138, à l'intersection de la rue Casgrain",
+          "typeAppareil": "Radar photo fixe et surveillance au feu rouge",
+          "urlImage": "https://www.transports.gouv.qc.ca/fr/securite-signalisation/securite/radars-photo-surveillance-feux-rouges/emplacements/Pages/fiche-technique.aspx?idSite=25",
+          "dateDebutService": "2015-06-01T00:00:00",
+          "dateFinService": ""
+        },
+        "bbox": [
+          -71.0942,
+          46.91227,
+          -71.0942,
+          46.91227
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -71.0942,
+            46.91227
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "region": "Montérégie",
+          "municipalite": "Boucherville",
+          "arrondissement": "",
+          "description": "Autoroute 20 en direction ouest, environ 200 m avant la bretelle du boulevard de Mortagne",
+          "typeAppareil": "Radar photo fixe",
+          "urlImage": "https://www.transports.gouv.qc.ca/fr/securite-signalisation/securite/radars-photo-surveillance-feux-rouges/emplacements/Pages/fiche-technique.aspx?idSite=8",
+          "dateDebutService": "2011-11-01T00:00:00",
+          "dateFinService": ""
+        },
+        "bbox": [
+          -73.4422,
+          45.5714,
+          -73.4422,
+          45.5714
+        ],
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -73.4422,
+            45.5714
+          ]
+        }
+      }
+    ]
+  }
+}

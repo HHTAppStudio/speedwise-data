@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "modified": 1786561518000
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.60758145,
+            45.39294866
+          ]
+        },
+        "properties": {
+          "location_desc": "Walkley Road and Russell Road/Hawthorn Road",
+          "location_desc_fr": "Chemin Walkley et Chemin Russell/Hawthorn",
+          "CAMERA_INSTALL_YEAR": "2008",
+          "LATITUDE": 45.39294866,
+          "LONGITUDE": -75.60758145,
+          "X": 374674.7381,
+          "Y": 5028499.542,
+          "CAMERA_FACING": "Eastbound",
+          "ObjectId": 1
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.63045981,
+            45.41183341
+          ]
+        },
+        "properties": {
+          "location_desc": "St. Laurent Boulevard and Belfast Road",
+          "location_desc_fr": "Boulevard St. Laurent et Chemin Belfast",
+          "CAMERA_INSTALL_YEAR": "2008",
+          "LATITUDE": 45.41183341,
+          "LONGITUDE": -75.63045981,
+          "X": 372860.726,
+          "Y": 5030578.562,
+          "CAMERA_FACING": "Southbound",
+          "ObjectId": 2
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.8871873,
+            45.32259424
+          ]
+        },
+        "properties": {
+          "location_desc": "March Road/Eaglson Road and Campeau Drive/417 Westbound Off Ramp",
+          "location_desc_fr": "Chemin March/Eaglson et Promenade Campeau/417 Ouest",
+          "CAMERA_INSTALL_YEAR": "2008",
+          "LATITUDE": 45.32259424,
+          "LONGITUDE": -75.8871873,
+          "X": 352841.6241,
+          "Y": 5020476.478,
+          "CAMERA_FACING": "Northbound",
+          "ObjectId": 3
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.69378269,
+            45.40878852
+          ]
+        },
+        "properties": {
+          "location_desc": "Catherine Street and Kent Street (East Side)",
+          "location_desc_fr": "Rue Catherine et Rue Kent (Côté Est)",
+          "CAMERA_INSTALL_YEAR": "2008",
+          "LATITUDE": 45.40878852,
+          "LONGITUDE": -75.69378269,
+          "X": 367907.7071,
+          "Y": 5030188.565,
+          "CAMERA_FACING": "Westbound",
+          "ObjectId": 4
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.73082093,
+            45.36528328
+          ]
+        },
+        "properties": {
+          "location_desc": "Baseline Road and Merivale Road",
+          "location_desc_fr": "Chemin Baseline et Chemin Merivale",
+          "CAMERA_INSTALL_YEAR": "2008",
+          "LATITUDE": 45.36528328,
+          "LONGITUDE": -75.73082093,
+          "X": 365054.6989,
+          "Y": 5025325.524,
+          "CAMERA_FACING": "Westbound",
+          "ObjectId": 5
+        }
+      }
+    ]
+  }
+}

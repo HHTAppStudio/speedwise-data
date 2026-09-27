@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "result.metadata_modified": "2026-08-24T22:40:31.869270"
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1633,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.07222000000002,
+            4.6687011998467005
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1633,
+          "DIRECCION_FOTODETECCION": "AV NQS - AV CL 73 (S-N)",
+          "LATITUD": 4.6687012,
+          "LONGITUD": -74.07222,
+          "CORREDOR": "Avenida Carrera 30",
+          "LOCALIDAD": "12",
+          "TIPO_FOTODETECCION": "Fijo",
+          "TIPO_CAMARA": "Automática",
+          "ESTADO_PUNTO": "Instalada",
+          "AUTORIZACION_OPERACION": "515 de 2025",
+          "ULTIMO_MANTENIMIENTO": 1781308800000,
+          "CICLO_MANTENIMIENTO": 20,
+          "VELOCIDAD_FISCALIZACION": 50,
+          "INFRACCIONES": "C14, C29, C35, D02",
+          "ULTIMA_CALIBRACION": 1762819200000,
+          "OBSERVACIONES": null,
+          "ID": "DEI19CAM02",
+          "FECHA_INSTALACION": 1558483200000,
+          "FECHA_DESMONTE": null
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 1636,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.14927,
+            4.570853099849917
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1636,
+          "DIRECCION_FOTODETECCION": "AV VILLAVICENCIO - CR 32 (O-E)",
+          "LATITUD": 4.5708531,
+          "LONGITUD": -74.14927,
+          "CORREDOR": "Avenida Villavicencio",
+          "LOCALIDAD": "19",
+          "TIPO_FOTODETECCION": "Fijo",
+          "TIPO_CAMARA": "Automática",
+          "ESTADO_PUNTO": "Instalada",
+          "AUTORIZACION_OPERACION": "798 de 2025",
+          "ULTIMO_MANTENIMIENTO": 1775001600000,
+          "CICLO_MANTENIMIENTO": 20,
+          "VELOCIDAD_FISCALIZACION": 50,
+          "INFRACCIONES": "C14, C29, C35, D02, D04",
+          "ULTIMA_CALIBRACION": 1762819200000,
+          "OBSERVACIONES": null,
+          "ID": "DEI26CAM01",
+          "FECHA_INSTALACION": 1576281600000,
+          "FECHA_DESMONTE": null
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 1637,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.07395439999999,
+            4.606383199848721
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1637,
+          "DIRECCION_FOTODETECCION": "AV CR 10 - CL 18 (S-N)",
+          "LATITUD": 4.6063832,
+          "LONGITUD": -74.0739544,
+          "CORREDOR": "Avenida Carrera 10",
+          "LOCALIDAD": "03",
+          "TIPO_FOTODETECCION": "Movil",
+          "TIPO_CAMARA": "Automática",
+          "ESTADO_PUNTO": "Desmontada - novedad",
+          "AUTORIZACION_OPERACION": "793 de 2025",
+          "ULTIMO_MANTENIMIENTO": null,
+          "CICLO_MANTENIMIENTO": null,
+          "VELOCIDAD_FISCALIZACION": 50,
+          "INFRACCIONES": "C14, C29, C35, D02, D04",
+          "ULTIMA_CALIBRACION": null,
+          "OBSERVACIONES": "PUNTO PARA CÁMARA MÓVIL",
+          "ID": "DEI27CAM01",
+          "FECHA_INSTALACION": null,
+          "FECHA_DESMONTE": null
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 1644,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.15285749999998,
+            4.617070599848369
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1644,
+          "DIRECCION_FOTODETECCION": "AV PRIMERO DE MAYO - CL 40 SUR",
+          "LATITUD": 4.6170706,
+          "LONGITUD": -74.1528575,
+          "CORREDOR": "Avenida Primero de Mayo",
+          "LOCALIDAD": "08",
+          "TIPO_FOTODETECCION": "Fijo",
+          "TIPO_CAMARA": "Semi-automática",
+          "ESTADO_PUNTO": "Desmontada - novedad",
+          "AUTORIZACION_OPERACION": "272 de 2025",
+          "ULTIMO_MANTENIMIENTO": null,
+          "CICLO_MANTENIMIENTO": null,
+          "VELOCIDAD_FISCALIZACION": null,
+          "INFRACCIONES": "C14, C32",
+          "ULTIMA_CALIBRACION": null,
+          "OBSERVACIONES": "DESMONTADA POR OBRAS IDU",
+          "ID": "Cam74XTS",
+          "FECHA_INSTALACION": null,
+          "FECHA_DESMONTE": null
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 1647,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -74.13326119999999,
+            4.630217699847966
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1647,
+          "DIRECCION_FOTODETECCION": "AV AMÉRICAS - CR 71A (E-O) CR. LEN",
+          "LATITUD": 4.6302177,
+          "LONGITUD": -74.1332612,
+          "CORREDOR": "Avenida Américas",
+          "LOCALIDAD": "08",
+          "TIPO_FOTODETECCION": "Fijo",
+          "TIPO_CAMARA": "Automática",
+          "ESTADO_PUNTO": "Desmontada - novedad",
+          "AUTORIZACION_OPERACION": "825 de 2025",
+          "ULTIMO_MANTENIMIENTO": 1774915200000,
+          "CICLO_MANTENIMIENTO": 20,
+          "VELOCIDAD_FISCALIZACION": 50,
+          "INFRACCIONES": "C14, C29, C35, D02",
+          "ULTIMA_CALIBRACION": null,
+          "OBSERVACIONES": "CÁMARA DIAGNOSTICADA EN DAÑO",
+          "ID": "DEI39CAM02",
+          "FECHA_INSTALACION": 1669075200000,
+          "FECHA_DESMONTE": 1772755200000
+        }
+      }
+    ]
+  }
+}

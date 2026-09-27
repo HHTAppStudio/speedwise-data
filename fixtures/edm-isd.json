@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1789375843
+  },
+  "raw": [
+    {
+      "site_id": "ED1027",
+      "approach": "23 Avenue",
+      "cross_street": "at 91 Street",
+      "travel_direction": "Westbound",
+      "posted_speed": "60 km/h",
+      "activation_date": "2020-08-12T00:00:00.000",
+      "reason_code_s": "(a)",
+      "code_description": "Higher Frequency of Collisions.",
+      "latitude": "53.45190871",
+      "longitude": "-113.4657289",
+      "geo_location": {
+        "latitude": "53.45190871",
+        "longitude": "-113.4657289",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      "geometry_point": {
+        "type": "Point",
+        "coordinates": [
+          -113.4657289,
+          53.45190871
+        ]
+      },
+      "location_assessment": "https://drive.google.com/file/d/1Obcn31lLsYFW1ltNBS7yeI0hRQlfkSYS/view?usp=drivesdk",
+      ":@computed_region_ecxu_fw7u": "34",
+      ":@computed_region_izdr_ja4x": "9",
+      ":@computed_region_5jki_au6x": "7",
+      ":@computed_region_mnf4_kaez": "3",
+      ":@computed_region_7ccj_gre3": "52"
+    },
+    {
+      "site_id": "ED1052",
+      "approach": "Whitemud Drive",
+      "cross_street": "at Gateway Blvd",
+      "travel_direction": "Westbound",
+      "posted_speed": "60 km/h",
+      "activation_date": "2018-09-17T00:00:00.000",
+      "reason_code_s": "(a)(b)",
+      "code_description": "Higher Frequency of Collisions.Higher Frequency of Speeding.",
+      "latitude": "53.4809868",
+      "longitude": "-113.4921173",
+      "geo_location": {
+        "latitude": "53.4809868",
+        "longitude": "-113.4921173",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      "geometry_point": {
+        "type": "Point",
+        "coordinates": [
+          -113.4921173,
+          53.4809868
+        ]
+      },
+      "location_assessment": "https://drive.google.com/file/d/132OItmVoWHlP568VkHhVDStptMPtScC_/view?usp=drivesdk",
+      ":@computed_region_ecxu_fw7u": "20",
+      ":@computed_region_izdr_ja4x": "6",
+      ":@computed_region_5jki_au6x": "5",
+      ":@computed_region_mnf4_kaez": "2",
+      ":@computed_region_7ccj_gre3": "127"
+    },
+    {
+      "site_id": "ED1068",
+      "approach": "170 Street",
+      "cross_street": "at 69 Avenue",
+      "travel_direction": "Southbound",
+      "posted_speed": "60 km/h",
+      "activation_date": "2018-09-17T00:00:00.000",
+      "reason_code_s": "(a)(c)",
+      "code_description": "Higher Frequency of Collisions.History of Red-Light Offences.",
+      "latitude": "53.5049067",
+      "longitude": "-113.6157943",
+      "geo_location": {
+        "latitude": "53.5049067",
+        "longitude": "-113.6157943",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      "geometry_point": {
+        "type": "Point",
+        "coordinates": [
+          -113.6157943,
+          53.5049067
+        ]
+      },
+      "location_assessment": "https://drive.google.com/file/d/1Wb7Fn9YqWY_hMxcH-4PJC_fPUiox450_/view?usp=drivesdk",
+      ":@computed_region_ecxu_fw7u": "179",
+      ":@computed_region_izdr_ja4x": "5",
+      ":@computed_region_5jki_au6x": "4",
+      ":@computed_region_mnf4_kaez": "8",
+      ":@computed_region_7ccj_gre3": "60"
+    },
+    {
+      "site_id": "ED2093",
+      "approach": "62 Avenue",
+      "cross_street": "at 199 Street",
+      "travel_direction": "Westbound",
+      "posted_speed": "60 km/h",
+      "activation_date": "2020-02-10T00:00:00.000",
+      "reason_code_s": "(a)",
+      "code_description": "Higher Frequency of Collisions.",
+      "latitude": "53.493832",
+      "longitude": "-113.665171",
+      "geo_location": {
+        "latitude": "53.493832",
+        "longitude": "-113.665171",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      "geometry_point": {
+        "type": "Point",
+        "coordinates": [
+          -113.665171,
+          53.493832
+        ]
+      },
+      "location_assessment": "https://drive.google.com/file/d/16E_Ur6sNmt-q81LRVJZeNi35UEtaULM_/view?usp=drivesdk",
+      ":@computed_region_ecxu_fw7u": "5",
+      ":@computed_region_izdr_ja4x": "5",
+      ":@computed_region_5jki_au6x": "4",
+      ":@computed_region_mnf4_kaez": "8",
+      ":@computed_region_7ccj_gre3": "292"
+    },
+    {
+      "site_id": "ED2078",
+      "approach": "153 Avenue",
+      "cross_street": "at 127 Street",
+      "travel_direction": "Westbound",
+      "posted_speed": "60 km/h",
+      "activation_date": "2019-06-17T00:00:00.000",
+      "reason_code_s": "(a)",
+      "code_description": "Higher Frequency of Collisions.",
+      "latitude": "53.617021",
+      "longitude": "-113.54053",
+      "geo_location": {
+        "latitude": "53.617021",
+        "longitude": "-113.54053",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      "geometry_point": {
+        "type": "Point",
+        "coordinates": [
+          -113.54053,
+          53.617021
+        ]
+      },
+      "location_assessment": "https://drive.google.com/file/d/1wUHpdxVO-bkMlp5zyykd2I6pK5dk7298/view?usp=drivesdk",
+      ":@computed_region_ecxu_fw7u": "225",
+      ":@computed_region_izdr_ja4x": "1",
+      ":@computed_region_5jki_au6x": "1",
+      ":@computed_region_mnf4_kaez": "6",
+      ":@computed_region_7ccj_gre3": "190"
+    }
+  ]
+}

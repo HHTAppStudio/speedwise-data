@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "modified": 1754063662000
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.26421374230878,
+            44.00641872350775
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "AssetID": "3026",
+          "MUNICIPALITY": "Whitchurch-Stouffville",
+          "LOCATIONDESC": "Bloomington Avenue and Ninth Line",
+          "LIFECYCLESTATUS": "Active",
+          "INSTALLYEAR": 2017
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.42031365397088,
+            43.83852272557614
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "AssetID": "3050",
+          "MUNICIPALITY": "Richmond Hill",
+          "LOCATIONDESC": "Highway 7 and Red Maple Road",
+          "LIFECYCLESTATUS": "Active",
+          "INSTALLYEAR": 2018
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.42871996031941,
+            43.93106763706872
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "AssetID": "3042",
+          "MUNICIPALITY": "Richmond Hill",
+          "LOCATIONDESC": "Stouffville Road and Bayview Avenue",
+          "LIFECYCLESTATUS": "Active",
+          "INSTALLYEAR": 2017
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.53920870037383,
+            43.82932992229483
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "AssetID": "3041",
+          "MUNICIPALITY": "Vaughan",
+          "LOCATIONDESC": "Rutherford Road and Sweetriver Boulevard/Vaughan Mills Mall",
+          "LIFECYCLESTATUS": "Active",
+          "INSTALLYEAR": 2017
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.41437936894766,
+            44.20422657081792
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "AssetID": "3040",
+          "MUNICIPALITY": "Georgina",
+          "LOCATIONDESC": "Ravenshoe Road and Warden Avenue",
+          "LIFECYCLESTATUS": "Active",
+          "INSTALLYEAR": 2017
+        }
+      }
+    ]
+  }
+}

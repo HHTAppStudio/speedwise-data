@@ -1,6 +1,6 @@
 # speedwise-data
 
-Pipeline dữ liệu camera của app **Speedwise**. Tải vị trí camera **chính thức** do thành phố/quận/bang Mỹ công bố (open data), chuẩn hoá về schema data pack của app, rồi xuất ra thư mục `public/` (GitHub Pages phục vụ thư mục này, app tự tải về).
+Pipeline dữ liệu camera của app **Speedwise**. Tải vị trí camera **chính thức** do thành phố/quận/bang/quốc gia công bố (open data), chuẩn hoá về schema data pack của app, rồi xuất ra thư mục `public/` (GitHub Pages phục vụ thư mục này, app tự tải về). Mỹ: 1 pack/bang (mph). Ngoài Mỹ: 1 pack/quốc gia (km/h).
 
 Chỉ dùng thư viện chuẩn Python 3 — không cần `pip install`. Không API key.
 
@@ -16,7 +16,8 @@ python3 -m unittest -v                      # test, chỉ dùng fixtures/, khôn
 Sau khi chạy: đọc `REPORT.md` (mỗi nguồn tải OK/lỗi, số dòng, số camera, lý do bị loại, tổng theo bang), rồi commit.
 
 Lưu ý:
-- **Socrata chặn IP ngoài Mỹ** (data.cityofchicago.org, data.sf.gov, data.montgomerycountymd.gov, data.nola.gov trả 403). Chạy từ Việt Nam cần VPN Mỹ; GitHub Actions không bị.
+- **Socrata chặn IP ngoài Mỹ** (data.cityofchicago.org, data.sf.gov, data.montgomerycountymd.gov, data.nola.gov, data.edmonton.ca, data.calgary.ca trả 403). Chạy từ Việt Nam cần VPN Mỹ; GitHub Actions không bị.
+- **Brazil / Colombia chặn IP Việt Nam**: dados.antt.gov.br (từ chối), ckan.pbh.gov.br (403), sig.simur.gov.co (timeout). Qua VPN Mỹ thì đọc được.
 - Python cài từ python.org trên macOS không đọc chứng chỉ gốc của hệ thống → script tự xuất từ keychain ra `cache/macos-roots.pem` (chỉ trên Mac).
 - Một nguồn lỗi không làm dừng các nguồn khác: camera của nguồn đó được **giữ từ pack cũ**, REPORT ghi lý do.
 
@@ -25,12 +26,13 @@ Lưu ý:
 | File | Vai trò |
 |---|---|
 | `sources.json` | Danh sách nguồn + cách map trường (bảng dưới) |
-| `state_bboxes.json` | Khung toạ độ từng bang — toạ độ ngoài khung bị loại |
+| `state_bboxes.json` | Khung toạ độ từng bang/quốc gia — toạ độ ngoài khung bị loại |
 | `build_packs.py` | Script chính |
 | `test_build_packs.py` | Unittest |
 | `fixtures/<id>.json` | ≤ 5 dòng thật của mỗi nguồn, lưu tự động ở lần tải đầu (chỉ dùng cho test) |
 | `public/regions.json` | Danh sách vùng cho app (+ `sources` để hiện attribution) |
-| `public/packs/us-xx.vN.json` | Data pack từng bang |
+| `public/packs/us-xx.vN.json` | Data pack từng bang Mỹ (`unit: "mph"`) |
+| `public/packs/<cc>.vN.json` | Data pack từng quốc gia ngoài Mỹ (`ca`, `br`…; `unit: "kmh"`) |
 | `manifest.json` | Hash nội dung + version hiện tại của từng pack |
 | `REPORT.md` | Báo cáo lần chạy gần nhất. Phần dưới dòng `<!-- PHẦN VIẾT TAY … -->` là viết tay, script giữ nguyên |
 | `cache/` | Dữ liệu thô lần tải gần nhất (không commit) |
@@ -39,37 +41,46 @@ Lưu ý:
 
 - `source` luôn `"openData"`, thêm `sourceId` = id nguồn.
 - **Hướng** (hướng xe chạy bị giám sát): tách từ chữ — NB/N/B/Northbound → 0, NEB → 45, EB → 90, SEB → 135, SB → 180, SWB → 225, WB → 270, NWB → 315. Không có hướng, hoặc chuỗi có nhiều hướng khác nhau → `null`.
-- **Limit**: chỉ lấy khi nguồn ghi đúng một con số (mph). Không có / nhiều số ("35 MPH / 20 MPH during school zone hours") → `null`. **Không đoán.**
+- **Limit**: chỉ lấy khi nguồn ghi đúng một con số, theo đơn vị của pack (mph ở Mỹ, tối đa 85; km/h ngoài Mỹ, tối đa 140). Không có / nhiều số ("35 MPH / 20 MPH during school zone hours") → `null`. **Không đoán.**
+- **Hướng tiếng khác**: nguồn khai `directionWords` (ví dụ Québec `"en direction est": "E"`, Bogotá `"(S-N)": "N"`). Chữ như "Rue Sainte-Catherine Est" không phải hướng → không khớp.
 - `roadName`: bỏ chữ hướng, "@"/"at" → "&", chuẩn hoá hoa/thường khi nguồn viết toàn chữ hoa.
-- **Confidence**: `baseConfidence` khi dòng có trạng thái active; nguồn không có trạng thái → tối đa 80 (tier A) / 75 (tier B); dataset cập nhật > 12 tháng → −10; tối thiểu 50.
+- **Confidence**: `baseConfidence` khi dòng có trạng thái active; nguồn không có trạng thái → tối đa 80 (tier A) / 75 (tier B); `typeConfidence` ghi đè theo loại (điểm đặt camera **mobile** được duyệt: 60 — docs/04_TECH_SPEC.md mục 12.3); dataset cập nhật > 12 tháng → −10; tối thiểu 50.
 - `lastConfirmedAt` = ngày cập nhật dataset, hoặc ngày go-live của camera nếu mới hơn. Go-live trong tương lai → chưa đưa vào.
 - **ID ổn định** (vote của người dùng gắn vào id): `<region>-<sourceId>-<key>[-<nb|sb|…>]`. Hậu tố hướng chỉ có ở nguồn tách theo approach. Không có key → 10 ký tự đầu SHA1 của `lat|lon|type|heading`.
 - **Gộp trùng** trong cùng bang: cùng type, hướng lệch ≤ 30° (hoặc cả hai null), cách ≤ 30 m → giữ bản confidence cao hơn (bằng nhau thì tier A).
 - **Version**: pack chỉ tăng version khi hash nội dung đổi; file version cũ bị xoá. `regions.json` tăng `version` khi nội dung đổi. `updatedAt` của vùng = ngày pack đổi version gần nhất.
-- `regions.json` lấy template `../Speedwise/Resources/DataPacks/regions.json` (khi chạy trong repo app); không có thì dùng chính `public/regions.json` hiện tại. Bang Mỹ không có pack → "Community only" (không `packURL`, `cameraCount` 0).
+- `regions.json` lấy template `../Speedwise/Resources/DataPacks/regions.json` (khi chạy trong repo app); không có thì dùng chính `public/regions.json` hiện tại. Vùng mới của CR-D2 (HK, AR, CO) thêm từ `ADDED_REGIONS` trong `build_packs.py` nếu template chưa có. Bang Mỹ không có pack → "Community only" (không `packURL`, `cameraCount` 0).
+- **Trạng thái pháp lý** (docs/04_TECH_SPEC.md mục 12.4): vùng `comingSoon` có pack ≥ 1 camera → `full` (bỏ `legalNote` "Not available yet"). Vùng `restricted` / `blocked` (BE, DE, LU…) **không bao giờ** bị pipeline đổi, và không có `packURL` dù pack vẫn được sinh ra.
+- **Kích thước pack**: > 3 MB → ghi JSON rút gọn (không khoảng trắng, bỏ trường null — app coi trường thiếu là null). > 8 MB → script dừng (cần quyết định tách pack).
 
 ## Thêm một nguồn
 
-1. Chỉ dùng open data **chính thức** của cơ quan nhà nước (Socrata / ArcGIS REST). Không scrape HTML, không OpenStreetMap, không dữ liệu app/web thương mại.
+1. Chỉ dùng open data **chính thức** của cơ quan nhà nước (Socrata / ArcGIS REST / WFS / CKAN / file CSV-GeoJSON do cơ quan công bố). Không scrape HTML/PDF, không OpenStreetMap, không dữ liệu app/web thương mại. Danh sách nguồn quốc tế được duyệt: docs/04_TECH_SPEC.md mục 12.2 — muốn thêm nguồn khác phải hỏi trước.
 2. Gọi metadata xem tên trường thật (`https://<domain>/api/views/<id>.json` hoặc `<layer>?f=json`).
 3. Thêm 1 mục vào `sources.json`:
 
    | Trường | Ý nghĩa |
    |---|---|
    | `id`, `enabled`, `tier` | `tier` A = có license mở / terms cho dùng lại; B = cơ quan công khai nhưng không ghi license |
-   | `region`, `coverage` | "US-DC"; `coverage` ghép vào `coverageNote` của vùng |
+   | `region`, `coverage` | "US-DC" (bang Mỹ) hoặc mã quốc gia "CA", "BR"…; `coverage` ghép vào `coverageNote` của vùng |
    | `publisher`, `name`, `landingURL`, `license`, `attribution` | Hiện trong app (màn Data sources) |
-   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson` |
+   | `endpoint`, `format` | `arcgis-geojson` (thêm `outSR=4326&f=geojson`), `socrata-json`, `socrata-geojson`, `wfs-geojson` (thêm `outputFormat=geojson&srsName=EPSG:4326`), `geojson` (file GeoJSON; Point hoặc MultiPoint 1 điểm), `csv` |
+   | `csv` | (chỉ format `csv`) `{"delimiter": ";", "decimalComma": true, "encoding": "latin-1"}` — mặc định `,` / dấu chấm / UTF-8 |
+   | `utm` | (tuỳ chọn) `{"zone": 23, "south": true}` — toạ độ nguồn là UTM (x/y hoặc WKT) → đổi sang WGS84 bằng `utm_to_wgs84` |
+   | `ckanResource` | (tuỳ chọn) file đổi tên mỗi kỳ: `endpoint` là CKAN `package_show`, lấy resource mới nhất (theo `created`) có tên khớp `namePattern` và đúng `format` |
+   | `codedValues` | (tuỳ chọn, ArcGIS) `{"url": "<layer>?f=json", "fields": [...]}` — đổi mã số sang tên trong bảng coded-value ("1" → "1-Approved") trước khi lọc |
    | `metadata` | `{"url", "dateKey"}` — nơi đọc ngày cập nhật dataset (`rowsUpdatedAt`, `editingInfo.lastEditDate`, `modified`); `null` nếu không có |
    | `rowDateField` | (tuỳ chọn) lấy ngày lớn nhất của trường này khi không có metadata |
    | `typeMap` | `{"const": "redLight"}` hoặc `{"field", "values": {giá trị nguồn: type}}`; giá trị không có trong `values` bị loại. `schoolZoneIfField`: speed → schoolZone khi trường này có giá trị |
+   | `typeConfidence` | (tuỳ chọn) `{"mobile": 60}` — confidence cố định cho loại đó |
+   | `directionWords` | (tuỳ chọn) `{cụm từ: mã hướng}` cho ngôn ngữ khác tiếng Anh, khớp nguyên từ |
    | `filters` | `[{"field", "in": [...]}]`, `{"notIn": [...]}`, `{"empty": true}` |
-   | `fieldMap` | `lat`, `lon` (Socrata) hoặc `point`; ArcGIS dùng geometry. `key`, `road` (danh sách trường, lấy trường đầu có giá trị), `direction`, `limit`, `goLive`, `active` = `{"field", "activeValues", "inactiveValues"}` |
+   | `fieldMap` | `lat`, `lon` (Socrata, CSV; với GeoJSON là dự phòng khi geometry trống) hoặc `point`; CSV còn có `x`/`y` hoặc `wkt` ("POINT (x y)"); GeoJSON/ArcGIS/WFS dùng geometry. `key` (+ `keyPattern`: regex, lấy nhóm 1), `road` (danh sách trường, lấy trường đầu có giá trị; `roadPattern`: regex, lấy nhóm 1) hoặc `roadFormat` ("{rodovia} km {km_m} · {sentido}" — ghép nhiều trường), `direction`, `limit`, `goLive`, `active` = `{"field", "activeValues", "inactiveValues"}` |
    | `approaches` | (tuỳ chọn) các trường approach → 1 camera cho mỗi approach |
    | `latestPeriodField` | (tuỳ chọn) chỉ giữ dòng của kỳ mới nhất (ví dụ "2024 Q4") |
    | `baseConfidence` | Confidence khi dòng active (thường 90 cho A, 80 cho B) |
 
-4. Nếu bang chưa có trong `state_bboxes.json` thì thêm khung toạ độ.
+4. Nếu bang/quốc gia chưa có trong `state_bboxes.json` thì thêm khung toạ độ.
 5. `python3 build_packs.py --only <id>` → đọc REPORT.md, mở vài toạ độ trên Apple Maps xem có đúng đường không → `python3 -m unittest -v` → commit.
 
 ## Publish

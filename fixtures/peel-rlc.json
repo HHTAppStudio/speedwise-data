@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1772733557466
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.7088824738075,
+            43.753295387889
+          ]
+        },
+        "properties": {
+          "OBJECTID_1": 1,
+          "OBJECTID": 1,
+          "MUN": "Brampton",
+          "CAMERA_NUM": 4,
+          "NAME": "Airport Road @ Williams Parkway",
+          "Street": "Airport Road",
+          "StrInt1": "Williams Parkway",
+          "StrInt2": " ",
+          "Latitude": 43.7532953879,
+          "Longitude": -79.7088824738
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.6424840076817,
+            43.7035989854289
+          ]
+        },
+        "properties": {
+          "OBJECTID_1": 2,
+          "OBJECTID": 2,
+          "MUN": "Mississauga",
+          "CAMERA_NUM": 11,
+          "NAME": "Derry Road @ Airport Road",
+          "Street": "Derry Road",
+          "StrInt1": "Airport Road",
+          "StrInt2": " ",
+          "Latitude": 43.7035989854,
+          "Longitude": -79.6424840077
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.6272914444815,
+            43.7162873067057
+          ]
+        },
+        "properties": {
+          "OBJECTID_1": 3,
+          "OBJECTID": 3,
+          "MUN": "Mississauga",
+          "CAMERA_NUM": 12,
+          "NAME": "Derry Road @ Rexwood Road",
+          "Street": "Derry Road",
+          "StrInt1": "Rexwood Road",
+          "StrInt2": " ",
+          "Latitude": 43.7162873067,
+          "Longitude": -79.6272914445
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.7551302881505,
+            43.6123464937134
+          ]
+        },
+        "properties": {
+          "OBJECTID_1": 4,
+          "OBJECTID": 4,
+          "MUN": "Mississauga",
+          "CAMERA_NUM": 25,
+          "NAME": "Mississauga Rd @ Meadowvale Boulevard",
+          "Street": "Mississauga Rd",
+          "StrInt1": "Meadowvale Boulevard",
+          "StrInt2": " ",
+          "Latitude": 43.6123464937,
+          "Longitude": -79.7551302882
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -79.6898839220036,
+            43.550863300964
+          ]
+        },
+        "properties": {
+          "OBJECTID_1": 5,
+          "OBJECTID": 5,
+          "MUN": "Mississauga",
+          "CAMERA_NUM": 23,
+          "NAME": "Erin Mills Parkway @ Folkway Drive",
+          "Street": "Erin Mills Parkway",
+          "StrInt1": "Folkway Drive",
+          "StrInt2": " ",
+          "Latitude": 43.550863301,
+          "Longitude": -79.689883922
+        }
+      }
+    ]
+  }
+}

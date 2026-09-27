@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "regions": [
     {
       "code": "US-NY",
@@ -29,8 +29,8 @@
       "status": "full",
       "cameraCount": 282,
       "updatedAt": "2026-09-27",
-      "packURL": "packs/us-dc.v1.json",
-      "packVersion": 1,
+      "packURL": "packs/us-dc.v2.json",
+      "packVersion": 2,
       "coverageNote": "Washington, DC"
     },
     {
@@ -123,7 +123,11 @@
       "countryCode": "US",
       "countryName": "United States",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 156,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-ia.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Iowa (DOT-approved sites)"
     },
     {
       "code": "US-LA",
@@ -287,7 +291,11 @@
       "countryCode": "CA",
       "countryName": "Canada",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 815,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/ca.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Québec, Toronto, Ottawa, York Region, Hamilton, Peel Region, Kingston, Edmonton, Calgary"
     },
     {
       "code": "GB",
@@ -685,9 +693,44 @@
       "name": "Brazil",
       "countryCode": "BR",
       "countryName": "Brazil",
-      "status": "comingSoon",
-      "cameraCount": 0,
-      "legalNote": "Not available yet. Coming in a later version."
+      "status": "full",
+      "cameraCount": 1299,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/br.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Federal toll highways (ANTT), Belo Horizonte"
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "countryCode": "HK",
+      "countryName": "Hong Kong",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "countryCode": "AR",
+      "countryName": "Argentina",
+      "status": "full",
+      "cameraCount": 90,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/ar.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Buenos Aires (CABA)"
+    },
+    {
+      "code": "CO",
+      "name": "Colombia",
+      "countryCode": "CO",
+      "countryName": "Colombia",
+      "status": "full",
+      "cameraCount": 48,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/co.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Bogotá"
     }
   ],
   "sources": [
@@ -699,7 +742,7 @@
       "license": "CC BY 4.0",
       "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
       "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
-      "updatedAt": "2026-09-26",
+      "updatedAt": "2026-09-27",
       "cameraCount": 282
     },
     {
@@ -866,6 +909,160 @@
       "landingURL": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Boundary_and_Point/FeatureServer/29",
       "updatedAt": null,
       "cameraCount": 60
+    },
+    {
+      "id": "qc-mtmd",
+      "region": "CA",
+      "name": "Radar photo",
+      "publisher": "Ministère des Transports et de la Mobilité durable du Québec (MTMD)",
+      "license": "CC BY 4.0",
+      "attribution": "Photo radar and red light camera locations © Ministère des Transports et de la Mobilité durable du Québec, licensed under CC BY 4.0.",
+      "landingURL": "https://www.donneesquebec.ca/recherche/dataset/radar-photo",
+      "updatedAt": "2026-09-10",
+      "cameraCount": 160
+    },
+    {
+      "id": "tor-rlc",
+      "region": "CA",
+      "name": "Red Light Cameras",
+      "publisher": "City of Toronto (Transportation Services)",
+      "license": "Open Government Licence – Toronto",
+      "attribution": "Contains information licensed under the Open Government Licence – Toronto.",
+      "landingURL": "https://open.toronto.ca/dataset/red-light-cameras/",
+      "updatedAt": "2026-09-26",
+      "cameraCount": 295
+    },
+    {
+      "id": "ott-rlc",
+      "region": "CA",
+      "name": "Red Light Camera Locations",
+      "publisher": "City of Ottawa",
+      "license": "City of Ottawa Open Data Licence v2.0",
+      "attribution": "Red light camera locations: City of Ottawa, City of Ottawa Open Data Licence v2.0.",
+      "landingURL": "https://open.ottawa.ca/datasets/ottawa::red-light-camera-locations",
+      "updatedAt": "2026-08-12",
+      "cameraCount": 86
+    },
+    {
+      "id": "york-rlc",
+      "region": "CA",
+      "name": "Red Light Camera",
+      "publisher": "The Regional Municipality of York",
+      "license": "York Region Open Data Licence",
+      "attribution": "Red light camera locations: The Regional Municipality of York, York Region Open Data Licence.",
+      "landingURL": "https://insights-york.opendata.arcgis.com/datasets/york::red-light-camera",
+      "updatedAt": "2025-08-01",
+      "cameraCount": 55
+    },
+    {
+      "id": "ham-rlc",
+      "region": "CA",
+      "name": "Red Light Cameras",
+      "publisher": "City of Hamilton",
+      "license": "City of Hamilton Open Data Licence",
+      "attribution": "Red light camera locations: City of Hamilton, City of Hamilton Open Data Licence.",
+      "landingURL": "https://open.hamilton.ca/datasets/d880b4ad9b5c4e44b073d6d007e4df68",
+      "updatedAt": "2026-09-26",
+      "cameraCount": 51
+    },
+    {
+      "id": "peel-rlc",
+      "region": "CA",
+      "name": "Red Light Cameras",
+      "publisher": "Region of Peel",
+      "license": "Open Data Licence – The Regional Municipality of Peel v1.0",
+      "attribution": "Red light camera locations: The Regional Municipality of Peel, Open Data Licence v1.0.",
+      "landingURL": "https://data.peelregion.ca/datasets/RegionofPeel::red-light-cameras",
+      "updatedAt": "2026-03-05",
+      "cameraCount": 37
+    },
+    {
+      "id": "king-rlc",
+      "region": "CA",
+      "name": "Red Light Cameras",
+      "publisher": "City of Kingston",
+      "license": "City of Kingston Open Data Licence",
+      "attribution": "Red light camera locations: City of Kingston, City of Kingston Open Data Licence.",
+      "landingURL": "https://opendatakingston.cityofkingston.ca/datasets/red-light-cameras-2",
+      "updatedAt": "2025-01-09",
+      "cameraCount": 7
+    },
+    {
+      "id": "edm-isd",
+      "region": "CA",
+      "name": "Intersection Safety Device Locations",
+      "publisher": "City of Edmonton",
+      "license": "Open Government Licence – Edmonton",
+      "attribution": "Intersection safety device locations: City of Edmonton, Open Government Licence – Edmonton.",
+      "landingURL": "https://data.edmonton.ca/d/7fnd-72gr",
+      "updatedAt": "2026-09-14",
+      "cameraCount": 67
+    },
+    {
+      "id": "cal-isc",
+      "region": "CA",
+      "name": "Intersection Safety Cameras",
+      "publisher": "The City of Calgary",
+      "license": "Open Government Licence – City of Calgary",
+      "attribution": "Contains information licensed under the Open Government Licence – City of Calgary.",
+      "landingURL": "https://data.calgary.ca/d/dv2f-necx",
+      "updatedAt": "2026-09-01",
+      "cameraCount": 57
+    },
+    {
+      "id": "ia-ate",
+      "region": "US-IA",
+      "name": "Automated Traffic Enforcement (ATE) Locations",
+      "publisher": "Iowa Department of Transportation",
+      "license": "Not specified",
+      "attribution": "Automated traffic enforcement approved locations: Iowa Department of Transportation.",
+      "landingURL": "https://experience.arcgis.com/experience/e4b9628314114b27aa0e8ca602fb607e",
+      "updatedAt": null,
+      "cameraCount": 156
+    },
+    {
+      "id": "caba-fijas",
+      "region": "AR",
+      "name": "Cámaras fijas de control vehicular",
+      "publisher": "Gobierno de la Ciudad de Buenos Aires",
+      "license": "CC BY 2.5 AR",
+      "attribution": "Cámaras fijas de control vehicular © Gobierno de la Ciudad de Buenos Aires (Buenos Aires Data), licensed under CC BY 2.5 AR.",
+      "landingURL": "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
+      "updatedAt": null,
+      "cameraCount": 90
+    },
+    {
+      "id": "antt-radares",
+      "region": "BR",
+      "name": "Dados dos Radares",
+      "publisher": "Agência Nacional de Transportes Terrestres (ANTT)",
+      "license": "CC BY",
+      "attribution": "Dados dos Radares © Agência Nacional de Transportes Terrestres (ANTT), licensed under Creative Commons Attribution.",
+      "landingURL": "https://dados.antt.gov.br/dataset/radar",
+      "updatedAt": "2026-08-28",
+      "cameraCount": 1080
+    },
+    {
+      "id": "bh-fiscalizacao",
+      "region": "BR",
+      "name": "Fiscalização Eletrônica",
+      "publisher": "Prefeitura de Belo Horizonte (BHTRANS)",
+      "license": "CC BY",
+      "attribution": "Fiscalização Eletrônica © Prefeitura de Belo Horizonte, licensed under Creative Commons Attribution.",
+      "landingURL": "https://dados.pbh.gov.br/dataset/fiscalizacao-eletronica",
+      "updatedAt": "2026-09-15",
+      "cameraCount": 219
+    },
+    {
+      "id": "bog-salvavidas",
+      "region": "CO",
+      "name": "Cámaras Salvavidas",
+      "publisher": "Secretaría Distrital de Movilidad de Bogotá (SDM)",
+      "license": "CC BY 4.0",
+      "attribution": "Cámaras Salvavidas © Secretaría Distrital de Movilidad de Bogotá, licensed under CC BY 4.0.",
+      "landingURL": "https://datosabiertos.bogota.gov.co/dataset/camaras-salvavidas-bogota-d-c",
+      "updatedAt": "2026-08-24",
+      "cameraCount": 48
     }
   ]
 }
