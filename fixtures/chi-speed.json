@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1787652736
+  },
+  "raw": [
+    {
+      "id": "195",
+      "location_id": "CHI015",
+      "address": "3450 W 71st St",
+      "first_approach": "WB",
+      "second_approach": "EB",
+      "go_live_date": "2013-09-06T00:00:00.000",
+      "latitude": "41.7644",
+      "longitude": "-87.7097",
+      "location": {
+        "latitude": "41.7644",
+        "longitude": "-87.7097",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "6",
+      ":@computed_region_6mkv_f3dw": "21867",
+      ":@computed_region_vrxf_vc4k": "64",
+      ":@computed_region_bdys_3d7i": "383",
+      ":@computed_region_43wa_7qmu": "31"
+    },
+    {
+      "id": "232",
+      "location_id": "CHI039",
+      "address": "6247 W Fullerton Ave",
+      "first_approach": "EB",
+      "go_live_date": "2013-12-21T00:00:00.000",
+      "latitude": "41.9236",
+      "longitude": "-87.7825",
+      "location": {
+        "latitude": "41.9236",
+        "longitude": "-87.7825",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "52",
+      ":@computed_region_6mkv_f3dw": "22615",
+      ":@computed_region_vrxf_vc4k": "19",
+      ":@computed_region_bdys_3d7i": "77",
+      ":@computed_region_43wa_7qmu": "44"
+    },
+    {
+      "id": "233",
+      "location_id": "CHI040",
+      "address": "6250 W Fullerton Ave",
+      "first_approach": "WB",
+      "go_live_date": "2013-12-21T00:00:00.000",
+      "latitude": "41.9238",
+      "longitude": "-87.7826",
+      "location": {
+        "latitude": "41.9238",
+        "longitude": "-87.7826",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "52",
+      ":@computed_region_6mkv_f3dw": "22615",
+      ":@computed_region_vrxf_vc4k": "19",
+      ":@computed_region_bdys_3d7i": "78",
+      ":@computed_region_43wa_7qmu": "21"
+    },
+    {
+      "id": "227",
+      "location_id": "CHI041",
+      "address": "5509 W Fullerton Ave",
+      "first_approach": "EB",
+      "go_live_date": "2013-12-12T00:00:00.000",
+      "latitude": "41.9239",
+      "longitude": "-87.7639",
+      "location": {
+        "latitude": "41.9239",
+        "longitude": "-87.7639",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "4",
+      ":@computed_region_6mkv_f3dw": "22615",
+      ":@computed_region_vrxf_vc4k": "19",
+      ":@computed_region_bdys_3d7i": "307",
+      ":@computed_region_43wa_7qmu": "44"
+    },
+    {
+      "id": "226",
+      "location_id": "CHI042",
+      "address": "5446 W Fullerton Ave",
+      "first_approach": "WB",
+      "go_live_date": "2013-12-12T00:00:00.000",
+      "latitude": "41.9241",
+      "longitude": "-87.763",
+      "location": {
+        "latitude": "41.9241",
+        "longitude": "-87.763",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "27",
+      ":@computed_region_6mkv_f3dw": "22615",
+      ":@computed_region_vrxf_vc4k": "19",
+      ":@computed_region_bdys_3d7i": "80",
+      ":@computed_region_43wa_7qmu": "21"
+    }
+  ]
+}

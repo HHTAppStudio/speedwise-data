@@ -1,0 +1,604 @@
+[
+  {
+    "id": "dc-ddot-ase",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-DC",
+    "coverage": "Washington, DC",
+    "publisher": "District Department of Transportation (DDOT)",
+    "name": "Automated Safety Cameras",
+    "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
+    "endpoint": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Safety_WebMercator/MapServer/43/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/03d94dc6579949ae9d7c9dd8ffebeb89?f=json",
+      "dateKey": "modified"
+    },
+    "license": "CC BY 4.0",
+    "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
+    "typeMap": {
+      "field": "ENFORCEMENT_TYPE",
+      "values": {
+        "Speed": "speed",
+        "Red Light": "redLight"
+      }
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "SITE_CODE",
+      "road": [
+        "LOCATION_DESCRIPTION"
+      ],
+      "direction": [
+        "LOCATION_DESCRIPTION"
+      ],
+      "limit": "SPEED_LIMIT",
+      "active": {
+        "field": "ACTIVE_STATUS",
+        "activeValues": [
+          "Active"
+        ],
+        "inactiveValues": [
+          "Inactive"
+        ]
+      }
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "chi-speed",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-IL",
+    "coverage": "Chicago",
+    "publisher": "City of Chicago",
+    "name": "Speed Camera Locations",
+    "landingURL": "https://data.cityofchicago.org/d/4i42-qv3h",
+    "endpoint": "https://data.cityofchicago.org/resource/4i42-qv3h.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.cityofchicago.org/api/views/4i42-qv3h.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "City of Chicago Terms of Use",
+    "attribution": "This app uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data is subject to change at any time and is used at one's own risk.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "approaches": [
+      "first_approach",
+      "second_approach"
+    ],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "location_id",
+      "road": [
+        "address"
+      ],
+      "goLive": "go_live_date"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "chi-redlight",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-IL",
+    "coverage": "Chicago",
+    "publisher": "City of Chicago",
+    "name": "Red Light Camera Locations",
+    "landingURL": "https://data.cityofchicago.org/d/thvf-6diy",
+    "endpoint": "https://data.cityofchicago.org/resource/thvf-6diy.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.cityofchicago.org/api/views/thvf-6diy.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "City of Chicago Terms of Use",
+    "attribution": "This app uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data is subject to change at any time and is used at one's own risk.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "approaches": [
+      "first_approach",
+      "second_approach",
+      "third_approach"
+    ],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "intersection",
+      "road": [
+        "intersection"
+      ],
+      "goLive": "go_live_date"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "moco-speed",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-MD",
+    "coverage": "Montgomery County",
+    "publisher": "Montgomery County, Maryland",
+    "name": "Automated Speed Enforcement",
+    "landingURL": "https://data.montgomerycountymd.gov/d/uv5p-zm58",
+    "endpoint": "https://data.montgomerycountymd.gov/resource/uv5p-zm58.json?$limit=50000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.montgomerycountymd.gov/api/views/uv5p-zm58.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "Public Domain",
+    "attribution": "Speed camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "latestPeriodField": "quarter_name",
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "site_number",
+      "road": [
+        "address"
+      ],
+      "direction": [
+        "directions"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "moco-redlight",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-MD",
+    "coverage": "Montgomery County",
+    "publisher": "Montgomery County, Maryland",
+    "name": "Automated Red Light Enforcement",
+    "landingURL": "https://data.montgomerycountymd.gov/d/3cju-6hst",
+    "endpoint": "https://data.montgomerycountymd.gov/resource/3cju-6hst.json?$limit=50000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.montgomerycountymd.gov/api/views/3cju-6hst.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "Public Domain",
+    "attribution": "Red light camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "latestPeriodField": "quarter_name",
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "site_number",
+      "road": [
+        "address"
+      ],
+      "direction": [
+        "directions"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "sf-speed",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-CA",
+    "coverage": "San Francisco",
+    "publisher": "San Francisco Municipal Transportation Agency (SFMTA)",
+    "name": "Automated Speed Enforcement",
+    "landingURL": "https://data.sf.gov/d/d5uh-bk84",
+    "endpoint": "https://data.sf.gov/resource/d5uh-bk84.json?$select=site_id,location,posted_speed,latitude,longitude&$group=site_id,location,posted_speed,latitude,longitude&$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.sf.gov/api/views/d5uh-bk84.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "ODC PDDL",
+    "attribution": "Speed camera locations: SFMTA via DataSF, Open Data Commons Public Domain Dedication and License (PDDL).",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "lat": "latitude",
+      "lon": "longitude",
+      "key": "site_id",
+      "road": [
+        "location"
+      ],
+      "direction": [
+        "location"
+      ],
+      "limit": "posted_speed"
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "sf-redlight",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-CA",
+    "coverage": "San Francisco",
+    "publisher": "San Francisco Municipal Transportation Agency (SFMTA)",
+    "name": "Red Light Camera Citations (locations)",
+    "landingURL": "https://data.sf.gov/d/uzmr-g2uc",
+    "endpoint": "https://data.sf.gov/resource/uzmr-g2uc.json?$select=intersection,directions_enforced,point&$group=intersection,directions_enforced,point&$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.sf.gov/api/views/uzmr-g2uc.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "ODC PDDL",
+    "attribution": "Red light camera locations: SFMTA via DataSF, Open Data Commons Public Domain Dedication and License (PDDL).",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "approaches": [
+      "directions_enforced"
+    ],
+    "fieldMap": {
+      "point": "point",
+      "key": "intersection",
+      "road": [
+        "intersection"
+      ]
+    },
+    "baseConfidence": 90
+  },
+  {
+    "id": "nola-cams",
+    "enabled": true,
+    "tier": "A",
+    "region": "US-LA",
+    "coverage": "New Orleans",
+    "publisher": "City of New Orleans Department of Public Works",
+    "name": "Traffic Camera",
+    "landingURL": "https://data.nola.gov/d/te2d-4txp",
+    "endpoint": "https://data.nola.gov/resource/te2d-4txp.json?$limit=5000",
+    "format": "socrata-json",
+    "metadata": {
+      "url": "https://data.nola.gov/api/views/te2d-4txp.json",
+      "dateKey": "rowsUpdatedAt"
+    },
+    "license": "CC0 1.0",
+    "attribution": "Camera locations: City of New Orleans Department of Public Works (data.nola.gov), CC0. The City notes this listing may not reflect current camera locations.",
+    "typeMap": {
+      "field": "function",
+      "values": {
+        "RLC": "redLight",
+        "FS": "speed",
+        "TFS": "speed"
+      },
+      "schoolZoneIfField": "school_hour"
+    },
+    "filters": [],
+    "fieldMap": {
+      "point": "the_geom",
+      "key": "camid",
+      "road": [
+        "camloc"
+      ],
+      "direction": [
+        "dir"
+      ],
+      "goLive": "install",
+      "active": {
+        "field": "active",
+        "activeValues": [
+          "Yes"
+        ],
+        "inactiveValues": [
+          "No"
+        ]
+      }
+    },
+    "baseConfidence": 60
+  },
+  {
+    "id": "sea-atsc",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-WA",
+    "coverage": "Seattle",
+    "publisher": "Seattle Department of Transportation",
+    "name": "Automatic Traffic Safety Cameras (ATSC)",
+    "landingURL": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Automatic_Traffic_Safety_Cameras_(ATSC)_view/FeatureServer/0",
+    "endpoint": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Automatic_Traffic_Safety_Cameras_(ATSC)_view/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Automatic_Traffic_Safety_Cameras_(ATSC)_view/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Traffic safety camera locations: City of Seattle.",
+    "typeMap": {
+      "field": "Camera_Type",
+      "values": {
+        "Fixed School Zone": "schoolZone",
+        "Red Light": "redLight"
+      }
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "Site_ID",
+      "road": [
+        "SPD_Camera_Name"
+      ],
+      "direction": [
+        "SPD_Camera_Name"
+      ]
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "bal-redlight",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-MD",
+    "coverage": "Baltimore",
+    "publisher": "Baltimore City Department of Transportation",
+    "name": "ATVES Red Light Cameras",
+    "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/Baltimore_ATVES_Red_Light_Camera/FeatureServer/0",
+    "endpoint": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/Baltimore_ATVES_Red_Light_Camera/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/Baltimore_ATVES_Red_Light_Camera/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Red light camera locations: Baltimore City Department of Transportation (ATVES).",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "GIS_ID",
+      "road": [
+        "Location"
+      ],
+      "direction": [
+        "Location"
+      ]
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "bal-speed-fixed",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-MD",
+    "coverage": "Baltimore",
+    "publisher": "Baltimore City Department of Transportation",
+    "name": "ATVES Speed Cameras (Fixed)",
+    "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Fixed/FeatureServer/3",
+    "endpoint": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Fixed/FeatureServer/3/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Fixed/FeatureServer/3?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Speed camera locations: Baltimore City Department of Transportation (ATVES).",
+    "typeMap": {
+      "const": "speed",
+      "schoolZoneIfField": "SchlLocation"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "GIS_ID",
+      "road": [
+        "Location"
+      ],
+      "direction": [
+        "Location"
+      ],
+      "goLive": "Instln_Date"
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "bal-speed-portable",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-MD",
+    "coverage": "Baltimore",
+    "publisher": "Baltimore City Department of Transportation",
+    "name": "ATVES Speed Cameras (Portable)",
+    "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Portable/FeatureServer/1",
+    "endpoint": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Portable/FeatureServer/1/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Portable/FeatureServer/1?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Speed camera locations: Baltimore City Department of Transportation (ATVES).",
+    "typeMap": {
+      "const": "speed",
+      "schoolZoneIfField": "SchlLocation"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "GIS_ID",
+      "road": [
+        "Location"
+      ],
+      "direction": [
+        "Location"
+      ],
+      "goLive": "Instln_Date"
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "arl-speed",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-VA",
+    "coverage": "Arlington County",
+    "publisher": "Arlington County Department of Environmental Services",
+    "name": "DES Photo Speed Cameras",
+    "landingURL": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0",
+    "endpoint": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": null,
+    "rowDateField": "GeoSyncDate",
+    "license": "© Arlington County, Virginia",
+    "attribution": "Photo speed camera locations © Arlington County, Virginia, Department of Environmental Services.",
+    "typeMap": {
+      "const": "schoolZone"
+    },
+    "filters": [
+      {
+        "field": "Retired",
+        "empty": true
+      }
+    ],
+    "fieldMap": {
+      "key": "ID",
+      "road": [
+        "Street"
+      ],
+      "direction": [
+        "Direction"
+      ],
+      "limit": "BeaconSpeedLimit",
+      "goLive": "Installed",
+      "active": {
+        "field": "Active",
+        "activeValues": [
+          "Yes"
+        ],
+        "inactiveValues": [
+          "No"
+        ]
+      }
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "tac-ae",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-WA",
+    "coverage": "Tacoma",
+    "publisher": "City of Tacoma",
+    "name": "Automated Enforcement Locations",
+    "landingURL": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0",
+    "endpoint": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Automated enforcement locations: City of Tacoma.",
+    "typeMap": {
+      "field": "cameratype",
+      "values": {
+        "Speed": "speed",
+        "Red Light": "redLight",
+        "School Zones": "schoolZone"
+      }
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "location",
+      "road": [
+        "address"
+      ],
+      "direction": [
+        "direction_of_travel"
+      ],
+      "limit": "speed_limit"
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "bel-speed",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-WA",
+    "coverage": "Bellevue",
+    "publisher": "City of Bellevue",
+    "name": "Speed Safety Cameras",
+    "landingURL": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/Speed_Safety_Cameras/FeatureServer/0",
+    "endpoint": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/Speed_Safety_Cameras/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": {
+      "url": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/Speed_Safety_Cameras/FeatureServer/0?f=json",
+      "dateKey": "editingInfo.lastEditDate"
+    },
+    "license": "Not specified",
+    "attribution": "Speed safety camera locations: City of Bellevue.",
+    "typeMap": {
+      "const": "speed"
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "SiteID",
+      "road": [
+        "ClosestIntersection",
+        "OfficialStreet"
+      ],
+      "limit": "SpeedLimit",
+      "active": {
+        "field": "OperationalStatus",
+        "activeValues": [
+          "In Service"
+        ],
+        "inactiveValues": [
+          "Planned",
+          "Out of Service",
+          "Removed"
+        ]
+      }
+    },
+    "baseConfidence": 80
+  },
+  {
+    "id": "de-redlight",
+    "enabled": true,
+    "tier": "B",
+    "region": "US-DE",
+    "coverage": "Delaware (DelDOT signals)",
+    "publisher": "Delaware Department of Transportation (DelDOT)",
+    "name": "Traffic Devices - Signals (red light enforcement)",
+    "landingURL": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Boundary_and_Point/FeatureServer/29",
+    "endpoint": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Boundary_and_Point/FeatureServer/29/query?where=RED_LIGHT_ENF_FLAG='Y'&outFields=*&outSR=4326&f=geojson",
+    "format": "arcgis-geojson",
+    "metadata": null,
+    "license": "© DelDOT",
+    "attribution": "Red light enforcement signals © Delaware Department of Transportation (DelDOT), FirstMap.",
+    "typeMap": {
+      "const": "redLight"
+    },
+    "filters": [
+      {
+        "field": "RED_LIGHT_ENF_FLAG",
+        "in": [
+          "Y"
+        ]
+      }
+    ],
+    "fieldMap": {
+      "key": "PERMITNUM",
+      "road": [
+        "PUBLIC_NAME",
+        "LOCATION"
+      ]
+    },
+    "baseConfidence": 80
+  }
+]

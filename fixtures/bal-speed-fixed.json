@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1771334187100
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5800805717096,
+            39.3614663660155
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "GIS_ID": 4029,
+          "CamType": "Speed Camera Fixed",
+          "CamID": 2,
+          "Quadrant": 1,
+          "DisttNo": 4,
+          "Location": "6000 Hillen Rd SB and NB",
+          "Instln_Date": "6/15/2018",
+          "SchlLocation": "Yorkwood Elementary School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1431066.195297718,
+          "Y_Cord": 617507.945681721
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.59038903277,
+            39.2889300384428
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "GIS_ID": 4031,
+          "CamType": "Speed Camera Fixed",
+          "CamID": 2,
+          "Quadrant": 4,
+          "DisttNo": 13,
+          "Location": "200 South Wolfe St SB",
+          "Instln_Date": "5/27/2019",
+          "SchlLocation": "Wolfe Street Academy",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1428270.0450501442,
+          "Y_Cord": 591074.5877873898
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6274050438353,
+            39.3009651999621
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "GIS_ID": 4037,
+          "CamType": "Speed Camera Fixed",
+          "CamID": 2,
+          "Quadrant": 3,
+          "DisttNo": 11,
+          "Location": "1100 Druid Hill Ave SB",
+          "Instln_Date": "5/27/2019",
+          "SchlLocation": "Samuel Coleridge Taylor Elementary/ Furman L Templeton Elementary",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1417775.22352013,
+          "Y_Cord": 595413.2703829706
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6953083228695,
+            39.2812859199374
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "GIS_ID": 4039,
+          "CamType": "Speed Camera Fixed",
+          "CamID": 2,
+          "Quadrant": 3,
+          "DisttNo": 8,
+          "Location": "4900 Blk Fredrick Ave EB",
+          "Instln_Date": "7/1/2018",
+          "SchlLocation": "Beechfield Elementary / Middle School\r\n",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1398583.1700408012,
+          "Y_Cord": 588174.1887325644
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 6,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6140469905409,
+            39.3135777428752
+          ]
+        },
+        "properties": {
+          "OBJECTID": 6,
+          "GIS_ID": 4043,
+          "CamType": "Speed Camera Fixed",
+          "CamID": 2,
+          "Quadrant": 1,
+          "DisttNo": 7,
+          "Location": "2100 N Calvert St NB",
+          "Instln_Date": "8/27/2018",
+          "SchlLocation": "Dallas F Nicholas St Elementary School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1421535.9958542138,
+          "Y_Cord": 600022.8582766503
+        }
+      }
+    ]
+  }
+}

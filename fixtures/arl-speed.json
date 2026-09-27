@@ -1,0 +1,148 @@
+{
+  "metadata": null,
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.12797884917354,
+            38.86017513771282
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "AddressNumber": 602,
+          "ID": "ACSP001",
+          "Installed": 1722398400000,
+          "LocationDescription": "",
+          "Replaced": null,
+          "Retired": null,
+          "Street": "S CARLIN SPRINGS RD",
+          "School": "Campbell Elementary",
+          "BeaconSpeedLimit": "20",
+          "NonSchoolSpeedLimit": "30",
+          "SchoolBeacon": "727",
+          "Direction": "SB",
+          "Active": "Yes",
+          "GeoSyncDate": 1790415363000
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 17,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.06530070130091,
+            38.84628206918401
+          ]
+        },
+        "properties": {
+          "OBJECTID": 17,
+          "AddressNumber": 2811,
+          "ID": "8",
+          "Installed": null,
+          "LocationDescription": "",
+          "Replaced": null,
+          "Retired": 1757908800000,
+          "Street": "S ARLINGTON RIDGE RD",
+          "School": "",
+          "BeaconSpeedLimit": "",
+          "NonSchoolSpeedLimit": "",
+          "SchoolBeacon": "756",
+          "Direction": "",
+          "Active": "",
+          "GeoSyncDate": 1790415363000
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 30,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.0863734015257,
+            38.894513715800464
+          ]
+        },
+        "properties": {
+          "OBJECTID": 30,
+          "AddressNumber": 1732,
+          "ID": "ACSP046",
+          "Installed": null,
+          "LocationDescription": "",
+          "Replaced": null,
+          "Retired": null,
+          "Street": "N VEITCH ST",
+          "School": "Innovation ES",
+          "BeaconSpeedLimit": "20",
+          "NonSchoolSpeedLimit": "25",
+          "SchoolBeacon": "780",
+          "Direction": "SB",
+          "Active": "No",
+          "GeoSyncDate": 1790415363000
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.1141777839561,
+            38.873776670118446
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "AddressNumber": 400,
+          "ID": "ACSP002",
+          "Installed": 1722398400000,
+          "LocationDescription": "",
+          "Replaced": null,
+          "Retired": null,
+          "Street": "N GEORGE MASON DR",
+          "School": "Barrett Elementary",
+          "BeaconSpeedLimit": "20",
+          "NonSchoolSpeedLimit": "30",
+          "SchoolBeacon": "713",
+          "Direction": "SB",
+          "Active": "Yes",
+          "GeoSyncDate": 1790415363000
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.11506063402317,
+            38.88540683113463
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "AddressNumber": 4476,
+          "ID": "ACSP003",
+          "Installed": 1722398400000,
+          "LocationDescription": "",
+          "Replaced": null,
+          "Retired": null,
+          "Street": "WASHINGTON BLVD",
+          "School": "Washington-Liberty High School",
+          "BeaconSpeedLimit": "20",
+          "NonSchoolSpeedLimit": "30",
+          "SchoolBeacon": "811",
+          "Direction": "EB",
+          "Active": "Yes",
+          "GeoSyncDate": 1790415363000
+        }
+      }
+    ]
+  }
+}

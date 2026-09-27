@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1789468052
+  },
+  "raw": [
+    {
+      "intersection": "744 W Fullerton Ave",
+      "first_approach": "WB",
+      "go_live_date": "2009-07-14T00:00:00.000",
+      "latitude": "41.9255",
+      "longitude": "-87.6483",
+      "location": {
+        "latitude": "41.9255",
+        "longitude": "-87.6483",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "51",
+      ":@computed_region_6mkv_f3dw": "21190",
+      ":@computed_region_vrxf_vc4k": "68",
+      ":@computed_region_bdys_3d7i": "794",
+      ":@computed_region_43wa_7qmu": "34"
+    },
+    {
+      "intersection": "1206 N Pulaski Rd",
+      "first_approach": "SB",
+      "go_live_date": "2009-06-06T00:00:00.000",
+      "latitude": "41.9029",
+      "longitude": "-87.7264",
+      "location": {
+        "latitude": "41.9029",
+        "longitude": "-87.7264",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "41",
+      ":@computed_region_6mkv_f3dw": "4299",
+      ":@computed_region_vrxf_vc4k": "24",
+      ":@computed_region_bdys_3d7i": "286",
+      ":@computed_region_43wa_7qmu": "45"
+    },
+    {
+      "intersection": "732 W Roosevelt Rd",
+      "first_approach": "WB",
+      "go_live_date": "2008-06-11T00:00:00.000",
+      "latitude": "41.8673",
+      "longitude": "-87.6464",
+      "location": {
+        "latitude": "41.8673",
+        "longitude": "-87.6464",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "48",
+      ":@computed_region_6mkv_f3dw": "14917",
+      ":@computed_region_vrxf_vc4k": "29",
+      ":@computed_region_bdys_3d7i": "97",
+      ":@computed_region_43wa_7qmu": "48"
+    },
+    {
+      "intersection": "809 W Roosevelt Rd",
+      "first_approach": "EB",
+      "go_live_date": "2008-06-12T00:00:00.000",
+      "latitude": "41.86699",
+      "longitude": "-87.6474",
+      "location": {
+        "latitude": "41.86699",
+        "longitude": "-87.6474",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "8",
+      ":@computed_region_6mkv_f3dw": "14917",
+      ":@computed_region_vrxf_vc4k": "29",
+      ":@computed_region_bdys_3d7i": "97",
+      ":@computed_region_43wa_7qmu": "48"
+    },
+    {
+      "intersection": "1215 S Canal St",
+      "first_approach": "NB",
+      "go_live_date": "2008-11-28T00:00:00.000",
+      "latitude": "41.8669",
+      "longitude": "-87.6391",
+      "location": {
+        "latitude": "41.8669",
+        "longitude": "-87.6391",
+        "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+      },
+      ":@computed_region_awaf_s7ux": "48",
+      ":@computed_region_6mkv_f3dw": "14917",
+      ":@computed_region_vrxf_vc4k": "29",
+      ":@computed_region_bdys_3d7i": "97",
+      ":@computed_region_43wa_7qmu": "26"
+    }
+  ]
+}

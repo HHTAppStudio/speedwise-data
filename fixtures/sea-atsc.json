@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1785944518776
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.334240392418,
+            47.6185111844585
+          ]
+        },
+        "properties": {
+          "Location_ID": "ATSC001",
+          "Site_ID": "SE01",
+          "School_Name": "NA",
+          "SPD_Camera_Name": "EB Denny Way @ Fairview Ave",
+          "Camera_Type": "Red Light",
+          "Deactivation_Period_1_Begin": null,
+          "Deactivation_Period_1_End": null,
+          "Deactivation_Period_2_Begin": null,
+          "Deactivation_Period_2_End": null,
+          "Cam_Lat": 47.618517,
+          "Cam_Long": -122.334255,
+          "Loc_Lat": null,
+          "Loc_Long": null,
+          "Beacon_Asset_ID": "NA",
+          "ObjectId": 1
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 37,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.323160376147,
+            47.6966211789379
+          ]
+        },
+        "properties": {
+          "Location_ID": "ATSC029",
+          "Site_ID": "SE43",
+          "School_Name": "Olympic View Elementary",
+          "SPD_Camera_Name": "NB 5th Ave NE @ Olympic View Elementary",
+          "Camera_Type": "Fixed School Zone",
+          "Deactivation_Period_1_Begin": null,
+          "Deactivation_Period_1_End": null,
+          "Deactivation_Period_2_Begin": null,
+          "Deactivation_Period_2_End": null,
+          "Cam_Lat": 47.696627,
+          "Cam_Long": -122.323175,
+          "Loc_Lat": null,
+          "Loc_Long": null,
+          "Beacon_Asset_ID": "BCN-156",
+          "ObjectId": 37
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 74,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.328978397287,
+            47.5992921850064
+          ]
+        },
+        "properties": {
+          "Location_ID": "ATSC049",
+          "Site_ID": "SEABB001",
+          "School_Name": "NA",
+          "SPD_Camera_Name": "NB 4th Ave @ Jackson St (West Side)",
+          "Camera_Type": "Block-the-Box",
+          "Deactivation_Period_1_Begin": null,
+          "Deactivation_Period_1_End": null,
+          "Deactivation_Period_2_Begin": null,
+          "Deactivation_Period_2_End": null,
+          "Cam_Lat": 47.599298,
+          "Cam_Long": -122.328993,
+          "Loc_Lat": null,
+          "Loc_Long": null,
+          "Beacon_Asset_ID": "N/A",
+          "ObjectId": 74
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 82,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.343669387807,
+            47.6327931845196
+          ]
+        },
+        "properties": {
+          "Location_ID": "ATSC055",
+          "Site_ID": "SEABL001",
+          "School_Name": "NA",
+          "SPD_Camera_Name": "SB Aurora Ave N @ Galer St",
+          "Camera_Type": "Transit Lane",
+          "Deactivation_Period_1_Begin": null,
+          "Deactivation_Period_1_End": null,
+          "Deactivation_Period_2_Begin": null,
+          "Deactivation_Period_2_End": null,
+          "Cam_Lat": 47.632799,
+          "Cam_Long": -122.343684,
+          "Loc_Lat": null,
+          "Loc_Long": null,
+          "Beacon_Asset_ID": "N/A",
+          "ObjectId": 82
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.334240392418,
+            47.6185111844585
+          ]
+        },
+        "properties": {
+          "Location_ID": "ATSC001",
+          "Site_ID": "SE02",
+          "School_Name": "NA",
+          "SPD_Camera_Name": "WB Denny Way @ Fairview Ave",
+          "Camera_Type": "Red Light",
+          "Deactivation_Period_1_Begin": null,
+          "Deactivation_Period_1_End": null,
+          "Deactivation_Period_2_Begin": null,
+          "Deactivation_Period_2_End": null,
+          "Cam_Lat": 47.618517,
+          "Cam_Long": -122.334255,
+          "Loc_Lat": null,
+          "Loc_Long": null,
+          "Beacon_Asset_ID": "NA",
+          "ObjectId": 2
+        }
+      }
+    ]
+  }
+}

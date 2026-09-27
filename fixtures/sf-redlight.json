@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1787071209
+  },
+  "raw": [
+    {
+      "intersection": "4th St at Harrison St",
+      "directions_enforced": "westbound",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -122.399629446,
+          37.780796429
+        ]
+      }
+    },
+    {
+      "intersection": "6th St at Folsom St",
+      "directions_enforced": "southbound",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -122.405628482,
+          37.77851005
+        ]
+      }
+    },
+    {
+      "intersection": "Oak St at Octavia Blvd",
+      "directions_enforced": "eastbound",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -122.424149716,
+          37.774829738
+        ]
+      }
+    },
+    {
+      "intersection": "4th St at Harrison St",
+      "directions_enforced": "southbound",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -122.399629446,
+          37.780796429
+        ]
+      }
+    },
+    {
+      "intersection": "19th Ave at Sloat Blvd",
+      "directions_enforced": "northbound",
+      "point": {
+        "type": "Point",
+        "coordinates": [
+          -122.475115688,
+          37.734630509
+        ]
+      }
+    }
+  ]
+}

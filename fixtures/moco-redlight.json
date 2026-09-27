@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1782927590
+  },
+  "raw": [
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "6002",
+      "address": "Crabbs Branch Way @ Redland Rd",
+      "directions": "SB",
+      "latitude": "39.12102426",
+      "longitude": "-77.15852874",
+      "total": "225",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.15852874,
+          39.12102426
+        ]
+      },
+      ":@computed_region_r648_kzwt": "4",
+      ":@computed_region_d7bw_bq6x": "51",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "3"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "6003",
+      "address": "Redland Rd @ Crabbs Branch Way",
+      "directions": "EB",
+      "latitude": "39.12102426",
+      "longitude": "-77.15852874",
+      "total": "12",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.15852874,
+          39.12102426
+        ]
+      },
+      ":@computed_region_r648_kzwt": "4",
+      ":@computed_region_d7bw_bq6x": "51",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "3"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "6204",
+      "address": "Shady Grove Rd @ Research Blvd",
+      "directions": "WB",
+      "latitude": "39.10497851",
+      "longitude": "-77.19041131",
+      "total": "926",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.19041131,
+          39.10497851
+        ]
+      },
+      ":@computed_region_r648_kzwt": "5",
+      ":@computed_region_d7bw_bq6x": "71",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "4"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "6303",
+      "address": "E Gude Dr @ Southlawn Ln",
+      "directions": "EB",
+      "latitude": "39.09772417",
+      "longitude": "-77.13655871",
+      "total": "285",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.13655871,
+          39.09772417
+        ]
+      },
+      ":@computed_region_r648_kzwt": "3",
+      ":@computed_region_d7bw_bq6x": "71",
+      ":@computed_region_rbt8_3x7n": "12",
+      ":@computed_region_6vgr_duib": "4"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "6403",
+      "address": "Randolph Rd @ Kemp Mill Rd",
+      "directions": "EB",
+      "latitude": "39.06651335",
+      "longitude": "-77.03035478",
+      "total": "207",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.03035478,
+          39.06651335
+        ]
+      },
+      ":@computed_region_r648_kzwt": "4",
+      ":@computed_region_d7bw_bq6x": "6",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "2"
+    }
+  ]
+}

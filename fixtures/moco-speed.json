@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1782883851
+  },
+  "raw": [
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "1004",
+      "address": "10000 Blk Cedar Ln",
+      "directions": "E/B",
+      "latitude": "39.02013333",
+      "longitude": "-77.085925",
+      "total": "0",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.085925,
+          39.02013333
+        ]
+      },
+      ":@computed_region_r648_kzwt": "4",
+      ":@computed_region_d7bw_bq6x": "25",
+      ":@computed_region_rbt8_3x7n": "14",
+      ":@computed_region_6vgr_duib": "7"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "1008",
+      "address": "15100 Blk Quince Orchard Rd",
+      "directions": "S/B",
+      "latitude": "39.104025",
+      "longitude": "-77.25263167",
+      "total": "0",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.25263167,
+          39.104025
+        ]
+      },
+      ":@computed_region_r648_kzwt": "5",
+      ":@computed_region_d7bw_bq6x": "33",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "5"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "1009",
+      "address": "15300 Blk Quince Orchard Rd",
+      "directions": "N/B",
+      "latitude": "39.10735",
+      "longitude": "-77.25215",
+      "total": "9",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.25215,
+          39.10735
+        ]
+      },
+      ":@computed_region_r648_kzwt": "5",
+      ":@computed_region_d7bw_bq6x": "33",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "5"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "1010",
+      "address": "9600 Blk Glen Rd",
+      "directions": "W/B",
+      "latitude": "39.04710333",
+      "longitude": "-77.197025",
+      "total": "119",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.197025,
+          39.04710333
+        ]
+      },
+      ":@computed_region_r648_kzwt": "3",
+      ":@computed_region_d7bw_bq6x": "53",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "6"
+    },
+    {
+      "quarter_name": "2024 Q4",
+      "site_number": "1011",
+      "address": "8700 Blk Bells Mill Rd",
+      "directions": "E/B",
+      "latitude": "39.03187",
+      "longitude": "-77.178455",
+      "total": "4",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -77.178455,
+          39.03187
+        ]
+      },
+      ":@computed_region_r648_kzwt": "3",
+      ":@computed_region_d7bw_bq6x": "53",
+      ":@computed_region_rbt8_3x7n": "1",
+      ":@computed_region_6vgr_duib": "6"
+    }
+  ]
+}

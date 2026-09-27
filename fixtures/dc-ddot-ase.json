@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "modified": 1790420458000
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 536983,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.02582667806078,
+            38.90341638468232
+          ]
+        },
+        "properties": {
+          "ENFORCEMENT_SPACE_CODE": "ATE 0818",
+          "SITE_CODE": 2212,
+          "ENFORCEMENT_TYPE": "Red Light",
+          "LOCATION_DESCRIPTION": "Massachusetts Ave e/b @ 9th St NW",
+          "SPEED_LIMIT": 25,
+          "DEVICE_MOBILITY": null,
+          "CAMERA_STATUS": "Live",
+          "ACTIVE_STATUS": "Active",
+          "CAMERA_LATITUDE": 38.90341,
+          "CAMERA_LONGITUDE": -77.02582,
+          "CAMERA_EASTING": 397760,
+          "CAMERA_NORTHING": 137284,
+          "WARD": "2",
+          "ANC": "2C",
+          "SMD": "2C04",
+          "OBJECTID": 536983,
+          "GLOBALID": "{5C61BC20-636C-62F5-E063-782F520A48FF}"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 536984,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.02472092855369,
+            38.93959405767593
+          ]
+        },
+        "properties": {
+          "ENFORCEMENT_SPACE_CODE": "ATE 0248",
+          "SITE_CODE": 1419,
+          "ENFORCEMENT_TYPE": "Speed",
+          "LOCATION_DESCRIPTION": "3900 BLK GEORGIA AVE NW S/B",
+          "SPEED_LIMIT": 25,
+          "DEVICE_MOBILITY": "Fixed",
+          "CAMERA_STATUS": "Live",
+          "ACTIVE_STATUS": "Active",
+          "CAMERA_LATITUDE": 38.939589999999995,
+          "CAMERA_LONGITUDE": -77.02472,
+          "CAMERA_EASTING": 397857,
+          "CAMERA_NORTHING": 141300,
+          "WARD": "4",
+          "ANC": "4C",
+          "SMD": "4C02",
+          "OBJECTID": 536984,
+          "GLOBALID": "{5C61BC20-636D-62F5-E063-782F520A48FF}"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 536986,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.02306199235827,
+            38.94591821571615
+          ]
+        },
+        "properties": {
+          "ENFORCEMENT_SPACE_CODE": "ATE 0452",
+          "SITE_CODE": 3401,
+          "ENFORCEMENT_TYPE": "Stop Sign",
+          "LOCATION_DESCRIPTION": "KANSAS AVE NE/B @ BUCHANAN ST NW",
+          "SPEED_LIMIT": 30,
+          "DEVICE_MOBILITY": null,
+          "CAMERA_STATUS": "Live",
+          "ACTIVE_STATUS": "Active",
+          "CAMERA_LATITUDE": 38.94591,
+          "CAMERA_LONGITUDE": -77.02306,
+          "CAMERA_EASTING": 398001,
+          "CAMERA_NORTHING": 142002,
+          "WARD": "4",
+          "ANC": "4C",
+          "SMD": "4C05",
+          "OBJECTID": 536986,
+          "GLOBALID": "{5C61BC20-636F-62F5-E063-782F520A48FF}"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 537046,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.99165731160394,
+            38.887672315752276
+          ]
+        },
+        "properties": {
+          "ENFORCEMENT_SPACE_CODE": "ATE 0800",
+          "SITE_CODE": 7602,
+          "ENFORCEMENT_TYPE": "Truck Restriction",
+          "LOCATION_DESCRIPTION": "1100 BLK INDEPENDENCE AVE SE E/B",
+          "SPEED_LIMIT": 25,
+          "DEVICE_MOBILITY": null,
+          "CAMERA_STATUS": "Live",
+          "ACTIVE_STATUS": "Active",
+          "CAMERA_LATITUDE": 38.88766,
+          "CAMERA_LONGITUDE": -76.99164999999999,
+          "CAMERA_EASTING": 400724,
+          "CAMERA_NORTHING": 135536,
+          "WARD": "6",
+          "ANC": "6B",
+          "SMD": "6B05",
+          "OBJECTID": 537046,
+          "GLOBALID": "{5C61BC20-63AB-62F5-E063-782F520A48FF}"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 536985,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77.02406455780562,
+            38.90868664617516
+          ]
+        },
+        "properties": {
+          "ENFORCEMENT_SPACE_CODE": "ATE 0037",
+          "SITE_CODE": 1204,
+          "ENFORCEMENT_TYPE": "Speed",
+          "LOCATION_DESCRIPTION": "1300 BLK 9TH ST NW S/B",
+          "SPEED_LIMIT": 25,
+          "DEVICE_MOBILITY": null,
+          "CAMERA_STATUS": "Live",
+          "ACTIVE_STATUS": "Active",
+          "CAMERA_LATITUDE": 38.90868,
+          "CAMERA_LONGITUDE": -77.02405999999999,
+          "CAMERA_EASTING": 397913,
+          "CAMERA_NORTHING": 137869,
+          "WARD": "2",
+          "ANC": "2G",
+          "SMD": "2G02",
+          "OBJECTID": 536985,
+          "GLOBALID": "{5C61BC20-636E-62F5-E063-782F520A48FF}"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1787781698477
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.191478951,
+            47.5866655560001
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "LocationID": 3,
+          "ArterialClass": "Major Arterial",
+          "OfficialStreet": "BELLEVUE WAY SE",
+          "SpeedLimit": 40,
+          "ClosestIntersection": "BELLEVUE WAY SE & S BELLEVUE STN",
+          "HighSpeedingCrashNetworkScore": 40,
+          "SpeedingRiskNetworkScore": 40,
+          "EnforcementScore": 20,
+          "TotalScore": 100,
+          "OperationalStatus": "Planned",
+          "CameraID": "3.b",
+          "x": -122.191576,
+          "y": 47.587474,
+          "SiteID": "BELA014"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.16388751,
+            47.5555100760001
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "LocationID": 8,
+          "ArterialClass": "Minor Arterial",
+          "OfficialStreet": "FOREST DR SE",
+          "SpeedLimit": 30,
+          "ClosestIntersection": "FOREST DRIVE & SE 54TH PL",
+          "HighSpeedingCrashNetworkScore": 40,
+          "SpeedingRiskNetworkScore": 40,
+          "EnforcementScore": 20,
+          "TotalScore": 100,
+          "OperationalStatus": "In Service",
+          "CameraID": "8.a",
+          "x": -122.162838,
+          "y": 47.554733,
+          "SiteID": "BELP003"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.191499762,
+            47.5876261170001
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "LocationID": 3,
+          "ArterialClass": "Major Arterial",
+          "OfficialStreet": "BELLEVUE WAY SE",
+          "SpeedLimit": 40,
+          "ClosestIntersection": "BELLEVUE WAY SE & S BELLEVUE STN",
+          "HighSpeedingCrashNetworkScore": 40,
+          "SpeedingRiskNetworkScore": 40,
+          "EnforcementScore": 20,
+          "TotalScore": 100,
+          "OperationalStatus": "Planned",
+          "CameraID": "3.a",
+          "x": -122.191576,
+          "y": 47.587474,
+          "SiteID": "BELA013"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.166813583,
+            47.553872885
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "LocationID": 7,
+          "ArterialClass": "Major Arterial",
+          "OfficialStreet": "COAL CREEK PKWY SE",
+          "SpeedLimit": 40,
+          "ClosestIntersection": "COAL CREEK PKWY SE & FOREST DR SE (SOUTH OF)",
+          "HighSpeedingCrashNetworkScore": 40,
+          "SpeedingRiskNetworkScore": 40,
+          "EnforcementScore": 20,
+          "TotalScore": 100,
+          "OperationalStatus": "Planned",
+          "CameraID": "7.b",
+          "x": -122.166952,
+          "y": 47.552872,
+          "SiteID": "BELP002"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.166813549,
+            47.5538728320001
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "LocationID": 7,
+          "ArterialClass": "Major Arterial",
+          "OfficialStreet": "COAL CREEK PKWY SE",
+          "SpeedLimit": 40,
+          "ClosestIntersection": "COAL CREEK PKWY SE & FOREST DR SE (SOUTH OF)",
+          "HighSpeedingCrashNetworkScore": 40,
+          "SpeedingRiskNetworkScore": 40,
+          "EnforcementScore": 20,
+          "TotalScore": 100,
+          "OperationalStatus": "Planned",
+          "CameraID": "7.a",
+          "x": -122.166952,
+          "y": 47.552872,
+          "SiteID": "BELP001"
+        }
+      }
+    ]
+  }
+}

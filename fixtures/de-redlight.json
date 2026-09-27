@@ -1,0 +1,143 @@
+{
+  "metadata": null,
+  "raw": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 110,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.51517699996474,
+            39.16330700009125
+          ]
+        },
+        "properties": {
+          "OBJECTID": 110,
+          "PERMITNUM": "K109",
+          "STATUS": "EXISTING",
+          "DEVICE_TYPE": "SIGNAL",
+          "MAINROAD": "US 13",
+          "INTERSECTION": "DIVISION ST",
+          "SYSTEM_STATUS": "ONLINE",
+          "GROUP_NAME": "K033 US13 Public Safety>Townsend",
+          "LOCATION": "US 13  @  DIVISION ST",
+          "PUBLIC_NAME": "US 13 @ DIVISION ST",
+          "AUTOMATION_DATE": -312854400000,
+          "OWNER": "DELDOT",
+          "RED_LIGHT_ENF_FLAG": "Y",
+          "RED_LIGHT_ENF_AGENCY": "CITY OF DOVER POLICE"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 111,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.5136739999168,
+            39.161504000019406
+          ]
+        },
+        "properties": {
+          "OBJECTID": 111,
+          "PERMITNUM": "K110",
+          "STATUS": "EXISTING",
+          "DEVICE_TYPE": "SIGNAL",
+          "MAINROAD": "US 13",
+          "INTERSECTION": "LOOCKERMAN ST",
+          "SYSTEM_STATUS": "ONLINE",
+          "GROUP_NAME": "K033 US13 Public Safety>Townsend",
+          "LOCATION": "US 13 @ LOOCKERMAN ST",
+          "PUBLIC_NAME": "US 13 @ LOOCKERMAN ST",
+          "AUTOMATION_DATE": -449798400000,
+          "OWNER": "DELDOT",
+          "RED_LIGHT_ENF_FLAG": "Y",
+          "RED_LIGHT_ENF_AGENCY": "CITY OF DOVER POLICE"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 118,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.4425949997919,
+            38.91584100004544
+          ]
+        },
+        "properties": {
+          "OBJECTID": 118,
+          "PERMITNUM": "K117",
+          "STATUS": "EXISTING",
+          "DEVICE_TYPE": "SIGNAL",
+          "MAINROAD": "US 113",
+          "INTERSECTION": "DE 14",
+          "SYSTEM_STATUS": "ONLINE",
+          "GROUP_NAME": "K006 US113 Cypress Hall RD>N Walnut St",
+          "LOCATION": "US 113  @  DE 14",
+          "PUBLIC_NAME": "US 113 @ DE 14",
+          "AUTOMATION_DATE": -389232000000,
+          "OWNER": "DELDOT",
+          "RED_LIGHT_ENF_FLAG": "Y",
+          "RED_LIGHT_ENF_AGENCY": "CITY OF MILFORD"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 119,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.52822999984505,
+            39.132722000287856
+          ]
+        },
+        "properties": {
+          "OBJECTID": 119,
+          "PERMITNUM": "K118",
+          "STATUS": "EXISTING",
+          "DEVICE_TYPE": "SIGNAL",
+          "MAINROAD": "US 13",
+          "INTERSECTION": "WEBBS LN EXT.",
+          "SYSTEM_STATUS": "ONLINE",
+          "GROUP_NAME": "K034 US13 POW/MIA>Roosevelt",
+          "LOCATION": "US 13 @ WEBBS LN",
+          "PUBLIC_NAME": "US 13 @ WEBBS LN",
+          "AUTOMATION_DATE": 139795200000,
+          "OWNER": "DELDOT",
+          "RED_LIGHT_ENF_FLAG": "Y",
+          "RED_LIGHT_ENF_AGENCY": "CITY OF DOVER POLICE"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 133,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -75.43288500029139,
+            38.927676000009704
+          ]
+        },
+        "properties": {
+          "OBJECTID": 133,
+          "PERMITNUM": "K132",
+          "STATUS": "EXISTING",
+          "DEVICE_TYPE": "SIGNAL",
+          "MAINROAD": "US 113",
+          "INTERSECTION": "10TH ST",
+          "SYSTEM_STATUS": "ONLINE",
+          "GROUP_NAME": "K006 US113 Cypress Hall RD>N Walnut St",
+          "LOCATION": "US 113  @  10TH ST",
+          "PUBLIC_NAME": "US 113 @ 10TH ST",
+          "AUTOMATION_DATE": 151027200000,
+          "OWNER": "DELDOT",
+          "RED_LIGHT_ENF_FLAG": "Y",
+          "RED_LIGHT_ENF_AGENCY": "CITY OF MILFORD"
+        }
+      }
+    ]
+  }
+}

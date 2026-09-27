@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1790424635408
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.397557999998,
+            47.2383070000937
+          ]
+        },
+        "properties": {
+          "objectid": 1,
+          "location": "WATCFS01",
+          "cameratype": "Speed",
+          "address": "2990 Block of Bay St (SR167)",
+          "y": 47.238307,
+          "x": -122.39755799999999,
+          "globalid": "cff858d8-9f42-4f12-bcf1-fac67be01ee0",
+          "direction_of_travel": "Northbound",
+          "speed_limit": "35 MPH"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.421360999645,
+            47.2230719999173
+          ]
+        },
+        "properties": {
+          "objectid": 2,
+          "location": "WATCRL01",
+          "cameratype": "Red Light",
+          "address": "E 38th St at Mckinley Ave",
+          "y": 47.223072,
+          "x": -122.421361,
+          "globalid": "b3701019-7aba-48cd-bdb2-cf81e2c9ed45",
+          "direction_of_travel": "Eastbound",
+          "speed_limit": "NA"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 11,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.433867999902,
+            47.2095920001563
+          ]
+        },
+        "properties": {
+          "objectid": 11,
+          "location": "WATCSZ03",
+          "cameratype": "School Zones",
+          "address": "5200 Block of Pacific Ave",
+          "y": 47.209592,
+          "x": -122.433868,
+          "globalid": "ede205cf-630e-4276-9a94-ebb26f428ac1",
+          "direction_of_travel": "Northbound",
+          "speed_limit": "35 MPH / 20 MPH during school zone hours"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.472715000272,
+            47.2063659996977
+          ]
+        },
+        "properties": {
+          "objectid": 3,
+          "location": "WATCRL02",
+          "cameratype": "Red Light",
+          "address": "S 56th St at S Oakes St",
+          "y": 47.206365999999996,
+          "x": -122.47271500000001,
+          "globalid": "70576993-6163-4f3c-90a0-c81d01f205f0",
+          "direction_of_travel": "Eastbound",
+          "speed_limit": "NA"
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -122.483178999808,
+            47.2062629997137
+          ]
+        },
+        "properties": {
+          "objectid": 4,
+          "location": "WATCRL03",
+          "cameratype": "Red Light",
+          "address": "S 56th St at S Tacoma Way",
+          "y": 47.206263,
+          "x": -122.48317899999999,
+          "globalid": "76ab9313-653b-458a-8422-a7cdf92e4698",
+          "direction_of_travel": "Westbound",
+          "speed_limit": "NA"
+        }
+      }
+    ]
+  }
+}

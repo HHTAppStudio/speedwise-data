@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1779988669914
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6619963195182,
+            39.3147872406807
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "GIS_ID": 5001,
+          "CamType": "Speed Camera Portable",
+          "CamID": 3,
+          "Quadrant": 2,
+          "DisttNo": 7,
+          "Location": "2700 Blk Gywnns Falls Pkwy WB",
+          "Instln_Date": "12/27/2017",
+          "SchlLocation": "Gwynns Falls  Elementary School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1407967.5902483016,
+          "Y_Cord": 600409.6019257307
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5651281171586,
+            39.3111468272487
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "GIS_ID": 5005,
+          "CamType": "Speed Camera Portable",
+          "CamID": 3,
+          "Quadrant": 4,
+          "DisttNo": 13,
+          "Location": "4300 Blk Erdman Ave NB",
+          "Instln_Date": "9/28/2017",
+          "SchlLocation": "Archbishop Curley High School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1435381.27984339,
+          "Y_Cord": 599199.6699623913
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5560496614707,
+            39.3583561833058
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "GIS_ID": 5006,
+          "CamType": "Speed Camera Portable",
+          "CamID": 3,
+          "Quadrant": 1,
+          "DisttNo": 3,
+          "Location": "6100 Blk Harford Rd NB                          ",
+          "Instln_Date": "8/9/2017",
+          "SchlLocation": "Dorothy Height Elementary",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1437866.3916710466,
+          "Y_Cord": 616407.2539854795
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6616522716949,
+            39.2799446408499
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "GIS_ID": 5007,
+          "CamType": "Speed Camera Portable",
+          "CamID": 3,
+          "Quadrant": 3,
+          "DisttNo": 9,
+          "Location": "2800 Blk Frederick Ave EB",
+          "Instln_Date": "10/3/2017",
+          "SchlLocation": "Frederick  Elementary School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1408111.9698808044,
+          "Y_Cord": 587719.2099837214
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 6,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5475727861126,
+            39.3198622853622
+          ]
+        },
+        "properties": {
+          "OBJECTID": 6,
+          "GIS_ID": 5008,
+          "CamType": "Speed Camera Portable",
+          "CamID": 3,
+          "Quadrant": 4,
+          "DisttNo": 2,
+          "Location": "5600 Blk Moravia Rd NB",
+          "Instln_Date": "6/20/2017",
+          "SchlLocation": "Vanguard Collegiate Middle School",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1440332.8001240492,
+          "Y_Cord": 602398.2498513162
+        }
+      }
+    ]
+  }
+}

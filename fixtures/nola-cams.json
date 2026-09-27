@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1732826348
+  },
+  "raw": [
+    {
+      "the_geom": {
+        "type": "Point",
+        "coordinates": [
+          -89.948880999256,
+          30.031396000519
+        ]
+      },
+      "objectid": "95",
+      "dir": "SB",
+      "camid": "NO179",
+      "active": "No",
+      "camloc": "5200 Bullard Ave",
+      "install": "3/3/2020",
+      "function": "TFS",
+      "school": "Fannie C Williams Charter School",
+      "school_hour": "8:00 - 3:15",
+      "sz_arrival": "7:00am-9:00am",
+      "sz_dismiss": "2:15pm-4:15pm",
+      "cat": "IND",
+      "operational": "Yes",
+      "globalid": "{5CDD83D1-2836-4080-AB7C-E95F257DE4B5}",
+      "last_edited_user": "masalvadore",
+      "last_edited_date": "2024-11-22T22:28:50.000Z"
+    },
+    {
+      "the_geom": {
+        "type": "Point",
+        "coordinates": [
+          -90.105885937508,
+          29.980807568642
+        ]
+      },
+      "objectid": "50",
+      "dir": "EB",
+      "camid": "NO57",
+      "active": "Yes",
+      "camloc": "Bienville St @ N St Patrick St (3)",
+      "install": "10/16/2009",
+      "function": "TFS",
+      "school": "Success Preparatory Academy",
+      "school_hour": "8:00 - 4:00",
+      "sz_arrival": "7:00am-9:00am",
+      "sz_dismiss": "2:00pm-5:00pm",
+      "signid": "61-4",
+      "cat": "IND",
+      "operational": "Yes",
+      "school_start": "2024-08-05T00:00:00.000Z",
+      "globalid": "{04E959A4-6ECE-42D7-9A75-9EF545558D4B}",
+      "last_edited_user": "masalvadore",
+      "last_edited_date": "2024-11-22T22:25:04.000Z"
+    },
+    {
+      "the_geom": {
+        "type": "Point",
+        "coordinates": [
+          -90.11528893063,
+          29.960528630763
+        ]
+      },
+      "objectid": "101",
+      "dir": "NB",
+      "camid": "NO05",
+      "active": "Yes",
+      "camloc": "S Carrollton Ave @ Earhart Blvd",
+      "function": "RLC",
+      "school": "None",
+      "cat": "IND",
+      "operational": "Yes",
+      "globalid": "{7E12094D-8DC6-4247-84E4-BC79E6E08BC2}",
+      "last_edited_user": "masalvadore",
+      "last_edited_date": "2024-11-22T22:25:04.000Z"
+    },
+    {
+      "the_geom": {
+        "type": "Point",
+        "coordinates": [
+          -90.112896999474,
+          29.994291000025
+        ]
+      },
+      "objectid": "103",
+      "dir": "EB",
+      "camid": "NO24",
+      "active": "Yes",
+      "camloc": "Florida Blvd@I-10",
+      "function": "FS",
+      "school": "None",
+      "cat": "IND",
+      "operational": "Yes",
+      "globalid": "{77AE31EC-D17F-4DEB-B69D-0E5FEB859828}",
+      "last_edited_user": "masalvadore",
+      "last_edited_date": "2024-11-22T22:25:04.000Z"
+    },
+    {
+      "the_geom": {
+        "type": "Point",
+        "coordinates": [
+          -90.079481998249,
+          29.968552731539
+        ]
+      },
+      "objectid": "62",
+      "dir": "WB",
+      "camid": "NO173",
+      "active": "No",
+      "camloc": "2400 Orleans Ave",
+      "install": "7/6/2017",
+      "function": "TFS",
+      "school": "Wheatley Elementary School",
+      "school_hour": "8:30 - 4:15",
+      "sz_arrival": "7:30am-9:30am",
+      "sz_dismiss": "3:15pm-5:15pm",
+      "signid": "55-3",
+      "cat": "IND",
+      "operational": "Yes",
+      "school_start": "2024-08-06T00:00:00.000Z",
+      "globalid": "{A5C13D23-D9F5-43DD-A3CA-EC701F2A2524}",
+      "last_edited_user": "masalvadore",
+      "last_edited_date": "2024-11-22T22:27:45.000Z"
+    }
+  ]
+}

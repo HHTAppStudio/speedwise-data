@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "editingInfo.lastEditDate": 1746627705864
+  },
+  "raw": {
+    "type": "FeatureCollection",
+    "crs": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "id": 1,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5734341731911,
+            39.3218950131752
+          ]
+        },
+        "properties": {
+          "OBJECTID": 1,
+          "GIS_ID": 1001,
+          "CamType": "Red Light Camera",
+          "CamID": 1,
+          "Quadrant": 1,
+          "DisttNo": 3,
+          "Location": "Bel Air Rd & Erdman Ave SB",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1433010.9955420047,
+          "Y_Cord": 603076.2078130096
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 2,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.6123793201045,
+            39.2893765481849
+          ]
+        },
+        "properties": {
+          "OBJECTID": 2,
+          "GIS_ID": 1002,
+          "CamType": "Red Light Camera",
+          "CamID": 1,
+          "Quadrant": 4,
+          "DisttNo": 11,
+          "Location": "N Calvert St @ E Baltimore St NB",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1422055.128018096,
+          "Y_Cord": 591205.349665001
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 3,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5595993333164,
+            39.3070839617908
+          ]
+        },
+        "properties": {
+          "OBJECTID": 3,
+          "GIS_ID": 1003,
+          "CamType": "Red Light Camera",
+          "CamID": 1,
+          "Quadrant": 1,
+          "DisttNo": 13,
+          "Location": "Erdman Ave & N Macon St EB",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1436949.6645019203,
+          "Y_Cord": 597727.048563838
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 4,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5825087384257,
+            39.3578199544266
+          ]
+        },
+        "properties": {
+          "OBJECTID": 4,
+          "GIS_ID": 1004,
+          "CamType": "Red Light Camera",
+          "CamID": 1,
+          "Quadrant": 1,
+          "DisttNo": 3,
+          "Location": "E Belvedere Ave & Hillen Rd EB",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1430389.6205354184,
+          "Y_Cord": 616183.4535800964
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 5,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.5886073120486,
+            39.3601907180215
+          ]
+        },
+        "properties": {
+          "OBJECTID": 5,
+          "GIS_ID": 1005,
+          "CamType": "Red Light Camera",
+          "CamID": 1,
+          "Quadrant": 1,
+          "DisttNo": 4,
+          "Location": "Loch Raven Blvd & E Belvedere Ave SB",
+          "City": "Baltimore",
+          "Status": "Final",
+          "Email": "atvesproject@baltimorecity.gov",
+          "X_Cord": 1428657.4304302633,
+          "Y_Cord": 617040.5794905126
+        }
+      }
+    ]
+  }
+}

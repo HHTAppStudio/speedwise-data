@@ -1,0 +1,871 @@
+{
+  "version": 2,
+  "regions": [
+    {
+      "code": "US-NY",
+      "name": "New York",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-IL",
+      "name": "Illinois",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 625,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-il.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Chicago"
+    },
+    {
+      "code": "US-DC",
+      "name": "District of Columbia",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 282,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-dc.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Washington, DC"
+    },
+    {
+      "code": "US-MD",
+      "name": "Maryland",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 515,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-md.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Montgomery County, Baltimore"
+    },
+    {
+      "code": "US-AZ",
+      "name": "Arizona",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-FL",
+      "name": "Florida",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-CA",
+      "name": "California",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 74,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-ca.v1.json",
+      "packVersion": 1,
+      "coverageNote": "San Francisco"
+    },
+    {
+      "code": "US-CO",
+      "name": "Colorado",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-CT",
+      "name": "Connecticut",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-DE",
+      "name": "Delaware",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 60,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-de.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Delaware (DelDOT signals)"
+    },
+    {
+      "code": "US-GA",
+      "name": "Georgia",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-HI",
+      "name": "Hawaii",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-IA",
+      "name": "Iowa",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-LA",
+      "name": "Louisiana",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 38,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-la.v1.json",
+      "packVersion": 1,
+      "coverageNote": "New Orleans"
+    },
+    {
+      "code": "US-MN",
+      "name": "Minnesota",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-OH",
+      "name": "Ohio",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-OR",
+      "name": "Oregon",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-PA",
+      "name": "Pennsylvania",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-RI",
+      "name": "Rhode Island",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-TN",
+      "name": "Tennessee",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-VA",
+      "name": "Virginia",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 35,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-va.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Arlington County"
+    },
+    {
+      "code": "US-WA",
+      "name": "Washington",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 127,
+      "updatedAt": "2026-09-27",
+      "packURL": "packs/us-wa.v1.json",
+      "packVersion": 1,
+      "coverageNote": "Seattle, Tacoma, Bellevue"
+    },
+    {
+      "code": "US-AL",
+      "name": "Alabama",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-NM",
+      "name": "New Mexico",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-NC",
+      "name": "North Carolina",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-AR",
+      "name": "Arkansas",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-IN",
+      "name": "Indiana",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-KY",
+      "name": "Kentucky",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-MI",
+      "name": "Michigan",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-UT",
+      "name": "Utah",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "US-VT",
+      "name": "Vermont",
+      "countryCode": "US",
+      "countryName": "United States",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "countryCode": "CA",
+      "countryName": "Canada",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "countryCode": "GB",
+      "countryName": "United Kingdom",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "countryCode": "IE",
+      "countryName": "Ireland",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "countryCode": "AU",
+      "countryName": "Australia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "NZ",
+      "name": "New Zealand",
+      "countryCode": "NZ",
+      "countryName": "New Zealand",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "countryCode": "ES",
+      "countryName": "Spain",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "countryCode": "IT",
+      "countryName": "Italy",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "countryCode": "NL",
+      "countryName": "Netherlands",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "countryCode": "PT",
+      "countryName": "Portugal",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "countryCode": "AT",
+      "countryName": "Austria",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "countryCode": "PL",
+      "countryName": "Poland",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "countryCode": "CZ",
+      "countryName": "Czechia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "countryCode": "SK",
+      "countryName": "Slovakia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "countryCode": "HU",
+      "countryName": "Hungary",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "countryCode": "HR",
+      "countryName": "Croatia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "countryCode": "SI",
+      "countryName": "Slovenia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "GR",
+      "name": "Greece",
+      "countryCode": "GR",
+      "countryName": "Greece",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "countryCode": "DK",
+      "countryName": "Denmark",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "countryCode": "SE",
+      "countryName": "Sweden",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "NO",
+      "name": "Norway",
+      "countryCode": "NO",
+      "countryName": "Norway",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "countryCode": "FI",
+      "countryName": "Finland",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "countryCode": "EE",
+      "countryName": "Estonia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "countryCode": "LV",
+      "countryName": "Latvia",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "countryCode": "LT",
+      "countryName": "Lithuania",
+      "status": "full",
+      "cameraCount": 0
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "countryCode": "FR",
+      "countryName": "France",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "France only allows 'danger zone' warnings. Coming in a later version."
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "German law restricts use of camera warnings while driving. Not available yet."
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "countryCode": "BE",
+      "countryName": "Belgium",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "Legal status under review. Not available yet."
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "countryCode": "RO",
+      "countryName": "Romania",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "Legal status under review. Not available yet."
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "countryCode": "BG",
+      "countryName": "Bulgaria",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "Legal status under review. Not available yet."
+    },
+    {
+      "code": "RS",
+      "name": "Serbia",
+      "countryCode": "RS",
+      "countryName": "Serbia",
+      "status": "restricted",
+      "cameraCount": 0,
+      "legalNote": "Legal status under review. Not available yet."
+    },
+    {
+      "code": "CH",
+      "name": "Switzerland",
+      "countryCode": "CH",
+      "countryName": "Switzerland",
+      "status": "blocked",
+      "cameraCount": 0,
+      "legalNote": "Camera warning apps are illegal in Switzerland. Alerts are disabled here."
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "countryCode": "LU",
+      "countryName": "Luxembourg",
+      "status": "blocked",
+      "cameraCount": 0,
+      "legalNote": "Camera warning apps are illegal in Luxembourg. Alerts are disabled here."
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "countryCode": "TR",
+      "countryName": "Türkiye",
+      "status": "blocked",
+      "cameraCount": 0,
+      "legalNote": "Camera warning apps are illegal in Türkiye. Alerts are disabled here."
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "countryCode": "VN",
+      "countryName": "Vietnam",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "countryCode": "TH",
+      "countryName": "Thailand",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "MY",
+      "name": "Malaysia",
+      "countryCode": "MY",
+      "countryName": "Malaysia",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "countryCode": "SG",
+      "countryName": "Singapore",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "countryCode": "ID",
+      "countryName": "Indonesia",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "PH",
+      "name": "Philippines",
+      "countryCode": "PH",
+      "countryName": "Philippines",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "TW",
+      "name": "Taiwan",
+      "countryCode": "TW",
+      "countryName": "Taiwan",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "countryCode": "JP",
+      "countryName": "Japan",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "KR",
+      "name": "South Korea",
+      "countryCode": "KR",
+      "countryName": "South Korea",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "countryCode": "AE",
+      "countryName": "United Arab Emirates",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "countryCode": "SA",
+      "countryName": "Saudi Arabia",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "QA",
+      "name": "Qatar",
+      "countryCode": "QA",
+      "countryName": "Qatar",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "countryCode": "ZA",
+      "countryName": "South Africa",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "countryCode": "MX",
+      "countryName": "Mexico",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "countryCode": "BR",
+      "countryName": "Brazil",
+      "status": "comingSoon",
+      "cameraCount": 0,
+      "legalNote": "Not available yet. Coming in a later version."
+    }
+  ],
+  "sources": [
+    {
+      "id": "dc-ddot-ase",
+      "region": "US-DC",
+      "name": "Automated Safety Cameras",
+      "publisher": "District Department of Transportation (DDOT)",
+      "license": "CC BY 4.0",
+      "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
+      "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
+      "updatedAt": "2026-09-26",
+      "cameraCount": 282
+    },
+    {
+      "id": "chi-speed",
+      "region": "US-IL",
+      "name": "Speed Camera Locations",
+      "publisher": "City of Chicago",
+      "license": "City of Chicago Terms of Use",
+      "attribution": "This app uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data is subject to change at any time and is used at one's own risk.",
+      "landingURL": "https://data.cityofchicago.org/d/4i42-qv3h",
+      "updatedAt": "2026-08-25",
+      "cameraCount": 326
+    },
+    {
+      "id": "chi-redlight",
+      "region": "US-IL",
+      "name": "Red Light Camera Locations",
+      "publisher": "City of Chicago",
+      "license": "City of Chicago Terms of Use",
+      "attribution": "This app uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data is subject to change at any time and is used at one's own risk.",
+      "landingURL": "https://data.cityofchicago.org/d/thvf-6diy",
+      "updatedAt": "2026-09-15",
+      "cameraCount": 299
+    },
+    {
+      "id": "moco-speed",
+      "region": "US-MD",
+      "name": "Automated Speed Enforcement",
+      "publisher": "Montgomery County, Maryland",
+      "license": "Public Domain",
+      "attribution": "Speed camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
+      "landingURL": "https://data.montgomerycountymd.gov/d/uv5p-zm58",
+      "updatedAt": "2026-07-01",
+      "cameraCount": 148
+    },
+    {
+      "id": "moco-redlight",
+      "region": "US-MD",
+      "name": "Automated Red Light Enforcement",
+      "publisher": "Montgomery County, Maryland",
+      "license": "Public Domain",
+      "attribution": "Red light camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
+      "landingURL": "https://data.montgomerycountymd.gov/d/3cju-6hst",
+      "updatedAt": "2026-07-01",
+      "cameraCount": 38
+    },
+    {
+      "id": "sf-speed",
+      "region": "US-CA",
+      "name": "Automated Speed Enforcement",
+      "publisher": "San Francisco Municipal Transportation Agency (SFMTA)",
+      "license": "ODC PDDL",
+      "attribution": "Speed camera locations: SFMTA via DataSF, Open Data Commons Public Domain Dedication and License (PDDL).",
+      "landingURL": "https://data.sf.gov/d/d5uh-bk84",
+      "updatedAt": "2026-08-25",
+      "cameraCount": 56
+    },
+    {
+      "id": "sf-redlight",
+      "region": "US-CA",
+      "name": "Red Light Camera Citations (locations)",
+      "publisher": "San Francisco Municipal Transportation Agency (SFMTA)",
+      "license": "ODC PDDL",
+      "attribution": "Red light camera locations: SFMTA via DataSF, Open Data Commons Public Domain Dedication and License (PDDL).",
+      "landingURL": "https://data.sf.gov/d/uzmr-g2uc",
+      "updatedAt": "2026-08-18",
+      "cameraCount": 18
+    },
+    {
+      "id": "nola-cams",
+      "region": "US-LA",
+      "name": "Traffic Camera",
+      "publisher": "City of New Orleans Department of Public Works",
+      "license": "CC0 1.0",
+      "attribution": "Camera locations: City of New Orleans Department of Public Works (data.nola.gov), CC0. The City notes this listing may not reflect current camera locations.",
+      "landingURL": "https://data.nola.gov/d/te2d-4txp",
+      "updatedAt": "2024-11-28",
+      "cameraCount": 38
+    },
+    {
+      "id": "sea-atsc",
+      "region": "US-WA",
+      "name": "Automatic Traffic Safety Cameras (ATSC)",
+      "publisher": "Seattle Department of Transportation",
+      "license": "Not specified",
+      "attribution": "Traffic safety camera locations: City of Seattle.",
+      "landingURL": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Automatic_Traffic_Safety_Cameras_(ATSC)_view/FeatureServer/0",
+      "updatedAt": "2026-08-05",
+      "cameraCount": 100
+    },
+    {
+      "id": "bal-redlight",
+      "region": "US-MD",
+      "name": "ATVES Red Light Cameras",
+      "publisher": "Baltimore City Department of Transportation",
+      "license": "Not specified",
+      "attribution": "Red light camera locations: Baltimore City Department of Transportation (ATVES).",
+      "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/Baltimore_ATVES_Red_Light_Camera/FeatureServer/0",
+      "updatedAt": "2025-05-07",
+      "cameraCount": 180
+    },
+    {
+      "id": "bal-speed-fixed",
+      "region": "US-MD",
+      "name": "ATVES Speed Cameras (Fixed)",
+      "publisher": "Baltimore City Department of Transportation",
+      "license": "Not specified",
+      "attribution": "Speed camera locations: Baltimore City Department of Transportation (ATVES).",
+      "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Fixed/FeatureServer/3",
+      "updatedAt": "2026-02-17",
+      "cameraCount": 21
+    },
+    {
+      "id": "bal-speed-portable",
+      "region": "US-MD",
+      "name": "ATVES Speed Cameras (Portable)",
+      "publisher": "Baltimore City Department of Transportation",
+      "license": "Not specified",
+      "attribution": "Speed camera locations: Baltimore City Department of Transportation (ATVES).",
+      "landingURL": "https://services3.arcgis.com/ZTvQ9NuONePFYofE/ArcGIS/rest/services/ATVES_Speed_Cameras_Portable/FeatureServer/1",
+      "updatedAt": "2026-05-28",
+      "cameraCount": 128
+    },
+    {
+      "id": "arl-speed",
+      "region": "US-VA",
+      "name": "DES Photo Speed Cameras",
+      "publisher": "Arlington County Department of Environmental Services",
+      "license": "© Arlington County, Virginia",
+      "attribution": "Photo speed camera locations © Arlington County, Virginia, Department of Environmental Services.",
+      "landingURL": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0",
+      "updatedAt": "2026-09-26",
+      "cameraCount": 35
+    },
+    {
+      "id": "tac-ae",
+      "region": "US-WA",
+      "name": "Automated Enforcement Locations",
+      "publisher": "City of Tacoma",
+      "license": "Not specified",
+      "attribution": "Automated enforcement locations: City of Tacoma.",
+      "landingURL": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0",
+      "updatedAt": "2026-09-26",
+      "cameraCount": 22
+    },
+    {
+      "id": "bel-speed",
+      "region": "US-WA",
+      "name": "Speed Safety Cameras",
+      "publisher": "City of Bellevue",
+      "license": "Not specified",
+      "attribution": "Speed safety camera locations: City of Bellevue.",
+      "landingURL": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/Speed_Safety_Cameras/FeatureServer/0",
+      "updatedAt": "2026-08-26",
+      "cameraCount": 5
+    },
+    {
+      "id": "de-redlight",
+      "region": "US-DE",
+      "name": "Traffic Devices - Signals (red light enforcement)",
+      "publisher": "Delaware Department of Transportation (DelDOT)",
+      "license": "© DelDOT",
+      "attribution": "Red light enforcement signals © Delaware Department of Transportation (DelDOT), FirstMap.",
+      "landingURL": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Boundary_and_Point/FeatureServer/29",
+      "updatedAt": null,
+      "cameraCount": 60
+    }
+  ]
+}

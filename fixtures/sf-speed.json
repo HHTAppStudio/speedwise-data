@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "rowsUpdatedAt": 1787694973
+  },
+  "raw": [
+    {
+      "site_id": "MTAF041",
+      "location": "WB 380 MONTEREY BLVD",
+      "posted_speed": "25",
+      "latitude": "37.73163800763000",
+      "longitude": "-122.4438232798120"
+    },
+    {
+      "site_id": "MTAF047",
+      "location": "WB 2300 16TH ST",
+      "posted_speed": "25",
+      "latitude": "37.76647500000100",
+      "longitude": "-122.4104220000020"
+    },
+    {
+      "site_id": "MTAF027",
+      "location": "EB 2699 LINCOLN WAY",
+      "posted_speed": "30",
+      "latitude": "37.76497840764100",
+      "longitude": "-122.4868151179290"
+    },
+    {
+      "site_id": "MTAF012",
+      "location": "WB 2999 MARKET ST",
+      "posted_speed": "30",
+      "latitude": "37.76101215448200",
+      "longitude": "-122.4409014782770"
+    },
+    {
+      "site_id": "MTAF022",
+      "location": "WB 2530 FULTON ST",
+      "posted_speed": "25",
+      "latitude": "37.77452100000100",
+      "longitude": "-122.4590490000020"
+    }
+  ]
+}
