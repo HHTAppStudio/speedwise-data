@@ -1,7 +1,7 @@
 {
   "region": "CA",
-  "version": 1,
-  "generatedAt": "2026-09-27T11:11:06Z",
+  "version": 2,
+  "generatedAt": "2026-09-28T09:49:36Z",
   "unit": "kmh",
   "cameras": [
     {
@@ -927,7 +927,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -943,7 +943,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -959,7 +959,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -975,7 +975,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -991,7 +991,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1007,7 +1007,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1023,7 +1023,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1039,7 +1039,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1055,7 +1055,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1071,7 +1071,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1087,7 +1087,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1103,7 +1103,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1119,7 +1119,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1135,7 +1135,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1151,7 +1151,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1167,7 +1167,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1183,7 +1183,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1199,7 +1199,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1215,7 +1215,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1231,7 +1231,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1247,7 +1247,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1263,7 +1263,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1279,7 +1279,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1295,7 +1295,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1311,7 +1311,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1327,7 +1327,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1343,7 +1343,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1359,7 +1359,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1375,7 +1375,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1391,7 +1391,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1407,7 +1407,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1423,7 +1423,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1439,7 +1439,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1455,7 +1455,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1471,7 +1471,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1487,7 +1487,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1503,7 +1503,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1519,7 +1519,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1535,7 +1535,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1551,7 +1551,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1567,7 +1567,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1583,7 +1583,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1599,7 +1599,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1615,7 +1615,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1631,7 +1631,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1647,7 +1647,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1663,7 +1663,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1679,7 +1679,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1695,7 +1695,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1711,7 +1711,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1727,7 +1727,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1743,7 +1743,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1759,7 +1759,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1775,7 +1775,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1791,7 +1791,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1807,7 +1807,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1823,7 +1823,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1839,7 +1839,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1855,7 +1855,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1871,7 +1871,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1887,7 +1887,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1903,7 +1903,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1919,7 +1919,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1935,7 +1935,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1951,7 +1951,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1967,7 +1967,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -1983,7 +1983,7 @@
       "source": "openData",
       "sourceId": "edm-isd",
       "confidence": 80,
-      "lastConfirmedAt": "2026-09-14T00:00:00Z",
+      "lastConfirmedAt": "2026-09-28T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true

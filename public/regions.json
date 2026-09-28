@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "regions": [
     {
       "code": "US-NY",
@@ -200,9 +200,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 35,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-va.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-09-28",
+      "packURL": "packs/us-va.v3.json",
+      "packVersion": 3,
       "coverageNote": "Arlington County"
     },
     {
@@ -296,9 +296,9 @@
       "countryName": "Canada",
       "status": "full",
       "cameraCount": 815,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/ca.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-09-28",
+      "packURL": "packs/ca.v2.json",
+      "packVersion": 2,
       "coverageNote": "Québec, Toronto, Ottawa, York Region, Hamilton, Peel Region, Kingston, Edmonton, Calgary"
     },
     {
@@ -646,9 +646,9 @@
       "countryName": "Taiwan",
       "status": "full",
       "cameraCount": 1905,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/tw.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-09-28",
+      "packURL": "packs/tw.v2.json",
+      "packVersion": 2,
       "coverageNote": "Taiwan (National Police Agency, nationwide), New Taipei"
     },
     {
@@ -907,7 +907,7 @@
       "license": "© Arlington County, Virginia",
       "attribution": "Photo speed camera locations © Arlington County, Virginia, Department of Environmental Services.",
       "landingURL": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0",
-      "updatedAt": "2026-09-27",
+      "updatedAt": "2026-09-28",
       "cameraCount": 35
     },
     {
@@ -1039,7 +1039,7 @@
       "license": "Open Government Licence – Edmonton",
       "attribution": "Intersection safety device locations: City of Edmonton, Open Government Licence – Edmonton.",
       "landingURL": "https://data.edmonton.ca/d/7fnd-72gr",
-      "updatedAt": "2026-09-14",
+      "updatedAt": "2026-09-28",
       "cameraCount": 67
     },
     {
@@ -1259,7 +1259,7 @@
       "license": "Open Government Data License, version 1.0 (Taiwan)",
       "attribution": "測速執法設置點: National Police Agency, Ministry of the Interior, Open Government Data License, version 1.0.",
       "landingURL": "https://data.gov.tw/dataset/7320",
-      "updatedAt": "2026-09-27",
+      "updatedAt": "2026-09-28",
       "cameraCount": 1885
     },
     {

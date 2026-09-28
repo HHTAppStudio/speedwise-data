@@ -6,58 +6,58 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 
 | Nguồn | Vùng | Tier | Tải | Ngày dataset | Dòng | Camera | Vào pack | Bị loại (lý do) |
 |---|---|---|---|---|---:|---:|---:|---|
-| `dc-ddot-ase` | US-DC | A | không chạy (--only), giữ 282 camera cũ | 2026-09-27 | — | — | 282 | — |
-| `chi-speed` | US-IL | A | không chạy (--only), giữ 326 camera cũ | 2026-08-25 | — | — | 326 | — |
-| `chi-redlight` | US-IL | A | không chạy (--only), giữ 299 camera cũ | 2026-09-15 | — | — | 299 | — |
-| `moco-speed` | US-MD | A | không chạy (--only), giữ 148 camera cũ | 2026-07-01 | — | — | 148 | — |
-| `moco-redlight` | US-MD | A | không chạy (--only), giữ 38 camera cũ | 2026-07-01 | — | — | 38 | — |
-| `sf-speed` | US-CA | A | không chạy (--only), giữ 56 camera cũ | 2026-08-25 | — | — | 56 | — |
-| `sf-redlight` | US-CA | A | không chạy (--only), giữ 18 camera cũ | 2026-08-18 | — | — | 18 | — |
-| `nola-cams` | US-LA | A | không chạy (--only), giữ 38 camera cũ | 2024-11-28 | — | — | 38 | — |
-| `sea-atsc` | US-WA | B | không chạy (--only), giữ 100 camera cũ | 2026-08-05 | — | — | 100 | — |
-| `bal-redlight` | US-MD | B | không chạy (--only), giữ 180 camera cũ | 2025-05-07 | — | — | 180 | — |
-| `bal-speed-fixed` | US-MD | B | không chạy (--only), giữ 21 camera cũ | 2026-02-17 | — | — | 21 | — |
-| `bal-speed-portable` | US-MD | B | không chạy (--only), giữ 128 camera cũ | 2026-05-28 | — | — | 128 | — |
-| `arl-speed` | US-VA | B | không chạy (--only), giữ 35 camera cũ | 2026-09-27 | — | — | 35 | — |
-| `tac-ae` | US-WA | B | không chạy (--only), giữ 22 camera cũ | 2026-09-27 | — | — | 22 | — |
-| `bel-speed` | US-WA | B | không chạy (--only), giữ 5 camera cũ | 2026-08-26 | — | — | 5 | — |
-| `de-redlight` | US-DE | B | không chạy (--only), giữ 60 camera cũ | — | — | — | 60 | — |
+| `dc-ddot-ase` | US-DC | A | OK | 2026-09-27 | 327 | 283 | 282 | loại không dùng: Stop Sign: 34; loại không dùng: Truck Restriction: 10; gộp trùng ≤ 30 m: 1 |
+| `chi-speed` | US-IL | A | OK | 2026-08-25 | 209 | 326 | 326 | — |
+| `chi-redlight` | US-IL | A | OK | 2026-09-15 | 300 | 300 | 299 | gộp trùng ≤ 30 m: 1 |
+| `moco-speed` | US-MD | A | OK | 2026-07-01 | 785 | 151 | 148 | kỳ cũ hơn quarter_name: 559; toạ độ bằng 0: 54; thiếu toạ độ: 21; gộp trùng ≤ 30 m: 3 |
+| `moco-redlight` | US-MD | A | OK | 2026-07-01 | 190 | 39 | 38 | kỳ cũ hơn quarter_name: 134; toạ độ bằng 0: 17; gộp trùng ≤ 30 m: 1 |
+| `sf-speed` | US-CA | A | OK | 2026-08-25 | 56 | 56 | 56 | — |
+| `sf-redlight` | US-CA | A | OK | 2026-08-18 | 19 | 18 | 18 | trùng id trong nguồn: 1 |
+| `nola-cams` | US-LA | A | OK | 2024-11-28 | 103 | 38 | 38 | không hoạt động: active=No: 61; trùng id trong nguồn: 4 |
+| `sea-atsc` | US-WA | B | OK | 2026-08-05 | 114 | 100 | 100 | loại không dùng: Block-the-Box: 8; loại không dùng: Transit Lane: 6 |
+| `bal-redlight` | US-MD | B | OK | 2025-05-07 | 180 | 180 | 180 | — |
+| `bal-speed-fixed` | US-MD | B | OK | 2026-02-17 | 21 | 21 | 21 | — |
+| `bal-speed-portable` | US-MD | B | OK | 2026-05-28 | 128 | 128 | 128 | — |
+| `arl-speed` | US-VA | B | OK | 2026-09-28 | 47 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1756094400000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1757649600000: 1 |
+| `tac-ae` | US-WA | B | OK | 2026-09-27 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
+| `bel-speed` | US-WA | B | OK | 2026-08-26 | 14 | 8 | 5 | không hoạt động: OperationalStatus=Planned: 6; gộp trùng ≤ 30 m: 3 |
+| `de-redlight` | US-DE | B | OK | — | 60 | 60 | 60 | — |
 | `nyc-dof-derived` | US-NY | A-derived | OK | 2026-08-27 | 2766 | 2766 | 2766 | — |
-| `qc-mtmd` | CA | A | không chạy (--only), giữ 160 camera cũ | 2026-09-10 | — | — | 160 | — |
-| `tor-rlc` | CA | A | không chạy (--only), giữ 295 camera cũ | 2026-09-26 | — | — | 295 | — |
-| `ott-rlc` | CA | A | không chạy (--only), giữ 86 camera cũ | 2026-08-12 | — | — | 86 | — |
-| `york-rlc` | CA | A | không chạy (--only), giữ 55 camera cũ | 2025-08-01 | — | — | 55 | — |
-| `ham-rlc` | CA | A | không chạy (--only), giữ 51 camera cũ | 2026-09-26 | — | — | 51 | — |
-| `peel-rlc` | CA | A | không chạy (--only), giữ 37 camera cũ | 2026-03-05 | — | — | 37 | — |
-| `king-rlc` | CA | A | không chạy (--only), giữ 7 camera cũ | 2025-01-09 | — | — | 7 | — |
-| `edm-isd` | CA | A | không chạy (--only), giữ 67 camera cũ | 2026-09-14 | — | — | 67 | — |
-| `cal-isc` | CA | A | không chạy (--only), giữ 57 camera cũ | 2026-09-01 | — | — | 57 | — |
-| `ia-ate` | US-IA | B | không chạy (--only), giữ 156 camera cũ | — | — | — | 156 | — |
-| `caba-fijas` | AR | A | không chạy (--only), giữ 90 camera cũ | — | — | — | 90 | — |
-| `antt-radares` | BR | A | không chạy (--only), giữ 1080 camera cũ | 2026-08-28 | — | — | 1080 | — |
-| `bh-fiscalizacao` | BR | A | không chạy (--only), giữ 219 camera cũ | 2026-09-15 | — | — | 219 | — |
-| `bog-salvavidas` | CO | A | không chạy (--only), giữ 48 camera cũ | 2026-08-24 | — | — | 48 | — |
-| `es-dgt-radares` | ES | A | không chạy (--only), giữ 722 camera cũ | 2025-12-18 | — | — | 722 | — |
-| `es-cat-radars` | ES | A | không chạy (--only), giữ 230 camera cũ | — | — | — | 230 | — |
-| `no-nvdb-atk` | NO | A | không chạy (--only), giữ 438 camera cũ | 2026-09-15 | — | — | 438 | — |
-| `se-trv-atk` | SE | A | không chạy (--only), giữ 2794 camera cũ | 2026-09-24 | — | — | 2794 | — |
-| `be-bxl-speedcameras` | BE | A | không chạy (--only), giữ 129 camera cũ | — | — | — | 129 | — |
-| `lu-geoportail-radars` | LU | A | không chạy (--only), giữ 45 camera cũ | 2024-10-24 | — | — | 45 | — |
-| `de-ka-blitzer` | DE | A | không chạy (--only), giữ 33 camera cũ | 2025-02-19 | — | — | 33 | — |
-| `sg-spf-speed` | SG | A | không chạy (--only), giữ 47 camera cũ | 2024-06-06 | — | — | 47 | — |
-| `sg-spf-fixed` | SG | A | không chạy (--only), giữ 11 camera cũ | 2025-11-13 | — | — | 11 | — |
-| `sg-spf-redlight` | SG | A | không chạy (--only), giữ 0 camera cũ | 2025-11-13 | — | — | 0 | — |
-| `sg-spf-dtrls` | SG | A | không chạy (--only), giữ 235 camera cũ | 2025-12-02 | — | — | 235 | — |
-| `hk-td-rlc` | HK | A | không chạy (--only), giữ 222 camera cũ | 2026-06-26 | — | — | 222 | — |
-| `hk-td-sec` | HK | A | không chạy (--only), giữ 164 camera cũ | 2026-06-16 | — | — | 164 | — |
-| `tw-npa-speed` | TW | A | không chạy (--only), giữ 1885 camera cũ | 2026-09-27 | — | — | 1885 | — |
-| `tw-ntpc-fixed` | TW | A | không chạy (--only), giữ 1 camera cũ | — | — | — | 1 | — |
-| `tw-ntpc-section` | TW | A | không chạy (--only), giữ 19 camera cũ | 2026-08-11 | — | — | 19 | — |
-| `au-act-cameras` | AU | A | không chạy (--only), giữ 1126 camera cũ | 2026-08-21 | — | — | 1126 | — |
-| `au-nsw-fixed` | AU | A | không chạy (--only), giữ 66 camera cũ | 2021-05-27 | — | — | 66 | — |
-| `au-nsw-school` | AU | A | không chạy (--only), giữ 49 camera cũ | 2021-05-27 | — | — | 49 | — |
-| `au-nsw-redlight` | AU | A | không chạy (--only), giữ 220 camera cũ | 2021-05-27 | — | — | 220 | — |
-| `kr-std` | KR | A | không chạy (--only), giữ 25772 camera cũ | 2026-08-21 | — | — | 25772 | — |
+| `qc-mtmd` | CA | A | OK | 2026-09-10 | 160 | 160 | 160 | — |
+| `tor-rlc` | CA | A | OK | 2026-09-26 | 301 | 301 | 295 | gộp trùng ≤ 30 m: 6 |
+| `ott-rlc` | CA | A | OK | 2026-08-12 | 88 | 86 | 86 | thiếu toạ độ: 2 |
+| `york-rlc` | CA | A | OK | 2025-08-01 | 55 | 55 | 55 | — |
+| `ham-rlc` | CA | A | OK | 2026-09-26 | 51 | 51 | 51 | — |
+| `peel-rlc` | CA | A | OK | 2026-03-05 | 37 | 37 | 37 | — |
+| `king-rlc` | CA | A | OK | 2025-01-09 | 7 | 7 | 7 | — |
+| `edm-isd` | CA | A | OK | 2026-09-28 | 67 | 67 | 67 | — |
+| `cal-isc` | CA | A | OK | 2026-09-01 | 57 | 57 | 57 | — |
+| `ia-ate` | US-IA | B | OK | — | 348 | 156 | 156 | lọc approvalstatus=2-Denied: 192 |
+| `caba-fijas` | AR | A | OK | — | 224 | 94 | 90 | loại không dùng: Analítica de video: 95; trùng id trong nguồn: 35; gộp trùng ≤ 30 m: 4 |
+| `antt-radares` | BR | A | OK | 2026-08-28 | 1256 | 1122 | 1080 | trùng id trong nguồn: 134; gộp trùng ≤ 30 m: 42 |
+| `bh-fiscalizacao` | BR | A | OK | 2026-09-15 | 447 | 396 | 219 | gộp trùng ≤ 30 m: 177; loại không dùng: Detector de Conversão-Retorno em local Proibido: 28; loại không dùng: Detector de Invasão de Faixa de Exclusiva - MOVE: 23 |
+| `bog-salvavidas` | CO | A | OK | 2026-08-24 | 128 | 54 | 48 | lọc ESTADO_PUNTO=Desmontada - novedad: 43; loại không dùng: C14, C32: 23; lọc ESTADO_PUNTO=None: 8; gộp trùng ≤ 30 m: 6 |
+| `es-dgt-radares` | ES | A | OK | 2025-12-18 | 784 | 784 | 722 | gộp trùng ≤ 30 m: 62 |
+| `es-cat-radars` | ES | A | OK | — | 247 | 230 | 230 | thiếu toạ độ: 16; toạ độ ngoài khung bang: 1 |
+| `no-nvdb-atk` | NO | A | OK | 2026-09-15 | 461 | 461 | 438 | gộp trùng ≤ 30 m: 23 |
+| `se-trv-atk` | SE | A | OK | 2026-09-24 | 2794 | 2794 | 2794 | — |
+| `be-bxl-speedcameras` | BE | A | OK | — | 132 | 132 | 129 | gộp trùng ≤ 30 m: 3 |
+| `lu-geoportail-radars` | LU | A | OK | 2024-10-24 | 45 | 45 | 45 | — |
+| `de-ka-blitzer` | DE | A | OK | 2025-02-19 | 37 | 37 | 33 | gộp trùng ≤ 30 m: 4 |
+| `sg-spf-speed` | SG | A | OK | 2024-06-06 | 91 | 91 | 47 | gộp trùng ≤ 30 m: 44 |
+| `sg-spf-fixed` | SG | A | OK | 2025-11-13 | 20 | 20 | 11 | gộp trùng ≤ 30 m: 9 |
+| `sg-spf-redlight` | SG | A | OK | 2025-11-13 | 240 | 240 | 0 | gộp trùng ≤ 30 m: 240 |
+| `sg-spf-dtrls` | SG | A | OK | 2025-12-02 | 240 | 240 | 235 | gộp trùng ≤ 30 m: 5 |
+| `hk-td-rlc` | HK | A | OK | 2026-06-26 | 230 | 230 | 222 | gộp trùng ≤ 30 m: 8 |
+| `hk-td-sec` | HK | A | OK | 2026-06-16 | 164 | 164 | 164 | — |
+| `tw-npa-speed` | TW | A | OK | 2026-09-28 | 1896 | 1890 | 1885 | gộp trùng ≤ 30 m: 5; trùng id trong nguồn: 4; lọc CityName=設置縣市: 1; toạ độ ngoài khung bang: 1 |
+| `tw-ntpc-fixed` | TW | A | OK | — | 173 | 173 | 1 | gộp trùng ≤ 30 m: 172 |
+| `tw-ntpc-section` | TW | A | OK | 2026-08-11 | 50 | 50 | 19 | gộp trùng ≤ 30 m: 31 |
+| `au-act-cameras` | AU | A | OK | 2026-08-21 | 1263 | 1204 | 1126 | gộp trùng ≤ 30 m: 78; trùng id trong nguồn: 35; loại không dùng: None: 4; lọc decommissioned_camera_date=2020-01-23T00:00:00.000: 3; lọc decommissioned_camera_date=2016-03-01T00:00:00.000: 2; lọc decommissioned_camera_date=2016-11-01T00:00:00.000: 2; lọc decommissioned_camera_date=2017-06-01T00:00:00.000: 2; lọc decommissioned_camera_date=2022-04-03T00:00:00.000: 2; lọc decommissioned_camera_date=2002-06-17T00:00:00.000: 1; lọc decommissioned_camera_date=2007-01-17T00:00:00.000: 1; lọc decommissioned_camera_date=2008-04-23T00:00:00.000: 1; lọc decommissioned_camera_date=2008-08-29T00:00:00.000: 1; lọc decommissioned_camera_date=2009-05-13T00:00:00.000: 1; lọc decommissioned_camera_date=2017-08-01T00:00:00.000: 1; lọc decommissioned_camera_date=2024-10-22T00:00:00.000: 1; thiếu toạ độ: 1; toạ độ ngoài khung bang: 1 |
+| `au-nsw-fixed` | AU | A | OK | 2021-05-27 | 67 | 67 | 66 | gộp trùng ≤ 30 m: 1 |
+| `au-nsw-school` | AU | A | OK | 2021-05-27 | 59 | 59 | 49 | gộp trùng ≤ 30 m: 10 |
+| `au-nsw-redlight` | AU | A | OK | 2021-05-27 | 221 | 221 | 220 | gộp trùng ≤ 30 m: 1 |
+| `kr-std` | KR | A | OK | 2026-08-21 | 43724 | 29183 | 25772 | loại không dùng: 4: 8037; loại không dùng: 04: 3425; gộp trùng ≤ 30 m: 3411; trùng id trong nguồn: 1540; loại không dùng: 99: 1461; loại không dùng: 3: 65; loại không dùng: 03: 13 |
 
 ## Theo vùng
 
@@ -67,7 +67,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | AU | `packs/au.v1.json` | kmh | 637 | 1 | 1461 | 79 | 0 | 49 | 233 | 1100 |
 | BE | `packs/be.v1.json` | kmh | 54 | 1 | 129 | 129 | 0 | 0 | 0 | 0 |
 | BR | `packs/br.v1.json` | kmh | 552 | 1 | 1299 | 1189 | 110 | 0 | 0 | 0 |
-| CA | `packs/ca.v1.json` | kmh | 345 | 1 | 815 | 11 | 664 | 0 | 10 | 130 |
+| CA | `packs/ca.v2.json` | kmh | 345 | 2 | 815 | 11 | 664 | 0 | 10 | 130 |
 | CO | `packs/co.v1.json` | kmh | 20 | 1 | 48 | 44 | 0 | 0 | 4 | 0 |
 | DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
 | ES | `packs/es.v1.json` | kmh | 395 | 1 | 952 | 952 | 0 | 0 | 0 | 0 |
@@ -77,7 +77,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | NO | `packs/no.v1.json` | kmh | 183 | 1 | 438 | 438 | 0 | 0 | 0 | 0 |
 | SE | `packs/se.v1.json` | kmh | 1146 | 1 | 2794 | 2794 | 0 | 0 | 0 | 0 |
 | SG | `packs/sg.v1.json` | kmh | 131 | 1 | 293 | 23 | 235 | 0 | 0 | 35 |
-| TW | `packs/tw.v1.json` | kmh | 803 | 1 | 1905 | 1905 | 0 | 0 | 0 | 0 |
+| TW | `packs/tw.v2.json` | kmh | 803 | 2 | 1905 | 1905 | 0 | 0 | 0 | 0 |
 | US-CA | `packs/us-ca.v1.json` | mph | 30 | 1 | 74 | 56 | 18 | 0 | 0 | 0 |
 | US-DC | `packs/us-dc.v2.json` | mph | 116 | 2 | 282 | 221 | 61 | 0 | 0 | 0 |
 | US-DE | `packs/us-de.v1.json` | mph | 24 | 1 | 60 | 0 | 60 | 0 | 0 | 0 |
@@ -86,7 +86,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-LA | `packs/us-la.v1.json` | mph | 16 | 1 | 38 | 2 | 6 | 30 | 0 | 0 |
 | US-MD | `packs/us-md.v1.json` | mph | 215 | 1 | 515 | 148 | 218 | 149 | 0 | 0 |
 | US-NY | `packs/us-ny.v1.json` | mph | 1186 | 1 | 2766 | 0 | 636 | 2130 | 0 | 0 |
-| US-VA | `packs/us-va.v2.json` | mph | 15 | 2 | 35 | 0 | 0 | 35 | 0 | 0 |
+| US-VA | `packs/us-va.v3.json` | mph | 15 | 3 | 35 | 0 | 0 | 35 | 0 | 0 |
 | US-WA | `packs/us-wa.v2.json` | mph | 52 | 2 | 127 | 14 | 39 | 74 | 0 | 0 |
 
 **Tổng: 41138 camera ở 25 vùng.**
