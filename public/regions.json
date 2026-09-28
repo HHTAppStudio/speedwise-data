@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 9,
   "regions": [
     {
       "code": "US-NY",
@@ -7,7 +7,11 @@
       "countryCode": "US",
       "countryName": "United States",
       "status": "full",
-      "cameraCount": 0
+      "cameraCount": 2766,
+      "updatedAt": "2026-09-28",
+      "packURL": "packs/us-ny.v1.json",
+      "packVersion": 1,
+      "coverageNote": "NYC school zones & red lights (located from city ticket data)"
     },
     {
       "code": "US-IL",
@@ -938,6 +942,17 @@
       "landingURL": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Transportation/DE_Boundary_and_Point/FeatureServer/29",
       "updatedAt": null,
       "cameraCount": 60
+    },
+    {
+      "id": "nyc-dof-derived",
+      "region": "US-NY",
+      "name": "Parking Violations Issued (school zone speed & red light camera tickets, located by intersection)",
+      "publisher": "NYC Department of Finance (DOF)",
+      "license": "NYC Open Data Terms of Use",
+      "attribution": "Derived from NYC Department of Finance parking & camera violation data, NYC Open Data.",
+      "landingURL": "https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2027/pvqr-7yc4",
+      "updatedAt": "2026-08-27",
+      "cameraCount": 2766
     },
     {
       "id": "qc-mtmd",

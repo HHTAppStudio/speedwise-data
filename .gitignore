@@ -1,4 +1,6 @@
-cache/
+cache/*
+# Cache geocode NYC (D04) được commit để lần sau không gọi Geoclient lại.
+!cache/nyc_geocode.json
 __pycache__/
 *.pyc
 .DS_Store

@@ -602,6 +602,56 @@
     "baseConfidence": 80
   },
   {
+    "id": "nyc-dof-derived",
+    "enabled": true,
+    "tier": "A-derived",
+    "region": "US-NY",
+    "coverage": "NYC school zones & red lights (located from city ticket data)",
+    "publisher": "NYC Department of Finance (DOF)",
+    "name": "Parking Violations Issued (school zone speed & red light camera tickets, located by intersection)",
+    "landingURL": "https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2027/pvqr-7yc4",
+    "catalog": "https://data.cityofnewyork.us/api/catalog/v1?q=Parking%20Violations%20Issued&limit=50",
+    "endpoint": "https://data.cityofnewyork.us/resource/{id}.json",
+    "format": "nyc-dof-derived",
+    "metadata": null,
+    "rowDateField": "last_ticket",
+    "license": "NYC Open Data Terms of Use",
+    "attribution": "Derived from NYC Department of Finance parking & camera violation data, NYC Open Data.",
+    "windowDays": 365,
+    "minTickets": 20,
+    "violationDescriptions": {
+      "36": "PHTO SCHOOL ZN SPEED VIOLATION",
+      "7": "FAILURE TO STOP AT RED LIGHT"
+    },
+    "geocodeKeyEnv": "NYC_GEOCLIENT_KEY",
+    "geocodeCache": "nyc_geocode.json",
+    "typeMap": {
+      "field": "violation_code",
+      "values": {
+        "36": "schoolZone",
+        "7": "redLight"
+      }
+    },
+    "typeConfidence": {
+      "schoolZone": 65,
+      "redLight": 65
+    },
+    "filters": [],
+    "fieldMap": {
+      "key": "key",
+      "road": [
+        "road"
+      ],
+      "direction": [
+        "direction"
+      ],
+      "lat": "lat",
+      "lon": "lon",
+      "confirmed": "last_ticket"
+    },
+    "baseConfidence": 65
+  },
+  {
     "id": "qc-mtmd",
     "enabled": true,
     "tier": "A",

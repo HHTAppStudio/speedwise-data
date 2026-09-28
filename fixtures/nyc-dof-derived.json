@@ -1,0 +1,60 @@
+{
+  "metadata": null,
+  "raw": [
+    {
+      "violation_code": "7",
+      "key": "rl0001231eb",
+      "road": "DRUMGOOLE RD E @ MAGUIRE AVE",
+      "direction": "EB",
+      "borough": "STATEN ISLAND",
+      "tickets": 723,
+      "last_ticket": "2026-07-26",
+      "lat": 40.529455,
+      "lon": -74.210997
+    },
+    {
+      "violation_code": "36",
+      "key": "sz0000174wb",
+      "road": "HYLAN BLVD @ CHELSEA ST",
+      "direction": "WB",
+      "borough": "STATEN ISLAND",
+      "tickets": 133,
+      "last_ticket": "2026-08-26",
+      "lat": 40.504291,
+      "lon": -74.244331
+    },
+    {
+      "violation_code": "7",
+      "key": "rl0001233wb",
+      "road": "DRUMGOOLE RD W @ MAGUIRE AVE",
+      "direction": "WB",
+      "borough": "STATEN ISLAND",
+      "tickets": 984,
+      "last_ticket": "2026-07-26",
+      "lat": 40.530262,
+      "lon": -74.211089
+    },
+    {
+      "violation_code": "7",
+      "key": "rl0001896sb",
+      "road": "LUTEN AVE @ HYLAN BLVD",
+      "direction": "SB",
+      "borough": "STATEN ISLAND",
+      "tickets": 57,
+      "last_ticket": "2026-06-09",
+      "lat": 40.523127,
+      "lon": -74.188467
+    },
+    {
+      "violation_code": "7",
+      "key": "rl0001975nb",
+      "road": "HUGUENOT AVE @ DRUMGOOLE RD W",
+      "direction": "NB",
+      "borough": "STATEN ISLAND",
+      "tickets": 748,
+      "last_ticket": "2026-07-26",
+      "lat": 40.535835,
+      "lon": -74.19377
+    }
+  ]
+}

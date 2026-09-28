@@ -12,6 +12,7 @@ import tempfile
 import unittest
 
 import build_packs as bp
+from sources import nyc_dof
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TODAY = dt.date(2026, 9, 27)
@@ -631,6 +632,153 @@ class AsiaPacificTests(unittest.TestCase):
         finally:
             if saved is not None:
                 os.environ["DATA_GO_KR_KEY"] = saved
+
+
+class NycDerivedTests(unittest.TestCase):
+    """D04 (docs/04_TECH_SPEC.md mục 11.4): vị trí camera NYC suy từ vé phạt DOF + geocode giao lộ (Geoclient)."""
+
+    def test_direction_prefix_and_parenthesis(self):
+        cases = {
+            "SB KNAPP ST @ HARKNESS AVE": ("SB", "KNAPP ST", "HARKNESS AVE"),
+            "WB N.CONDUIT AVE @ DUMONT AVE": ("WB", "N CONDUIT AVE", "DUMONT AVE"),
+            "ATLANTIC AVE (E/B) @BEDFORD AVE": ("EB", "ATLANTIC AVE", "BEDFORD AVE"),
+            "BEACH CHANNEL DR (W/B) @ B 140TH ST": ("WB", "BEACH CHANNEL DR", "B 140TH ST"),
+            "OCEAN AVE @ AVE J": (None, "OCEAN AVE", "AVE J"),
+        }
+        for text, (direction, street, cross) in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(nyc_dof.parse_location(text), {"direction": direction, "street": street, "cross": cross})
+                self.assertEqual(bp.heading_for(bp.parse_direction(direction)), {"NB": 0, "EB": 90, "SB": 180, "WB": 270}.get(direction))
+        # "NBA" không phải hướng; đoạn giữa 2 giao lộ; không đọc được → None.
+        self.assertEqual(nyc_dof.split_direction("NBA WAY @ 1ST AVE"), (None, "NBA WAY @ 1ST AVE"))
+        self.assertEqual(nyc_dof.parse_location("NB 7 AVE. 46TH ST - 41ST ST"),
+                         {"direction": "NB", "street": "7 AVE", "between": ("46TH ST", "41ST ST")})
+        self.assertIsNone(nyc_dof.parse_location("NB RIVERSIDE DR BROADWAY - PAYSON AVE"))
+        self.assertIsNone(nyc_dof.parse_location("SB OCEAN AVE @"))
+
+    def test_rejoins_names_cut_at_20_characters(self):
+        # < 20 ký tự → chỗ cắt là khoảng trắng; = 20 → giữa từ hoặc trước từ mới (cách có vẻ đúng hơn đứng trước).
+        self.assertEqual(nyc_dof.join_candidates("WB N. CONDUIT AVE @", "143RD RD"), ["WB N. CONDUIT AVE @ 143RD RD"])
+        self.assertEqual(nyc_dof.join_candidates("SB KNAPP ST @ HARKNE", "SS AVE")[0], "SB KNAPP ST @ HARKNESS AVE")
+        self.assertEqual(nyc_dof.join_candidates("WB N CONDUIT AVE @ 1", "27TH ST")[0], "WB N CONDUIT AVE @ 127TH ST")
+        self.assertEqual(nyc_dof.join_candidates("SB DITMARS BLVD @ 27", "TH AVE")[0], "SB DITMARS BLVD @ 27TH AVE")
+        self.assertEqual(nyc_dof.join_candidates("EB 115TH AVE @ 224TH", "ST")[0], "EB 115TH AVE @ 224TH ST")
+        self.assertEqual(nyc_dof.join_candidates("WB BOSTON RD @ DYRE ", "AVE"), ["WB BOSTON RD @ DYRE AVE"])
+        self.assertEqual(nyc_dof.join_candidates("WB BOSTON RD @ DYREX", "AVE"), ["WB BOSTON RD @ DYREX AVE", "WB BOSTON RD @ DYREXAVE"])
+        self.assertEqual(nyc_dof.join_candidates("SB OCEAN AVE @ AVE J", None), ["SB OCEAN AVE @ AVE J"])
+        # Chuỗi 40 ký tự bị cắt cụt → tên duy nhất trong danh sách tên đã geocode được; nhiều / không có → giữ nguyên.
+        known = {"SPRINGFIELD BLVD", "SLOSSON AVE", "SLAYTON AVE"}
+        self.assertEqual(nyc_dof.complete_fragment("SPRINGFIELD BL", known), "SPRINGFIELD BLVD")
+        self.assertEqual(nyc_dof.complete_fragment("SL", known), "SL")
+        self.assertEqual(nyc_dof.complete_fragment("KISSENA", known), "KISSENA")
+
+    def test_ticket_threshold_and_merge_across_datasets(self):
+        groups = [
+            {"violation_code": "36", "violation_county": "BK", "street_name": "SB KNAPP ST @ HARKNE", "intersecting_street": "SS AVE",
+             "tickets": "12", "last_ticket": "2026-06-30T00:00:00.000"},
+            {"violation_code": "36", "violation_county": "BK", "street_name": "SB KNAPP ST @ HARKNE", "intersecting_street": "SS AVE",
+             "tickets": "9", "last_ticket": "2026-08-27T00:00:00.000"},
+            {"violation_code": "7", "violation_county": "QN", "street_name": "WB 101ST AVE @ WOODH", "intersecting_street": "AVEN BLVD",
+             "tickets": "19", "last_ticket": "2026-07-26T00:00:00.000"},
+        ]
+        kept, below = nyc_dof.aggregate(groups, SOURCES["nyc-dof-derived"]["minTickets"])
+        self.assertEqual(SOURCES["nyc-dof-derived"]["minTickets"], 20)
+        self.assertEqual(kept, {("36", "BK", "SB KNAPP ST @ HARKNE", "SS AVE"): [21, "2026-08-27"]})
+        self.assertEqual(below, 1)  # 19 vé → camera mobile/tạm, loại
+        # 12 tháng, chia ~1 tuần, chỉ trong năm tài chính của dataset (FY2027 bắt đầu 1/7/2026).
+        slices = nyc_dof.window_slices(TODAY, 365, 2027)
+        self.assertEqual(slices[:2], [(dt.date(2026, 7, 1), dt.date(2026, 7, 8)), (dt.date(2026, 7, 9), dt.date(2026, 7, 16))])
+        self.assertEqual(slices[-1], (dt.date(2026, 9, 25), dt.date(2026, 9, 27)))
+        self.assertEqual(len(slices), 12)
+        self.assertEqual(nyc_dof.window_slices(TODAY, 365, 2026)[0], (dt.date(2025, 9, 27), dt.date(2025, 9, 30)))
+        self.assertEqual(nyc_dof.window_slices(TODAY, 365, 2025), [])
+
+    def test_geocode_cache_is_reused_and_borough_checked(self):
+        responses = {
+            "HARKNESS AVE": {"intersection": {"geosupportReturnCode": "00", "latitude": 40.586345, "longitude": -73.931446,
+                                              "firstBoroughName": "BROOKLYN", "lionNodeNumber": "0017001"}},
+            "HARKNE SS AVE": {"intersection": {"geosupportReturnCode": "11", "message": "'HARKNE SS AVE' NOT RECOGNIZED."}},
+            "AMBOY RD": {"intersection": {"geosupportReturnCode": "00", "latitude": 40.55, "longitude": -74.15,
+                                          "firstBoroughName": "STATEN IS", "lionNodeNumber": "0090001"}},
+        }
+        calls = []
+
+        def fake_get(url, headers=None):
+            calls.append(url)
+            self.assertEqual(headers, {"Ocp-Apim-Subscription-Key": "test-key"})
+            cross = dict(item.split("=", 1) for item in url.split("?", 1)[1].split("&"))["crossStreetTwo"]
+            return responses[cross.replace("+", " ")]
+
+        kept = {("36", "BK", "SB KNAPP ST @ HARKNE", "SS AVE"): [21, "2026-08-27"],
+                ("36", "ST", "EB HYLAN BLVD @", "AMBOY RD"): [40, "2026-08-20"],
+                ("7", None, "NB 1 AVE @", "E 1 ST"): [30, "2026-07-01"]}
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "nyc_geocode.json")
+            geoclient = nyc_dof.Geoclient(path, "test-key", fake_get, sleep=lambda s: None)
+            rows, rejected = nyc_dof.build_rows(kept, SOURCES["nyc-dof-derived"], geoclient)
+            geoclient.save()
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(rejected, {"không có borough (violation_county=None)": 1})
+            knapp = next(r for r in rows if r["borough"] == "BROOKLYN")
+            self.assertEqual((knapp["key"], knapp["road"], knapp["direction"], knapp["last_ticket"]),
+                             ("sz0017001sb", "KNAPP ST @ HARKNESS AVE", "SB", "2026-08-27"))
+            self.assertIn("STATEN ISLAND", {r["borough"] for r in rows})  # "STATEN IS" của Geoclient = Staten Island
+            # Lần 2: đọc cache, không gọi Geoclient — kể cả khi không có key.
+            again = nyc_dof.Geoclient(path, "", fake_get)
+            self.assertEqual(nyc_dof.build_rows(kept, SOURCES["nyc-dof-derived"], again)[0], rows)
+            self.assertEqual((again.calls, len(calls)), (0, 2))
+            # Geoclient trả borough khác violation_county → loại.
+            wrong = {("36", "QN", "SB KNAPP ST @ HARKNE", "SS AVE"): [21, "2026-08-27"]}
+            responses["HARKNESS AVE"]["intersection"]["firstBoroughName"] = "BROOKLYN"
+            self.assertEqual(nyc_dof.build_rows(wrong, SOURCES["nyc-dof-derived"],
+                                                nyc_dof.Geoclient(os.path.join(folder, "other.json"), "test-key", fake_get,
+                                                                  sleep=lambda s: None))[1], {"geocode ra sai borough": 1})
+        # Cùng giao lộ ghi 2 cách → 1 camera, cộng vé; tên có nhiều khoảng trắng hơn, dù ít vé hơn (ổn định khi số vé đổi).
+        spellings = {"E80TH ST": {"intersection": {"geosupportReturnCode": "00", "latitude": 40.63, "longitude": -73.91,
+                                                   "firstBoroughName": "BROOKLYN", "lionNodeNumber": "0026530"}}}
+        spellings["E 80TH ST"] = spellings["E80TH ST"]
+        responses.update(spellings)
+        variants = {("7", "BK", "EB FLATLANDS AVE @", "E80TH ST"): [500, "2026-07-20"],
+                    ("7", "BK", "EB FLATLANDS AVE @", "E 80TH ST"): [30, "2026-07-26"]}
+        with tempfile.TemporaryDirectory() as folder:
+            merged, _ = nyc_dof.build_rows(variants, SOURCES["nyc-dof-derived"],
+                                           nyc_dof.Geoclient(os.path.join(folder, "c.json"), "test-key", fake_get, sleep=lambda s: None))
+        self.assertEqual([(r["key"], r["road"], r["tickets"], r["last_ticket"]) for r in merged],
+                         [("rl0026530eb", "FLATLANDS AVE @ E 80TH ST", 530, "2026-07-26")])
+        # Đường có dải phân cách: 2 nút gần nhau → điểm giữa; xa nhau → loại.
+        near = [{"lat": 40.826276, "lon": -73.859703, "borough": "BRONX", "node": "0052651"},
+                {"lat": 40.825623, "lon": -73.859408, "borough": "BRONX", "node": "0052652"}]
+        twin = nyc_dof.twin_midpoint(near, {"error": "STREETS INTERSECT TWICE"})
+        self.assertEqual(twin["node"], "0052651x0052652")
+        self.assertAlmostEqual(twin["lat"], 40.82595, places=5)
+        far = [near[0], dict(near[1], lat=40.84)]
+        self.assertIn("error", nyc_dof.twin_midpoint(far, {"error": "STREETS INTERSECT TWICE"}))
+
+    def test_normalized_cameras_are_derived_with_ticket_date(self):
+        source = SOURCES["nyc-dof-derived"]
+        self.assertEqual((source["tier"], source["region"], source["format"]), ("A-derived", "US-NY", "nyc-dof-derived"))
+        rows = [{"violation_code": "36", "key": "sz0017001sb", "road": "KNAPP ST @ HARKNESS AVE", "direction": "SB",
+                 "borough": "BROOKLYN", "tickets": 21, "last_ticket": "2026-08-27", "lat": 40.586345, "lon": -73.931446},
+                {"violation_code": "7", "key": "rl0052651x0052652wb", "road": "BRUCKNER BLVD @ WHITE PLAINS RD", "direction": "WB",
+                 "borough": "BRONX", "tickets": 300, "last_ticket": "2026-07-26", "lat": 40.82595, "lon": -73.859556}]
+        parsed = bp.parse_raw(source, rows)
+        cameras, rejects = bp.normalize_source(source, parsed, bp.dataset_date_from(source, None, parsed), TODAY, BBOXES)
+        self.assertFalse(rejects)
+        knapp, bruckner = sorted(cameras, key=lambda c: c["type"] != "schoolZone")
+        self.assertEqual(knapp["id"], "us-ny-nyc-dof-derived-sz0017001sb")
+        self.assertEqual((knapp["type"], knapp["heading"], knapp["postedLimit"], knapp["confidence"]), ("schoolZone", 180, None, 65))
+        self.assertEqual((knapp["roadName"], knapp["lastConfirmedAt"]), ("Knapp St & Harkness Ave", "2026-08-27T00:00:00Z"))
+        self.assertEqual((bruckner["type"], bruckner["heading"], bruckner["lastConfirmedAt"]), ("redLight", 270, "2026-07-26T00:00:00Z"))
+        # Không có key và chưa có cache geocode → bỏ nguồn như thiếu key (giữ camera cũ), không gọi mạng.
+        saved_key, saved_cache = os.environ.pop("NYC_GEOCLIENT_KEY", None), bp.CACHE_DIR
+        bp.CACHE_DIR = tempfile.mkdtemp()
+        try:
+            with self.assertRaises(bp.MissingKey):
+                bp.fetch_source(source, offline=False)
+        finally:
+            bp.CACHE_DIR = saved_cache
+            if saved_key is not None:
+                os.environ["NYC_GEOCLIENT_KEY"] = saved_key
 
 
 if __name__ == "__main__":

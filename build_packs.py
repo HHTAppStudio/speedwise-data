@@ -31,6 +31,8 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import quoteattr
 
+from sources import nyc_dof
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PUBLIC_DIR = os.path.join(ROOT, "public")
 PACKS_DIR = os.path.join(PUBLIC_DIR, "packs")
@@ -44,6 +46,7 @@ REGIONS_OUT_PATH = os.path.join(PUBLIC_DIR, "regions.json")
 REGIONS_TEMPLATE_PATH = os.path.join(ROOT, "..", "Speedwise", "Resources", "DataPacks", "regions.json")
 # Key API trên máy (KEY=giá trị mỗi dòng, không commit). CI dùng GitHub Actions secrets → biến môi trường.
 LOCAL_KEYS_PATH = os.path.expanduser("~/.speedwise/keys.env")
+LOCAL_GEOCLIENT_PATH = os.path.expanduser("~/.speedwise/geoclient.env")  # NYC_GEOCLIENT_KEY (D04)
 
 USER_AGENT = "SpeedwiseDataPipeline/1.0 (henry3dai@gmail.com)"
 RETRIES = 3
@@ -51,7 +54,8 @@ TIMEOUT_SECONDS = 60
 
 CAMERA_TYPES = ("speed", "redLight", "schoolZone", "combined", "mobile")
 # Confidence khi nguồn không có trường trạng thái (hoặc giá trị trạng thái không rõ).
-NO_STATUS_CONFIDENCE = {"A": 80, "B": 75}
+# "A-derived": vị trí suy ra từ dữ liệu chính thức khác (NYC: vé phạt DOF + geocode, D04).
+NO_STATUS_CONFIDENCE = {"A": 80, "B": 75, "A-derived": 65}
 STALE_PENALTY = 10
 STALE_DAYS = 365
 MIN_CONFIDENCE = 50
@@ -335,7 +339,7 @@ def headings_match(h1, h2):
 
 GEOJSON_FORMATS = ("arcgis-geojson", "socrata-geojson", "wfs-geojson", "geojson", "datagovsg-poll-download")
 # Mảng JSON các dòng phẳng, toạ độ ở cặp trường lat/lon (hoặc `point` GeoJSON của Socrata).
-FLAT_JSON_FORMATS = ("socrata-json", "datagovsg-datastore", "ntpc-json", "datagokr-api", "datagokr-std-download")
+FLAT_JSON_FORMATS = ("socrata-json", "datagovsg-datastore", "ntpc-json", "datagokr-api", "datagokr-std-download", "nyc-dof-derived")
 
 
 def _point_lon_lat(geometry):
@@ -729,6 +733,9 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
             rejects["chưa hoạt động (go-live %s)" % go_live.isoformat()] += 1
             continue
         confirmed = max((d for d in (dataset_day, go_live) if d is not None), default=None)
+        if field_map.get("confirmed"):
+            # Ngày xác nhận riêng của từng camera (NYC: ngày vé mới nhất tại địa điểm).
+            confirmed = parse_date(row.get(field_map["confirmed"])) or confirmed
 
         if camera_type in source.get("typeConfidence", {}):
             confidence = source["typeConfidence"][camera_type]
@@ -824,7 +831,7 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
 def merge_duplicates(cameras, tiers):
     """Gộp camera trùng trong cùng bang: cùng type, hướng lệch ≤ 30° (hoặc cả hai null), cách ≤ 30 m.
     Giữ bản confidence cao hơn; bằng nhau thì tier A; rồi id nhỏ hơn. Trả (giữ lại, {id bị gộp: id giữ})."""
-    tier_rank = {"A": 0, "B": 1}
+    tier_rank = {"A": 0, "B": 1, "A-derived": 2}
     ordered = sorted(cameras, key=lambda c: (-c["confidence"], tier_rank[tiers[c["sourceId"]]], c["id"]))
     kept = []
     merged = {}
@@ -989,7 +996,7 @@ def _ssl_context():
 _SSL_CONTEXT = None
 
 
-def _http_get(url, accept, decode, headers=None, data=None):
+def _http_get(url, accept, decode, headers=None, data=None, retries=RETRIES, timeout=TIMEOUT_SECONDS):
     """GET (hoặc POST khi có `data`). Lỗi trả về chỉ gồm thông điệp của urllib — không bao giờ chứa body gửi đi (có thể chứa key)."""
     global _SSL_CONTEXT
     if _SSL_CONTEXT is None:
@@ -997,24 +1004,33 @@ def _http_get(url, accept, decode, headers=None, data=None):
     safe_url = urllib.parse.quote(url, safe=":/?&=*,'()$%+@;!~#")
     request = urllib.request.Request(safe_url, data=data, headers=dict({"User-Agent": USER_AGENT, "Accept": accept}, **(headers or {})))
     last_error = None
-    for attempt in range(RETRIES):
+    for attempt in range(retries):
         try:
-            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS, context=_SSL_CONTEXT) as response:
+            with urllib.request.urlopen(request, timeout=timeout, context=_SSL_CONTEXT) as response:
                 return decode(response.read())
         except (urllib.error.URLError, TimeoutError, ValueError, OSError) as error:
             last_error = error
-            if attempt + 1 < RETRIES:
+            if attempt + 1 < retries:
                 time.sleep(2 * (attempt + 1))
     raise RuntimeError(str(last_error))
 
 
-def http_get_json(url, headers=None, data=None):
+def http_get_json(url, headers=None, data=None, retries=RETRIES, timeout=TIMEOUT_SECONDS):
     def decode(body):
         data = json.loads(body.decode("utf-8"))
         if isinstance(data, dict) and "error" in data and "features" not in data:
             raise ValueError("máy chủ báo lỗi: %s" % json.dumps(data["error"])[:200])
         return data
-    return _http_get(url, "application/json", decode, headers, data)
+    return _http_get(url, "application/json", decode, headers, data, retries, timeout)
+
+
+# Truy vấn `$group` của Socrata NYC có lúc bị ngắt kết nối (~60 giây) rồi chạy nhanh ở lần gọi lại.
+NYC_RETRIES = 5
+NYC_TIMEOUT_SECONDS = 120
+
+
+def nyc_get_json(url, headers=None):
+    return http_get_json(url, headers, retries=NYC_RETRIES, timeout=NYC_TIMEOUT_SECONDS)
 
 
 def http_get_text(url, encoding="utf-8-sig"):
@@ -1317,11 +1333,16 @@ def fetch_source(source, offline):
         raw = fetch_datagokr(endpoint, key)
     elif source["format"] == "datagokr-std-download":
         raw = fetch_datagokr_std_download(endpoint, source["datasetPk"])
+    elif source["format"] == "nyc-dof-derived":
+        # Không có key và chưa có cache geocode → không geocode được gì: bỏ nguồn như thiếu key, giữ camera cũ.
+        if not os.environ.get(source["geocodeKeyEnv"], "").strip() and not os.path.exists(os.path.join(CACHE_DIR, source["geocodeCache"])):
+            raise MissingKey(source["geocodeKeyEnv"])
+        raw, derived_stats = nyc_dof.fetch(source, nyc_get_json, dt.datetime.now(dt.timezone.utc).date(), CACHE_DIR)
     else:
         raw = http_get_json(endpoint, source.get("headers"))
     if source.get("codedValues"):
         raw = decode_coded_values(raw, http_get_json(source["codedValues"]["url"]), source["codedValues"]["fields"])
-    metadata = None
+    metadata = derived_stats if source["format"] == "nyc-dof-derived" else None
     if source.get("metadata"):
         try:
             get = datagovsg_json if source["format"].startswith("datagovsg") else http_get_json
@@ -1401,9 +1422,35 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
         lines.append("| %s | `%s` | %s | %d | %d | %d | %d | %d | %d | %d | %d |" % (
             region, pack["file"], pack_unit(region), math.ceil(os.path.getsize(path) / 1024), pack["version"], pack["cameraCount"],
             by_type["speed"], by_type["redLight"], by_type["schoolZone"], by_type["combined"], by_type["mobile"]))
-    lines += ["", "**Tổng: %d camera ở %d vùng.**" % (total, len(packs)), "", REPORT_MANUAL_MARKER]
+    lines += ["", "**Tổng: %d camera ở %d vùng.**" % (total, len(packs))]
+    for result in results:
+        if result.get("derived"):
+            lines += derived_report_lines(result["id"], result["derived"])
+    lines += ["", REPORT_MANUAL_MARKER]
     manual = manual_section.strip("\n")
     return "\n".join(lines) + "\n" + ("\n" + manual + "\n" if manual else "")
+
+
+def derived_report_lines(source_id, stats):
+    """Phần REPORT của nguồn suy vị trí (NYC, D04): số địa điểm, tỉ lệ geocode, lý do loại, 5 mẫu để kiểm bằng mắt."""
+    types = {"36": "schoolZone", "7": "redLight"}
+    ok_rate = 100.0 * stats["geocodeOK"] / stats["locations"] if stats["locations"] else 0.0
+    lines = ["", "## NYC — vị trí suy từ vé phạt DOF (`%s`)" % source_id, "",
+             "- Dataset: %s · cửa sổ %s → %s · %s vé camera" % (
+                 ", ".join("`%s`" % d for d in stats["datasets"]), stats["window"][0], stats["window"][1], format(stats["tickets"], ",")),
+             "- Địa điểm (chuỗi địa chỉ trên vé) ≥ %d vé: **%d** (bỏ %d địa điểm ít vé hơn)" % (
+                 stats["minTickets"], stats["locations"], stats["belowThreshold"]),
+             "- Geocode OK: **%d / %d (%.1f %%)** · gọi Geoclient %d lần, lấy từ cache %d lần" % (
+                 stats["geocodeOK"], stats["locations"], ok_rate, stats["geocodeCalls"], stats["cacheHits"]),
+             "- Bị loại: %s" % ("; ".join("%s: %d" % kv for kv in sorted(stats["rejected"].items(), key=lambda kv: -kv[1])) or "—"),
+             "- Camera sau khi gộp cùng loại + giao lộ + hướng: **%d**" % stats["cameras"],
+             "", "Mẫu 5 vị trí nhiều vé nhất (mở Apple Maps để kiểm):", "",
+             "| Loại | Địa điểm | Hướng | Borough | Vé | Apple Maps |", "|---|---|---|---|---:|---|"]
+    for sample in stats["samples"]:
+        lines.append("| %s | %s | %s | %s | %d | [%.6f, %.6f](https://maps.apple.com/?ll=%.6f,%.6f&z=18) |" % (
+            types.get(sample["violation_code"], sample["violation_code"]), sample["road"], sample["direction"] or "—",
+            sample["borough"].title(), sample["tickets"], sample["lat"], sample["lon"], sample["lat"], sample["lon"]))
+    return lines
 
 
 def read_manual_section():
@@ -1424,6 +1471,7 @@ def main(argv=None):
     parser.add_argument("--offline", action="store_true", help="không gọi mạng, dùng cache/ của lần chạy trước")
     args = parser.parse_args(argv)
     load_local_keys()
+    load_local_keys(LOCAL_GEOCLIENT_PATH)
 
     today = dt.datetime.now(dt.timezone.utc).date()
     now_iso = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1460,6 +1508,8 @@ def main(argv=None):
                 cameras, rejects = normalize_source(source, rows, day, today, bboxes)
                 result.update(status="ok", rows=len(rows), cameras=len(cameras), rejects=rejects,
                               datasetDate=day.isoformat() if day else None)
+                if source["format"] == "nyc-dof-derived":
+                    result["derived"] = metadata
                 source_dates[source["id"]] = result["datasetDate"]
                 region_cameras[source["region"]].extend(cameras)
                 print("   %d dòng → %d camera" % (len(rows), len(cameras)), flush=True)

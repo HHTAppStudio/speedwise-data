@@ -9,6 +9,7 @@
   "US-VA": {"minLat": 36.53, "maxLat": 39.47, "minLon": -83.69, "maxLon": -75.23},
   "US-WA": {"minLat": 45.53, "maxLat": 49.01, "minLon": -124.86, "maxLon": -116.91},
   "US-IA": {"minLat": 40.36, "maxLat": 43.51, "minLon": -96.65, "maxLon": -90.13},
+  "US-NY": {"minLat": 40.49, "maxLat": 45.03, "minLon": -79.77, "maxLon": -71.84},
   "CA": {"minLat": 41.66, "maxLat": 83.12, "minLon": -141.02, "maxLon": -52.60},
   "AR": {"minLat": -55.08, "maxLat": -21.76, "minLon": -73.59, "maxLon": -53.62},
   "CO": {"minLat": -4.24, "maxLat": 13.41, "minLon": -81.75, "maxLon": -66.84},

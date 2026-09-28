@@ -21,6 +21,7 @@ Lưu ý:
 - Python cài từ python.org trên macOS không đọc chứng chỉ gốc của hệ thống → script tự xuất từ keychain ra `cache/macos-roots.pem` (chỉ trên Mac).
 - Python ≥ 3.13 từ chối chứng chỉ gốc GRCA của chính phủ Đài Loan ("Missing Subject Key Identifier") → script tắt riêng cờ `VERIFY_X509_STRICT` (chuỗi chứng chỉ vẫn được xác minh, như Python 3.12).
 - **data.gov.sg** không key bị giới hạn tốc độ (code 24, chờ ~10 giây) → script tự chờ 12 giây rồi gọi lại.
+- **NYC Open Data** (`nyc-dof-derived`): truy vấn `$group` trên cả năm tài chính bị ngắt sau ~60 giây → script chia ~1 tuần, mỗi truy vấn vài giây, lỗi mạng thì gọi lại tối đa 5 lần.
 - Một nguồn lỗi không làm dừng các nguồn khác: camera của nguồn đó được **giữ từ pack cũ**, REPORT ghi lý do.
 
 ## Key API
@@ -30,9 +31,10 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 | Biến | Nguồn | Cách đăng ký |
 |---|---|---|
 | `TRAFIKVERKET_API_KEY` | Thuỵ Điển `se-trv-atk` | Đăng ký tài khoản bằng email tại https://data.trafikverket.se (cổng API của Trafikverket), chấp nhận license, xác nhận email, rồi tạo key trong trang tài khoản. Miễn phí, data CC0. |
+| `NYC_GEOCLIENT_KEY` | NYC `nyc-dof-derived` (geocode giao lộ). Không bắt buộc khi mọi địa điểm đã có trong `cache/nyc_geocode.json` | https://api-portal.nyc.gov → Sign up → Products → **Geoclient User** → Subscribe → Profile → Primary key. Miễn phí. Trên máy lưu ở `~/.speedwise/geoclient.env` (1 dòng `NYC_GEOCLIENT_KEY=…`). |
 | `DATA_GO_KR_KEY` | Hàn Quốc qua API (`kr-datagokr-cameras`, đang `enabled: false`). **Không cần** — Hàn Quốc đang lấy bằng nút tải file (`kr-std`, không key) | https://www.data.go.kr → đăng ký → dataset 15028200 → "활용신청"; key "일반 인증키 (Decoding)". |
 
-- **Trên máy:** tạo file `~/.speedwise/keys.env` (ngoài repo), mỗi dòng `TEN_BIEN=giá_trị`. `build_packs.py` tự đọc file này (không ghi đè biến môi trường đã có).
+- **Trên máy:** tạo file `~/.speedwise/keys.env` (ngoài repo), mỗi dòng `TEN_BIEN=giá_trị`. `build_packs.py` tự đọc file này và `~/.speedwise/geoclient.env` (không ghi đè biến môi trường đã có).
 - **GitHub Actions:** repo → Settings → Secrets and variables → Actions → New repository secret, đặt đúng tên biến ở trên.
 - **Thiếu key** → nguồn đó bị bỏ qua (REPORT ghi `skipped: no key (TÊN_BIẾN)`), camera cũ của nguồn đó trong pack được giữ, các nguồn khác chạy bình thường.
 
@@ -43,6 +45,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 | `sources.json` | Danh sách nguồn + cách map trường (bảng dưới) |
 | `state_bboxes.json` | Khung toạ độ từng bang/quốc gia — toạ độ ngoài khung bị loại |
 | `build_packs.py` | Script chính |
+| `sources/nyc_dof.py` | NYC (D04): gom vé camera DOF theo địa điểm + geocode giao lộ bằng Geoclient |
 | `test_build_packs.py` | Unittest |
 | `fixtures/<id>.json` | ≤ 5 dòng thật của mỗi nguồn, lưu tự động ở lần tải đầu (chỉ dùng cho test) |
 | `public/regions.json` | Danh sách vùng cho app (+ `sources` để hiện attribution) |
@@ -50,7 +53,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 | `public/packs/<cc>.vN.json` | Data pack từng quốc gia ngoài Mỹ (`ca`, `br`…; `unit: "kmh"`) |
 | `manifest.json` | Hash nội dung + version hiện tại của từng pack |
 | `REPORT.md` | Báo cáo lần chạy gần nhất. Phần dưới dòng `<!-- PHẦN VIẾT TAY … -->` là viết tay, script giữ nguyên |
-| `cache/` | Dữ liệu thô lần tải gần nhất (không commit) |
+| `cache/` | Dữ liệu thô lần tải gần nhất (không commit) — trừ `cache/nyc_geocode.json` (cache geocode NYC, **có commit**, bot CI commit thêm khi có địa điểm mới) |
 
 ## Quy tắc chuẩn hoá
 
@@ -59,7 +62,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
 - **Limit**: chỉ lấy khi nguồn ghi đúng một con số, theo đơn vị của pack (mph ở Mỹ, tối đa 85; km/h ngoài Mỹ, tối đa 140). Không có / nhiều số ("35 MPH / 20 MPH during school zone hours") → `null`. **Không đoán.**
 - **Hướng tiếng khác**: nguồn khai `directionWords` (ví dụ Québec `"en direction est": "E"`, Bogotá `"(S-N)": "N"`). Chữ như "Rue Sainte-Catherine Est" không phải hướng → không khớp.
 - `roadName`: bỏ chữ hướng, "@"/"at" → "&", chuẩn hoá hoa/thường khi nguồn viết toàn chữ hoa.
-- **Confidence**: `baseConfidence` khi dòng có trạng thái active; nguồn không có trạng thái → tối đa 80 (tier A) / 75 (tier B); `typeConfidence` ghi đè theo loại (điểm đặt camera **mobile** được duyệt: 60 — docs/04_TECH_SPEC.md mục 12.3); dataset cập nhật > 12 tháng → −10; tối thiểu 50.
+- **Confidence**: tier `A-derived` (vị trí suy ra, NYC) cố định 65; `baseConfidence` khi dòng có trạng thái active; nguồn không có trạng thái → tối đa 80 (tier A) / 75 (tier B); `typeConfidence` ghi đè theo loại (điểm đặt camera **mobile** được duyệt: 60 — docs/04_TECH_SPEC.md mục 12.3); dataset cập nhật > 12 tháng → −10; tối thiểu 50.
 - `lastConfirmedAt` = ngày cập nhật dataset, hoặc ngày go-live của camera nếu mới hơn. Go-live trong tương lai → chưa đưa vào.
 - **ID ổn định** (vote của người dùng gắn vào id): `<region>-<sourceId>-<key>[-<nb|sb|…>]`. Hậu tố hướng chỉ có ở nguồn tách theo approach. Không có key → 10 ký tự đầu SHA1 của `lat|lon|type|heading`.
 - **Đoạn đo tốc độ trung bình** (DGT tramo, Luxembourg LineString…): 2 camera `speed` tại điểm đầu và cuối, id thêm hậu tố `-start` / `-end`, `roadName` kết thúc bằng `" · average speed section"` (docs/04_TECH_SPEC.md mục 12.3).
@@ -88,6 +91,7 @@ Một số nguồn cần key miễn phí. Key **chỉ** đọc từ biến môi 
    | `lineSections` | (tuỳ chọn, GeoJSON) `true` → LineString là đoạn đo tốc độ trung bình → 2 camera đầu/cuối |
 | `sectionFields` | (tuỳ chọn, mảng JSON) `{"startLat", "startLon", "endLat", "endLon"}` — đoạn ghi toạ độ đầu/cuối trong 4 trường; đoạn 2 chiều ghi nhiều giá trị cách nhau khoảng trắng → 2 camera/chiều, id thêm `d1`, `d2`… (New Taipei) |
 | `sectionField` | (tuỳ chọn) `{"field", "start": [...], "end": [...], "lengthField"}` — mã vị trí đầu/cuối đoạn trong một trường; chỉ tính là đoạn khi `lengthField` > 0 (Hàn Quốc) |
+| `nyc-dof-derived` | (format riêng của NYC, `tier: "A-derived"`) NYC không công bố toạ độ camera. `catalog`: tìm các dataset "Parking Violations Issued - Fiscal Year NNNN"; `endpoint`: `…/resource/{id}.json`. Gom số vé theo chuỗi địa điểm (`$group`, không tải từng vé, không đọc trường cá nhân) trong `windowDays` ngày, chỉ mã trong `violationDescriptions` (mô tả khác → lỗi, cần người xem). Giữ địa điểm ≥ `minTickets` vé (loại camera mobile/tạm). Ghép lại chuỗi bị cắt ở 20 ký tự, tách hướng (NB/SB/EB/WB, "(N/B)"), geocode giao lộ bằng NYC Geoclient v2 (≤ 5 request/giây, key `geocodeKeyEnv`, cache `cache/<geocodeCache>`); borough của kết quả phải khớp `violation_county`. Đường có dải phân cách ("intersect twice") → điểm giữa 2 nút nếu cách nhau ≤ 150 m. `fieldMap.confirmed`: ngày vé mới nhất của từng địa điểm → `lastConfirmedAt` |
 | `popupTable` | (tuỳ chọn, GeoJSON) tên trường chứa bảng HTML `<th>tên</th><td>giá trị</td>` do lớp KML sinh ra → tách thành các trường (CSDI Hong Kong: `PopupInfo`) |
 | `secondPoint` | (tuỳ chọn) `{"lat", "lon"}` — trường toạ độ của camera thứ 2 cùng dòng → thêm 1 camera, id thêm `p2` (NSW `lat_2`/`long_2`) |
    | `utm` | (tuỳ chọn) `{"zone": 23, "south": true}` — toạ độ nguồn là UTM (x/y hoặc WKT) → đổi sang WGS84 bằng `utm_to_wgs84` |

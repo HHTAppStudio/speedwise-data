@@ -154,6 +154,13 @@
       "cameraCount": 515,
       "updatedAt": "2026-09-27"
     },
+    "US-NY": {
+      "version": 1,
+      "hash": "6e2124fbc1968bf647f3295735a292f6507ad7cab93c1689bc949108b5297e1a",
+      "file": "packs/us-ny.v1.json",
+      "cameraCount": 2766,
+      "updatedAt": "2026-09-28"
+    },
     "US-VA": {
       "version": 2,
       "hash": "38d4e8066af51c826d747e01c65d993de8a268477888c7111e5fb7654c08caf2",

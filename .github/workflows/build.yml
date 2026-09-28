@@ -37,17 +37,19 @@ jobs:
         env:
           TRAFIKVERKET_API_KEY: ${{ secrets.TRAFIKVERKET_API_KEY }}
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          # NYC Geoclient (D04): thiếu secret → chỉ dùng cache/nyc_geocode.json, địa điểm mới chưa geocode được.
+          NYC_GEOCLIENT_KEY: ${{ secrets.NYC_GEOCLIENT_KEY }}
         run: python build_packs.py
 
       - name: Commit data changes
         run: |
-          if [ -z "$(git status --porcelain -- public manifest.json)" ]; then
+          if [ -z "$(git status --porcelain -- public manifest.json cache/nyc_geocode.json)" ]; then
             echo "Data không đổi — không commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- public manifest.json REPORT.md
+          git add -A -- public manifest.json REPORT.md cache/nyc_geocode.json
           git commit -m "data: weekly update $(date -u +%Y-%m-%d)"
           git push
 
