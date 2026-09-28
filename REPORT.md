@@ -6,7 +6,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 
 | Nguồn | Vùng | Tier | Tải | Ngày dataset | Dòng | Camera | Vào pack | Bị loại (lý do) |
 |---|---|---|---|---|---:|---:|---:|---|
-| `dc-ddot-ase` | US-DC | A | OK | 2026-09-27 | 327 | 283 | 282 | loại không dùng: Stop Sign: 34; loại không dùng: Truck Restriction: 10; gộp trùng ≤ 30 m: 1 |
+| `dc-ddot-ase` | US-DC | A | OK | 2026-09-28 | 327 | 283 | 282 | loại không dùng: Stop Sign: 34; loại không dùng: Truck Restriction: 10; gộp trùng ≤ 30 m: 1 |
 | `chi-speed` | US-IL | A | OK | 2026-08-25 | 209 | 326 | 326 | — |
 | `chi-redlight` | US-IL | A | OK | 2026-09-15 | 300 | 300 | 299 | gộp trùng ≤ 30 m: 1 |
 | `moco-speed` | US-MD | A | OK | 2026-07-01 | 785 | 151 | 148 | kỳ cũ hơn quarter_name: 559; toạ độ bằng 0: 54; thiếu toạ độ: 21; gộp trùng ≤ 30 m: 3 |
@@ -79,7 +79,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | SG | `packs/sg.v1.json` | kmh | 131 | 1 | 293 | 23 | 235 | 0 | 0 | 35 |
 | TW | `packs/tw.v2.json` | kmh | 803 | 2 | 1905 | 1905 | 0 | 0 | 0 | 0 |
 | US-CA | `packs/us-ca.v1.json` | mph | 30 | 1 | 74 | 56 | 18 | 0 | 0 | 0 |
-| US-DC | `packs/us-dc.v2.json` | mph | 116 | 2 | 282 | 221 | 61 | 0 | 0 | 0 |
+| US-DC | `packs/us-dc.v3.json` | mph | 116 | 3 | 282 | 221 | 61 | 0 | 0 | 0 |
 | US-DE | `packs/us-de.v1.json` | mph | 24 | 1 | 60 | 0 | 60 | 0 | 0 | 0 |
 | US-IA | `packs/us-ia.v1.json` | mph | 64 | 1 | 156 | 13 | 0 | 0 | 0 | 143 |
 | US-IL | `packs/us-il.v1.json` | mph | 256 | 1 | 625 | 326 | 299 | 0 | 0 | 0 |

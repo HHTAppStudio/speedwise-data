@@ -113,11 +113,11 @@
       "updatedAt": "2026-09-27"
     },
     "US-DC": {
-      "version": 2,
-      "hash": "201cce1a9fb5f18fd64710e42cf0c614ec06158304db1effc305cee2b8af2f7a",
-      "file": "packs/us-dc.v2.json",
+      "version": 3,
+      "hash": "344f0e82f9a2feffa48b5942e39d6d9283bbc59b74781d45a6fe826040e2daee",
+      "file": "packs/us-dc.v3.json",
       "cameraCount": 282,
-      "updatedAt": "2026-09-27"
+      "updatedAt": "2026-09-28"
     },
     "US-DE": {
       "version": 1,

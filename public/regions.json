@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "regions": [
     {
       "code": "US-NY",
@@ -32,9 +32,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 282,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-dc.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-09-28",
+      "packURL": "packs/us-dc.v3.json",
+      "packVersion": 3,
       "coverageNote": "Washington, DC"
     },
     {
@@ -775,7 +775,7 @@
       "license": "CC BY 4.0",
       "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
       "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
-      "updatedAt": "2026-09-27",
+      "updatedAt": "2026-09-28",
       "cameraCount": 282
     },
     {
