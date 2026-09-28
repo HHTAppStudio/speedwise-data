@@ -272,6 +272,27 @@ class InternationalTests(unittest.TestCase):
         self.assertAlmostEqual(parsed[0]["_lon"], -43.9393876, places=6)
         self.assertEqual((parsed[1]["_lat"], parsed[1]["_lon"]), (None, None))
 
+    def test_antt_heavy_vehicle_limit_goes_to_limits_by_vehicle(self):
+        # D08: velocidade_leve → postedLimit; velocidade_pesado → limitsByVehicle.truck (trailer, rv cùng giá trị).
+        rows = copy.deepcopy(fixture_rows("antt-radares"))
+        rows[0]["velocidade_leve"], rows[0]["velocidade_pesado"] = "100", "80"
+        rows[1]["velocidade_pesado"] = ""
+        cameras, _ = normalize("antt-radares", rows)
+        self.assertEqual(len(cameras), len(rows))
+        first, second = [next(c for c in cameras if (c["lat"], c["lon"]) == (round(r["_lat"], 6), round(r["_lon"], 6)))
+                         for r in rows[:2]]
+        self.assertEqual(first["postedLimit"], 100)
+        self.assertEqual(first["limitsByVehicle"], {"truck": 80, "trailer": 80, "rv": 80})
+        self.assertEqual(second["postedLimit"], int(rows[1]["velocidade_leve"]))
+        self.assertNotIn("limitsByVehicle", second)  # nguồn trống → không đoán
+        # Nguồn không có trường limit theo xe → camera không có khoá limitsByVehicle (schema, hash pack giữ nguyên).
+        other, _ = normalize("es-cat-radars")
+        self.assertTrue(other)
+        self.assertFalse(any("limitsByVehicle" in c for c in other))
+        self.assertEqual([s for s in SOURCES.values() if s["fieldMap"].get("limitsByVehicle")], [SOURCES["antt-radares"]])
+        lines = bp.vehicle_limit_lines(list(SOURCES.values()), {"BR": cameras})
+        self.assertIn("| `antt-radares` | BR | `velocidade_pesado` → rv, trailer, truck | %d |" % (len(cameras) - 1), lines)
+
     def test_quebec_types_french_direction_and_mobile_confidence(self):
         rows = fixture_rows("qc-mtmd")
         cameras, _ = normalize("qc-mtmd", rows)

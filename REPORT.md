@@ -66,7 +66,7 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | AR | `packs/ar.v1.json` | kmh | 36 | 1 | 90 | 90 | 0 | 0 | 0 | 0 |
 | AU | `packs/au.v1.json` | kmh | 637 | 1 | 1461 | 79 | 0 | 49 | 233 | 1100 |
 | BE | `packs/be.v1.json` | kmh | 54 | 1 | 129 | 129 | 0 | 0 | 0 | 0 |
-| BR | `packs/br.v1.json` | kmh | 552 | 1 | 1299 | 1189 | 110 | 0 | 0 | 0 |
+| BR | `packs/br.v2.json` | kmh | 654 | 2 | 1299 | 1189 | 110 | 0 | 0 | 0 |
 | CA | `packs/ca.v2.json` | kmh | 345 | 2 | 815 | 11 | 664 | 0 | 10 | 130 |
 | CO | `packs/co.v1.json` | kmh | 20 | 1 | 48 | 44 | 0 | 0 | 4 | 0 |
 | DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
@@ -90,6 +90,16 @@ Lần chạy: 2026-09-28 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | US-WA | `packs/us-wa.v2.json` | mph | 52 | 2 | 127 | 14 | 39 | 74 | 0 | 0 |
 
 **Tổng: 41138 camera ở 25 vùng.**
+
+## Vehicle-specific limits
+
+Limit riêng theo loại xe chỉ lấy từ trường có sẵn trong dữ liệu nguồn — không suy từ luật từng nước.
+
+| Nguồn | Vùng | Trường nguồn → loại xe | Camera có limit theo xe |
+|---|---|---|---:|
+| `antt-radares` | BR | `velocidade_pesado` → rv, trailer, truck | 1080 |
+
+Không có limit theo loại xe (51 nguồn): `dc-ddot-ase`, `chi-speed`, `chi-redlight`, `moco-speed`, `moco-redlight`, `sf-speed`, `sf-redlight`, `nola-cams`, `sea-atsc`, `bal-redlight`, `bal-speed-fixed`, `bal-speed-portable`, `arl-speed`, `tac-ae`, `bel-speed`, `de-redlight`, `nyc-dof-derived`, `qc-mtmd`, `tor-rlc`, `ott-rlc`, `york-rlc`, `ham-rlc`, `peel-rlc`, `king-rlc`, `edm-isd`, `cal-isc`, `ia-ate`, `caba-fijas`, `bh-fiscalizacao`, `bog-salvavidas`, `es-dgt-radares`, `es-cat-radars`, `no-nvdb-atk`, `se-trv-atk`, `be-bxl-speedcameras`, `lu-geoportail-radars`, `de-ka-blitzer`, `sg-spf-speed`, `sg-spf-fixed`, `sg-spf-redlight`, `sg-spf-dtrls`, `hk-td-rlc`, `hk-td-sec`, `tw-npa-speed`, `tw-ntpc-fixed`, `tw-ntpc-section`, `au-act-cameras`, `au-nsw-fixed`, `au-nsw-school`, `au-nsw-redlight`, `kr-std`.
 
 ## NYC — vị trí suy từ vé phạt DOF (`nyc-dof-derived`)
 

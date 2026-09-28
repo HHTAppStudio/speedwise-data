@@ -767,6 +767,10 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
         if section:
             road = road + SECTION_SUFFIX if road else SECTION_SUFFIX.strip(" ·").capitalize()
         limit = parse_limit(row.get(field_map["limit"]), unit) if field_map.get("limit") else None
+        # Limit riêng theo loại xe — chỉ khi nguồn có trường riêng (ANTT: velocidade_pesado). Không đoán, không suy từ luật.
+        vehicle_limits = {vehicle: value for vehicle, value in (
+            (vehicle, parse_limit(row.get(field), unit)) for vehicle, field in sorted(field_map.get("limitsByVehicle", {}).items())
+        ) if value is not None}
         # Góc la bàn của nguồn (độ). `bearingOffset`: 180 khi nguồn ghi hướng ống kính (chụp trực diện xe đi tới).
         bearing = parse_number(row.get(field_map["bearing"])) if field_map.get("bearing") else None
         bearing_heading = None
@@ -809,7 +813,7 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
                 rejects["trùng id trong nguồn"] += 1
                 continue
             seen_ids.add(camera_id)
-            cameras.append({
+            camera = {
                 "id": camera_id,
                 "type": camera_type,
                 "lat": round(lat, 6),
@@ -824,7 +828,11 @@ def normalize_source(source, rows, dataset_day, today, bboxes):
                 "confirmCount": 0,
                 "denyCount": 0,
                 "active": True,
-            })
+            }
+            if vehicle_limits:
+                # Chỉ ghi khi có: camera không có limit theo xe giữ nguyên schema (hash / version pack không đổi).
+                camera["limitsByVehicle"] = dict(vehicle_limits)
+            cameras.append(camera)
     return cameras, rejects
 
 
@@ -1379,7 +1387,7 @@ def fixture_metadata(fixture):
 # Báo cáo
 # ---------------------------------------------------------------------------
 
-def render_report(today, results, packs, region_counts, merged_by_source, kept_by_source, manual_section):
+def render_report(today, results, packs, region_counts, merged_by_source, kept_by_source, manual_section, vehicle_lines=()):
     lines = [
         "# REPORT — Speedwise data pipeline",
         "",
@@ -1423,12 +1431,32 @@ def render_report(today, results, packs, region_counts, merged_by_source, kept_b
             region, pack["file"], pack_unit(region), math.ceil(os.path.getsize(path) / 1024), pack["version"], pack["cameraCount"],
             by_type["speed"], by_type["redLight"], by_type["schoolZone"], by_type["combined"], by_type["mobile"]))
     lines += ["", "**Tổng: %d camera ở %d vùng.**" % (total, len(packs))]
+    lines += list(vehicle_lines)
     for result in results:
         if result.get("derived"):
             lines += derived_report_lines(result["id"], result["derived"])
     lines += ["", REPORT_MANUAL_MARKER]
     manual = manual_section.strip("\n")
     return "\n".join(lines) + "\n" + ("\n" + manual + "\n" if manual else "")
+
+
+def vehicle_limit_lines(sources, final_cameras):
+    """Phần REPORT "Vehicle-specific limits" (D08): nguồn nào có limit riêng theo loại xe (`fieldMap.limitsByVehicle`),
+    bao nhiêu camera trong pack mang limit đó. Nguồn không có trường riêng → không có limit theo xe (không đoán)."""
+    with_limits = collections.Counter(c["sourceId"] for cams in final_cameras.values() for c in cams if c.get("limitsByVehicle"))
+    mapped = [s for s in sources if s["fieldMap"].get("limitsByVehicle")]
+    lines = ["", "## Vehicle-specific limits", "",
+             "Limit riêng theo loại xe chỉ lấy từ trường có sẵn trong dữ liệu nguồn — không suy từ luật từng nước.", "",
+             "| Nguồn | Vùng | Trường nguồn → loại xe | Camera có limit theo xe |", "|---|---|---|---:|"]
+    for source in mapped:
+        fields = collections.defaultdict(list)
+        for vehicle, field in sorted(source["fieldMap"]["limitsByVehicle"].items()):
+            fields[field].append(vehicle)
+        mapping = "; ".join("`%s` → %s" % (field, ", ".join(vehicles)) for field, vehicles in sorted(fields.items()))
+        lines.append("| `%s` | %s | %s | %d |" % (source["id"], source["region"], mapping, with_limits.get(source["id"], 0)))
+    others = [s["id"] for s in sources if s not in mapped]
+    lines += ["", "Không có limit theo loại xe (%d nguồn): %s." % (len(others), ", ".join("`%s`" % i for i in others) or "—")]
+    return lines
 
 
 def derived_report_lines(source_id, stats):
@@ -1553,7 +1581,8 @@ def main(argv=None):
     write_json(REGIONS_OUT_PATH, build_regions(template, existing, packs, sources, source_info))
     write_json(MANIFEST_PATH, {"regions": packs})
 
-    report = render_report(today, results, packs, region_counts, merged_by_source, kept_by_source, read_manual_section())
+    report = render_report(today, results, packs, region_counts, merged_by_source, kept_by_source, read_manual_section(),
+                           vehicle_limit_lines(sources, final_cameras))
     with open(REPORT_PATH, "w", encoding="utf-8") as handle:
         handle.write(report)
     total = sum(p["cameraCount"] for p in packs.values())

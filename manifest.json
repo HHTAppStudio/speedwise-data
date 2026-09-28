@@ -22,11 +22,11 @@
       "updatedAt": "2026-09-27"
     },
     "BR": {
-      "version": 1,
-      "hash": "01e83d56a0267f5a8635ba12f2c33e645fb48970679dd5e2b68e14082b9cc96d",
-      "file": "packs/br.v1.json",
+      "version": 2,
+      "hash": "b7dae96c07177841923596df2e8091c5b86825ade6d4e7012087aa87bc3d422d",
+      "file": "packs/br.v2.json",
       "cameraCount": 1299,
-      "updatedAt": "2026-09-27"
+      "updatedAt": "2026-09-28"
     },
     "CA": {
       "version": 2,

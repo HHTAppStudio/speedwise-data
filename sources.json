@@ -1097,6 +1097,11 @@
       "lon": "longitude",
       "roadFormat": "{rodovia} km {km_m} · {sentido}",
       "limit": "velocidade_leve",
+      "limitsByVehicle": {
+        "truck": "velocidade_pesado",
+        "trailer": "velocidade_pesado",
+        "rv": "velocidade_pesado"
+      },
       "active": {
         "field": "situacao",
         "activeValues": [
