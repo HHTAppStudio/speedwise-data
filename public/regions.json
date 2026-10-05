@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "regions": [
     {
       "code": "US-NY",
@@ -7,10 +7,10 @@
       "countryCode": "US",
       "countryName": "United States",
       "status": "full",
-      "cameraCount": 2766,
-      "updatedAt": "2026-09-28",
-      "packURL": "packs/us-ny.v1.json",
-      "packVersion": 1,
+      "cameraCount": 2763,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-ny.v2.json",
+      "packVersion": 2,
       "coverageNote": "NYC school zones & red lights (located from city ticket data)"
     },
     {
@@ -32,9 +32,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 282,
-      "updatedAt": "2026-09-28",
-      "packURL": "packs/us-dc.v3.json",
-      "packVersion": 3,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-dc.v4.json",
+      "packVersion": 4,
       "coverageNote": "Washington, DC"
     },
     {
@@ -44,9 +44,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 515,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-md.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-md.v2.json",
+      "packVersion": 2,
       "coverageNote": "Montgomery County, Baltimore"
     },
     {
@@ -72,9 +72,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 74,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-ca.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-ca.v2.json",
+      "packVersion": 2,
       "coverageNote": "San Francisco"
     },
     {
@@ -200,9 +200,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 35,
-      "updatedAt": "2026-09-28",
-      "packURL": "packs/us-va.v3.json",
-      "packVersion": 3,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-va.v4.json",
+      "packVersion": 4,
       "coverageNote": "Arlington County"
     },
     {
@@ -212,9 +212,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 127,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-wa.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/us-wa.v3.json",
+      "packVersion": 3,
       "coverageNote": "Seattle, Tacoma, Bellevue"
     },
     {
@@ -296,9 +296,9 @@
       "countryName": "Canada",
       "status": "full",
       "cameraCount": 815,
-      "updatedAt": "2026-09-28",
-      "packURL": "packs/ca.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/ca.v3.json",
+      "packVersion": 3,
       "coverageNote": "Québec, Toronto, Ottawa, York Region, Hamilton, Peel Region, Kingston, Edmonton, Calgary"
     },
     {
@@ -451,10 +451,10 @@
       "countryCode": "SE",
       "countryName": "Sweden",
       "status": "full",
-      "cameraCount": 2794,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/se.v1.json",
-      "packVersion": 1,
+      "cameraCount": 2795,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/se.v2.json",
+      "packVersion": 2,
       "coverageNote": "Sweden (Trafikverket)"
     },
     {
@@ -464,9 +464,9 @@
       "countryName": "Norway",
       "status": "full",
       "cameraCount": 438,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/no.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/no.v2.json",
+      "packVersion": 2,
       "coverageNote": "Norway (national road database NVDB)"
     },
     {
@@ -646,9 +646,9 @@
       "countryName": "Taiwan",
       "status": "full",
       "cameraCount": 1905,
-      "updatedAt": "2026-09-28",
-      "packURL": "packs/tw.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/tw.v3.json",
+      "packVersion": 3,
       "coverageNote": "Taiwan (National Police Agency, nationwide), New Taipei"
     },
     {
@@ -759,10 +759,10 @@
       "countryCode": "CO",
       "countryName": "Colombia",
       "status": "full",
-      "cameraCount": 48,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/co.v1.json",
-      "packVersion": 1,
+      "cameraCount": 40,
+      "updatedAt": "2026-10-05",
+      "packURL": "packs/co.v2.json",
+      "packVersion": 2,
       "coverageNote": "Bogotá"
     }
   ],
@@ -775,7 +775,7 @@
       "license": "CC BY 4.0",
       "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
       "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
-      "updatedAt": "2026-09-28",
+      "updatedAt": "2026-10-04",
       "cameraCount": 282
     },
     {
@@ -808,7 +808,7 @@
       "license": "Public Domain",
       "attribution": "Speed camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
       "landingURL": "https://data.montgomerycountymd.gov/d/uv5p-zm58",
-      "updatedAt": "2026-07-01",
+      "updatedAt": "2026-10-01",
       "cameraCount": 148
     },
     {
@@ -819,7 +819,7 @@
       "license": "Public Domain",
       "attribution": "Red light camera locations: Montgomery County, Maryland (dataMontgomery), Public Domain.",
       "landingURL": "https://data.montgomerycountymd.gov/d/3cju-6hst",
-      "updatedAt": "2026-07-01",
+      "updatedAt": "2026-10-01",
       "cameraCount": 38
     },
     {
@@ -841,7 +841,7 @@
       "license": "ODC PDDL",
       "attribution": "Red light camera locations: SFMTA via DataSF, Open Data Commons Public Domain Dedication and License (PDDL).",
       "landingURL": "https://data.sf.gov/d/uzmr-g2uc",
-      "updatedAt": "2026-08-18",
+      "updatedAt": "2026-09-29",
       "cameraCount": 18
     },
     {
@@ -907,7 +907,7 @@
       "license": "© Arlington County, Virginia",
       "attribution": "Photo speed camera locations © Arlington County, Virginia, Department of Environmental Services.",
       "landingURL": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0",
-      "updatedAt": "2026-09-28",
+      "updatedAt": "2026-10-05",
       "cameraCount": 35
     },
     {
@@ -918,7 +918,7 @@
       "license": "Not specified",
       "attribution": "Automated enforcement locations: City of Tacoma.",
       "landingURL": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0",
-      "updatedAt": "2026-09-27",
+      "updatedAt": "2026-10-04",
       "cameraCount": 22
     },
     {
@@ -929,7 +929,7 @@
       "license": "Not specified",
       "attribution": "Speed safety camera locations: City of Bellevue.",
       "landingURL": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/Speed_Safety_Cameras/FeatureServer/0",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-28",
       "cameraCount": 5
     },
     {
@@ -952,7 +952,7 @@
       "attribution": "Derived from NYC Department of Finance parking & camera violation data, NYC Open Data.",
       "landingURL": "https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2027/pvqr-7yc4",
       "updatedAt": "2026-08-27",
-      "cameraCount": 2766
+      "cameraCount": 2763
     },
     {
       "id": "qc-mtmd",
@@ -973,7 +973,7 @@
       "license": "Open Government Licence – Toronto",
       "attribution": "Contains information licensed under the Open Government Licence – Toronto.",
       "landingURL": "https://open.toronto.ca/dataset/red-light-cameras/",
-      "updatedAt": "2026-09-26",
+      "updatedAt": "2026-10-03",
       "cameraCount": 295
     },
     {
@@ -1006,7 +1006,7 @@
       "license": "City of Hamilton Open Data Licence",
       "attribution": "Red light camera locations: City of Hamilton, City of Hamilton Open Data Licence.",
       "landingURL": "https://open.hamilton.ca/datasets/d880b4ad9b5c4e44b073d6d007e4df68",
-      "updatedAt": "2026-09-26",
+      "updatedAt": "2026-10-03",
       "cameraCount": 51
     },
     {
@@ -1039,7 +1039,7 @@
       "license": "Open Government Licence – Edmonton",
       "attribution": "Intersection safety device locations: City of Edmonton, Open Government Licence – Edmonton.",
       "landingURL": "https://data.edmonton.ca/d/7fnd-72gr",
-      "updatedAt": "2026-09-28",
+      "updatedAt": "2026-10-05",
       "cameraCount": 67
     },
     {
@@ -1050,7 +1050,7 @@
       "license": "Open Government Licence – City of Calgary",
       "attribution": "Contains information licensed under the Open Government Licence – City of Calgary.",
       "landingURL": "https://data.calgary.ca/d/dv2f-necx",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-01",
       "cameraCount": 57
     },
     {
@@ -1106,7 +1106,7 @@
       "attribution": "Cámaras Salvavidas © Secretaría Distrital de Movilidad de Bogotá, licensed under CC BY 4.0.",
       "landingURL": "https://datosabiertos.bogota.gov.co/dataset/camaras-salvavidas-bogota-d-c",
       "updatedAt": "2026-08-24",
-      "cameraCount": 48
+      "cameraCount": 40
     },
     {
       "id": "es-dgt-radares",
@@ -1138,7 +1138,7 @@
       "license": "NLOD",
       "attribution": "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen",
       "landingURL": "https://datakatalogen.atlas.vegvesen.no/#/162-ATK-punkt",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-04",
       "cameraCount": 438
     },
     {
@@ -1149,8 +1149,8 @@
       "license": "CC0",
       "attribution": "Traffic safety camera locations: Trafikverket (CC0).",
       "landingURL": "https://www.trafikverket.se/e-tjanster/trafikverkets-oppna-api-for-trafikinformation/",
-      "updatedAt": "2026-09-24",
-      "cameraCount": 2794
+      "updatedAt": "2026-10-02",
+      "cameraCount": 2795
     },
     {
       "id": "be-bxl-speedcameras",
@@ -1259,7 +1259,7 @@
       "license": "Open Government Data License, version 1.0 (Taiwan)",
       "attribution": "測速執法設置點: National Police Agency, Ministry of the Interior, Open Government Data License, version 1.0.",
       "landingURL": "https://data.gov.tw/dataset/7320",
-      "updatedAt": "2026-09-28",
+      "updatedAt": "2026-10-05",
       "cameraCount": 1885
     },
     {

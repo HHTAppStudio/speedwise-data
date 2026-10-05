@@ -1,7 +1,7 @@
 {
   "region": "US-NY",
-  "version": 1,
-  "generatedAt": "2026-09-28T04:16:52Z",
+  "version": 2,
+  "generatedAt": "2026-10-05T10:29:38Z",
   "unit": "mph",
   "cameras": [
     {
@@ -16197,22 +16197,6 @@
       "active": true
     },
     {
-      "id": "us-ny-nyc-dof-derived-sz0014099eb",
-      "type": "schoolZone",
-      "lat": 40.63746,
-      "lon": -73.994642,
-      "heading": 90,
-      "postedLimit": null,
-      "roadName": "48th St & New Utrecht Ave",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2026-07-05T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
       "id": "us-ny-nyc-dof-derived-sz0014153eb",
       "type": "schoolZone",
       "lat": 40.640275,
@@ -18880,22 +18864,6 @@
       "sourceId": "nyc-dof-derived",
       "confidence": 65,
       "lastConfirmedAt": "2026-08-26T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
-      "id": "us-ny-nyc-dof-derived-sz0018215eb",
-      "type": "schoolZone",
-      "lat": 40.643332,
-      "lon": -73.959729,
-      "heading": 90,
-      "postedLimit": null,
-      "roadName": "Cortelyou Rd & Ocean Ave",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2026-06-14T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -37312,22 +37280,6 @@
       "sourceId": "nyc-dof-derived",
       "confidence": 65,
       "lastConfirmedAt": "2026-08-26T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
-      "id": "us-ny-nyc-dof-derived-sz0051940eb",
-      "type": "schoolZone",
-      "lat": 40.820625,
-      "lon": -73.868577,
-      "heading": 90,
-      "postedLimit": null,
-      "roadName": "Lafayette Ave & Croes Ave",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2026-01-04T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
