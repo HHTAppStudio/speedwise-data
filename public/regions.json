@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "regions": [
     {
       "code": "US-NY",
@@ -20,9 +20,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 625,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/us-il.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/us-il.v2.json",
+      "packVersion": 2,
       "coverageNote": "Chicago"
     },
     {
@@ -31,10 +31,10 @@
       "countryCode": "US",
       "countryName": "United States",
       "status": "full",
-      "cameraCount": 282,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/us-dc.v4.json",
-      "packVersion": 4,
+      "cameraCount": 294,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/us-dc.v5.json",
+      "packVersion": 5,
       "coverageNote": "Washington, DC"
     },
     {
@@ -200,9 +200,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 35,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/us-va.v4.json",
-      "packVersion": 4,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/us-va.v5.json",
+      "packVersion": 5,
       "coverageNote": "Arlington County"
     },
     {
@@ -212,9 +212,9 @@
       "countryName": "United States",
       "status": "full",
       "cameraCount": 127,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/us-wa.v3.json",
-      "packVersion": 3,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/us-wa.v4.json",
+      "packVersion": 4,
       "coverageNote": "Seattle, Tacoma, Bellevue"
     },
     {
@@ -296,9 +296,9 @@
       "countryName": "Canada",
       "status": "full",
       "cameraCount": 815,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/ca.v3.json",
-      "packVersion": 3,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/ca.v4.json",
+      "packVersion": 4,
       "coverageNote": "Québec, Toronto, Ottawa, York Region, Hamilton, Peel Region, Kingston, Edmonton, Calgary"
     },
     {
@@ -464,9 +464,9 @@
       "countryName": "Norway",
       "status": "full",
       "cameraCount": 438,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/no.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/no.v3.json",
+      "packVersion": 3,
       "coverageNote": "Norway (national road database NVDB)"
     },
     {
@@ -646,9 +646,9 @@
       "countryName": "Taiwan",
       "status": "full",
       "cameraCount": 1905,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/tw.v3.json",
-      "packVersion": 3,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/tw.v4.json",
+      "packVersion": 4,
       "coverageNote": "Taiwan (National Police Agency, nationwide), New Taipei"
     },
     {
@@ -667,9 +667,9 @@
       "countryName": "South Korea",
       "status": "full",
       "cameraCount": 25772,
-      "updatedAt": "2026-09-27",
-      "packURL": "packs/kr.v1.json",
-      "packVersion": 1,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/kr.v2.json",
+      "packVersion": 2,
       "coverageNote": "South Korea (nationwide)"
     },
     {
@@ -760,9 +760,9 @@
       "countryName": "Colombia",
       "status": "full",
       "cameraCount": 40,
-      "updatedAt": "2026-10-05",
-      "packURL": "packs/co.v2.json",
-      "packVersion": 2,
+      "updatedAt": "2026-10-12",
+      "packURL": "packs/co.v3.json",
+      "packVersion": 3,
       "coverageNote": "Bogotá"
     }
   ],
@@ -775,8 +775,8 @@
       "license": "CC BY 4.0",
       "attribution": "Automated Safety Cameras © District Department of Transportation, Government of the District of Columbia, licensed under CC BY 4.0.",
       "landingURL": "https://opendata.dc.gov/datasets/DCGIS::automated-safety-cameras",
-      "updatedAt": "2026-10-04",
-      "cameraCount": 282
+      "updatedAt": "2026-10-11",
+      "cameraCount": 294
     },
     {
       "id": "chi-speed",
@@ -786,7 +786,7 @@
       "license": "City of Chicago Terms of Use",
       "attribution": "This app uses data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided. The data is subject to change at any time and is used at one's own risk.",
       "landingURL": "https://data.cityofchicago.org/d/4i42-qv3h",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-09",
       "cameraCount": 326
     },
     {
@@ -907,7 +907,7 @@
       "license": "© Arlington County, Virginia",
       "attribution": "Photo speed camera locations © Arlington County, Virginia, Department of Environmental Services.",
       "landingURL": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DES_Signal_PhotoSpeed_Cameras_pnt/FeatureServer/0",
-      "updatedAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
       "cameraCount": 35
     },
     {
@@ -918,7 +918,7 @@
       "license": "Not specified",
       "attribution": "Automated enforcement locations: City of Tacoma.",
       "landingURL": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/AutomatedEnforcementLocations_Tacoma/FeatureServer/0",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-11",
       "cameraCount": 22
     },
     {
@@ -973,7 +973,7 @@
       "license": "Open Government Licence – Toronto",
       "attribution": "Contains information licensed under the Open Government Licence – Toronto.",
       "landingURL": "https://open.toronto.ca/dataset/red-light-cameras/",
-      "updatedAt": "2026-10-03",
+      "updatedAt": "2026-10-10",
       "cameraCount": 295
     },
     {
@@ -1006,7 +1006,7 @@
       "license": "City of Hamilton Open Data Licence",
       "attribution": "Red light camera locations: City of Hamilton, City of Hamilton Open Data Licence.",
       "landingURL": "https://open.hamilton.ca/datasets/d880b4ad9b5c4e44b073d6d007e4df68",
-      "updatedAt": "2026-10-03",
+      "updatedAt": "2026-10-10",
       "cameraCount": 51
     },
     {
@@ -1039,7 +1039,7 @@
       "license": "Open Government Licence – Edmonton",
       "attribution": "Intersection safety device locations: City of Edmonton, Open Government Licence – Edmonton.",
       "landingURL": "https://data.edmonton.ca/d/7fnd-72gr",
-      "updatedAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
       "cameraCount": 67
     },
     {
@@ -1105,7 +1105,7 @@
       "license": "CC BY 4.0",
       "attribution": "Cámaras Salvavidas © Secretaría Distrital de Movilidad de Bogotá, licensed under CC BY 4.0.",
       "landingURL": "https://datosabiertos.bogota.gov.co/dataset/camaras-salvavidas-bogota-d-c",
-      "updatedAt": "2026-08-24",
+      "updatedAt": null,
       "cameraCount": 40
     },
     {
@@ -1138,7 +1138,7 @@
       "license": "NLOD",
       "attribution": "Inneholder data under NLOD tilgjengeliggjort av Statens vegvesen",
       "landingURL": "https://datakatalogen.atlas.vegvesen.no/#/162-ATK-punkt",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-06",
       "cameraCount": 438
     },
     {
@@ -1259,7 +1259,7 @@
       "license": "Open Government Data License, version 1.0 (Taiwan)",
       "attribution": "測速執法設置點: National Police Agency, Ministry of the Interior, Open Government Data License, version 1.0.",
       "landingURL": "https://data.gov.tw/dataset/7320",
-      "updatedAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
       "cameraCount": 1885
     },
     {
@@ -1336,7 +1336,7 @@
       "license": "KOGL Type 1 (공공누리 제1유형, attribution)",
       "attribution": "전국무인교통단속카메라표준데이터: Korean National Police Agency and local governments, via data.go.kr, KOGL Type 1.",
       "landingURL": "https://www.data.go.kr/data/15028200/standard.do",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-09-13",
       "cameraCount": 25772
     }
   ]
