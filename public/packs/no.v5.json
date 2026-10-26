@@ -1,7 +1,7 @@
 {
   "region": "NO",
-  "version": 4,
-  "generatedAt": "2026-10-19T08:55:32Z",
+  "version": 5,
+  "generatedAt": "2026-10-26T08:58:23Z",
   "unit": "kmh",
   "cameras": [
     {
@@ -5467,7 +5467,7 @@
       "lon": 10.343019,
       "heading": null,
       "postedLimit": null,
-      "roadName": "E16 · Sollihøgda mot Sandvika",
+      "roadName": "Fv285 · Sollihøgda mot Sandvika",
       "source": "openData",
       "sourceId": "no-nvdb-atk",
       "confidence": 80,
@@ -5483,7 +5483,7 @@
       "lon": 10.347618,
       "heading": null,
       "postedLimit": null,
-      "roadName": "E16 · Sollihøgda mot Hønefoss",
+      "roadName": "Fv285 · Sollihøgda mot Hønefoss",
       "source": "openData",
       "sourceId": "no-nvdb-atk",
       "confidence": 80,

@@ -1,7 +1,7 @@
 {
   "region": "US-NY",
-  "version": 3,
-  "generatedAt": "2026-10-19T08:55:32Z",
+  "version": 4,
+  "generatedAt": "2026-10-26T08:58:23Z",
   "unit": "mph",
   "cameras": [
     {
@@ -3184,22 +3184,6 @@
       "sourceId": "nyc-dof-derived",
       "confidence": 65,
       "lastConfirmedAt": "2026-08-17T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
-      "id": "us-ny-nyc-dof-derived-rl0021051sb",
-      "type": "redLight",
-      "lat": 40.749303,
-      "lon": -74.008063,
-      "heading": 180,
-      "postedLimit": null,
-      "roadName": "12th Ave & 23rd St",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2025-12-22T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
@@ -36533,22 +36517,6 @@
       "active": true
     },
     {
-      "id": "us-ny-nyc-dof-derived-sz0046949eb",
-      "type": "schoolZone",
-      "lat": 40.762819,
-      "lon": -73.874197,
-      "heading": 90,
-      "postedLimit": null,
-      "roadName": "Astoria Blvd & 95th St",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2025-10-23T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
       "id": "us-ny-nyc-dof-derived-sz0046949wb",
       "type": "schoolZone",
       "lat": 40.762819,
@@ -39104,22 +39072,6 @@
       "sourceId": "nyc-dof-derived",
       "confidence": 65,
       "lastConfirmedAt": "2026-09-25T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
-      "id": "us-ny-nyc-dof-derived-sz0051975nb",
-      "type": "schoolZone",
-      "lat": 40.821011,
-      "lon": -73.865748,
-      "heading": 0,
-      "postedLimit": null,
-      "roadName": "Soundview Ave & Lafayette Ave",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2026-01-14T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
