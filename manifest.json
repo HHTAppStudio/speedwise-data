@@ -1,12 +1,5 @@
 {
   "regions": {
-    "AR": {
-      "version": 1,
-      "hash": "9c94de7194d9e058c8ddb96098202798c1ecd7787f45986c693e8297adc58bd2",
-      "file": "packs/ar.v1.json",
-      "cameraCount": 90,
-      "updatedAt": "2026-09-27"
-    },
     "AU": {
       "version": 2,
       "hash": "bd73f6c86d8a36b0e12d406fb6d670e198a9374f69c0640e06b9b97802a263cb",
@@ -22,18 +15,18 @@
       "updatedAt": "2026-11-02"
     },
     "BR": {
-      "version": 3,
-      "hash": "fefb5eb6ee52306adb7b2a2164619fac2a17170ff1efc13480dca73731bd6e94",
-      "file": "packs/br.v3.json",
-      "cameraCount": 1305,
-      "updatedAt": "2026-10-19"
+      "version": 4,
+      "hash": "47ab0d8a24a8da296e4f9ff5e1ecc0cc4d634053c8ef212c815aec4aa926b573",
+      "file": "packs/br.v4.json",
+      "cameraCount": 1324,
+      "updatedAt": "2026-11-09"
     },
     "CA": {
-      "version": 7,
-      "hash": "a7462881e963c2325724e5e42153206cc75400789760e250a3b832b0fb421337",
-      "file": "packs/ca.v7.json",
-      "cameraCount": 812,
-      "updatedAt": "2026-11-02"
+      "version": 8,
+      "hash": "e7d177b442a61688d8bb558ca93b7a2769b1fab59be997ee144170fdcf576941",
+      "file": "packs/ca.v8.json",
+      "cameraCount": 815,
+      "updatedAt": "2026-11-09"
     },
     "CO": {
       "version": 4,
@@ -85,11 +78,11 @@
       "updatedAt": "2026-11-02"
     },
     "SE": {
-      "version": 5,
-      "hash": "c7e0dc50abb2433fcb0907f641924209df6e07e9902bfbda58472839de4a1cc4",
-      "file": "packs/se.v5.json",
-      "cameraCount": 2819,
-      "updatedAt": "2026-11-02"
+      "version": 6,
+      "hash": "99284bd80ce4f8c4a4684502aef8fa9047c3d6fe7108db439175404e7e79ddf6",
+      "file": "packs/se.v6.json",
+      "cameraCount": 2825,
+      "updatedAt": "2026-11-09"
     },
     "SG": {
       "version": 1,
@@ -99,11 +92,11 @@
       "updatedAt": "2026-09-27"
     },
     "TW": {
-      "version": 7,
-      "hash": "e6f8c957fee988e5ed6c8e1c5465d005f5969ca828097cec1cf6e72c47fcfdc9",
-      "file": "packs/tw.v7.json",
+      "version": 8,
+      "hash": "f576ddcef7689c1991c864b44e1b9aabf1e1c1088a924dbca48c48ae1d7c7f37",
+      "file": "packs/tw.v8.json",
       "cameraCount": 1905,
-      "updatedAt": "2026-11-02"
+      "updatedAt": "2026-11-09"
     },
     "US-CA": {
       "version": 2,
@@ -113,11 +106,11 @@
       "updatedAt": "2026-10-05"
     },
     "US-DC": {
-      "version": 8,
-      "hash": "5a7285cbcb5078439459a5a4e16cbd0e9a569fc821a4d1e3432059b7ed532a47",
-      "file": "packs/us-dc.v8.json",
+      "version": 9,
+      "hash": "59054d996b3dd0ca07162e8c0ba7140eeac9b6f25dca381e1ab492101f0dffd1",
+      "file": "packs/us-dc.v9.json",
       "cameraCount": 288,
-      "updatedAt": "2026-11-02"
+      "updatedAt": "2026-11-09"
     },
     "US-DE": {
       "version": 1,
@@ -134,11 +127,11 @@
       "updatedAt": "2026-09-27"
     },
     "US-IL": {
-      "version": 2,
-      "hash": "74276b563b2672e6d2c81f40a1c795ceee15ba0023b4acf953fe8a939f02e7dd",
-      "file": "packs/us-il.v2.json",
+      "version": 3,
+      "hash": "e1d5ac26e1b4f5d738fe3dc471e54476591660902eeb59ad63b99d1d74c2c8ef",
+      "file": "packs/us-il.v3.json",
       "cameraCount": 625,
-      "updatedAt": "2026-10-12"
+      "updatedAt": "2026-11-09"
     },
     "US-LA": {
       "version": 1,
@@ -162,18 +155,18 @@
       "updatedAt": "2026-11-02"
     },
     "US-VA": {
-      "version": 8,
-      "hash": "b68690d8fa57c07de4978852721632c9b7d623cb5a585607e06b66a7774d519d",
-      "file": "packs/us-va.v8.json",
+      "version": 9,
+      "hash": "9fecf244cbc303cfdade8698d3f625091c948bbd0a51847c59f8f65d1bc2352e",
+      "file": "packs/us-va.v9.json",
       "cameraCount": 35,
-      "updatedAt": "2026-11-02"
+      "updatedAt": "2026-11-09"
     },
     "US-WA": {
-      "version": 7,
-      "hash": "aa68631d6a91a490a396d072e8660a3b964776cb62d4689055095fcbdb5cdae5",
-      "file": "packs/us-wa.v7.json",
+      "version": 8,
+      "hash": "d6138631c267604da619e2ef5f5134db0375d7ef20ed6e22677dd2f593580271",
+      "file": "packs/us-wa.v8.json",
       "cameraCount": 127,
-      "updatedAt": "2026-11-02"
+      "updatedAt": "2026-11-09"
     }
   }
 }

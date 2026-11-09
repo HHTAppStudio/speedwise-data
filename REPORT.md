@@ -1,13 +1,13 @@
 # REPORT — Speedwise data pipeline
 
-Lần chạy: 2026-11-02 (UTC). Sinh tự động bởi `build_packs.py` — đừng sửa phần trên dòng đánh dấu.
+Lần chạy: 2026-11-09 (UTC). Sinh tự động bởi `build_packs.py` — đừng sửa phần trên dòng đánh dấu.
 
 ## Nguồn
 
 | Nguồn | Vùng | Tier | Tải | Ngày dataset | Dòng | Camera | Vào pack | Bị loại (lý do) |
 |---|---|---|---|---|---:|---:|---:|---|
-| `dc-ddot-ase` | US-DC | A | OK | 2026-11-01 | 336 | 289 | 288 | loại không dùng: Stop Sign: 36; loại không dùng: Truck Restriction: 10; gộp trùng ≤ 30 m: 1; trùng id trong nguồn: 1 |
-| `chi-speed` | US-IL | A | OK | 2026-10-09 | 209 | 326 | 326 | — |
+| `dc-ddot-ase` | US-DC | A | OK | 2026-11-08 | 336 | 289 | 288 | loại không dùng: Stop Sign: 36; loại không dùng: Truck Restriction: 10; gộp trùng ≤ 30 m: 1; trùng id trong nguồn: 1 |
+| `chi-speed` | US-IL | A | OK | 2026-11-06 | 209 | 326 | 326 | — |
 | `chi-redlight` | US-IL | A | OK | 2026-09-15 | 300 | 300 | 299 | gộp trùng ≤ 30 m: 1 |
 | `moco-speed` | US-MD | A | OK | 2026-10-01 | 785 | 151 | 148 | kỳ cũ hơn quarter_name: 559; toạ độ bằng 0: 54; thiếu toạ độ: 21; gộp trùng ≤ 30 m: 3 |
 | `moco-redlight` | US-MD | A | OK | 2026-10-01 | 190 | 39 | 38 | kỳ cũ hơn quarter_name: 134; toạ độ bằng 0: 17; gộp trùng ≤ 30 m: 1 |
@@ -18,29 +18,29 @@ Lần chạy: 2026-11-02 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `bal-redlight` | US-MD | B | OK | 2025-05-07 | 180 | 180 | 180 | — |
 | `bal-speed-fixed` | US-MD | B | OK | 2026-02-17 | 21 | 21 | 21 | — |
 | `bal-speed-portable` | US-MD | B | OK | 2026-05-28 | 128 | 128 | 128 | — |
-| `arl-speed` | US-VA | B | OK | 2026-11-02 | 46 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1756094400000: 1; lọc Retired=1757649600000: 1 |
-| `tac-ae` | US-WA | B | OK | 2026-11-01 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
+| `arl-speed` | US-VA | B | OK | 2026-11-09 | 46 | 35 | 35 | không hoạt động: Active=No: 2; lọc Retired=1745899200000: 2; lọc Retired=1747281600000: 2; lọc Retired=1757908800000: 2; lọc Retired=1742443200000: 1; lọc Retired=1756094400000: 1; lọc Retired=1757649600000: 1 |
+| `tac-ae` | US-WA | B | OK | 2026-11-08 | 23 | 22 | 22 | trùng id trong nguồn: 1 |
 | `bel-speed` | US-WA | B | OK | 2026-09-28 | 14 | 8 | 5 | không hoạt động: OperationalStatus=Planned: 6; gộp trùng ≤ 30 m: 3 |
 | `de-redlight` | US-DE | B | OK | — | 60 | 60 | 60 | — |
-| `nyc-dof-derived` | US-NY | A-derived | OK | 2026-09-27 | 2881 | 2881 | 2881 | — |
+| `nyc-dof-derived` | US-NY | A-derived | LỖI: RuntimeError: HTTP Error 503: Service Unavailable — giữ 2881 camera từ pack cũ | 2026-09-27 | — | — | 2881 | — |
 | `qc-mtmd` | CA | A | OK | 2026-09-10 | 160 | 160 | 160 | — |
-| `tor-rlc` | CA | A | OK | 2026-10-31 | 301 | 301 | 295 | gộp trùng ≤ 30 m: 6 |
+| `tor-rlc` | CA | A | OK | 2026-11-07 | 301 | 301 | 295 | gộp trùng ≤ 30 m: 6 |
 | `ott-rlc` | CA | A | OK | 2026-08-12 | 88 | 86 | 86 | thiếu toạ độ: 2 |
 | `york-rlc` | CA | A | OK | 2025-08-01 | 55 | 55 | 55 | — |
-| `ham-rlc` | CA | A | OK | 2026-10-31 | 51 | 51 | 51 | — |
+| `ham-rlc` | CA | A | OK | 2026-11-07 | 51 | 51 | 51 | — |
 | `peel-rlc` | CA | A | OK | 2026-03-05 | 37 | 37 | 37 | — |
 | `king-rlc` | CA | A | OK | 2025-01-09 | 7 | 7 | 7 | — |
-| `edm-isd` | CA | A | OK | 2026-11-02 | 64 | 64 | 64 | — |
+| `edm-isd` | CA | A | OK | 2026-11-09 | 67 | 67 | 67 | — |
 | `cal-isc` | CA | A | OK | 2026-11-01 | 57 | 57 | 57 | — |
 | `ia-ate` | US-IA | B | OK | — | 348 | 156 | 156 | lọc approvalstatus=2-Denied: 192 |
-| `caba-fijas` | AR | A | OK | — | 224 | 94 | 90 | loại không dùng: Analítica de video: 95; trùng id trong nguồn: 35; gộp trùng ≤ 30 m: 4 |
-| `antt-radares` | BR | A | LỖI: RuntimeError: Remote end closed connection without response — giữ 1080 camera từ pack cũ | 2026-08-28 | — | — | 1080 | — |
+| `caba-fijas` | AR | A | OK | — | 319 | 0 | 0 | loại không dùng: None: 319 |
+| `antt-radares` | BR | A | OK | 2026-11-03 | 1254 | 1140 | 1099 | trùng id trong nguồn: 114; gộp trùng ≤ 30 m: 41 |
 | `bh-fiscalizacao` | BR | A | OK | 2026-10-15 | 473 | 422 | 225 | gộp trùng ≤ 30 m: 197; loại không dùng: Detector de Conversão-Retorno em local Proibido: 28; loại không dùng: Detector de Invasão de Faixa de Exclusiva - MOVE: 23 |
 | `bog-salvavidas` | CO | A | OK | 2026-08-24 | 128 | 44 | 40 | lọc ESTADO_PUNTO=Desmontada - novedad: 53; loại không dùng: C14, C32: 23; lọc ESTADO_PUNTO=None: 8; gộp trùng ≤ 30 m: 4 |
 | `es-dgt-radares` | ES | A | LỖI: RuntimeError: HTTP Error 502: Bad Gateway — giữ 722 camera từ pack cũ | 2025-12-18 | — | — | 722 | — |
 | `es-cat-radars` | ES | A | OK | — | 247 | 230 | 230 | thiếu toạ độ: 16; toạ độ ngoài khung bang: 1 |
 | `no-nvdb-atk` | NO | A | OK | 2026-10-29 | 466 | 466 | 443 | gộp trùng ≤ 30 m: 23 |
-| `se-trv-atk` | SE | A | OK | 2026-10-30 | 2819 | 2819 | 2819 | — |
+| `se-trv-atk` | SE | A | OK | 2026-11-08 | 2825 | 2825 | 2825 | — |
 | `be-bxl-speedcameras` | BE | A | OK | — | 140 | 140 | 137 | gộp trùng ≤ 30 m: 3 |
 | `lu-geoportail-radars` | LU | A | OK | 2024-10-24 | 45 | 45 | 45 | — |
 | `de-ka-blitzer` | DE | A | OK | 2025-02-19 | 37 | 37 | 33 | gộp trùng ≤ 30 m: 4 |
@@ -50,7 +50,7 @@ Lần chạy: 2026-11-02 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | `sg-spf-dtrls` | SG | A | OK | 2025-12-02 | 240 | 240 | 235 | gộp trùng ≤ 30 m: 5 |
 | `hk-td-rlc` | HK | A | OK | 2026-06-26 | 230 | 230 | 222 | gộp trùng ≤ 30 m: 8 |
 | `hk-td-sec` | HK | A | OK | 2026-06-16 | 164 | 164 | 164 | — |
-| `tw-npa-speed` | TW | A | OK | 2026-11-02 | 1896 | 1890 | 1885 | gộp trùng ≤ 30 m: 5; trùng id trong nguồn: 4; lọc CityName=設置縣市: 1; toạ độ ngoài khung bang: 1 |
+| `tw-npa-speed` | TW | A | OK | 2026-11-09 | 1896 | 1890 | 1885 | gộp trùng ≤ 30 m: 5; trùng id trong nguồn: 4; lọc CityName=設置縣市: 1; toạ độ ngoài khung bang: 1 |
 | `tw-ntpc-fixed` | TW | A | OK | — | 173 | 173 | 1 | gộp trùng ≤ 30 m: 172 |
 | `tw-ntpc-section` | TW | A | OK | 2026-08-11 | 50 | 50 | 19 | gộp trùng ≤ 30 m: 31 |
 | `au-act-cameras` | AU | A | OK | 2026-10-28 | 1286 | 1204 | 1125 | gộp trùng ≤ 30 m: 79; trùng id trong nguồn: 52; loại không dùng: None: 3; lọc decommissioned_camera_date=2020-01-23T00:00:00.000: 3; lọc decommissioned_camera_date=2002-06-17T00:00:00.000: 2; lọc decommissioned_camera_date=2007-01-17T00:00:00.000: 2; lọc decommissioned_camera_date=2008-04-23T00:00:00.000: 2; lọc decommissioned_camera_date=2008-08-29T00:00:00.000: 2; lọc decommissioned_camera_date=2009-05-13T00:00:00.000: 2; lọc decommissioned_camera_date=2016-03-01T00:00:00.000: 2; lọc decommissioned_camera_date=2016-11-01T00:00:00.000: 2; lọc decommissioned_camera_date=2017-06-01T00:00:00.000: 2; lọc decommissioned_camera_date=2022-04-03T00:00:00.000: 2; lọc decommissioned_camera_date=2024-10-22T00:00:00.000: 2; lọc decommissioned_camera_date=2001-04-24T00:00:00.000: 1; lọc decommissioned_camera_date=2017-08-01T00:00:00.000: 1; thiếu toạ độ: 1; toạ độ ngoài khung bang: 1 |
@@ -63,11 +63,10 @@ Lần chạy: 2026-11-02 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 
 | Vùng | Pack | Đơn vị | KB | Version | Camera | speed | redLight | schoolZone | combined | mobile |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| AR | `packs/ar.v1.json` | kmh | 36 | 1 | 90 | 90 | 0 | 0 | 0 | 0 |
 | AU | `packs/au.v2.json` | kmh | 636 | 2 | 1460 | 79 | 0 | 49 | 233 | 1099 |
 | BE | `packs/be.v2.json` | kmh | 57 | 2 | 137 | 137 | 0 | 0 | 0 | 0 |
-| BR | `packs/br.v3.json` | kmh | 657 | 3 | 1305 | 1191 | 114 | 0 | 0 | 0 |
-| CA | `packs/ca.v7.json` | kmh | 344 | 7 | 812 | 11 | 661 | 0 | 10 | 130 |
+| BR | `packs/br.v4.json` | kmh | 667 | 4 | 1324 | 1210 | 114 | 0 | 0 | 0 |
+| CA | `packs/ca.v8.json` | kmh | 345 | 8 | 815 | 11 | 664 | 0 | 10 | 130 |
 | CO | `packs/co.v4.json` | kmh | 17 | 4 | 40 | 36 | 0 | 0 | 4 | 0 |
 | DE | `packs/de.v1.json` | kmh | 14 | 1 | 33 | 33 | 0 | 0 | 0 | 0 |
 | ES | `packs/es.v1.json` | kmh | 395 | 1 | 952 | 952 | 0 | 0 | 0 | 0 |
@@ -75,21 +74,21 @@ Lần chạy: 2026-11-02 (UTC). Sinh tự động bởi `build_packs.py` — đ�
 | KR | `packs/kr.v3.json` | kmh | 8089 | 3 | 26387 | 9745 | 16333 | 0 | 309 | 0 |
 | LU | `packs/lu.v1.json` | kmh | 20 | 1 | 45 | 45 | 0 | 0 | 0 | 0 |
 | NO | `packs/no.v6.json` | kmh | 185 | 6 | 443 | 443 | 0 | 0 | 0 | 0 |
-| SE | `packs/se.v5.json` | kmh | 1157 | 5 | 2819 | 2819 | 0 | 0 | 0 | 0 |
+| SE | `packs/se.v6.json` | kmh | 1159 | 6 | 2825 | 2825 | 0 | 0 | 0 | 0 |
 | SG | `packs/sg.v1.json` | kmh | 131 | 1 | 293 | 23 | 235 | 0 | 0 | 35 |
-| TW | `packs/tw.v7.json` | kmh | 803 | 7 | 1905 | 1905 | 0 | 0 | 0 | 0 |
+| TW | `packs/tw.v8.json` | kmh | 803 | 8 | 1905 | 1905 | 0 | 0 | 0 | 0 |
 | US-CA | `packs/us-ca.v2.json` | mph | 30 | 2 | 74 | 56 | 18 | 0 | 0 | 0 |
-| US-DC | `packs/us-dc.v8.json` | mph | 118 | 8 | 288 | 224 | 64 | 0 | 0 | 0 |
+| US-DC | `packs/us-dc.v9.json` | mph | 118 | 9 | 288 | 224 | 64 | 0 | 0 | 0 |
 | US-DE | `packs/us-de.v1.json` | mph | 24 | 1 | 60 | 0 | 60 | 0 | 0 | 0 |
 | US-IA | `packs/us-ia.v1.json` | mph | 64 | 1 | 156 | 13 | 0 | 0 | 0 | 143 |
-| US-IL | `packs/us-il.v2.json` | mph | 256 | 2 | 625 | 326 | 299 | 0 | 0 | 0 |
+| US-IL | `packs/us-il.v3.json` | mph | 256 | 3 | 625 | 326 | 299 | 0 | 0 | 0 |
 | US-LA | `packs/us-la.v1.json` | mph | 16 | 1 | 38 | 2 | 6 | 30 | 0 | 0 |
 | US-MD | `packs/us-md.v2.json` | mph | 215 | 2 | 515 | 148 | 218 | 149 | 0 | 0 |
 | US-NY | `packs/us-ny.v5.json` | mph | 1235 | 5 | 2881 | 0 | 704 | 2177 | 0 | 0 |
-| US-VA | `packs/us-va.v8.json` | mph | 15 | 8 | 35 | 0 | 0 | 35 | 0 | 0 |
-| US-WA | `packs/us-wa.v7.json` | mph | 52 | 7 | 127 | 14 | 39 | 74 | 0 | 0 |
+| US-VA | `packs/us-va.v9.json` | mph | 15 | 9 | 35 | 0 | 0 | 35 | 0 | 0 |
+| US-WA | `packs/us-wa.v8.json` | mph | 52 | 8 | 127 | 14 | 39 | 74 | 0 | 0 |
 
-**Tổng: 41906 camera ở 25 vùng.**
+**Tổng: 41844 camera ở 24 vùng.**
 
 ## Vehicle-specific limits
 
@@ -97,27 +96,9 @@ Limit riêng theo loại xe chỉ lấy từ trường có sẵn trong dữ li�
 
 | Nguồn | Vùng | Trường nguồn → loại xe | Camera có limit theo xe |
 |---|---|---|---:|
-| `antt-radares` | BR | `velocidade_pesado` → rv, trailer, truck | 1080 |
+| `antt-radares` | BR | `velocidade_pesado` → rv, trailer, truck | 1099 |
 
 Không có limit theo loại xe (51 nguồn): `dc-ddot-ase`, `chi-speed`, `chi-redlight`, `moco-speed`, `moco-redlight`, `sf-speed`, `sf-redlight`, `nola-cams`, `sea-atsc`, `bal-redlight`, `bal-speed-fixed`, `bal-speed-portable`, `arl-speed`, `tac-ae`, `bel-speed`, `de-redlight`, `nyc-dof-derived`, `qc-mtmd`, `tor-rlc`, `ott-rlc`, `york-rlc`, `ham-rlc`, `peel-rlc`, `king-rlc`, `edm-isd`, `cal-isc`, `ia-ate`, `caba-fijas`, `bh-fiscalizacao`, `bog-salvavidas`, `es-dgt-radares`, `es-cat-radars`, `no-nvdb-atk`, `se-trv-atk`, `be-bxl-speedcameras`, `lu-geoportail-radars`, `de-ka-blitzer`, `sg-spf-speed`, `sg-spf-fixed`, `sg-spf-redlight`, `sg-spf-dtrls`, `hk-td-rlc`, `hk-td-sec`, `tw-npa-speed`, `tw-ntpc-fixed`, `tw-ntpc-section`, `au-act-cameras`, `au-nsw-fixed`, `au-nsw-school`, `au-nsw-redlight`, `kr-std`.
-
-## NYC — vị trí suy từ vé phạt DOF (`nyc-dof-derived`)
-
-- Dataset: `9mwx-gamw`, `pvqr-7yc4` · cửa sổ 2025-11-02 → 2026-11-02 · 4,111,470 vé camera
-- Địa điểm (chuỗi địa chỉ trên vé) ≥ 20 vé: **3137** (bỏ 120 địa điểm ít vé hơn)
-- Geocode OK: **2886 / 3137 (92.0 %)** · gọi Geoclient 0 lần, lấy từ cache 3352 lần
-- Bị loại: geocode không ra giao lộ: 241; địa chỉ không đọc được: 8; không có borough (violation_county=None): 2
-- Camera sau khi gộp cùng loại + giao lộ + hướng: **2881**
-
-Mẫu 5 vị trí nhiều vé nhất (mở Apple Maps để kiểm):
-
-| Loại | Địa điểm | Hướng | Borough | Vé | Apple Maps |
-|---|---|---|---|---:|---|
-| schoolZone | CROSS BAY BLVD @ SHAD CREEK RD | SB | Queens | 51747 | [40.608645, -73.819186](https://maps.apple.com/?ll=40.608645,-73.819186&z=18) |
-| schoolZone | N CONDUIT AVE @ 88TH ST | WB | Queens | 46601 | [40.670780, -73.847871](https://maps.apple.com/?ll=40.670780,-73.847871&z=18) |
-| schoolZone | N CONDUIT AVE @ 127TH ST | WB | Queens | 34601 | [40.667029, -73.813256](https://maps.apple.com/?ll=40.667029,-73.813256&z=18) |
-| schoolZone | CYPRESS HILLS ST @ JAMAICA AVE | SB | Brooklyn | 26470 | [40.688563, -73.875707](https://maps.apple.com/?ll=40.688563,-73.875707&z=18) |
-| schoolZone | BRUCKNER BLVD @ WHITE PLAINS RD | EB | Bronx | 26407 | [40.825950, -73.859555](https://maps.apple.com/?ll=40.825950,-73.859555&z=18) |
 
 <!-- PHẦN VIẾT TAY: build_packs.py giữ nguyên mọi thứ bên dưới dòng này -->
 
