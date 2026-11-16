@@ -1,7 +1,7 @@
 {
   "region": "US-NY",
-  "version": 5,
-  "generatedAt": "2026-11-02T11:12:28Z",
+  "version": 6,
+  "generatedAt": "2026-11-16T11:23:26Z",
   "unit": "mph",
   "cameras": [
     {
@@ -14389,22 +14389,6 @@
       "active": true
     },
     {
-      "id": "us-ny-nyc-dof-derived-sz0009580nb",
-      "type": "schoolZone",
-      "lat": 40.635682,
-      "lon": -74.089703,
-      "heading": 0,
-      "postedLimit": null,
-      "roadName": "Brighton Ave & Webster Ave",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2026-05-25T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
       "id": "us-ny-nyc-dof-derived-sz0009620nb",
       "type": "schoolZone",
       "lat": 40.642029,
@@ -19984,22 +19968,6 @@
       "sourceId": "nyc-dof-derived",
       "confidence": 65,
       "lastConfirmedAt": "2026-09-26T00:00:00Z",
-      "confirmCount": 0,
-      "denyCount": 0,
-      "active": true
-    },
-    {
-      "id": "us-ny-nyc-dof-derived-sz0018035nb",
-      "type": "schoolZone",
-      "lat": 40.648822,
-      "lon": -73.97156,
-      "heading": 0,
-      "postedLimit": null,
-      "roadName": "Coney Island Ave & Kermit Pl",
-      "source": "openData",
-      "sourceId": "nyc-dof-derived",
-      "confidence": 65,
-      "lastConfirmedAt": "2025-11-18T00:00:00Z",
       "confirmCount": 0,
       "denyCount": 0,
       "active": true
